@@ -2,7 +2,8 @@
 
 namespace App;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Enums\UserStatus;
+use App\Enums\UserType;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 
@@ -10,30 +11,46 @@ class User extends Authenticatable
 {
     use Notifiable;
 
+    protected $table = 'user';
+
+    protected $primaryKey = 'user_id';
+
+    /**
+     * Dynamic Scope for retrieving only the active/inactive user_status
+     * App\User::isUserTypeOf( 'admin'|'manager'|'cashier' )->...
+     */
+    public function scopeisUserTypeOf( $query, UserType $type )
+    {
+        if ( $type->in( [ UserType::ADMIN, UserType::MANAGER, UserType::CASHIER ] ) ) {
+            return $query->where( 'user_type', $type );
+        }
+    }
+
+    /**
+     * Dynamic Scope: for retreiving admin, manager, cashier User_Type.
+     * App\User::isUserStatusOf( 'active' | 'inactive' )->...
+     */
+    public function scopeisUserStatusOf( $query, UserStatus $status )
+    {
+        if ( $status->in( [ UserStatus::ACTIVE, UserStatus::INACTIVE ] ) ) {
+            return $query->where( 'user_status', $status );
+        }
+    }
+
     /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'password',
+        'email', 'password', 'first_name', 'last_name',
     ];
 
     /**
-     * The attributes that should be hidden for arrays.
+     * The attributes that are guarded
      *
      * @var array
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    protected $guarded = [ 'user_status', 'user_type' ];
 
-    /**
-     * The attributes that should be cast to native types.
-     *
-     * @var array
-     */
-    protected $casts = [
-        'email_verified_at' => 'datetime',
-    ];
 }
