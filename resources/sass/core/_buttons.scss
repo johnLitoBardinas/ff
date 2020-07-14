@@ -1,6 +1,20 @@
 .btn {
 
+    // Element
+    &__ff--primary {
+        color: $primary-color;
+        border: 1px solid $primary-color !important;
+
+        &:hover {
+            background-color: $primary-color !important;
+            color: $white !important;
+        }
+
+    }
+
+    // Variety
     &--ff {
         background-color: $primary-color;
     }
+
 }

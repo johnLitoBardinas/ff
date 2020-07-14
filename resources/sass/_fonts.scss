@@ -11,3 +11,11 @@
         url('../fonts/Roboto-Regular.woff') format('woff'),
         url('../fonts/Roboto-Regular.ttf') format('truetype');
 }
+
+// Using the specified Fonts
+html,
+body {
+    font-family: 'RobotoRegular', Fallback, sans-serif;
+}
+
+// Applying Default style for elements.
