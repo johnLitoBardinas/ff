@@ -20,7 +20,7 @@
 <body>
     <div id="app">
         @auth
-            <x-nav totalBranch="66"/>
+    <x-nav totalBranch="66" logo="{{ $logo }}"/>
         @endauth
 
         <main>

@@ -1,3 +1,5 @@
+@props( [ 'logo' => 'svg/fixandfree.co_logo_horizontal.svg' ] )
+
 <nav class="admin-header">
     <div class="container ">
         <div class="d-flex align-items-center justify-content-center py-5 admin-header__logo">

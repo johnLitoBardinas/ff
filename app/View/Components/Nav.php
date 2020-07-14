@@ -14,7 +14,7 @@ class Nav extends Component
      *
      * @return void
      */
-    public function __construct( String $logo = 'svg/fixandfree.co_logo_horizontal.svg', String $totalBranch )
+    public function __construct( String $logo, String $totalBranch )
     {
         $this->logo = $logo;
         $this->totalBranch = $totalBranch;
