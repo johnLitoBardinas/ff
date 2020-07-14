@@ -16,34 +16,15 @@ class User extends Authenticatable
     protected $primaryKey = 'user_id';
 
     /**
-     * Dynamic Scope for retrieving only the active/inactive user_status
-     * App\User::isUserTypeOf( 'admin'|'manager'|'cashier' )->...
-     */
-    public function scopeisUserTypeOf( $query, UserType $type )
-    {
-        if ( $type->in( [ UserType::ADMIN, UserType::MANAGER, UserType::CASHIER ] ) ) {
-            return $query->where( 'user_type', $type );
-        }
-    }
-
-    /**
-     * Dynamic Scope: for retreiving admin, manager, cashier User_Type.
-     * App\User::isUserStatusOf( 'active' | 'inactive' )->...
-     */
-    public function scopeisUserStatusOf( $query, UserStatus $status )
-    {
-        if ( $status->in( [ UserStatus::ACTIVE, UserStatus::INACTIVE ] ) ) {
-            return $query->where( 'user_status', $status );
-        }
-    }
-
-    /**
      * The attributes that are mass assignable.
      *
      * @var array
      */
     protected $fillable = [
-        'email', 'password', 'first_name', 'last_name',
+        'email',
+        'password',
+        'first_name',
+        'last_name',
     ];
 
     /**
@@ -51,6 +32,57 @@ class User extends Authenticatable
      *
      * @var array
      */
-    protected $guarded = [ 'user_status', 'user_type' ];
+    protected $guarded = [
+        'user_status',
+        'user_type'
+    ];
 
+    /**
+     * Dynamic Scope for retrieving only the active/inactive user_status
+     * App\User::isUserTypeOf( 'admin'|'manager'|'cashier' )->...
+     */
+    public function scopeisUserTypeOf($query, UserType $type)
+    {
+        if ( is_valid_usertype( $type ) ) {
+            return $query->where('user_type', $type);
+        }
+    }
+
+    /**
+     * Dynamic Scope: for retreiving admin, manager, cashier User_Type.
+     * App\User::isUserStatusOf( 'active' | 'inactive' )->...
+     */
+    public function scopeisUserStatusOf($query, UserStatus $status)
+    {
+        if ( is_valid_user_status( $status ) ) {
+            return $query->where('user_status', $status);
+        }
+    }
+
+    /**
+     * Checking if the user has the Valid Rules.
+     */
+    public function hasRolesOf(array $types)
+    {
+        return (boolean) $this
+            ->whereIn( 'user_type', $types )
+            ->where( 'user_status', UserStatus::ACTIVE )
+            ->first();
+    }
+
+    /**
+     * Checking if single role below to a user.
+     */
+    public function hasRole(UserType $type)
+    {
+        if ( is_valid_usertype( $type ) ) {
+            return (boolean) $this
+                ->where( 'user_type', $type )
+                ->where( 'user_status', UserStatus::ACTIVE )
+                ->first();
+        }
+
+        return false;
+
+    }
 }
