@@ -26,14 +26,9 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <input type="password" class="form-control @error('password') is-invalid @enderror"
+                        <input type="password" class="form-control"
                             id="login__password" name="password" placeholder="Password" required
                             autocomplete="current-password">
-                        @error('email')
-                            <span class="invalid-feedback" role="alert">
-                                <strong>{{ $message }}</strong>
-                            </span>
-                        @enderror
                     </div>
                     <button type="submit"
                         class="btn btn-primary btn-block text-bold text-uppercase btn--ff">Login</button>
