@@ -1,8 +1,9 @@
-// Variables
-@import 'variables';
 
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
+
+// Variables
+@import 'variables';
 
 // Custom
 @import './utils';
@@ -13,3 +14,5 @@
 // Components
 @import './components/login-form';
 @import './components/admin-header';
+@import './components/admin-searchbar';
+@import './components/admin-table';

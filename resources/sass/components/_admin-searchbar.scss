@@ -1,0 +1,14 @@
+.admin-searchbar {
+
+    button {
+        position: absolute;
+        right: 0;
+        bottom: 0;
+        height: 100%;
+        border: none;
+        outline: none;
+        background: $primary-color;
+        width: 10%;
+        border-radius: 0px 5px 5px 0px;
+    }
+}

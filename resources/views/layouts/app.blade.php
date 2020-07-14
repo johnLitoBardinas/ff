@@ -28,9 +28,9 @@
                     </div>
                     <div class="row justify-content-between">
                         <div class="col-md-3">
-                            <span class="d-flex">
+                            <span class="d-flex align-items-baseline">
                             <img src="{{ asset('svg/icons/store.svg') }}" alt="Icon Total Branch" class="mr-2 mb-3">
-                                Total Active Branch: <b>88</b>
+                                Total Active Branch: &nbsp; <b> 88 </b>
                             </span>
                         </div>
                         <div class="col-md-4">
