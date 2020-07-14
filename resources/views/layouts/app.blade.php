@@ -29,20 +29,23 @@
                     <div class="row justify-content-between">
                         <div class="col-md-3">
                             <span class="d-flex">
-                                <img src="https://via.placeholder.com/20x20" alt="Icon Total Branch" class="mr-3">
+                            <img src="{{ asset('svg/icons/store.svg') }}" alt="Icon Total Branch" class="mr-2 mb-3">
                                 Total Active Branch: <b>88</b>
                             </span>
                         </div>
                         <div class="col-md-4">
                             <ul class="list-unstyled d-flex justify-content-end p-0 m-0">
                                 <li>
-                                    {{ Auth::user()->name }}
-                                    <img src="https://via.placeholder.com/20x20" alt="Icon Profile">
+                                    <a href="{{ route( 'profile' ) }}">
+                                        {{ Auth::user()->first_name .' '.Auth::user()->last_name }}
+                                        <img src="{{ asset( 'svg/icons/profile.svg' ) }}" alt="Icon Profile" class="ml-2">
+                                    </a>
                                 </li>
                                 <li class="ml-5 ">
+
                                     <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                         document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                        <img src="{{ asset( 'svg/icons/logout.svg' ) }}" alt="Logout Image">
                                     </a>
 
                                     <form id="logout-form" action="{{ route('logout') }}"
