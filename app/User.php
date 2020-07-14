@@ -59,30 +59,17 @@ class User extends Authenticatable
         }
     }
 
-    /**
-     * Checking if the user has the Valid Rules.
-     */
-    public function hasRolesOf(array $types)
+    public function isAdmin()
     {
-        return (boolean) $this
-            ->whereIn( 'user_type', $types )
-            ->where( 'user_status', UserStatus::ACTIVE )
-            ->first();
+       return $this->user_type === UserType::ADMIN;
     }
 
     /**
-     * Checking if single role below to a user.
+     * Determining if user is active of inactive.
      */
-    public function hasRole(UserType $type)
+    public function isActive()
     {
-        if ( is_valid_usertype( $type ) ) {
-            return (boolean) $this
-                ->where( 'user_type', $type )
-                ->where( 'user_status', UserStatus::ACTIVE )
-                ->first();
-        }
-
-        return false;
-
+       return $this->user_status === UserStatus::ACTIVE;
     }
+
 }

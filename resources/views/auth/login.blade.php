@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
 <div class="container">
     <div class="row justify-content-center login">
         <div class="col-md-8 h-100 d-flex justify-content-center align-items-center">
@@ -9,7 +10,7 @@
                 <form class="w-100 my-4" method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="form-group">
-                        <select class="form-control" id="login__type">
+                        <select class="form-control" id="login__type" name="home_type">
                             <option disabled readonly>Select Account</option>
                             <option value="fix-and-free.co">fix&free.co</option>
                             <option value="fix-and-free.salon">fix&free.salon</option>
@@ -37,4 +38,5 @@
         </div>
     </div>
 </div>
+
 @endsection

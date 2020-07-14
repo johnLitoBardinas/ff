@@ -8,9 +8,9 @@ if ( ! function_exists( 'is_valid_usertype' ) ) {
     /**
      * Checking if the user type is valid.
      */
-    function is_valid_usertype( UserType $type )
+    function is_valid_usertype( String $type )
     {
-        return $type->in( [ UserType::ADMIN, UserType::MANAGER, UserType::CASHIER ] );
+        return in_array( $type, UserType::getValues() );
     }
 
 }
@@ -20,9 +20,10 @@ if ( ! function_exists( 'is_valid_user_status' ) ) {
     /**
      * Checking if the user status is valid.
      */
-    function is_valid_user_status( UserStatus $status )
+    function is_valid_user_status( String $status )
     {
-        return $status->in( [ UserStatus::ACTIVE, UserStatus::INACTIVE ] );
+        // return $status->in( [ UserStatus::ACTIVE, UserStatus::INACTIVE ] );
+        return in_array( $status, UserStatus::getValues() );
     }
 
 }
