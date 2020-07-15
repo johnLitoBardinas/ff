@@ -10949,6 +10949,18 @@ BACKGROUNDS COLORS
 }
 
 /**
+WIDTH
+**/
+
+.w-90 {
+  width: 90%;
+}
+
+.w-80 {
+  width: 80%;
+}
+
+/**
 CHECKER
 **/
 
@@ -11011,5 +11023,12 @@ CHECKER
   font-weight: normal;
   padding: 5px;
   border-bottom: unset !important;
+}
+
+.admin-branches {
+  height: 60vh;
+  margin-top: -30px;
+  overflow-x: none;
+  overflow-y: hidden;
 }
 
