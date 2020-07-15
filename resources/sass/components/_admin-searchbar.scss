@@ -1,5 +1,9 @@
 .admin-searchbar {
 
+    input.search__input {
+        border-color: $primary-color !important;
+    }
+
     button {
         position: absolute;
         right: 0;

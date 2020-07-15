@@ -10948,6 +10948,22 @@ BACKGROUNDS COLORS
   background-color: #463291 !important;
 }
 
+/**
+CHECKER
+**/
+
+.check {
+  border: thin solid red;
+}
+
+.check-row {
+  border: thin solid yellow;
+}
+
+.check-col {
+  border: thin solid green;
+}
+
 .btn__ff--primary {
   color: #463291;
   border: 1px solid #463291 !important;
@@ -10956,6 +10972,10 @@ BACKGROUNDS COLORS
 .btn__ff--primary:hover {
   background-color: #463291 !important;
   color: #fff !important;
+}
+
+.btn__ff--primary:hover span {
+  color: #fff;
 }
 
 .btn--ff {
@@ -10968,6 +10988,10 @@ BACKGROUNDS COLORS
 
 .admin-header {
   background-color: #F3F3F3;
+}
+
+.admin-searchbar input.search__input {
+  border-color: #463291 !important;
 }
 
 .admin-searchbar button {

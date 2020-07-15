@@ -10,6 +10,7 @@ class AdminDashboard extends Controller
     {
         return view('admin-home')->with([
             'logo' => 'svg/fixandfree.co_logo_horizontal.svg',
+            'homeUrl' => 'admin'
         ]);
     }
 }

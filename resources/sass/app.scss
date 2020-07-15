@@ -1,12 +1,10 @@
-
-// Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
-// Variables
 @import 'variables';
 
-// Custom
+// Miscellaneous
 @import './utils';
+@import './mixins';
 
 // Custom
 @import './core/buttons';

@@ -1,4 +1,6 @@
-@props( [ 'logo' => 'svg/fixandfree.co_logo_horizontal.svg' ] )
+@props( [
+    'logo' => 'svg/fixandfree.co_logo_horizontal.svg',
+] )
 
 <nav class="admin-header">
     <div class="container ">
