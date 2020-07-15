@@ -14,7 +14,7 @@ class CustomerPackageController extends Controller
      */
     public function index()
     {
-        //
+        // Branch ID must
     }
 
     /**

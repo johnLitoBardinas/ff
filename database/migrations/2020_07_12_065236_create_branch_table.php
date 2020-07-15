@@ -18,6 +18,7 @@ class CreateBranchTable extends Migration
             $table->string('branch_code');
             $table->string('branch_name');
             $table->longText('branch_address');
+            $table->enum('branch_status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
     }

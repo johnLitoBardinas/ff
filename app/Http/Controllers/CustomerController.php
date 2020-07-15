@@ -7,15 +7,6 @@ use Illuminate\Http\Request;
 
 class CustomerController extends Controller
 {
-    /**
-     * Display a listing of the resou rce.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -24,7 +15,7 @@ class CustomerController extends Controller
      */
     public function create()
     {
-        //
+        // Return a view for creating a new Customer
     }
 
     /**
@@ -35,7 +26,10 @@ class CustomerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        /**
+         * Use Form Request for validating the request.
+         * Then save the data
+         */
     }
 
     /**
@@ -46,40 +40,7 @@ class CustomerController extends Controller
      */
     public function show(Customer $customer)
     {
-        //
+        // ORM must return a single customer.
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Customer $customer)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Customer $customer)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Customer  $customer
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(Customer $customer)
-    {
-        //
-    }
 }

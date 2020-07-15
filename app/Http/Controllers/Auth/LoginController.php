@@ -41,7 +41,6 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
-    //  = RouteServiceProvider::HOME
     /**
      * Custom redirection if the user is a Admin | Manager or Cashier
      */

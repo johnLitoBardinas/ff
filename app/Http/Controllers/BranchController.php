@@ -8,6 +8,16 @@ use Illuminate\Http\Request;
 class BranchController extends Controller
 {
 
+     /**
+     * Display a listing of the resou rce.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function index()
+    {
+        //
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -53,3 +63,12 @@ class BranchController extends Controller
         //
     }
 }
+/**
+ * This Controller will handle the following action for the Branch.
+ *
+ * 0. Displaying all the listed Branch Resources.
+ * 1. Creation of new Branch (Don't use Form Request not needed for this one) But use the enums for specific branch_type
+ * 2. Getting a specific branch using branch_id
+ * 3. Udpating a specific branch using branch_id
+ * 3. Deleting a specific branch using branch_id (Optional ?) is this a SoftDelete?
+ */
