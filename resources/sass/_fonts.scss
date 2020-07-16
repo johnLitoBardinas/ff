@@ -16,6 +16,12 @@
 html,
 body {
     font-family: 'RobotoRegular', Fallback, sans-serif;
+    font-size: $font-size-base;
 }
 
 // Applying Default style for elements.
+
+address,
+p {
+    font-size: $font-size-base;
+}

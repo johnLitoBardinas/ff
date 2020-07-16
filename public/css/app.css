@@ -10940,6 +10940,10 @@ TEXT UTILITIES
   text-transform: uppercase;
 }
 
+.font-15px {
+  font-size: 0.9rem;
+}
+
 /**
 BACKGROUNDS COLORS
 **/
@@ -10958,6 +10962,14 @@ WIDTH
 
 .w-80 {
   width: 80%;
+}
+
+/**
+CURSORS
+**/
+
+.cursor-pointer {
+  cursor: pointer;
 }
 
 /**
@@ -10994,6 +11006,72 @@ CHECKER
   background-color: #463291;
 }
 
+.switcher {
+  background-color: #fff;
+  display: flex;
+  justify-content: flex-end;
+  align-content: center;
+  width: 50%;
+  position: relative;
+}
+
+.switcher .switch {
+  display: inline-block;
+  width: 60px;
+  height: 30px;
+  position: absolute;
+  bottom: 0;
+}
+
+.switcher .switch input[type=checkbox] {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switcher .switch input[type=checkbox]:checked + .slider {
+  background-color: #463291;
+}
+
+.switcher .switch input[type=checkbox]:focus + .slider {
+  box-shadow: 0 0 0 4px #463291;
+  outline: none;
+}
+
+.switcher .switch input[type=checkbox]:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+.switcher .switch .slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #F3F3F3;
+  transition: 0.4s;
+}
+
+.switcher .switch .slider:before {
+  position: absolute;
+  content: "";
+  height: 23px;
+  width: 23px;
+  left: 4px;
+  bottom: 4px;
+  background-color: #fff;
+  transition: 0.4s;
+}
+
+.switcher .switch .slider.round {
+  border-radius: 34px;
+}
+
+.switcher .switch .slider.round:before {
+  border-radius: 50%;
+}
+
 .login {
   height: 100vh;
 }
@@ -11028,7 +11106,18 @@ CHECKER
 .admin-branches {
   height: 60vh;
   margin-top: -30px;
-  overflow-x: none;
-  overflow-y: hidden;
+  overflow-y: scroll;
+}
+
+.admin-branches::-webkit-scrollbar {
+  width: 0 !important;
+}
+
+.admin-branches .branch {
+  font-size: 0.9rem;
+}
+
+.admin-branches .branch__info img {
+  width: 40px;
 }
 

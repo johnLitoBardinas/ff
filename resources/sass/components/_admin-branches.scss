@@ -1,6 +1,18 @@
 .admin-branches {
     height: 60vh;
     margin-top: -30px;
-    overflow-x: none;
     overflow-y: scroll;
+    &::-webkit-scrollbar { width: 0 !important; }
+
+    .branch {
+        font-size: .9rem;
+
+        &__info {
+
+            img {
+                width: 40px;
+            }
+        }
+
+    }
 }

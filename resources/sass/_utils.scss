@@ -9,6 +9,10 @@ TEXT UTILITIES
     text-transform: uppercase;
 }
 
+.font-15px {
+    font-size: $font-size-base;
+}
+
 /**
 BACKGROUNDS COLORS
 **/
@@ -28,6 +32,12 @@ WIDTH
     width: 80%;
 }
 
+/**
+CURSORS
+**/
+.cursor-pointer {
+    cursor: pointer;
+}
 
 /**
 CHECKER
