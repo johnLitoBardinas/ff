@@ -1,8 +1,14 @@
+// Variables are auto imported via cascading.
+
 /**
 TEXT UTILITIES
 **/
 .text-bold {
     font-weight: bold;
+}
+
+.text-primary {
+    color: $primary-color !important;
 }
 
 .text-uppercase {
@@ -20,6 +26,35 @@ BACKGROUNDS COLORS
     background-color: $primary-color !important;
 }
 
+/**
+BORDERS
+**/
+.border-primary {
+    border-color: $primary-color !important;
+}
+
+
+/**
+OVERFLOW
+**/
+.overflow-y-scroll {
+    overflow-y: scroll;
+}
+
+.chrome-hide-scroll {
+    &::-webkit-scrollbar { width: 0 !important; }
+}
+
+/**
+HEIGHT
+**/
+.vh-59 {
+    height: 59vh;
+}
+
+.vh-40 {
+    height: 40vh;
+}
 
 /**
 WIDTH

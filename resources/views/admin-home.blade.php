@@ -24,7 +24,7 @@
             </div>
         </div>
     </div>
-    {{-- Add Branch & Search Bar --}}
+    {{-- Add Branch & Search Branch --}}
 
     <div class="row justify-content-end mt-4">
         <div class="col-md-5">
@@ -60,7 +60,7 @@
         </div>
     </div>
 
-    <div class="row">
+    <div class="row justify-content-between">
         <div class="col-md-6 admin-branches">
             @for($i = 0; $i < 5; $i++)
                 <div class="card mb-3 branch">
@@ -110,9 +110,97 @@
                 </div>
             @endfor
         </div>
+        {{-- Branch List --}}
 
-        <div class="col-md-6">
-            <code>Branch Form and Data</code>
+        <div class="col-md-5 vh-59 overflow-y-scroll chrome-hide-scroll">
+
+            <div class="mt-4 address-form">
+                <h6 class="text-center text-primary text-bold">
+                    <img src="{{ asset( 'svg/icons/branch_location_icon.svg' ) }}"
+                        alt="Branch Location Icon" width="20" height="20">
+                    ADDRESS
+                </h6>
+
+                <form >
+                    <div class="form-group">
+                        <small for="exampleInputEmail1" class="form-text text-muted">Unit no./Floor no./Building Name/Street</small>
+                        <input type="email" class="form-control border-primary" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            placeholder="Enter email">
+                    </div>
+                    <div class="form-group">
+                        <small for="exampleInputEmail1" class="form-text text-muted">Province/City</small>
+                        <select class="custom-select border-primary">
+                            <option value="1">Metro Manila - Paranaque</option>
+                            <option value="1">Metro Manila - Makati</option>
+                            <option value="1">Metro Manila - Pasig</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <small for="exampleInputEmail1" class="form-text text-muted">Barangay</small>
+                        <select class="custom-select border-primary">
+                            <option value="1">San Isidro</option>
+                            <option value="1">Palanan</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <small for="exampleInputEmail1" class="form-text text-muted">Region</small>
+                        <select class="custom-select border-primary">
+                            <option value="1">NCR</option>
+                            <option value="1">REGION 5</option>
+                        </select>
+                    </div>
+
+                </form>
+
+            </div>
+            {{-- Address Form Field --}}
+
+            <div class="mt-4 user-form">
+                <h6 class="text-center text-primary text-bold">
+                    <img src="{{ asset( 'svg/icons/branch_user_icon.svg' ) }}"
+                        alt="Branch Location Icon" width="20" height="20">
+                    USERS
+                </h6>
+
+                <form >
+                    <div class="form-group">
+                        <small for="exampleInputEmail1" class="form-text text-muted">First Name</small>
+                        <input type="text" class="form-control border-primary" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            placeholder="First Name" value="John Lito">
+                    </div>
+
+                    <div class="form-group">
+                        <small for="exampleInputEmail1" class="form-text text-muted">Last Name</small>
+                        <input type="text" class="form-control border-primary" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            placeholder="Last Name" value="Bardinas">
+                    </div>
+
+                    <div class="form-group">
+                        <small for="exampleInputEmail1" class="form-text text-muted">Email</small>
+                        <input type="email" class="form-control border-primary" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            placeholder="Enter email" value="johnLito1996@gmail.com">
+                    </div>
+
+                    <div class="form-group">
+                        <small for="exampleInputEmail1" class="form-text text-muted">Mobile</small>
+                        <input type="email" class="form-control border-primary" id="exampleInputEmail1" aria-describedby="emailHelp"
+                            placeholder="Enter email" value="(+63) 9123456789">
+                    </div>
+
+                    <div class="form-group">
+                        <small for="exampleInputEmail1" class="form-text text-muted">User Type</small>
+                        <select class="custom-select border-primary">
+                            <option value="1">Branch Manager</option>
+                            <option value="1">Branch Cashier</option>
+                        </select>
+                    </div>
+
+                </form>
+
+            </div>
+
         </div>
     </div>
 </div>
