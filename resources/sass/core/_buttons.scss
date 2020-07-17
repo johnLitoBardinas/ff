@@ -1,3 +1,23 @@
+@mixin include_hover_icon($before, $after) {
+    &:before {
+        content: '';
+        @extend %icon-style;
+        width: 15px;
+        height: 15px;
+        background-image: url($before);
+    }
+
+    &:hover {
+        &:before {
+            content: '';
+            @extend %icon-style;
+            width: 15px;
+            height: 15px;
+            background-image: url($after);
+        }
+    }
+}
+
 .btn {
 
     // Element
@@ -20,22 +40,37 @@
         background-color: $primary-color;
     }
 
-    // Need to implement the icon for future
-    // &.btn-icon {
+    // Button with Icons
+    &.btn-icon {
+        display: flex !important;
+        height: 100%;
+        line-height: normal;
 
-    //     &__delete {
+        &__delete {
+            @include include_hover_icon('../../images/svg/delete_icon_violet.svg', '../../images/svg/delete_icon_white.svg');
+        }
 
-    //         span {
-    //             background-image: url('../../images/delete_icon.svg');
-    //             width: 20px;
-    //             height: 20px;
-    //             display: inline-block;
-    //             background-repeat: no-repeat;
-    //             background-position: center;
-    //             background-size: contain;
-    //             vertical-align: bottom;
-    //         }
-    //     }
+        // &__diactivate {
+        //     @include include_hover_icon('../../images/svg/delete_icon_violet.svg', '../../images/svg/delete_icon_white.svg');
+        // }
 
-    // }
+        &__save {
+            @include include_hover_icon('../../images/svg/save_icon_violet.svg', '../../images/svg/save_icon_white.svg');
+        }
+
+        &__adduser {
+            @include include_hover_icon('../../images/svg/add_icon_violet.svg', '../../images/svg/add_icon_white.svg');
+        }
+
+        &__edit {
+            @include include_hover_icon('../../images/svg/edit_icon_violet.svg', '../../images/svg/edit_icon_white.svg');
+        }
+
+        &__exit {
+            @include include_hover_icon('../../images/svg/exit_icon_violet.svg', '../../images/svg/exit_icon_white.svg');
+        }
+
+    }
+
+
 }

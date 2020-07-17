@@ -4,11 +4,13 @@
 
 // Miscellaneous
 @import './utils';
+@import './base';
 @import './mixins';
 
 // Custom
 @import './core/buttons';
 @import './core/switcher';
+@import './core/icons';
 
 // Components
 @import './components/login-form';

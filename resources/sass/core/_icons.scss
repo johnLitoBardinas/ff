@@ -1,12 +1,44 @@
+/**
+    All ICons will reside here  apart from the ff:
+
+    1. User
+    2. Logout
+    3. Search
+    4. Store
+
+    This icons is needed for the img src reference.
+**/
+
+$img_svg_path: "../../images/svg/";
+
 .icon {
 
-    /**
-        All ICons will reside here  apart from the ff:
+    margin-right: 10px;
 
-        1. User
-        2. Logout
-        3. Search
-        4. Store
-    **/
+    &__location--black {
+        @extend %icon-style;
+        background-image: url(#{$img_svg_path}location_icon_black.svg);
+    }
+
+    &__location--violet {
+        @extend %icon-style;
+        background-image: url(#{$img_svg_path}location_icon_violet.svg);
+    }
+
+    &__account--black {
+        @extend %icon-style;
+        background-image: url(#{$img_svg_path}account_icon_black.svg);
+        margin-right: 20px;
+    }
+
+    &__account--violet  {
+        @extend %icon-style;
+        background-image: url(#{$img_svg_path}account_icon_violet.svg);
+    }
+
+    &__edit--violet {
+        @extend %icon-style;
+        background-image: url(#{$img_svg_path}edit_icon_violet.svg);
+    }
 
 }

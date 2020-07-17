@@ -11024,6 +11024,33 @@ CHECKER
   border: thin solid green;
 }
 
+/**
+Contains the base style and default variable values.
+**/
+
+.icon__edit--violet,
+.icon__account--violet,
+.icon__account--black,
+.icon__location--violet,
+.icon__location--black,
+.btn.btn-icon__exit:hover:before,
+.btn.btn-icon__exit:before,
+.btn.btn-icon__edit:hover:before,
+.btn.btn-icon__edit:before,
+.btn.btn-icon__adduser:hover:before,
+.btn.btn-icon__adduser:before,
+.btn.btn-icon__save:hover:before,
+.btn.btn-icon__save:before,
+.btn.btn-icon__delete:hover:before,
+.btn.btn-icon__delete:before {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
 .btn__ff--primary {
   color: #463291;
   border: 1px solid #463291 !important;
@@ -11040,6 +11067,82 @@ CHECKER
 
 .btn--ff {
   background-color: #463291;
+}
+
+.btn.btn-icon {
+  display: flex !important;
+  height: 100%;
+  line-height: normal;
+}
+
+.btn.btn-icon__delete:before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url(/images/delete_icon_violet.svg?abe172401cf4db3437ebf656c9ef8744);
+}
+
+.btn.btn-icon__delete:hover:before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url(/images/delete_icon_white.svg?8171918dfe0370c0c2ebc3699751a0f9);
+}
+
+.btn.btn-icon__save:before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url(/images/save_icon_violet.svg?f1f4663f44d0cb858ddcbbad6b7180cf);
+}
+
+.btn.btn-icon__save:hover:before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url(/images/save_icon_white.svg?52eb22a2ba8bc74a00670b5e0e78ae81);
+}
+
+.btn.btn-icon__adduser:before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url(/images/add_icon_violet.svg?85bcee7fd0a3b43b43b1c8c4b30f47a2);
+}
+
+.btn.btn-icon__adduser:hover:before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url(/images/add_icon_white.svg?e2a89f1447b44c535b23c86bb8d26f38);
+}
+
+.btn.btn-icon__edit:before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url(/images/edit_icon_violet.svg?f0f902dca06cb3b9f0a6dae633adfaea);
+}
+
+.btn.btn-icon__edit:hover:before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url(/images/edit_icon_white.svg?8433d69fdbe38fdfebb1328904bf06f9);
+}
+
+.btn.btn-icon__exit:before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url(/images/exit_icon_violet.svg?9d51a5989541da36414e5efa54e76d5b);
+}
+
+.btn.btn-icon__exit:hover:before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url(/images/exit_icon_white.svg?cbca741cd872e2079eef1836695be41b);
 }
 
 .switcher {
@@ -11106,6 +11209,42 @@ CHECKER
 
 .switcher .switch .slider.round:before {
   border-radius: 50%;
+}
+
+/**
+    All ICons will reside here  apart from the ff:
+
+    1. User
+    2. Logout
+    3. Search
+    4. Store
+
+    This icons is needed for the img src reference.
+**/
+
+.icon {
+  margin-right: 10px;
+}
+
+.icon__location--black {
+  background-image: url(/images/location_icon_black.svg?ec6faa9603358cd50fb1b3bc83ccc183);
+}
+
+.icon__location--violet {
+  background-image: url(/images/location_icon_violet.svg?75140fef2f5b77fab045608627f4a65d);
+}
+
+.icon__account--black {
+  background-image: url(/images/account_icon_black.svg?42356ec58c345d46fd25c95184b76afa);
+  margin-right: 20px;
+}
+
+.icon__account--violet {
+  background-image: url(/images/account_icon_violet.svg?19166ed37ed351193b1758b2c8948d4a);
+}
+
+.icon__edit--violet {
+  background-image: url(/images/edit_icon_violet.svg?f0f902dca06cb3b9f0a6dae633adfaea);
 }
 
 .login {

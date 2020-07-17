@@ -29,20 +29,23 @@
     <div class="row justify-content-end mt-4">
         <div class="col-md-5">
             <div class="d-flex justify-content-between admin-action">
-                <button class="btn btn-sm btn-default border btn__ff--primary btn-icon__delete">
+                <button class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__delete">
                     Delete
                 </button>
                 <div class="d-flex justify-content-around">
-                    <button class="btn btn-sm btn-default border mr-2 btn__ff--primary btn__ff--save">
+                    {{-- <button class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__save">
+                        DEACTIVATE
+                    </button> --}}
+                    <button class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__save">
                         SAVE
                     </button>
-                    <button class="btn btn-sm btn-default border mr-2 btn__ff--primary btn__ff--adduser">
+                    <button class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__adduser">
                         ADD USER
                     </button>
-                    <button class="btn btn-sm btn-default border mr-2 btn__ff--primary btn__ff--edit">
+                    <button class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__edit">
                         EDIT
                     </button>
-                    <button class="btn btn-sm btn-default border btn__ff--primary btn__ff--exit">
+                    <button class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__exit">
                         EXIT
                     </button>
                 </div>
@@ -72,11 +75,13 @@
                     </div>
                     <div class="card-body w-90 align-self-end branch__info">
                         <div class="d-flex align-items-base branch__address">
+                            <span class="icon icon__location--black"></span>
                             <address class="w-80">213 Gemini St. Rainbow Village 2, UPS 5, Sucat Rd. San Isidro, Metro
                                 Manila - Paranaque
                                 City 1700, NCR</address>
                         </div>
                         <div class="d-flex branch__users">
+                            <span class="icon icon__account--black"></span>
 
                             <div class="user_info">
                                 <p class="mb-0">John Doe</p>
@@ -84,7 +89,7 @@
                                 <p class="mb-0">johndoe@gmail.com</p>
                             </div>
 
-                            <div class="switcher">
+                            <div class="switcher w-100">
                                 <label class="switch">
                                     <input type="checkbox">
                                     <span class="slider round"></span>
@@ -102,14 +107,16 @@
 
             <div class="mt-4 address-form">
                 <h6 class="text-center text-primary text-bold">
+                    <span class="icon icon__location--violet mr-0 align-bottom"></span>
                     ADDRESS
                 </h6>
 
-                <form >
+                <form>
                     <div class="form-group">
-                        <small for="exampleInputEmail1" class="form-text text-muted">Unit no./Floor no./Building Name/Street</small>
-                        <input type="email" class="form-control border-primary" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            placeholder="Enter email">
+                        <small for="exampleInputEmail1" class="form-text text-muted">Unit no./Floor no./Building
+                            Name/Street</small>
+                        <input type="email" class="form-control border-primary" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Enter email">
                     </div>
                     <div class="form-group">
                         <small for="exampleInputEmail1" class="form-text text-muted">Province/City</small>
@@ -143,32 +150,33 @@
 
             <div class="mt-4 user-form">
                 <h6 class="text-center text-primary text-bold">
+                    <span class="icon icon__account--violet mr-0 align-bottom"></span>
                     USERS
                 </h6>
 
-                <form >
+                <form>
                     <div class="form-group">
                         <small for="exampleInputEmail1" class="form-text text-muted">First Name</small>
-                        <input type="text" class="form-control border-primary" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            placeholder="First Name" value="John Lito">
+                        <input type="text" class="form-control border-primary" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="First Name" value="John Lito">
                     </div>
 
                     <div class="form-group">
                         <small for="exampleInputEmail1" class="form-text text-muted">Last Name</small>
-                        <input type="text" class="form-control border-primary" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            placeholder="Last Name" value="Bardinas">
+                        <input type="text" class="form-control border-primary" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Last Name" value="Bardinas">
                     </div>
 
                     <div class="form-group">
                         <small for="exampleInputEmail1" class="form-text text-muted">Email</small>
-                        <input type="email" class="form-control border-primary" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            placeholder="Enter email" value="johnLito1996@gmail.com">
+                        <input type="email" class="form-control border-primary" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Enter email" value="johnLito1996@gmail.com">
                     </div>
 
                     <div class="form-group">
                         <small for="exampleInputEmail1" class="form-text text-muted">Mobile</small>
-                        <input type="email" class="form-control border-primary" id="exampleInputEmail1" aria-describedby="emailHelp"
-                            placeholder="Enter email" value="(+63) 9123456789">
+                        <input type="email" class="form-control border-primary" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Enter email" value="(+63) 9123456789">
                     </div>
 
                     <div class="form-group">
