@@ -30,29 +30,19 @@
         <div class="col-md-5">
             <div class="d-flex justify-content-between admin-action">
                 <button class="btn btn-sm btn-default border btn__ff--primary btn-icon__delete">
-                    <img src="{{ asset( 'svg/icons/delete_icon.svg' ) }}" alt="" width="15"
-                        height="15" />
                     Delete
                 </button>
                 <div class="d-flex justify-content-around">
                     <button class="btn btn-sm btn-default border mr-2 btn__ff--primary btn__ff--save">
-                        <img src="{{ asset( 'svg/icons/add_icon.svg' ) }}" alt="" width="15"
-                            height="15" />
                         SAVE
                     </button>
                     <button class="btn btn-sm btn-default border mr-2 btn__ff--primary btn__ff--adduser">
-                        <img src="{{ asset( 'svg/icons/add_icon.svg' ) }}" alt="" width="15"
-                            height="15" />
                         ADD USER
                     </button>
                     <button class="btn btn-sm btn-default border mr-2 btn__ff--primary btn__ff--edit">
-                        <img src="{{ asset( 'svg/icons/edit_icon.svg' ) }}" alt="" width="15"
-                            height="15" />
                         EDIT
                     </button>
                     <button class="btn btn-sm btn-default border btn__ff--primary btn__ff--exit">
-                        <img src="{{ asset( 'svg/icons/exit_back_icon.svg' ) }}" alt=""
-                            width="15" height="15" />
                         EXIT
                     </button>
                 </div>
@@ -82,15 +72,11 @@
                     </div>
                     <div class="card-body w-90 align-self-end branch__info">
                         <div class="d-flex align-items-base branch__address">
-                            <img src="{{ asset('svg/icons/branch_location_icon.svg') }}"
-                                alt="Branch Location Icon" width="20" height="20" />
                             <address class="w-80">213 Gemini St. Rainbow Village 2, UPS 5, Sucat Rd. San Isidro, Metro
                                 Manila - Paranaque
                                 City 1700, NCR</address>
                         </div>
                         <div class="d-flex branch__users">
-                            <img src="{{ asset('svg/icons/branch_user_icon.svg') }}"
-                                alt="Branch User Icon" width="20" height="20" />
 
                             <div class="user_info">
                                 <p class="mb-0">John Doe</p>
@@ -116,8 +102,6 @@
 
             <div class="mt-4 address-form">
                 <h6 class="text-center text-primary text-bold">
-                    <img src="{{ asset( 'svg/icons/branch_location_icon.svg' ) }}"
-                        alt="Branch Location Icon" width="20" height="20">
                     ADDRESS
                 </h6>
 
@@ -159,8 +143,6 @@
 
             <div class="mt-4 user-form">
                 <h6 class="text-center text-primary text-bold">
-                    <img src="{{ asset( 'svg/icons/branch_user_icon.svg' ) }}"
-                        alt="Branch Location Icon" width="20" height="20">
                     USERS
                 </h6>
 
