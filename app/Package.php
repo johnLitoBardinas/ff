@@ -8,7 +8,7 @@ class Package extends Model
 {
     protected $table = 'package';
 
-    protected $primaryKey = 'package_id ';
+    protected $primaryKey = 'package_id';
 
     protected $fillable = [
         'package_name',
