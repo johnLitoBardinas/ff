@@ -37,20 +37,4 @@ class User extends Authenticatable
         'user_type'
     ];
 
-    /**
-     * Determine if the user is admin
-     */
-    public function isAdmin()
-    {
-       return $this->user_type === UserType::ADMIN;
-    }
-
-    /**
-     * Determining if user is active of inactive.
-     */
-    public function isActive()
-    {
-       return $this->user_status === UserStatus::ACTIVE;
-    }
-
 }

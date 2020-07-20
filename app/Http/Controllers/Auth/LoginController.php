@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Auth;
 
+use App\Rules\IsActive;
 use App\Enums\AccessHomeType;
 use App\Enums\UserType;
 use App\Http\Controllers\Controller;
@@ -11,30 +12,16 @@ use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Login Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles authenticating users for the application and
-    | redirecting them to your home screen. The controller uses a trait
-    | to conveniently provide its functionality to your applications.
-    |
-    */
-
     use AuthenticatesUsers;
 
     /**
      * Where to redirect users after login.
-     *
      * @var string
      */
     protected $redirectTo;
 
     /**
      * Create a new controller instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -42,25 +29,32 @@ class LoginController extends Controller
     }
 
     /**
+     * Validate the user login request.
+     */
+    protected function validateLogin($request)
+    {
+        $request->validate([
+            'email' => ['required', 'string:max:255', new IsActive()],
+            'password' => 'required|string',
+        ]);
+    }
+
+    /**
      * Custom redirection if the user is a Admin | Manager or Cashier
      */
     public function redirectTo()
     {
-        $request_access_page = request('home_type');
-        $auth_user = Auth::user();
+        $requestAccessPage = request('home_type');
+        dd( Auth::user() );
+        // dd(compact( 'requestAccessPage', 'authUser' ));
 
-        if ( ! $auth_user->isActive() ) {
-            Auth::logout();
-            return abort(401);
-        }
-
-        if ( $request_access_page === AccessHomeType::FFCO && $auth_user->isAdmin() )  {
+        if ( $requestAccessPage === AccessHomeType::FFCO && $authUser->user_type === UserType::ADMIN )  {
             $this->redirectTo = route('admin');
             return $this->redirectTo;
         }
 
-        $this->redirectTo = RouteServiceProvider::HOME;
-        return $this->redirectTo;
+        // $this->redirectTo = RouteServiceProvider::HOME;
+        // return $this->redirectTo;
     }
 
 }
