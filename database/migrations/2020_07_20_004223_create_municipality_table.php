@@ -17,6 +17,7 @@ class CreateMunicipalityTable extends Migration
             $table->bigIncrements('id');
             $table->string('psgc_code', 255);
             $table->text('municipality_name');
+            $table->string('region_code', 255);
             $table->string('province_code');
             $table->string('municipality_code', 255);
         });
