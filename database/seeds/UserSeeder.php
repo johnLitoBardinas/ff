@@ -26,7 +26,7 @@ class UserSeeder extends Seeder
             'first_name' => 'Admin',
             'last_name' => 'User',
             'user_status' => UserStatus::ACTIVE,
-            'user_type' => UserType::ADMIN,
+            'role_id' => 1,
         ]);
 
         User::create([
@@ -35,7 +35,7 @@ class UserSeeder extends Seeder
             'first_name' => 'Manager',
             'last_name' => 'User',
             'user_status' => UserStatus::ACTIVE,
-            'user_type' => UserType::MANAGER,
+            'role_id' => 2,
         ]);
 
         User::create([
@@ -44,7 +44,7 @@ class UserSeeder extends Seeder
             'first_name' => 'Cashier',
             'last_name' => 'User',
             'user_status' => UserStatus::ACTIVE,
-            'user_type' => UserType::CASHIER,
+            'role_id' => 3,
         ]);
     }
 }

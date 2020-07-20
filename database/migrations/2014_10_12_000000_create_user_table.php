@@ -20,7 +20,7 @@ class CreateUserTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->enum('user_status', ['active', 'inactive'])->default('active');
-            $table->enum('user_type', ['admin', 'manager', 'cashier'])->default('cashier');
+            $table->bigInteger('role_id')->unsigned();
             $table->timestamps();
         });
     }

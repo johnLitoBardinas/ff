@@ -37274,7 +37274,7 @@ module.exports = function(module) {
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // alert('Kepp Learning, Keep Growing and Keep Shining Making mills every fucking day!!!');
 
 /***/ }),
 

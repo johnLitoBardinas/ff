@@ -38,27 +38,8 @@ class User extends Authenticatable
     ];
 
     /**
-     * Dynamic Scope for retrieving only the active/inactive user_status
-     * App\User::isUserTypeOf( 'admin'|'manager'|'cashier' )->...
+     * Determine if the user is admin
      */
-    public function scopeisUserTypeOf($query, UserType $type)
-    {
-        if ( is_valid_usertype( $type ) ) {
-            return $query->where('user_type', $type);
-        }
-    }
-
-    /**
-     * Dynamic Scope: for retreiving admin, manager, cashier User_Type.
-     * App\User::isUserStatusOf( 'active' | 'inactive' )->...
-     */
-    public function scopeisUserStatusOf($query, UserStatus $status)
-    {
-        if ( is_valid_user_status( $status ) ) {
-            return $query->where('user_status', $status);
-        }
-    }
-
     public function isAdmin()
     {
        return $this->user_type === UserType::ADMIN;
