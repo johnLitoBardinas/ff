@@ -17,16 +17,9 @@ class RoleTableSeeder extends Seeder
         Role::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        Role::create([
-            'name' => 'admin'
-        ]);
+        Role::create(['name' => 'admin']);
+        Role::create(['name' => 'manager']);
+        Role::create(['name' => 'cashier']);
 
-        Role::create([
-            'name' => 'manager'
-        ]);
-
-        Role::create([
-            'name' => 'cashier'
-        ]);
     }
 }

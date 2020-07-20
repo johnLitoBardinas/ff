@@ -1,8 +1,8 @@
 <?php
 
 use App\User;
-use App\Enums\UserType;
 use App\Enums\UserStatus;
+use App\Role;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
@@ -20,7 +20,7 @@ class UserSeeder extends Seeder
         User::truncate();
         DB::statement('SET FOREIGN_KEY_CHECKS=1;');
 
-        User::create([
+       User::create([
             'email' => 'admin@ff.com',
             'password' => Hash::make('password'),
             'first_name' => 'Admin',
@@ -46,5 +46,6 @@ class UserSeeder extends Seeder
             'user_status' => UserStatus::ACTIVE,
             'role_id' => 3,
         ]);
+
     }
 }

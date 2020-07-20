@@ -2,10 +2,9 @@
 
 namespace App;
 
-use App\Enums\UserStatus;
-use App\Enums\UserType;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use App\Role;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
@@ -34,7 +33,12 @@ class User extends Authenticatable
      */
     protected $guarded = [
         'user_status',
-        'user_type'
+        'user_type',
+        'role_id'
     ];
 
+    public function role()
+    {
+        return $this->belongsTo(Role::class, 'role_id', 'role_id');
+    }
 }
