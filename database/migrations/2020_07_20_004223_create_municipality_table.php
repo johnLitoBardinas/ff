@@ -14,8 +14,11 @@ class CreateMunicipalityTable extends Migration
     public function up()
     {
         Schema::create('municipality', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->bigIncrements('id');
+            $table->string('psgc_code', 255);
+            $table->text('municipality_name');
+            $table->string('province_code');
+            $table->string('municipality_code', 255);
         });
     }
 

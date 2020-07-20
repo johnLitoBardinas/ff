@@ -14,8 +14,11 @@ class CreateProvinceTable extends Migration
     public function up()
     {
         Schema::create('province', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->bigIncrements('id');
+            $table->string('psgc_code', 255);
+            $table->text('province_name');
+            $table->string('region_code', 255);
+            $table->string('province_code', 255);
         });
     }
 

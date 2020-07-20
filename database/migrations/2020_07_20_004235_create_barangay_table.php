@@ -14,8 +14,12 @@ class CreateBarangayTable extends Migration
     public function up()
     {
         Schema::create('barangay', function (Blueprint $table) {
-            $table->id();
-            $table->timestamps();
+            $table->bigIncrements('id');
+            $table->string('psgc_code', 255);
+            $table->text('barangay_name');
+            $table->string('region_code', 255);
+            $table->string('province_code', 255);
+            $table->string('municipality_code', 255);
         });
     }
 
