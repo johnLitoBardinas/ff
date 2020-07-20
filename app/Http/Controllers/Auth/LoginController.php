@@ -53,8 +53,8 @@ class LoginController extends Controller
             return $this->redirectTo;
         }
 
-        // $this->redirectTo = RouteServiceProvider::HOME;
-        // return $this->redirectTo;
+        $this->redirectTo = RouteServiceProvider::HOME;
+        return $this->redirectTo;
     }
 
 }
