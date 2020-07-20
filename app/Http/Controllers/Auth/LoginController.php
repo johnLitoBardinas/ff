@@ -45,7 +45,7 @@ class LoginController extends Controller
     public function redirectTo()
     {
         $requestAccessPage = request('home_type');
-        dd( Auth::user() );
+        // dd( Auth::user() );
         // dd(compact( 'requestAccessPage', 'authUser' ));
 
         if ( $requestAccessPage === AccessHomeType::FFCO && $authUser->user_type === UserType::ADMIN )  {
