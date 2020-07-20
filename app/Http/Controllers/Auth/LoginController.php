@@ -48,10 +48,10 @@ class LoginController extends Controller
         // dd( Auth::user() );
         // dd(compact( 'requestAccessPage', 'authUser' ));
 
-        if ( $requestAccessPage === AccessHomeType::FFCO && $authUser->user_type === UserType::ADMIN )  {
-            $this->redirectTo = route('admin');
-            return $this->redirectTo;
-        }
+        // if ( $requestAccessPage === AccessHomeType::FFCO && $authUser->user_type === UserType::ADMIN )  {
+        //     $this->redirectTo = route('admin');
+        //     return $this->redirectTo;
+        // }
 
         $this->redirectTo = RouteServiceProvider::HOME;
         return $this->redirectTo;
