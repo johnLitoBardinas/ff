@@ -27,7 +27,9 @@
                     <address class="w-80">{{ $branch->branch_address }}</address>
                 </div>
                 @forelse($branch->user as $user)
-                    <div class="d-flex branch__users">
+                        <div class="d-flex branch__users" x-data="{ userStatus: '{{ $user->user_status}}' }"
+                        :class="{ 'opacity-point5' : userStatus === 'inactive' }"
+                        >
                         <span class="icon icon__account--black"></span>
 
                         <div class="user_info w-75">
@@ -38,7 +40,9 @@
 
                         <div class="switcher">
                             <label class="switch">
-                                <input type="checkbox">
+                                <input type="checkbox"
+                                wire:click="toggleUserStatus({{ $user->user_id }})"
+                                x-bind:checked="userStatus === 'active'">
                                 <span class="slider round"></span>
                             </label>
                         </div>
