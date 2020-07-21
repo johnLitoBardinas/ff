@@ -42,7 +42,7 @@
 
     // Button with Icons
     &.btn-icon {
-        display: flex !important;
+        display: flex;
         height: 100%;
         line-height: normal;
 
@@ -50,9 +50,9 @@
             @include include_hover_icon('../../images/svg/delete_icon_violet.svg', '../../images/svg/delete_icon_white.svg');
         }
 
-        // &__diactivate {
-        //     @include include_hover_icon('../../images/svg/delete_icon_violet.svg', '../../images/svg/delete_icon_white.svg');
-        // }
+        &__deactivate {
+            @include include_hover_icon('../../images/svg/deactivate_icon_violet.svg', '../../images/svg/deactivate_icon_black.svg');
+        }
 
         &__save {
             @include include_hover_icon('../../images/svg/save_icon_violet.svg', '../../images/svg/save_icon_white.svg');

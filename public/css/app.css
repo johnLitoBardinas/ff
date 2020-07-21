@@ -11041,6 +11041,8 @@ Contains the base style and default variable values.
 .btn.btn-icon__adduser:before,
 .btn.btn-icon__save:hover:before,
 .btn.btn-icon__save:before,
+.btn.btn-icon__deactivate:hover:before,
+.btn.btn-icon__deactivate:before,
 .btn.btn-icon__delete:hover:before,
 .btn.btn-icon__delete:before {
   display: inline-block;
@@ -11070,7 +11072,7 @@ Contains the base style and default variable values.
 }
 
 .btn.btn-icon {
-  display: flex !important;
+  display: flex;
   height: 100%;
   line-height: normal;
 }
@@ -11087,6 +11089,20 @@ Contains the base style and default variable values.
   width: 15px;
   height: 15px;
   background-image: url(/images/delete_icon_white.svg?8171918dfe0370c0c2ebc3699751a0f9);
+}
+
+.btn.btn-icon__deactivate:before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url(/images/deactivate_icon_violet.svg?a81d3c3dab2b8ea141a9c6f9f3a9e53e);
+}
+
+.btn.btn-icon__deactivate:hover:before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url(/images/deactivate_icon_black.svg?4b6d5b8cb037ddebe716acda3a355695);
 }
 
 .btn.btn-icon__save:before {

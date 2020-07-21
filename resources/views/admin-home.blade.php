@@ -33,9 +33,9 @@
                     Delete
                 </button>
                 <div class="d-flex justify-content-around">
-                    {{-- <button class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__save">
+                    <button class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__deactivate d-none">
                         DEACTIVATE
-                    </button> --}}
+                    </button>
                     <button class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__save">
                         SAVE
                     </button>
@@ -51,56 +51,12 @@
                 </div>
             </div>
         </div>
+        {{-- Button Interaction --}}
     </div>
 
     <div class="row justify-content-between">
-        <div class="col-md-6 admin-branches">
-            @for($i = 0; $i < 5; $i++)
-                <div class="card mb-3 branch">
-                    <div class="card-header d-flex justify-content-between align-items-center cursor-pointer @if( $i === 0 ) text-white bg-primary @else text-dark @endif"
-                        title="Click to Activate.">
-                        <span class="d-inline-block text-bold"> > </span>
-                        <div class="w-90 d-flex justify-content-between">
-                            <div>
-                                <strong class="d-block mb-0">Caniogan, Pasig</strong>
-                                <span class="mb-0">Branch ID: 000000000</span>
-                            </div>
 
-                            <div>
-                                <p class="mb-0">Status: Active</p>
-                                <p class="mb-0">Date Opened: 9/1/2020</p>
-                            </div>
-                        </div>
-
-                    </div>
-                    <div class="card-body w-90 align-self-end branch__info">
-                        <div class="d-flex align-items-base branch__address">
-                            <span class="icon icon__location--black"></span>
-                            <address class="w-80">213 Gemini St. Rainbow Village 2, UPS 5, Sucat Rd. San Isidro, Metro
-                                Manila - Paranaque
-                                City 1700, NCR</address>
-                        </div>
-                        <div class="d-flex branch__users">
-                            <span class="icon icon__account--black"></span>
-
-                            <div class="user_info">
-                                <p class="mb-0">John Doe</p>
-                                <p class="mb-0">Branch Manager</p>
-                                <p class="mb-0">johndoe@gmail.com</p>
-                            </div>
-
-                            <div class="switcher w-100">
-                                <label class="switch">
-                                    <input type="checkbox">
-                                    <span class="slider round"></span>
-                                </label>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            @endfor
-        </div>
+        @livewire('admin-branches')
         {{-- Branch List --}}
 
         <div class="col-md-5 vh-59 overflow-y-scroll chrome-hide-scroll">
@@ -180,6 +136,14 @@
                     </div>
 
                     <div class="form-group">
+                        <small for="exampleInputEmail1" class="form-text text-muted">Branch</small>
+                        <select class="custom-select border-primary">
+                            <option value="1">Branch 1</option>
+                            <option value="1">Branch 2</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
                         <small for="exampleInputEmail1" class="form-text text-muted">User Type</small>
                         <select class="custom-select border-primary">
                             <option value="1">Branch Manager</option>
@@ -190,6 +154,7 @@
                 </form>
 
             </div>
+            {{-- User Form Field --}}
 
         </div>
     </div>
