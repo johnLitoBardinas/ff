@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 
 class Branch extends Model
@@ -15,5 +16,10 @@ class Branch extends Model
         'branch_name',
         'branch_address',
     ];
+
+    public function user()
+    {
+        return $this->hasMany(User::class, 'branch_id', 'branch_id');
+    }
 
 }

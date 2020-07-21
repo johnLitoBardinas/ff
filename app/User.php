@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Role;
+use App\Branch;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -34,11 +35,17 @@ class User extends Authenticatable
     protected $guarded = [
         'user_status',
         'user_type',
-        'role_id'
+        'branch_id',
+        'role_id',
     ];
 
     public function role()
     {
         return $this->belongsTo(Role::class, 'role_id', 'role_id');
+    }
+
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class, 'branch_id', 'branch_id');
     }
 }

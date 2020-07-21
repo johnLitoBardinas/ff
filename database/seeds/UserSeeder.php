@@ -9,11 +9,7 @@ use Illuminate\Support\Facades\Hash;
 
 class UserSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+
     public function run()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
@@ -26,6 +22,7 @@ class UserSeeder extends Seeder
             'first_name' => 'Admin',
             'last_name' => 'User',
             'user_status' => UserStatus::ACTIVE,
+            'branch_id' => 1,
             'role_id' => 1,
         ]);
 
@@ -35,6 +32,7 @@ class UserSeeder extends Seeder
             'first_name' => 'Manager',
             'last_name' => 'User',
             'user_status' => UserStatus::ACTIVE,
+            'branch_id' => 2,
             'role_id' => 2,
         ]);
 
@@ -44,6 +42,7 @@ class UserSeeder extends Seeder
             'first_name' => 'Cashier',
             'last_name' => 'User',
             'user_status' => UserStatus::ACTIVE,
+            'branch_id' => 3,
             'role_id' => 3,
         ]);
 

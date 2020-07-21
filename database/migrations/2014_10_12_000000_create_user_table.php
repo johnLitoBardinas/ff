@@ -20,15 +20,10 @@ class CreateUserTable extends Migration
             $table->string('first_name');
             $table->string('last_name');
             $table->enum('user_status', ['active', 'inactive'])->default('active');
+            $table->unsignedBigInteger('branch_id');
             $table->unsignedBigInteger('role_id');
             $table->timestamps();
-
         });
-
-        // Schema::table('user', function (Blueprint $table)
-        // {
-        //     $table->foreign('role_id')->references('role_id')->on('role');
-        // });
     }
 
     /**
@@ -38,10 +33,6 @@ class CreateUserTable extends Migration
      */
     public function down()
     {
-        // Schema::table('user', function (Blueprint $table)
-        // {
-        //     $table->dropForeign('user_role_id_foreign');
-        // });
         Schema::dropIfExists('user');
     }
 }

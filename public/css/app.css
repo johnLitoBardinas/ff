@@ -11009,6 +11009,14 @@ CURSORS
 }
 
 /**
+Opacity
+**/
+
+.opacity-point5 {
+  opacity: 0.5;
+}
+
+/**
 CHECKER
 **/
 
