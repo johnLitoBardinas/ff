@@ -59,7 +59,7 @@
         @livewire('admin-branches')
         {{-- Branch List --}}
 
-        @livewire('branch-address-user-form');
+        @livewire('branch-address-user-form')
         {{-- Branch Form (Address & Users) --}}
     </div>
 </div>

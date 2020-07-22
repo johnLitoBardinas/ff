@@ -3,6 +3,7 @@
 namespace App;
 
 use App\User;
+use App\Barangay;
 use App\Province;
 use App\Municipality;
 use Illuminate\Database\Eloquent\Model;
@@ -41,6 +42,6 @@ class Branch extends Model
 
     public function barangay()
     {
-        return $this->belongsTo(Municipality::class);
+        return $this->belongsTo(Barangay::class);
     }
 }

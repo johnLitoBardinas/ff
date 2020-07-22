@@ -11,14 +11,17 @@
                 <small for="exampleInputEmail1" class="form-text text-muted">Unit no./Floor no./Building
                     Name/Street</small>
                 <input type="text" class="form-control border-primary" id="exampleInputEmail1"
-                    aria-describedby="emailHelp" placeholder="Unit no./Floor no./Building Name/Street" wire:model="currentBranch.branch_address">
+                    aria-describedby="emailHelp" placeholder="Unit no./Floor no./Building Name/Street"
+                    value="{{ $currentBranch['branch_address'] }}">
             </div>
 
             <div class="form-group">
                 <small for="exampleInputEmail1" class="form-text text-muted">Region</small>
                 <select class="custom-select border-primary">
                     @forelse($regions as $region)
-                    <option value="{{ $region->region_code }}">{{ $region->region_name }}</option>
+                        <option value="{{ $region->region_code }}" @if( $region->region_code ===
+                            $currentBranch['region']['region_code'] ) selected @endif>{{ $region->region_name }}
+                        </option>
                     @empty
                         <option readonly disabled>No Available Data</option>
                     @endforelse
@@ -29,7 +32,9 @@
                 <small for="exampleInputEmail1" class="form-text text-muted">Province</small>
                 <select class="custom-select border-primary">
                     @forelse($provinces as $province)
-                        <option value="{{ $province->province_code }}">{{ $province->province_name }}</option>
+                        <option value="{{ $province->province_code }}" @if( $province->province_code ===
+                            $currentBranch['province']['province_code'] ) selected
+                            @endif>{{ $province->province_name }}</option>
                     @empty
                         <option readonly disabled>No Available Data</option>
                     @endforelse
@@ -40,7 +45,8 @@
                 <small for="exampleInputEmail1" class="form-text text-muted">Municipality</small>
                 <select class="custom-select border-primary">
                     @forelse($municipalities as $municipality)
-                        <option value="{{ $municipality->municipality_code }}">{{ $municipality->municipality_name }}</option>
+                        <option value="{{ $municipality->municipality_code }}" @if( $municipality->municipality_code === $currentBranch['municipality']['municipality_code']) selected @endif>
+                            {{ $municipality->municipality_name }}</option>
                     @empty
                         <option readonly disabled>No Available Data</option>
                     @endforelse
@@ -51,7 +57,7 @@
                 <small for="exampleInputEmail1" class="form-text text-muted">Barangay</small>
                 <select class="custom-select border-primary">
                     @forelse($barangay as $brgy)
-                        <option value="{{ $brgy->psgc_code }}">{{ $brgy->barangay_name }}</option>
+                        <option value="{{ $brgy->psgc_code }}" @if($brgy->psgc_code === $currentBranch['barangay']['psgc_code']) selected @endif>{{ $brgy->barangay_name }}</option>
                     @empty
                         <option readonly disabled>No Available Data</option>
                     @endforelse
@@ -69,49 +75,55 @@
             USERS
         </h6>
 
-        <form>
-            <div class="form-group">
-                <small for="exampleInputEmail1" class="form-text text-muted">First Name</small>
-                <input type="text" class="form-control border-primary" id="exampleInputEmail1"
-                    aria-describedby="emailHelp" placeholder="First Name" value="John Lito">
-            </div>
+        @forelse($currentBranch['user'] as $user)
 
-            <div class="form-group">
-                <small for="exampleInputEmail1" class="form-text text-muted">Last Name</small>
-                <input type="text" class="form-control border-primary" id="exampleInputEmail1"
-                    aria-describedby="emailHelp" placeholder="Last Name" value="Bardinas">
-            </div>
+            <form class="user-{{ $loop->index }}">
+                <div class="form-group">
+                    <small for="exampleInputEmail1" class="form-text text-muted">First Name</small>
+                    <input type="text" class="form-control border-primary" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" placeholder="First Name"
+                        value="{{ $user['first_name'] }}">
+                </div>
 
-            <div class="form-group">
-                <small for="exampleInputEmail1" class="form-text text-muted">Email</small>
-                <input type="email" class="form-control border-primary" id="exampleInputEmail1"
-                    aria-describedby="emailHelp" placeholder="Enter email" value="johnLito1996@gmail.com">
-            </div>
+                <div class="form-group">
+                    <small for="exampleInputEmail1" class="form-text text-muted">Last Name</small>
+                    <input type="text" class="form-control border-primary" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" placeholder="Last Name"
+                        value="{{ $user['last_name'] }}">
+                </div>
 
-            <div class="form-group">
-                <small for="exampleInputEmail1" class="form-text text-muted">Mobile</small>
-                <input type="email" class="form-control border-primary" id="exampleInputEmail1"
-                    aria-describedby="emailHelp" placeholder="Enter email" value="(+63) 9123456789">
-            </div>
+                <div class="form-group">
+                    <small for="exampleInputEmail1" class="form-text text-muted">Email</small>
+                    <input type="email" class="form-control border-primary" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" placeholder="Enter email" readonly
+                        value="{{ $user['email'] }}">
+                </div>
 
-            {{-- Branch will be AutoResolved upon selecting by user. --}}
-            {{-- <div class="form-group">
-                <small for="exampleInputEmail1" class="form-text text-muted">Branch</small>
-                <select class="custom-select border-primary">
-                    <option value="1">Branch 1</option>
-                    <option value="1">Branch 2</option>
-                </select>
-            </div> --}}
+                <div class="form-group">
+                    <small for="exampleInputEmail1" class="form-text text-muted">Mobile</small>
+                    <input type="email" class="form-control border-primary" id="exampleInputEmail1"
+                        aria-describedby="emailHelp" placeholder="Enter email"
+                        value="{{ $user['mobile_number'] }}">
+                </div>
 
-            <div class="form-group">
-                <small for="exampleInputEmail1" class="form-text text-muted">User Type</small>
-                <select class="custom-select border-primary">
-                    <option value="1">Branch Manager</option>
-                    <option value="1">Branch Cashier</option>
-                </select>
-            </div>
+                <div class="form-group">
+                    <small for="exampleInputEmail1" class="form-text text-muted">User Type</small>
+                    <select class="custom-select border-primary">
+                        @forelse($roles as $role)
+                            <option value="{{ $role['role_id'] }}"
+                                data-index="{{ $loop->index }}" @if($role['role_id']===$user['role_id']) selected
+                                @endif>{{ ucfirst($role['name']) }}</option>
+                        @empty
+                            <option readonly disabled> No data.. </option>
+                        @endforelse
+                    </select>
+                </div>
 
-        </form>
+            </form>
+
+        @empty
+            <h6>No User Yet</h6>
+        @endforelse
 
     </div>
     {{-- User Form Field --}}

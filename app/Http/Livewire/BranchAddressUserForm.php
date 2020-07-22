@@ -2,46 +2,61 @@
 
 namespace App\Http\Livewire;
 
+use App\Role;
 use App\Branch;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 
 class BranchAddressUserForm extends Component
 {
-    protected $listeners = [ 'currentBranch' => 'setBranch' ];
+    protected $listeners = ['currentBranch' => 'setBranch'];
 
+    // Region List.
     public $regions;
 
+    // Province List.
     public $provinces;
 
+    // Municipality List.
     public $municipalities;
 
+    // Barangay List.
     public $barangay;
 
+    public $roles;
+
+    // Current Branch.
     public $currentBranch;
 
     public function mount()
     {
+        $this->currentBranch = Branch::where('branch_id', 1)
+            ->with(['user.role', 'region', 'province', 'municipality', 'barangay'])
+            ->get()
+            ->first()
+            ->toArray();
+
         $this->regions = DB::table('region')
-                            ->get()
-                            ->toArray();
+            ->orderBy('region_name')
+            ->get()
+            ->toArray();
 
         $this->provinces = DB::table('province')
-                            ->get()
-                            ->toArray();
+            ->orderBy('province_name')
+            ->get()
+            ->toArray();
 
         $this->municipalities = DB::table('municipality')
-                            ->get()
-                            ->toArray();
+            ->orderBy('municipality_name')
+            ->get()
+            ->toArray();
 
         $this->barangay = DB::table('barangay')
-                            ->get()
-                            ->toArray();
+            ->orderBy('barangay_name')
+            ->get()
+            ->toArray();
 
-        $this->currentBranch = Branch::where('branch_id', 1)
-                                ->with(['user.role', 'region', 'province', 'municipality', 'barangay'])
-                                ->get()
-                                ->toArray();
+        $this->roles = Role::all()->toArray();
     }
 
     public function setBranch(Int $branchId)
@@ -49,6 +64,7 @@ class BranchAddressUserForm extends Component
         $this->currentBranch = Branch::where('branch_id', $branchId)
             ->with(['user.role', 'region', 'province', 'municipality', 'barangay'])
             ->get()
+            ->first()
             ->toArray();
     }
 

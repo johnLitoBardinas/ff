@@ -19,6 +19,7 @@ class CreateUserTable extends Migration
             $table->string('password');
             $table->string('first_name');
             $table->string('last_name');
+            $table->string('mobile_number');
             $table->enum('user_status', ['active', 'inactive'])->default('active');
             $table->unsignedBigInteger('branch_id');
             $table->unsignedBigInteger('role_id');
