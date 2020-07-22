@@ -1,5 +1,3 @@
-{{-- {{ dd($barangay) }} --}}
-{{-- {{ dd(compact( 'regions', 'provinces', 'municipalities', 'barangay' )) }} --}}
 <div class="col-md-5 offset-md-1 vh-59 overflow-y-scroll chrome-hide-scroll">
 
     <div class="mt-4 address-form">
@@ -12,8 +10,8 @@
             <div class="form-group">
                 <small for="exampleInputEmail1" class="form-text text-muted">Unit no./Floor no./Building
                     Name/Street</small>
-                <input type="email" class="form-control border-primary" id="exampleInputEmail1"
-                    aria-describedby="emailHelp" placeholder="Enter email">
+                <input type="text" class="form-control border-primary" id="exampleInputEmail1"
+                    aria-describedby="emailHelp" placeholder="Unit no./Floor no./Building Name/Street" wire:model="currentBranch.branch_address">
             </div>
 
             <div class="form-group">
@@ -96,13 +94,14 @@
                     aria-describedby="emailHelp" placeholder="Enter email" value="(+63) 9123456789">
             </div>
 
-            <div class="form-group">
+            {{-- Branch will be AutoResolved upon selecting by user. --}}
+            {{-- <div class="form-group">
                 <small for="exampleInputEmail1" class="form-text text-muted">Branch</small>
                 <select class="custom-select border-primary">
                     <option value="1">Branch 1</option>
                     <option value="1">Branch 2</option>
                 </select>
-            </div>
+            </div> --}}
 
             <div class="form-group">
                 <small for="exampleInputEmail1" class="form-text text-muted">User Type</small>

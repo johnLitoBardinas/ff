@@ -6,11 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateBranchTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
     public function up()
     {
         Schema::create('branch', function (Blueprint $table) {
@@ -19,17 +14,17 @@ class CreateBranchTable extends Migration
             $table->string('branch_name');
             $table->longText('branch_address');
             $table->enum('branch_status', ['active', 'inactive'])->default('active');
+            $table->unsignedBigInteger('region_id');
+            $table->unsignedBigInteger('province_id');
+            $table->unsignedBigInteger('municipality_id');
+            $table->unsignedBigInteger('barangay_id');
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::dropIfExists('branch');
     }
+
 }

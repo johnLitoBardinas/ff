@@ -11,6 +11,14 @@ class AdminBranches extends Component
 {
     public $branches;
 
+    public $activeBranchId;
+
+    public function mount()
+    {
+        $this->branches = Branch::with('user.role')->get();
+        $this->emit('currentBranch', $this->branches->first()->branch_id );
+    }
+
     public function updatedBranches()
     {
         $this->branches = Branch::with('user.role')->get();
@@ -18,7 +26,6 @@ class AdminBranches extends Component
 
     public function render()
     {
-        $this->branches = Branch::with('user.role')->get();
         return view('livewire.admin-branches');
     }
 

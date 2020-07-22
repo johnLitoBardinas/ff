@@ -8,11 +8,7 @@ use Illuminate\Support\Facades\Config;
 
 class CreateCustomerPackageTable extends Migration
 {
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
+
     public function up()
     {
         Schema::create('customer_package', function (Blueprint $table) {
@@ -36,11 +32,6 @@ class CreateCustomerPackageTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
     public function down()
     {
         Schema::table('customer_package', function (Blueprint $table) {
@@ -50,4 +41,5 @@ class CreateCustomerPackageTable extends Migration
             $table->dropForeign('customer_package_customer_id_foreign');
         });
     }
+
 }

@@ -1,10 +1,18 @@
 <?php
 
-use App\Http\Controllers\AdminDashboard;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\AdminDashboard;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Auth\LoginController;
+
+Route::get('/test', function ()
+{
+    // Quick Testing
+    $result = DB::table('region')->where('id', '>', '0')->pluck('id')->toArray();
+    dd(array_rand($result));
+});
 
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 
