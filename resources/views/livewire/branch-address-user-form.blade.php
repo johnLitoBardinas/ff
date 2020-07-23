@@ -1,3 +1,5 @@
+{{-- {{ dd( compact('currentBranch', 'regions', 'provinces', 'municipalities','barangay') ) }} --}}
+{{-- {{ dd( $regions ) }} --}}
 <div class="col-md-5 offset-md-1 vh-59 overflow-y-scroll chrome-hide-scroll">
 
     <div class="mt-4 address-form">
@@ -19,8 +21,8 @@
                 <small for="exampleInputEmail1" class="form-text text-muted">Region</small>
                 <select class="custom-select border-primary">
                     @forelse($regions as $region)
-                        <option value="{{ $region->region_code }}" @if( $region->region_code ===
-                            $currentBranch['region']['region_code'] ) selected @endif>{{ $region->region_name }}
+                        <option value="{{ $region['region_code'] }}" @if( $region['region_code'] ===
+                            $currentBranch['region']['region_code'] ) selected @endif>{{ $region['region_name'] }}
                         </option>
                     @empty
                         <option readonly disabled>No Available Data</option>
@@ -32,9 +34,9 @@
                 <small for="exampleInputEmail1" class="form-text text-muted">Province</small>
                 <select class="custom-select border-primary">
                     @forelse($provinces as $province)
-                        <option value="{{ $province->province_code }}" @if( $province->province_code ===
+                        <option value="{{ $province['province_code'] }}" @if( $province['province_code'] ===
                             $currentBranch['province']['province_code'] ) selected
-                            @endif>{{ $province->province_name }}</option>
+                            @endif>{{ $province['province_name'] }}</option>
                     @empty
                         <option readonly disabled>No Available Data</option>
                     @endforelse
@@ -45,8 +47,8 @@
                 <small for="exampleInputEmail1" class="form-text text-muted">Municipality</small>
                 <select class="custom-select border-primary">
                     @forelse($municipalities as $municipality)
-                        <option value="{{ $municipality->municipality_code }}" @if( $municipality->municipality_code === $currentBranch['municipality']['municipality_code']) selected @endif>
-                            {{ $municipality->municipality_name }}</option>
+                        <option value="{{ $municipality['municipality_code'] }}" @if( $municipality['municipality_code'] === $currentBranch['municipality']['municipality_code']) selected @endif>
+                            {{ $municipality['municipality_name'] }}</option>
                     @empty
                         <option readonly disabled>No Available Data</option>
                     @endforelse
@@ -57,7 +59,7 @@
                 <small for="exampleInputEmail1" class="form-text text-muted">Barangay</small>
                 <select class="custom-select border-primary">
                     @forelse($barangay as $brgy)
-                        <option value="{{ $brgy->psgc_code }}" @if($brgy->psgc_code === $currentBranch['barangay']['psgc_code']) selected @endif>{{ $brgy->barangay_name }}</option>
+                        <option value="{{ $brgy['psgc_code'] }}" @if($brgy['psgc_code'] === $currentBranch['barangay']['psgc_code']) selected @endif>{{ $brgy['barangay_name'] }}</option>
                     @empty
                         <option readonly disabled>No Available Data</option>
                     @endforelse

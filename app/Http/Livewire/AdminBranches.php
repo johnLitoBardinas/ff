@@ -13,15 +13,32 @@ class AdminBranches extends Component
 
     public $activeBranchId;
 
+    /**
+     * Mounting all branches.
+     */
     public function mount()
     {
         $this->branches = Branch::with('user.role')->get();
-        $this->emit('currentBranch', $this->branches->first()->branch_id );
+        $this->activeBranchId = $this->branches->first()->branch_id;
     }
 
-    public function updatedBranches()
+    /**
+     * Changing the active branch.
+     */
+    public function changeBranch(Int $id)
     {
-        $this->branches = Branch::with('user.role')->get();
+        $this->activeBranchId = $id;
+        $this->emit('onChangeBranch', $id);
+    }
+
+    /**
+     * Toggling User Status ('Active', 'Inactive')
+     */
+    public function toggleUserStatus(Int $userId)
+    {
+        $user = User::find($userId);
+        $user->user_status = $user->user_status === UserStatus::ACTIVE ? UserStatus::INACTIVE : UserStatus::ACTIVE;
+        $user->save();
     }
 
     public function render()
@@ -29,10 +46,5 @@ class AdminBranches extends Component
         return view('livewire.admin-branches');
     }
 
-    public function toggleUserStatus(Int $userId)
-    {
-        $user = User::find($userId);
-        $user->user_status = $user->user_status === UserStatus::ACTIVE ? UserStatus::INACTIVE : UserStatus::ACTIVE;
-        $user->save();
-    }
+
 }

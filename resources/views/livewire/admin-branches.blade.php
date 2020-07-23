@@ -2,14 +2,13 @@
     @forelse($branches as $branch)
         <div class="card mb-3 branch">
             <div class="card-header d-flex justify-content-between align-items-center cursor-pointer"
-                :class="[ index === {{ $loop->index }} ? 'text-white bg-primary' : 'text-dark' ]"
-                title="Click to Activate.">
+                :class="[ {{ $branch->branch_id }} === {{ $activeBranchId }} ? 'text-white bg-primary' : 'text-dark' ]"
+                title="Click to Activate." wire:click="changeBranch({{ $branch->branch_id }})">
                 <span class="d-inline-block text-bold"> > </span>
                 <div class="w-90 d-flex justify-content-between">
                     <div>
                         <strong class="d-block mb-0">{{ $branch->branch_name }}</strong>
                         <span class="mb-0">Branch ID: {{ strtoupper($branch->branch_code) }}</span>
-
                     </div>
 
                     <div>

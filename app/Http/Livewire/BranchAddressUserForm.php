@@ -2,14 +2,18 @@
 
 namespace App\Http\Livewire;
 
+use App\Barangay;
 use App\Role;
 use App\Branch;
+use App\Municipality;
+use App\Province;
+use App\Region;
 use Livewire\Component;
 use Illuminate\Support\Facades\DB;
 
 class BranchAddressUserForm extends Component
 {
-    protected $listeners = ['currentBranch' => 'setBranch'];
+    protected $listeners = ['onChangeBranch' => 'setBranch'];
 
     // Region List.
     public $regions;
@@ -36,29 +40,16 @@ class BranchAddressUserForm extends Component
             ->first()
             ->toArray();
 
-        $this->regions = DB::table('region')
-            ->orderBy('region_name')
-            ->get()
-            ->toArray();
-
-        $this->provinces = DB::table('province')
-            ->orderBy('province_name')
-            ->get()
-            ->toArray();
-
-        $this->municipalities = DB::table('municipality')
-            ->orderBy('municipality_name')
-            ->get()
-            ->toArray();
-
-        $this->barangay = DB::table('barangay')
-            ->orderBy('barangay_name')
-            ->get()
-            ->toArray();
-
+        $this->regions = Region::orderBy('region_name')->get()->toArray();
+        $this->provinces = Province::orderBy('province_name')->get()->toArray();
+        $this->municipalities = Municipality::orderBy('municipality_name')->get()->toArray();
+        $this->barangay = Barangay::orderBy('barangay_name')->get()->toArray();
         $this->roles = Role::all()->toArray();
     }
 
+    /**
+     * Event Listener for Admin Branch Click.
+     */
     public function setBranch(Int $branchId)
     {
         $this->currentBranch = Branch::where('branch_id', $branchId)
