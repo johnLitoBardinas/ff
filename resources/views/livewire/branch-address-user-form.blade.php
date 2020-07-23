@@ -1,5 +1,3 @@
-{{-- {{ dd( compact('currentBranch', 'regions', 'provinces', 'municipalities','barangay') ) }} --}}
-{{-- {{ dd( $regions ) }} --}}
 <div class="col-md-5 offset-md-1 vh-59 overflow-y-scroll chrome-hide-scroll">
 
     <div class="mt-4 address-form">
