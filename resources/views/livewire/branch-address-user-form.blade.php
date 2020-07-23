@@ -72,12 +72,13 @@
     {{-- Address Form Field --}}
 
     <div class="mt-4 user-form">
-        <h6 class="text-center text-primary text-bold">
-            <span class="icon icon__account--violet mr-0 align-bottom"></span>
-            USERS
-        </h6>
 
         @forelse($currentBranch['user'] as $user)
+
+            <h6 class="text-center text-primary text-bold">
+                <span class="icon icon__account--violet mr-0 align-bottom"></span>
+                USERS
+            </h6>
 
             <form class="user-{{ $loop->index }}">
                 <div class="form-group">
