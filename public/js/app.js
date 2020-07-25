@@ -475,15 +475,15 @@ eval("module.exports = function(module) {\n\tif (!module.webpackPolyfill) {\n\t\
 
 /***/ }),
 
-/***/ "./resources/js/Admin.js":
-/*!*******************************!*\
-  !*** ./resources/js/Admin.js ***!
-  \*******************************/
+/***/ "./resources/js/Plugins.js":
+/*!*********************************!*\
+  !*** ./resources/js/Plugins.js ***!
+  \*********************************/
 /*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return Admin; });\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\n/**\n * Admin Interaction will  be here.\n */\nvar Admin = function Admin() {\n  _classCallCheck(this, Admin);\n\n  console.log('Mastering this STACK before proceeding to other stuff...');\n};\n\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvQWRtaW4uanM/MTg2MSJdLCJuYW1lcyI6WyJBZG1pbiIsImNvbnNvbGUiLCJsb2ciXSwibWFwcGluZ3MiOiI7Ozs7QUFBQTs7O0lBR3FCQSxLLEdBRWpCLGlCQUFlO0FBQUE7O0FBQ1hDLFNBQU8sQ0FBQ0MsR0FBUixDQUFZLDBEQUFaO0FBQ0gsQyIsImZpbGUiOiIuL3Jlc291cmNlcy9qcy9BZG1pbi5qcy5qcyIsInNvdXJjZXNDb250ZW50IjpbIi8qKlxuICogQWRtaW4gSW50ZXJhY3Rpb24gd2lsbCAgYmUgaGVyZS5cbiAqL1xuZXhwb3J0IGRlZmF1bHQgY2xhc3MgQWRtaW4ge1xuXG4gICAgY29uc3RydWN0b3IgKCkge1xuICAgICAgICBjb25zb2xlLmxvZygnTWFzdGVyaW5nIHRoaXMgU1RBQ0sgYmVmb3JlIHByb2NlZWRpbmcgdG8gb3RoZXIgc3R1ZmYuLi4nKTtcbiAgICB9XG5cbn0iXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/js/Admin.js\n");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, \"default\", function() { return Plugins; });\nfunction _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError(\"Cannot call a class as a function\"); } }\n\nvar Plugins = function Plugins() {\n  _classCallCheck(this, Plugins);\n};\n\n//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvUGx1Z2lucy5qcz82NmQxIl0sIm5hbWVzIjpbIlBsdWdpbnMiXSwibWFwcGluZ3MiOiI7Ozs7SUFBcUJBLE8sR0FFakIsbUJBQWU7QUFBQTtBQUVkLEMiLCJmaWxlIjoiLi9yZXNvdXJjZXMvanMvUGx1Z2lucy5qcy5qcyIsInNvdXJjZXNDb250ZW50IjpbImV4cG9ydCBkZWZhdWx0IGNsYXNzIFBsdWdpbnMge1xuXG4gICAgY29uc3RydWN0b3IgKCkge1xuXG4gICAgfVxuXG59Il0sInNvdXJjZVJvb3QiOiIifQ==\n//# sourceURL=webpack-internal:///./resources/js/Plugins.js\n");
 
 /***/ }),
 
@@ -495,7 +495,7 @@ eval("__webpack_require__.r(__webpack_exports__);\n/* harmony export (binding) *
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _Admin__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Admin */ \"./resources/js/Admin.js\");\n__webpack_require__(/*! ./bootstrap */ \"./resources/js/bootstrap.js\");\n\n\nnew _Admin__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvYXBwLmpzPzZkNDAiXSwibmFtZXMiOlsicmVxdWlyZSIsIkFkbWluIl0sIm1hcHBpbmdzIjoiQUFBQUE7QUFBQUE7QUFBQUEsbUJBQU8sQ0FBQyxnREFBRCxDQUFQOztBQUVBO0FBRUEsSUFBSUMsOENBQUoiLCJmaWxlIjoiLi9yZXNvdXJjZXMvanMvYXBwLmpzLmpzIiwic291cmNlc0NvbnRlbnQiOlsicmVxdWlyZSgnLi9ib290c3RyYXAnKTtcblxuaW1wb3J0IEFkbWluIGZyb20gJy4vQWRtaW4nO1xuXG5uZXcgQWRtaW4oKTsiXSwic291cmNlUm9vdCI6IiJ9\n//# sourceURL=webpack-internal:///./resources/js/app.js\n");
+eval("__webpack_require__.r(__webpack_exports__);\n/* harmony import */ var _Plugins__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./Plugins */ \"./resources/js/Plugins.js\");\n__webpack_require__(/*! ./bootstrap */ \"./resources/js/bootstrap.js\");\n\n\nnew _Plugins__WEBPACK_IMPORTED_MODULE_0__[\"default\"]();//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,eyJ2ZXJzaW9uIjozLCJzb3VyY2VzIjpbIndlYnBhY2s6Ly8vLi9yZXNvdXJjZXMvanMvYXBwLmpzPzZkNDAiXSwibmFtZXMiOlsicmVxdWlyZSIsIlBsdWdpbnMiXSwibWFwcGluZ3MiOiJBQUFBQTtBQUFBQTtBQUFBQSxtQkFBTyxDQUFDLGdEQUFELENBQVA7O0FBRUE7QUFFQSxJQUFJQyxnREFBSiIsImZpbGUiOiIuL3Jlc291cmNlcy9qcy9hcHAuanMuanMiLCJzb3VyY2VzQ29udGVudCI6WyJyZXF1aXJlKCcuL2Jvb3RzdHJhcCcpO1xuXG5pbXBvcnQgUGx1Z2lucyBmcm9tICcuL1BsdWdpbnMnO1xuXG5uZXcgUGx1Z2lucygpOyJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./resources/js/app.js\n");
 
 /***/ }),
 

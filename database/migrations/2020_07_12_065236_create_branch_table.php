@@ -14,10 +14,10 @@ class CreateBranchTable extends Migration
             $table->string('branch_name');
             $table->longText('branch_address');
             $table->enum('branch_status', ['active', 'inactive'])->default('active');
-            $table->unsignedBigInteger('region_id');
-            $table->unsignedBigInteger('province_id');
-            $table->unsignedBigInteger('municipality_id');
-            $table->unsignedBigInteger('barangay_id');
+            $table->string('region_code');
+            $table->string('province_code');
+            $table->string('municipality_code');
+            $table->string('barangay_psgc');
             $table->timestamps();
         });
     }

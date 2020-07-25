@@ -1,5 +1,5 @@
 require('./bootstrap');
 
-import Admin from './Admin';
+import Plugins from './Plugins';
 
-new Admin();
+new Plugins();

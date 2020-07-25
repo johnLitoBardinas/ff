@@ -13,8 +13,13 @@ class PhilippinesAdressSeeder extends Seeder
     public function run()
     {
         DB::table('region')->insert(json_decode(file_get_contents( dirname(__FILE__) . '/philippines_address/regions.json'), true));
+        $this->command->info('Regions Seeded');
         DB::table('province')->insert(json_decode(file_get_contents( dirname(__FILE__) . '/philippines_address/province.json'), true));
+        $this->command->info('Provincies Seeded');
         DB::table('municipality')->insert(json_decode(file_get_contents( dirname(__FILE__) . '/philippines_address/municipality.json'), true));
-        DB::table('barangay')->insert(json_decode(file_get_contents( dirname(__FILE__) . '/philippines_address/barangay.json'), true));
+        $this->command->info('Municipalities Seeded');
+        // DB::table('barangay')->insert(json_decode(file_get_contents( dirname(__FILE__) . '/philippines_address/barangay.json'), true));
+        DB::unprepared(file_get_contents( dirname(__FILE__) . '/philippines_address/barangay.sql'));
+        $this->command->info('Barangay Seeded');
     }
 }

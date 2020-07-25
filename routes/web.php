@@ -1,6 +1,7 @@
 <?php
 
-use Illuminate\Support\Facades\DB;
+use App\Region;
+use App\Municipality;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminDashboard;
@@ -10,8 +11,11 @@ use App\Http\Controllers\Auth\LoginController;
 Route::get('/test', function ()
 {
     // Quick Testing
-    $result = DB::table('region')->where('id', '>', '0')->pluck('id')->toArray();
-    dd(array_rand($result));
+    // $result = DB::table('region')->where('id', '>', '0')->pluck('id')->toArray();
+    // $result = Province::with('municipality')->orderBy('province_name')->get()->toArray();
+    // $result = Municipality::orderBy('municipality_name')->with(['barangay' => fn($query) => $query->orderBy('barangay_name') ])->get()->toArray();
+    $result = Region::where('region_code', '05')->with('province.municipality.barangay')->get()->toArray();
+    dd($result);
 });
 
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');

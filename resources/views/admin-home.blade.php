@@ -39,10 +39,10 @@
                     <button class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__save d-none">
                         SAVE
                     </button>
-                    <button class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__adduser">
+                    <button class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__adduser" title="Add User to the Branch.">
                         ADD USER
                     </button>
-                    <button class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__edit">
+                    <button class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__edit" title="Edit Branch.">
                         EDIT
                     </button>
                     <button class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__exit d-none">
