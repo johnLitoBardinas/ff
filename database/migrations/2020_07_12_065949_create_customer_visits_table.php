@@ -36,10 +36,11 @@ class CreateCustomerVisitsTable extends Migration
      */
     public function down()
     {
-        Schema::table('customer_visits', function (Blueprint $table) {
-            $table->dropForeign('customer_visits_customer_package_id_foreign');
-            $table->dropForeign('customer_visits_branch_id_foreign');
-            $table->dropForeign('customer_visits_user_id_foreign');
-        });
+        // Schema::table('customer_visits', function (Blueprint $table) {
+        //     $table->dropForeign('customer_visits_customer_package_id_foreign');
+        //     $table->dropForeign('customer_visits_branch_id_foreign');
+        //     $table->dropForeign('customer_visits_user_id_foreign');
+        // });
+        Schema::dropIfExists('customer_visits');
     }
 }
