@@ -3,9 +3,6 @@
 namespace App;
 
 use App\User;
-use App\Barangay;
-use App\Province;
-use App\Municipality;
 use Illuminate\Database\Eloquent\Model;
 
 class Branch extends Model
@@ -23,25 +20,5 @@ class Branch extends Model
     public function user()
     {
         return $this->hasMany(User::class, 'branch_id', 'branch_id');
-    }
-
-    public function region()
-    {
-        return $this->belongsTo(Region::class, 'region_code', 'region_code');
-    }
-
-    public function province()
-    {
-        return $this->belongsTo(Province::class, 'province_code', 'province_code');
-    }
-
-    public function municipality()
-    {
-        return $this->belongsTo(Municipality::class, 'municipality_code', 'municipality_code');
-    }
-
-    public function barangay()
-    {
-        return $this->belongsTo(Barangay::class, 'barangay_psgc', 'psgc_code');
     }
 }

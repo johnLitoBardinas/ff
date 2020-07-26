@@ -1,5 +1,3 @@
-{{-- {{ dd( compact('currentBranch', 'branchAddress') ) }} --}}
-{{-- {{ dd($municipalities) }} --}}
 <div class="col-md-5 offset-md-1 vh-59 overflow-y-scroll chrome-hide-scroll admin-branches-form'">
 
     <div class="mt-4 address-form">
@@ -10,45 +8,11 @@
 
         <form>
             <div class="form-group">
-                <small for="exampleInputEmail1" class="form-text text-muted">Unit no./Floor no./Building
-                    Name/Street</small>
-                <input type="text" class="form-control border-primary" id="exampleInputEmail1"
+                <small for="exampleInputEmail1" class="form-text text-muted">Branch Address</small>
+                <input type="text" class="form-control border-primary"
                     aria-describedby="emailHelp" placeholder="Unit no./Floor no./Building Name/Street"
                     value="{{ $currentBranch['branch_address'] }}">
             </div>
-
-            <div class="form-group">
-                    <small for="exampleInputEmail1" class="form-text text-muted">Region</small>
-                {{-- <span>Region Code: {{ $currentRegionCode }}</span> --}}
-                <select class="custom-select border-primary" wire:model="currentRegionCode">
-                    <?= $regions; ?>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <small for="exampleInputEmail1" class="form-text text-muted">Province</small>
-                {{-- <span>Province Code: {{ $currentProvinceCode }}</span> --}}
-                <select class="custom-select border-primary" wire:model="currentProvinceCode">
-                    <?= $provinces; ?>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <small for="exampleInputEmail1" class="form-text text-muted">Municipality</small>
-                {{-- <span>Municipality Code: {{ $currentMunicipalityCode }}</span> --}}
-                <select class="custom-select border-primary" wire:model="currentMunicipalityCode">
-                   <?= $municipalities; ?>
-                </select>
-            </div>
-
-            <div class="form-group">
-                <small for="exampleInputEmail1" class="form-text text-muted">Barangay</small>
-                {{-- <span>Barangay Code livewire: {{ $currentBrgyPcgcCode }}</span> --}}
-                <select class="custom-select border-primary" wire:model="currentBrgyPcgcCode">
-                    <?= $barangay; ?>
-                </select>
-            </div>
-
         </form>
 
     </div>
