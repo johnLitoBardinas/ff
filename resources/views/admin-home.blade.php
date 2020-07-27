@@ -29,7 +29,7 @@
     <div class="row justify-content-end mt-4">
         <div class="col-md-5">
             <div class="d-flex justify-content-end position-relative admin-action">
-                <button class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__delete position-absolute l-0">
+                <button class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__delete position-absolute l-0" x-show="action === 'editBranch'">
                     Delete
                 </button>
                 <div class="d-flex justify-content-around">
