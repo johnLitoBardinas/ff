@@ -7,6 +7,13 @@
         </h6>
 
         <form>
+
+            <div class="form-group">
+                <small for="exampleInputEmail1" class="form-text text-muted">Branch Name</small>
+                <input type="text" class="form-control border-primary"
+            aria-describedby="emailHelp" placeholder="Branch Name" value="{{ $currentBranch['branch_name'] }}" x-bind:disabled="action !== 'editBranch'">
+            </div>
+
             <div class="form-group">
                 <small for="exampleInputEmail1" class="form-text text-muted">Branch Address</small>
                 <input type="text" class="form-control border-primary"
