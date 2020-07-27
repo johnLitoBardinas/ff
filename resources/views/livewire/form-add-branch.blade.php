@@ -6,16 +6,18 @@
             ADDRESS
         </h6>
 
-        <form>
+        <form x-data="branchInfo()">
             <div class="form-group">
+                <span x-text="branchName"></span>
                 <small for="exampleInputEmail1" class="form-text text-muted">Branch Name</small>
                 <input type="text" class="form-control border-primary"
-                aria-describedby="emailHelp" placeholder="Branch Name">
+                aria-describedby="emailHelp" placeholder="Branch Name" x-model="branchName">
             </div>
             <div class="form-group">
+                <span x-text="branchAddress"></span>
                 <small for="exampleInputEmail1" class="form-text text-muted">Branch Address</small>
                 <input type="text" class="form-control border-primary"
-                aria-describedby="emailHelp" placeholder="Branch Address">
+                aria-describedby="emailHelp" placeholder="Branch Address" x-model="branchAddress">
             </div>
         </form>
 
@@ -77,3 +79,12 @@
     </div>
     {{-- User Form Field --}}
 </div>
+
+<script>
+    function branchInfo () {
+        return {
+            branchName: '',
+            branchAddress: ''
+        };
+    }
+</script>
