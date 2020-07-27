@@ -11,7 +11,7 @@
                 <small for="exampleInputEmail1" class="form-text text-muted">Branch Address</small>
                 <input type="text" class="form-control border-primary"
                     aria-describedby="emailHelp" placeholder="Unit no./Floor no./Building Name/Street"
-                    value="{{ $currentBranch['branch_address'] }}">
+                    value="{{ $currentBranch['branch_address'] }}" x-bind:disabled="action !== 'editBranch'">
             </div>
         </form>
 
@@ -32,33 +32,33 @@
                     <small for="exampleInputEmail1" class="form-text text-muted">First Name</small>
                     <input type="text" class="form-control border-primary" id="exampleInputEmail1"
                         aria-describedby="emailHelp" placeholder="First Name"
-                        value="{{ $user['first_name'] }}">
+                        value="{{ $user['first_name'] }}" x-bind:disabled="action !== 'editBranch'">
                 </div>
 
                 <div class="form-group">
                     <small for="exampleInputEmail1" class="form-text text-muted">Last Name</small>
                     <input type="text" class="form-control border-primary" id="exampleInputEmail1"
                         aria-describedby="emailHelp" placeholder="Last Name"
-                        value="{{ $user['last_name'] }}">
+                        value="{{ $user['last_name'] }}" x-bind:disabled="action !== 'editBranch'">
                 </div>
 
                 <div class="form-group">
                     <small for="exampleInputEmail1" class="form-text text-muted">Email</small>
                     <input type="email" class="form-control border-primary" id="exampleInputEmail1"
                         aria-describedby="emailHelp" placeholder="Enter email" readonly
-                        value="{{ $user['email'] }}">
+                        value="{{ $user['email'] }}" x-bind:disabled="action !== 'editBranch'">
                 </div>
 
                 <div class="form-group">
                     <small for="exampleInputEmail1" class="form-text text-muted">Mobile</small>
                     <input type="email" class="form-control border-primary" id="exampleInputEmail1"
                         aria-describedby="emailHelp" placeholder="Enter email"
-                        value="{{ $user['mobile_number'] }}">
+                        value="{{ $user['mobile_number'] }}" x-bind:disabled="action !== 'editBranch'">
                 </div>
 
                 <div class="form-group">
                     <small for="exampleInputEmail1" class="form-text text-muted">User Type</small>
-                    <select class="custom-select border-primary">
+                    <select class="custom-select border-primary" x-bind:disabled="action !== 'editBranch'">
                         @forelse($roles as $role)
                             <option value="{{ $role['role_id'] }}"
                                 data-index="{{ $loop->index }}" @if($role['role_id']===$user['role_id']) selected
