@@ -1,5 +1,7 @@
 <div class="col-md-5 offset-md-1 vh-59 overflow-y-scroll chrome-hide-scroll admin-branches-form'">
 
+    @livewire('admin.admin-actions')
+
     <div class="mt-4">
         @livewire('components.branch-form')
     </div>

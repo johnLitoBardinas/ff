@@ -4,7 +4,6 @@ namespace App;
 
 use App\Role;
 use App\Branch;
-use App\Enums\UserStatus;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
@@ -40,13 +39,6 @@ class User extends Authenticatable
         'branch_id',
         'role_id',
     ];
-
-    public function toogleUserStatus(Int $userId)
-    {
-        $user = User::find($userId);
-        $user->user_status = $user->user_status === UserStatus::ACTIVE ? UserStatus::INACTIVE : UserStatus::ACTIVE;
-        $user->save();
-    }
 
     public function role()
     {

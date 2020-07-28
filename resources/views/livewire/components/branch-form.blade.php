@@ -8,13 +8,13 @@
         <div class="form-group">
             <small for="exampleInputEmail1" class="form-text text-muted">Branch Name</small>
             <input type="text" class="form-control border-primary"
-        aria-describedby="emailHelp" placeholder="Branch Name">
+        aria-describedby="branchName" placeholder="Enter Branch Name">
         </div>
 
         <div class="form-group">
             <small for="exampleInputEmail1" class="form-text text-muted">Branch Address</small>
             <input type="text" class="form-control border-primary"
-                aria-describedby="emailHelp" placeholder="Branch Address">
+                aria-describedby="branchAddress" placeholder="Enter Branch Address">
         </div>
     </form>
 </div>

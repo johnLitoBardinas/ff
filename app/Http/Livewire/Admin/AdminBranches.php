@@ -2,8 +2,10 @@
 
 namespace App\Http\Livewire\Admin;
 
+use App\User;
 use App\Branch;
 use Livewire\Component;
+use App\Enums\UserStatus;
 
 class AdminBranches extends Component
 {
@@ -30,12 +32,21 @@ class AdminBranches extends Component
     }
 
     /**
+     * Toggling User Status ('Active', 'Inactive')
+     */
+    public function toggleUserStatus(Int $userId)
+    {
+        $user = User::find($userId);
+        $user->user_status = $user->user_status === UserStatus::ACTIVE ? UserStatus::INACTIVE : UserStatus::ACTIVE;
+        $user->save();
+    }
+
+    /**
      * Rendering Component.
      */
     public function render()
     {
         return view('livewire.admin.admin-branches');
     }
-
 
 }
