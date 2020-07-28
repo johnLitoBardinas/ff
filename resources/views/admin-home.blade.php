@@ -6,10 +6,7 @@
 
     <div class="row justify-content-between align-items-center">
         <div class="col-md-6 flex">
-            <button class="btn btn-default border border-dark text-center w-100 bg-light">
-                <span class="float-left">+</span>
-                <span class="text-bold font-15px">Add Branch</span>
-            </button>
+            @livewire('admin.button-add-branch')
         </div>
 
         <div class="col-md-5">

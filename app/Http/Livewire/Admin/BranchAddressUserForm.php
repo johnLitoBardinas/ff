@@ -8,7 +8,9 @@ use Livewire\Component;
 
 class BranchAddressUserForm extends Component
 {
-    protected $listeners = ['onChangeBranch' => 'setBranch'];
+    protected $listeners = ['onChangeBranch' => 'setBranch', 'AddBranch' => 'addBranch'];
+
+    public $isAddBranch;
 
     // Current Branch Id.
     public $currentBranchId;
@@ -16,21 +18,20 @@ class BranchAddressUserForm extends Component
     // Current Branch.
     public $currentBranch;
 
+    public $branchName;
+    public $branchAddress;
+
+    // List of Roles.
+    public $roles;
+
     /**
      * Initial Mounting of data to the component.
      */
     public function mount()
     {
+        $this->roles = Role::all()->toArray();
         $this->currentBranchId = Branch::orderBy('branch_name')->first()->branch_id;
         $this->setBranch();
-    }
-
-    /**
-     * Consecutive request from the component.
-     */
-    public function hydrate()
-    {
-        dd('Hydrate component here?');
     }
 
     /**
@@ -46,12 +47,23 @@ class BranchAddressUserForm extends Component
         $this->setBranchUsingBranchId();
     }
 
+
+    /**
+     * Reset the Form for the Branch (Address + User)
+     */
+    public function addBranch()
+    {
+        $this->isAddBranch = true;
+    }
+
     /**
      * Setting up the current branch information.
      */
     private function setBranchUsingBranchId()
     {
-        $this->currentBranch = Branch::where('branch_id', $this->currentBranchId)->with('user.role')->get()->first()->toArray();
+        $this->currentBranch = Branch::where('branch_id', $this->currentBranchId)->with('user.role')->get()->first();
+        $this->branchName = $this->currentBranch->branch_name;
+        $this->branchAddress = $this->currentBranch->branch_address;
     }
 
     /**

@@ -1,7 +1,6 @@
 <div class="col-md-6 admin-branches" x-data="adminBranches">
     @forelse($branches as $branch)
         <div class="card mb-3 branch" >
-            {{-- @if( $branch->branch_id === $activeBranchId) text-white bg-primary @else text-dark @endif --}}
             <div class="card-header d-flex justify-content-between align-items-center cursor-pointer"
                 x-bind:class="[ {{ $branch->branch_id }} === {{$activeBranchId}} ? 'text-white bg-primary' : 'text-dark']"
                 title="Click to Activate." wire:click="changeBranch({{$branch->branch_id}})">
