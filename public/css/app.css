@@ -10980,6 +10980,10 @@ OVERFLOW
 HEIGHT
 **/
 
+.vh-50px {
+  height: 3.125rem;
+}
+
 .vh-59 {
   height: 59vh;
 }
@@ -10998,6 +11002,10 @@ WIDTH
 
 .w-80 {
   width: 80%;
+}
+
+.w-400px {
+  width: 25rem;
 }
 
 /**
