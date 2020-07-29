@@ -3,16 +3,25 @@
 namespace App\Http\Livewire\Admin;
 
 use Livewire\Component;
+use App\Enums\AdminAction;
 
 class AdminActions extends Component
 {
-    public $currentAction;
+    protected $listeners = ['Action' => 'action'];
+
+    public $action;
 
     public $currentBranchId;
 
     public function mount(Int $currentBranchId)
     {
         $this->currentBranchId = $currentBranchId;
+        $this->action = AdminAction::READ_BRANCH;
+    }
+
+    public function action(String $actionType)
+    {
+        $this->action = $actionType;
     }
 
     public function deleteBranch(Int $branchId)

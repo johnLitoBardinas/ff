@@ -4,13 +4,20 @@ namespace App\Http\Livewire\Admin;
 
 use App\User;
 use App\Branch;
+use App\Enums\AdminAction;
 use Livewire\Component;
 use App\Enums\UserStatus;
 
 class AdminBranches extends Component
 {
+    /**
+     * List of all branches [active, inactive].
+     */
     public $branches;
 
+    /**
+     * Track the current active Branch Id.
+     */
     public $activeBranchId;
 
     /**
@@ -29,10 +36,11 @@ class AdminBranches extends Component
     {
         $this->activeBranchId = $id;
         $this->emit('onChangeBranch', $this->activeBranchId);
+        $this->emit('Action', AdminAction::READ_BRANCH);
     }
 
     /**
-     * Toggling User Status ('Active', 'Inactive')
+     * Toggling User Status ('Active', 'Inactive').
      */
     public function toggleUserStatus(Int $userId)
     {

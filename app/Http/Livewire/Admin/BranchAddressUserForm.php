@@ -4,13 +4,22 @@ namespace App\Http\Livewire\Admin;
 
 use App\Role;
 use App\Branch;
+use App\Enums\AdminAction;
 use Livewire\Component;
 
 class BranchAddressUserForm extends Component
 {
-    protected $listeners = ['onChangeBranch' => 'setBranch', 'AddBranch' => 'addBranch'];
+    protected $listeners = ['onChangeBranch' => 'setBranch', 'Action' => 'action'];
 
-    public $isAddBranch;
+    // determining the state for the component [addBranch, editBranch, deactivateBranch, addNewUser, deleteBranch]
+    public $action;
+
+    /**
+     * Tracking the branch name and branch address.
+     */
+    public $newBranchName;
+    public $newBranchAddress;
+    public $newBranchUser = [];
 
     // Current Branch Id.
     public $currentBranchId;
@@ -18,6 +27,9 @@ class BranchAddressUserForm extends Component
     // Current Branch.
     public $currentBranch;
 
+    /**
+     * Existing Branch Name and Branch address.
+     */
     public $branchName;
     public $branchAddress;
 
@@ -41,19 +53,14 @@ class BranchAddressUserForm extends Component
      */
     public function setBranch($brandId = null)
     {
+
         if (! is_null($brandId)) {
             $this->currentBranchId = $brandId;
         }
+
+        $this->action = AdminAction::READ_BRANCH;
+
         $this->setBranchUsingBranchId();
-    }
-
-
-    /**
-     * Reset the Form for the Branch (Address + User)
-     */
-    public function addBranch()
-    {
-        $this->isAddBranch = true;
     }
 
     /**
@@ -64,6 +71,14 @@ class BranchAddressUserForm extends Component
         $this->currentBranch = Branch::where('branch_id', $this->currentBranchId)->with('user.role')->get()->first();
         $this->branchName = $this->currentBranch->branch_name;
         $this->branchAddress = $this->currentBranch->branch_address;
+    }
+
+    /**
+     * Reset the Form for the Branch (Address + User)
+     */
+    public function action(String $actionType)
+    {
+        $this->action = $actionType;
     }
 
     /**
