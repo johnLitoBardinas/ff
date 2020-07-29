@@ -2,7 +2,11 @@
 
     @livewire('admin.admin-actions', compact('currentBranchId') )
 
-    <div class="mt-4">
+    <div class="alert alert-primary w-100 mt-3" role="alert" wire:loading>
+        Fetchin Data...
+    </div>
+
+    <div class="mt-4" wire:loading.remove>
         <div class="address-form">
             <h6 class="text-center text-primary text-bold">
                 <span class="icon icon__location--violet mr-0 align-bottom"></span>
@@ -24,7 +28,7 @@
         </div>
     </div>
 
-    <div class="mt-4">
+    <div class="mt-4" wire:loading.remove>
 
         @forelse($currentBranch['user'] as $user)
             <div class="user-form">
