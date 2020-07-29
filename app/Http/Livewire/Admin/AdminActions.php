@@ -13,9 +13,8 @@ class AdminActions extends Component
 
     public $currentBranchId;
 
-    public function mount(Int $currentBranchId)
+    public function mount()
     {
-        $this->currentBranchId = $currentBranchId;
         $this->action = AdminAction::READ_BRANCH;
     }
 
@@ -34,14 +33,15 @@ class AdminActions extends Component
         # code...
     }
 
-    public function saveBranch(Int $branchId)
+    public function saveBranch()
     {
-        # code...
+        $this->emitUp('Action', 'saveBranch');
     }
 
-    public function addBranchUser(Int $branchId)
+    public function addBranchUser()
     {
-        # code...
+        $actions = $this->action;
+        $currentBranchID = $this->currentBranchId;
     }
 
     public function editBranch(Int $branchId)

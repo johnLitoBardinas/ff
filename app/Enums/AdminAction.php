@@ -9,6 +9,7 @@ final class AdminAction extends Enum
     // determining the state for the component [readBranch, addBranch, editBranch, deactivateBranch, addNewUser, deleteBranch]
     const READ_BRANCH = 'readBranch';
     const ADD_BRANCH = 'addBranch';
+    const SAVE_BRANCH = 'saveBranch';
     const EDIT_BRANCH = 'editBranch';
     const DEACTIVATE_BRANCH = 'deactivateBranch';
     const ADD_BRANCH_USER = 'addNewUser';

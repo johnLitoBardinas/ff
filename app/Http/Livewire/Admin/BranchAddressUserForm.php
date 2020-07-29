@@ -9,17 +9,15 @@ use Livewire\Component;
 
 class BranchAddressUserForm extends Component
 {
-    protected $listeners = ['onChangeBranch' => 'setBranch', 'Action' => 'action'];
+    protected $listeners = [
+        'onChangeBranch' => 'setBranch',
+        'Action' => 'action'
+    ];
+
+    public $hydrateCounter = 0;
 
     // determining the state for the component [addBranch, editBranch, deactivateBranch, addNewUser, deleteBranch]
     public $action;
-
-    /**
-     * Tracking the branch name and branch address.
-     */
-    public $newBranchName;
-    public $newBranchAddress;
-    public $newBranchUser = [];
 
     // Current Branch Id.
     public $currentBranchId;
@@ -28,10 +26,11 @@ class BranchAddressUserForm extends Component
     public $currentBranch;
 
     /**
-     * Existing Branch Name and Branch address.
+     * Branch Name and Branch Address
      */
     public $branchName;
     public $branchAddress;
+    public $branchUsers;
 
     // List of Roles.
     public $roles;
@@ -44,6 +43,11 @@ class BranchAddressUserForm extends Component
         $this->roles = Role::all()->toArray();
         $this->currentBranchId = Branch::orderBy('branch_name')->first()->branch_id;
         $this->setBranch();
+    }
+
+    public function hydrate()
+    {
+        $this->hydrateCounter += 1;
     }
 
     /**
@@ -71,6 +75,7 @@ class BranchAddressUserForm extends Component
         $this->currentBranch = Branch::where('branch_id', $this->currentBranchId)->with('user.role')->get()->first();
         $this->branchName = $this->currentBranch->branch_name;
         $this->branchAddress = $this->currentBranch->branch_address;
+        $this->branchUsers = $this->currentBranch->user;
     }
 
     /**
@@ -79,6 +84,18 @@ class BranchAddressUserForm extends Component
     public function action(String $actionType)
     {
         $this->action = $actionType;
+
+        if ( $this->action === AdminAction::ADD_BRANCH ) {
+            $this->currentBranch = new Branch;
+            $this->branchName = '';
+            $this->branchAddress = '';
+            $this->branchUsers = [];
+        }
+
+        if ( $this->action === AdminAction::SAVE_BRANCH ) {
+
+        }
+
     }
 
     /**
