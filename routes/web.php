@@ -23,6 +23,4 @@ Route::middleware('auth')->group(function () {
     })->name('profile');
 });
 
-Auth::routes([
-    'register' => false,
-]);
+Auth::routes();

@@ -4,4 +4,6 @@ import 'alpinejs';
 
 import Admin from './Admin';
 
-new Admin();
+$(document).ready(() => {
+    new Admin();
+});

@@ -16,7 +16,7 @@ class BranchController extends ApiController
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**

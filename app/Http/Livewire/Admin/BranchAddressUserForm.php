@@ -9,15 +9,7 @@ use Livewire\Component;
 
 class BranchAddressUserForm extends Component
 {
-    protected $listeners = [
-        'onChangeBranch' => 'setBranch',
-        'Action' => 'action'
-    ];
-
-    public $hydrateCounter = 0;
-
-    // determining the state for the component [addBranch, editBranch, deactivateBranch, addNewUser, deleteBranch]
-    public $action;
+    protected $listeners = ['onChangeBranch' => 'setBranch'];
 
     // Current Branch Id.
     public $currentBranchId;
@@ -32,6 +24,9 @@ class BranchAddressUserForm extends Component
     public $branchAddress;
     public $branchUsers;
 
+    // Current action into  the component.
+    public $action;
+
     // List of Roles.
     public $roles;
 
@@ -41,13 +36,11 @@ class BranchAddressUserForm extends Component
     public function mount()
     {
         $this->roles = Role::all()->toArray();
+
+        $this->action = AdminAction::READ_BRANCH;
+
         $this->currentBranchId = Branch::orderBy('branch_name')->first()->branch_id;
         $this->setBranch();
-    }
-
-    public function hydrate()
-    {
-        $this->hydrateCounter += 1;
     }
 
     /**
@@ -57,13 +50,11 @@ class BranchAddressUserForm extends Component
      */
     public function setBranch($brandId = null)
     {
+        $this->action = AdminAction::READ_BRANCH;
 
         if (! is_null($brandId)) {
             $this->currentBranchId = $brandId;
         }
-
-        $this->action = AdminAction::READ_BRANCH;
-
         $this->setBranchUsingBranchId();
     }
 
@@ -75,32 +66,17 @@ class BranchAddressUserForm extends Component
         $this->currentBranch = Branch::where('branch_id', $this->currentBranchId)->with('user.role')->get()->first();
         $this->branchName = $this->currentBranch->branch_name;
         $this->branchAddress = $this->currentBranch->branch_address;
-        $this->branchUsers = $this->currentBranch->user;
+        $this->branchUsers = $this->currentBranch->user->toArray();
     }
 
-    /**
-     * Reset the Form for the Branch (Address + User)
-     */
-    public function action(String $actionType)
+    public function editBranch()
     {
-        $this->action = $actionType;
+        $this->action = AdminAction::EDIT_BRANCH;
+    }
 
-        if ( $this->action === AdminAction::ADD_BRANCH ) {
-            $this->currentBranch = new Branch;
-            $this->branchName = '';
-            $this->branchAddress = '';
-            $this->branchUsers = [];
-        }
-
-        if ( $this->action === AdminAction::SAVE_BRANCH ) {
-            // $this->currentBranch = new Branch;
-            // $this->currentBranch->branch_code = generate_branch_code();
-            // $this->currentBranch->branch_name = $this->branchName;
-            // $this->currentBranch->branch_address = $this->branchName;
-            // $result = $this->currentBranch->save();
-            // dd($result);
-        }
-
+    public function exit()
+    {
+        $this->action = AdminAction::READ_BRANCH;
     }
 
     /**

@@ -25,7 +25,10 @@ class User extends Authenticatable
         'password',
         'first_name',
         'last_name',
-        'mobile_number'
+        'mobile_number',
+        'branch_id',
+        'role_id',
+        'api_token'
     ];
 
     /**
@@ -36,8 +39,6 @@ class User extends Authenticatable
     protected $guarded = [
         'user_status',
         'user_type',
-        'branch_id',
-        'role_id',
     ];
 
     public function role()

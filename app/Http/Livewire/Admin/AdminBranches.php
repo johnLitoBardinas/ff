@@ -4,7 +4,6 @@ namespace App\Http\Livewire\Admin;
 
 use App\User;
 use App\Branch;
-use App\Enums\AdminAction;
 use Livewire\Component;
 use App\Enums\UserStatus;
 
@@ -36,7 +35,6 @@ class AdminBranches extends Component
     {
         $this->activeBranchId = $id;
         $this->emit('onChangeBranch', $this->activeBranchId);
-        $this->emit('Action', AdminAction::READ_BRANCH);
     }
 
     /**

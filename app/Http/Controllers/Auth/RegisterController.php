@@ -2,25 +2,16 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Http\Controllers\Controller;
-use App\Providers\RouteServiceProvider;
 use App\User;
-use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Support\Str;
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Hash;
+use App\Providers\RouteServiceProvider;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
 
 class RegisterController extends Controller
 {
-    /*
-    |--------------------------------------------------------------------------
-    | Register Controller
-    |--------------------------------------------------------------------------
-    |
-    | This controller handles the registration of new users as well as their
-    | validation and creation. By default this controller uses a trait to
-    | provide this functionality without requiring any additional code.
-    |
-    */
 
     use RegistersUsers;
 
@@ -50,9 +41,13 @@ class RegisterController extends Controller
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'name' => ['required', 'string', 'max:255'],
-            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'first_name' => ['required', 'string', 'max:255'],
+            'last_name' => ['required', 'string', 'max:255'],
+            'mobile_number' => ['required', 'string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:user'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'branch_id' => ['required', 'string'],
+            'role_id' => ['required', 'string'],
         ]);
     }
 
@@ -64,10 +59,15 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
-            'name' => $data['name'],
+        return User::forceCreate([
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'first_name' => $data['first_name'],
+            'last_name' => $data['last_name'],
+            'mobile_number' => $data['mobile_number'],
+            'api_token' => Str::random(80),
+            'branch_id' => $data['branch_id'],
+            'role_id' => $data['role_id'],
         ]);
     }
 }
