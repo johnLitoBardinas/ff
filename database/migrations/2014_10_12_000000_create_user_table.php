@@ -25,15 +25,6 @@ class CreateUserTable extends Migration
             $table->unsignedBigInteger('role_id');
             $table->timestamps();
         });
-
-        Schema::table('user', function (Blueprint $table)
-        {
-            $table->string('api_token', 80)
-                ->after('password')
-                ->unique()
-                ->nullable()
-                ->default(null);
-        });
     }
 
     /**

@@ -25,16 +25,17 @@ export default class Admin {
     saveBranchForm() {
         this.$btnSaveBranch.on('click', () => {
             const data = this.$adminBranchForm.find("#frm-branch").serializeArray();
-            console.log(data);
+            console.log(data); //working !!
 
-            console.log(window.livewire);
+            // console.log(window.livewire); working!!
 
-            axios.post('/api/branch', data)
-            .then((result) => {
-                console.log(result);
-            }).catch((err) => {
-                console.log(err);
-            });
+            // Need to Improve.
+            // axios.post('/api/branch', data)
+            // .then((result) => {
+            //     console.log(result);
+            // }).catch((err) => {
+            //     console.log(err);
+            // });
 
         });
     }
