@@ -40,8 +40,7 @@ class AdminActions extends Component
 
     public function addBranchUser()
     {
-        $actions = $this->action;
-        $currentBranchID = $this->currentBranchId;
+        # code...
     }
 
     public function editBranch(Int $branchId)

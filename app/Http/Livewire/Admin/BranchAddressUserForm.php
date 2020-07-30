@@ -93,7 +93,12 @@ class BranchAddressUserForm extends Component
         }
 
         if ( $this->action === AdminAction::SAVE_BRANCH ) {
-
+            // $this->currentBranch = new Branch;
+            // $this->currentBranch->branch_code = generate_branch_code();
+            // $this->currentBranch->branch_name = $this->branchName;
+            // $this->currentBranch->branch_address = $this->branchName;
+            // $result = $this->currentBranch->save();
+            // dd($result);
         }
 
     }

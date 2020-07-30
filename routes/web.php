@@ -8,7 +8,7 @@ use App\Http\Controllers\Auth\LoginController;
 
 Route::get('/test', function ()
 {
-    dd('Win the Fucking Life with VERnt..');
+    dd('Be like water my friend!!');
 });
 
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');

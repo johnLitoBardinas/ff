@@ -1,5 +1,7 @@
 require('./bootstrap');
 
-import Plugins from './Plugins';
+import 'alpinejs';
 
-new Plugins();
+import Admin from './Admin';
+
+new Admin();

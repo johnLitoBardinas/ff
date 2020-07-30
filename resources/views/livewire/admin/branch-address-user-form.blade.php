@@ -1,4 +1,4 @@
-<div class="col-md-5 offset-md-1 vh-59 overflow-y-scroll chrome-hide-scroll admin-branches-form" x-data="branchUserForm">
+<div class="col-md-5 offset-md-1 vh-59 overflow-y-scroll chrome-hide-scroll admin-branches-form">
 
     @livewire('admin.admin-actions')
 
@@ -17,15 +17,15 @@
                     @csrf
                     <div class="form-group">
                         <small for="exampleInputEmail1" class="form-text text-muted">Branch Name</small>
-                        <input type="text" class="form-control border-primary" aria-describedby="branchName"
-                    placeholder="Enter Branch Name" value="{{$branchName}}" x-model="branchName"
+                        <input type="text" class="form-control border-primary @if($action === 'addBranch') active-field @endif" aria-describedby="branchName"
+                    placeholder="Enter Branch Name" name="branch_name" value="{{ $branchName }}"
                     @if($action === 'readBranch' ) disabled @endif>
                     </div>
 
                     <div class="form-group">
                         <small for="exampleInputEmail1" class="form-text text-muted">Branch Address</small>
-                        <input type="text" class="form-control border-primary" aria-describedby="branchAddress"
-                        placeholder="Enter Branch Address" value="{{$branchAddress}}" x-model="branchAddress"
+                        <input type="text" class="form-control border-primary @if($action === 'addBranch') active-field @endif" aria-describedby="branchAddress"
+                    placeholder="Enter Branch Address" name="branch_address" value="{{ $branchAddress }}"
                         @if($action==='readBranch' )disabled @endif>
                     </div>
                 </form>
