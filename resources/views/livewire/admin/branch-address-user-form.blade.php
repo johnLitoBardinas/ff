@@ -1,10 +1,11 @@
-<div class="col-md-5 offset-md-1 vh-59 overflow-y-scroll chrome-hide-scroll admin-branches-form" x-data="{ action: '{{$action}}' }">
-    BranchAddressUserForm = {{ $action }}
+<div class="col-md-5 offset-md-1 vh-59 overflow-y-scroll chrome-hide-scroll admin-branches-form" x-data="{ action: '{{$action}}', 'branchId': '{{$currentBranchId}}' }">
+    {{-- BranchAddressUserForm = {{ $action }} --}}
     <form id="frm-branch" method="POST">
         @csrf
         <input type="hidden" name="action" x-bind:value="action">
+        <input type="hidden" name="branch_id" x-bind:value="branchId">
         <div class="d-flex justify-content-end position-relative admin-action">
-        Alphine - <span x-text="action"></span>
+        {{-- Alphine - <span x-text="action"></span> --}}
             <a href="javascript:void(0);" class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__delete position-absolute l-0 d-none">DELETE</a>
 
             <div class="d-flex justify-content-around">
@@ -76,38 +77,40 @@
                         USERS
                     </h6>
 
+                        <input type="hidden" name="user_ids" value="{{$user['user_id']}}">
+                        <input type="hidden" name="branch_ids" value="{{$currentBranchId}}"/>
                         <div class="form-group">
                             <small for="exampleInputEmail1" class="form-text text-muted">First Name</small>
                             <input type="text" class="form-control border-primary"
                             :disabled="action === 'readBranch'"
-                        aria-describedby="emailHelp" placeholder="First Name" value="{{$user['first_name']}}" />
+                        aria-describedby="emailHelp" placeholder="First Name" name="first_name" value="{{$user['first_name']}}" />
                         </div>
 
                         <div class="form-group">
                             <small for="exampleInputEmail1" class="form-text text-muted">Last Name</small>
                             <input type="text" class="form-control border-primary"
                             :disabled="action === 'readBranch'"
-                                aria-describedby="emailHelp" placeholder="Last Name" value="{{$user['last_name']}}" />
+                                aria-describedby="emailHelp" placeholder="Last Name" name="last_name" value="{{$user['last_name']}}" />
                         </div>
 
                         <div class="form-group">
                             <small for="exampleInputEmail1" class="form-text text-muted">Email</small>
                             <input type="email" class="form-control border-primary"
                             :disabled="action === 'readBranch'"
-                                aria-describedby="emailHelp" placeholder="Enter email" value="{{$user['email']}}" readonly />
+                                aria-describedby="emailHelp" placeholder="Enter email" name="email" value="{{$user['email']}}" readonly />
                         </div>
 
                         <div class="form-group">
                             <small for="exampleInputEmail1" class="form-text text-muted">Mobile</small>
                             <input type="text" class="form-control border-primary"
                             :disabled="action === 'readBranch'"
-                                aria-describedby="emailHelp" placeholder="Enter email" value="{{$user['mobile_number']}}" />
+                                aria-describedby="emailHelp" placeholder="Enter email" name="mobile_number" value="{{$user['mobile_number']}}" />
                         </div>
 
                         <div class="form-group">
                             <small for="exampleInputEmail1" class="form-text text-muted">User Type</small>
                             <select class="custom-select border-primary"
-                            :disabled="action === 'readBranch'" >
+                            :disabled="action === 'readBranch'" name="role_ids" >
                                 @forelse($roles as $role)
                                     <option value="{{ $role['role_id'] }}"
                                         @if($role['role_id']===$user['role_id']) selected @endif>

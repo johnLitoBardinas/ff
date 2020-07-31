@@ -11,8 +11,8 @@ class CreateBranchTable extends Migration
         Schema::create('branch', function (Blueprint $table) {
             $table->bigIncrements('branch_id');
             $table->string('branch_code')->unique();
-            $table->string('branch_name');
-            $table->longText('branch_address');
+            $table->string('branch_name')->unique();
+            $table->longText('branch_address')->unique();
             $table->enum('branch_status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
