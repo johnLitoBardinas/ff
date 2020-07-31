@@ -12,7 +12,7 @@ class CreateBranchTable extends Migration
             $table->bigIncrements('branch_id');
             $table->string('branch_code')->unique();
             $table->string('branch_name')->unique();
-            $table->longText('branch_address')->unique();
+            $table->string('branch_address', 191)->unique();
             $table->enum('branch_status', ['active', 'inactive'])->default('active');
             $table->timestamps();
         });
