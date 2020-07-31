@@ -29,4 +29,4 @@ Route::post('/login', function (Request $request)
 
 });
 
-// Route::resource('branch', 'BranchController', ['except' => ['index', 'create', 'edit'] ] );
+Route::resource('branch', 'BranchController', ['except' => ['index', 'create', 'edit'] ] );

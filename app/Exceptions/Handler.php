@@ -2,11 +2,15 @@
 
 namespace App\Exceptions;
 
+use App\Traits\ApiResponser;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
 use Throwable;
 
 class Handler extends ExceptionHandler
 {
+    use ApiResponser;
+
     /**
      * A list of the exception types that are not reported.
      *
@@ -50,6 +54,10 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
+        if ($exception instanceof NotFoundHttpException) { // missing endpoint
+            return $this->errorResponse('The specified URL cannot be found', 404);
+        }
+
         return parent::render($request, $exception);
     }
 }

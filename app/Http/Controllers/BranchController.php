@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 class BranchController extends ApiController
 {
 
+    function __construct()  {
+        $this->middleware('auth:sanctum');
+    }
+
     /**
      * Store a newly created resource in storage.
      *
@@ -16,7 +20,7 @@ class BranchController extends ApiController
      */
     public function store(Request $request)
     {
-        dd($request);
+        dd('Must fucos on this API first');
     }
 
     /**
