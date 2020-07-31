@@ -4,14 +4,13 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminDashboard;
 use App\Http\Controllers\HomeController;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\Auth\LoginController;
 
 Route::get('/test', function ()
 {
     dd('Be like water my friend!!');
 });
 
-// Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 
 Route::middleware('auth')->group(function () {

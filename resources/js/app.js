@@ -8,7 +8,7 @@ import Login from './Login';
 import Admin from './Admin/Admin';
 
 $(document).ready(() => {
-    new Sanctum();
-    new Login();
-    new Admin();
+    // new Sanctum();
+    // new Login();
+    // new Admin();
 });
