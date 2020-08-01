@@ -1,27 +1,35 @@
+
+import Swal from 'sweetalert2';
+
+/**
+ * Format the branch form data to accepted API data.
+ * @param {$.serializeObject} data
+ */
 export function formatBranchData (data){
-    console.log('This is the format Branch');
-    const updatedData = [];
     const users = [];
-    let user = {};
 
-    data.forEach((value, index) => {
-        const userFields = ["user_id", "branch_id", "first_name", "last_name", "email", "mobile_number", "role_id"];
-        if (userFields.includes(value.name)) {
-            user[value.name] = value.value;
-        } else {
-            updatedData.push(value);
-        }
-
-        if (value.name === 'role_id') {
-            users.push(user);
-            user = {};
-        }
+    console.log('passed', data);
+    return;
+    data['user_id'].forEach((value, index) => {
+        let user = {};
+        user['user_id'] = value;
+        user['branch_id'] = data['branch_id'][index];
+        user['email'] = data['email'][index];
+        user['first_name'] = data['first_name'][index];
+        user['last_name'] = data['last_name'][index];
+        user['mobile_number'] = data['mobile_number'][index];
+        user['role_id'] = data['role_id'][index];
+        users.push(user);
     });
+    data.users = users;
 
-    updatedData.push({
-        name: 'users',
-        value: users
-    });
+    delete data['user_id'];
+    delete data['branch_id'];
+    delete data['email'];
+    delete data['first_name'];
+    delete data['last_name'];
+    delete data['mobile_number'];
+    delete data['role_id'];
 
-    return updatedData;
+    return data;
 };

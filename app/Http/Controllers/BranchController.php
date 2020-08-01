@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Branch;
 use App\Enums\AdminAction;
 use Illuminate\Http\Request;
+use App\Http\Controllers\ApiController;
 
 class BranchController extends ApiController
 {
@@ -21,24 +22,7 @@ class BranchController extends ApiController
      */
     public function store(Request $request)
     {
-        $branchNameValidation = ['required'];
-        $branchAddressValidation = ['required'];
-
-        if (request('action') === AdminAction::ADD_BRANCH) {
-            array_push($branchNameValidation, 'unique:branch,branch_name', 'max:50');
-            array_push($branchAddressValidation, 'unique:branch,branch_address', 'max:191');
-        } else {
-            array_push($branchNameValidation, 'max:50');
-            array_push($branchAddressValidation, 'max:191');
-        }
-        // Update the Branch Here
-        $branchData = $request->validate([
-            'branch_name' => $branchNameValidation,
-            'branch_address' => $branchAddressValidation,
-        ]);
-
-        $isSave = Branch::where('branch_id', request('branch_id'))->update($branchData);
-        dd($isSave);
+        dd($request);
     }
 
     /**
@@ -61,7 +45,7 @@ class BranchController extends ApiController
      */
     public function update(Request $request, Branch $branch)
     {
-        //
+       dd('you hit the update');
     }
 
     /**
@@ -74,4 +58,11 @@ class BranchController extends ApiController
     {
         //
     }
+
+    private function updateBranch($branchData)
+    {
+
+    }
+
+
 }
