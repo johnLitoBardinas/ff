@@ -26,7 +26,6 @@ class AdminBranches extends Component
     {
         $this->branches = Branch::with('user.role')->get();
         $this->activeBranchId = Branch::first()->branch_id;
-        $this->emit('onChangeBranch', $this->activeBranchId);
     }
 
     /**
