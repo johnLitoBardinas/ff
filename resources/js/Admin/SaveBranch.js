@@ -11,7 +11,7 @@ export default class SaveBranch {
 
         this.saveBranchForm();
     }
-//this.branchApi + data['current_branch_id']
+
     saveBranchForm() {
         this.$btnSaveBranch.on('click', () => {
             const data = formatBranchData(this.$adminBranchForm.find("#frm-branch").serializeObject());

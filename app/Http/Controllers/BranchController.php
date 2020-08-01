@@ -28,9 +28,6 @@ class BranchController extends ApiController
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Branch  $branch
-     * @return \Illuminate\Http\Response
      */
     public function show(Branch $branch)
     {
@@ -39,10 +36,6 @@ class BranchController extends ApiController
 
     /**
      * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Branch  $branch
-     * @return \Illuminate\Http\Response
      */
     public function update(Request $request, Branch $branch)
     {
@@ -75,21 +68,19 @@ class BranchController extends ApiController
 
     }
 
+    public function updateBranchStatus(Branch $branch, String $status)
+    {
+        $branch->branch_status = $status;
+        $branch->save();
+        return response()->json($branch, 200);
+    }
+
     /**
      * Remove the specified resource from storage.
-     *
-     * @param  \App\Branch  $branch
-     * @return \Illuminate\Http\Response
      */
     public function destroy(Branch $branch)
     {
         //
     }
-
-    private function updateBranch($branchData)
-    {
-
-    }
-
 
 }

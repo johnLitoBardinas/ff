@@ -12,7 +12,10 @@
 
                 <a href="javascript:void(0);"
                 class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__deactivate d-none"
-                :class="{ 'd-flex' : action === 'editBranch' }">DEACTIVATE</a>
+                :class="{ 'd-flex' : action === 'editBranch' }"
+                data-branchid="{{$currentBranchId}}"
+                data-action="{{ $branchStatus === 'active' ? 'inactive' : 'active' }}"
+                id="btn-branch-status">@if($branchStatus === 'active') DEACTIVATE @else ACTIVATE @endif</a>
 
                 <a href="javascript:void(0);"
                 class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__save d-none"

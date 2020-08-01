@@ -22,6 +22,7 @@ class BranchAddressUserForm extends Component
      */
     public $branchName;
     public $branchAddress;
+    public $branchStatus;
     public $branchUsers;
 
     // Current action into  the component.
@@ -65,6 +66,7 @@ class BranchAddressUserForm extends Component
     {
         $this->currentBranch = Branch::where('branch_id', $this->currentBranchId)->with('user.role')->get()->first();
         $this->branchName = $this->currentBranch->branch_name;
+        $this->branchStatus = $this->currentBranch->branch_status;
         $this->branchAddress = $this->currentBranch->branch_address;
         $this->branchUsers = $this->currentBranch->user->toArray();
     }

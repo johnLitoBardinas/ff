@@ -1,5 +1,6 @@
-
-import Swal from 'sweetalert2';
+/**
+ * Utility Functions.
+ */
 
 /**
  * Format the branch form data to accepted API data.

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BranchController;
 use App\User;
 use Dotenv\Exception\ValidationException;
 use Illuminate\Http\Request;
@@ -29,4 +30,9 @@ Route::post('/login', function (Request $request)
 
 });
 
+// Branch Resource
 Route::resource('branch', 'BranchController', ['except' => ['index', 'create', 'edit'] ] );
+
+// /branch/status/{id}/{status}
+Route::put('/branch/status/{branch}/{status}', [BranchController::class, 'updateBranchStatus']);
+
