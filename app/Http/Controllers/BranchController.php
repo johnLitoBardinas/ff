@@ -6,6 +6,7 @@ use App\Branch;
 use App\Enums\AdminAction;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;
+use App\User;
 
 class BranchController extends ApiController
 {
@@ -45,7 +46,33 @@ class BranchController extends ApiController
      */
     public function update(Request $request, Branch $branch)
     {
-       dd('you hit the update');
+
+        $request->validate([
+            'branch_name' => ['required', 'string', 'max:50'],
+            'branch_address' => ['required', 'string', 'max:190'],
+        ]);
+
+        $branch->branch_name = request('branch_name');
+        $branch->branch_address = request('branch_address');
+
+        // Checking if the branch data updated if not no point saving the new branch data.
+        if ($branch->isDirty()) {
+            $branch->save();
+        }
+
+        if ( ! empty( request('users') ) ) {
+            $users = request('users');
+            foreach ($users as $user) {
+                User::updateOrCreate(
+                    [ 'user_id' => $user['user_id'] ],
+                    $user
+                );
+            }
+        }
+
+        $updatedBranch = Branch::where('branch_id', request('current_branch_id'))->with('user.role')->get();
+        return response()->json($updatedBranch, 200);
+
     }
 
     /**

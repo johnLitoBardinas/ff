@@ -1,4 +1,5 @@
 import { formatBranchData } from '../utils';
+import Swal from 'sweetalert2';
 
 export default class SaveBranch {
 
@@ -10,20 +11,22 @@ export default class SaveBranch {
 
         this.saveBranchForm();
     }
-
+//this.branchApi + data['current_branch_id']
     saveBranchForm() {
         this.$btnSaveBranch.on('click', () => {
             const data = formatBranchData(this.$adminBranchForm.find("#frm-branch").serializeObject());
-            // console.log('current branch id', data['current_branch_id']);
-            // console.log('current branch action', data['current_branch_id']);
-            return;
-            // Need to Improve.
-            axios.post('/api/branch', data)
-            .then((result) => {
-                console.log(result);
-            }).catch((err) => {
-                console.log(err);
-            });
+            const url = data.action === 'editBranch' ? `${this.branchApi}/${data['current_branch_id']}` : this.branchApi;
+
+            if ( data.action === 'editBranch' ) {
+                axios.put(url, data)
+                .then((response) => {
+                    if (response.status === 200) {
+                        window.livewire.emit('onUpdateBranch');
+                        Swal.fire('Branch Updated!!!', '', 'success');
+                    }
+                })
+                .catch((error) => console.log(error));
+            }
 
         });
     }
