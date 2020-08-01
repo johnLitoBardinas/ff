@@ -39,7 +39,7 @@ class BranchAddressUserForm extends Component
 
         $this->action = AdminAction::READ_BRANCH;
 
-        $this->currentBranchId = Branch::orderBy('branch_name')->first()->branch_id;
+        $this->currentBranchId = Branch::first()->branch_id;
         $this->setBranch();
     }
 

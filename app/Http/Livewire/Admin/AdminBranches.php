@@ -25,7 +25,8 @@ class AdminBranches extends Component
     public function mount()
     {
         $this->branches = Branch::with('user.role')->get();
-        $this->activeBranchId = $this->branches->first()->branch_id;
+        $this->activeBranchId = Branch::first()->branch_id;
+        $this->emit('onChangeBranch', $this->activeBranchId);
     }
 
     /**
