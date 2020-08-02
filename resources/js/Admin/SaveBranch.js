@@ -1,4 +1,5 @@
-import { formatBranchData } from '../utils';
+const utils = require('../utils');
+
 import Swal from 'sweetalert2';
 
 export default class SaveBranch {
@@ -7,15 +8,13 @@ export default class SaveBranch {
         this.$adminBranchForm = $(".admin-branches-form");
         this.$btnSaveBranch = $("#btn-savebranch");
 
-        this.branchApi = '/api/branch';
-
         this.saveBranchForm();
     }
 
     saveBranchForm() {
         this.$btnSaveBranch.on('click', () => {
-            const data = formatBranchData(this.$adminBranchForm.find("#frm-branch").serializeObject());
-            const url = data.action === 'editBranch' ? `${this.branchApi}/${data['current_branch_id']}` : this.branchApi;
+            const data = utils.formatBranchData(this.$adminBranchForm.find("#frm-branch").serializeObject());
+            const url = data.action === 'editBranch' ? `${ApiUrl.branch}/${data['current_branch_id']}` : ApiUrl.branch;
 
             if ( data.action === 'editBranch' ) {
                 axios.put(url, data)

@@ -134,5 +134,9 @@
 </div>
 
 {{--
-    This form will serve as a edit / Deactivate and Destroy.
+    EDIT            -> DONE
+    DEACTIVATE      -> DONE
+    ADD BRANCH      -> INPROGRESS
+    ADD USER        -> PENDING
+    DELETE BRANCH   -> PENDING
 --}}
