@@ -12717,6 +12717,28 @@ Contains the base style and default variable values.
   background-repeat: no-repeat;
 }
 
+/**
+ Sweet Alert Customization.
+**/
+
+.swal2-file::-moz-placeholder, .swal2-input::-moz-placeholder, .swal2-textarea::-moz-placeholder {
+  color: #000 !important;
+}
+
+.swal2-file:-ms-input-placeholder, .swal2-input:-ms-input-placeholder, .swal2-textarea:-ms-input-placeholder {
+  color: #000 !important;
+}
+
+.swal2-file::-ms-input-placeholder, .swal2-input::-ms-input-placeholder, .swal2-textarea::-ms-input-placeholder {
+  color: #000 !important;
+}
+
+.swal2-file::placeholder,
+.swal2-input::placeholder,
+.swal2-textarea::placeholder {
+  color: #000 !important;
+}
+
 .btn__ff--primary {
   color: #463291;
   border: 1px solid #463291 !important;

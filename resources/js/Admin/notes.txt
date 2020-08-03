@@ -1,6 +1,0 @@
-This folder must contain all the behavior for the Admin Page in  the application.
-ALl the limitation from the fucking alphine js && livewire must address here.
-
-1. POST NEW BRANCH
-2. EDIT EXISTING BRANCH
-3. DEACTIVATE BRANCH

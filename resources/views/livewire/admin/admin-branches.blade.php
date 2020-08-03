@@ -1,4 +1,5 @@
 <div class="col-md-6 admin-branches" x-data="adminBranches">
+{{-- Current Branch ID: {{ $activeBranchId }} --}}
     @forelse($branches as $branch)
         <div class="card mb-3 branch" >
             <div class="card-header d-flex justify-content-between align-items-center cursor-pointer"

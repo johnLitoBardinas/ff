@@ -23,7 +23,20 @@ class BranchController extends ApiController
      */
     public function store(Request $request)
     {
-        dd($request);
+        // Validate the incoming data.
+        $request->validate([
+            'branch_name' => ['required', 'string', 'unique:branch,branch_name', 'max:50'],
+            'branch_address' => ['required', 'string', 'unique:branch,branch_address', 'max:190'],
+        ]);
+
+        $branch = Branch::create([
+            'branch_code' => generate_branch_code(),
+            'branch_name' => request('branch_name'),
+            'branch_address' => request('branch_address')
+        ]);
+
+        return response()->json($branch, 200);
+
     }
 
     /**
@@ -63,7 +76,7 @@ class BranchController extends ApiController
             }
         }
 
-        $updatedBranch = Branch::where('branch_id', request('current_branch_id'))->with('user.role')->get();
+        $updatedBranch = Branch::where('branch_id', request('current_branch_id'))->with('user.role')->first();
         return response()->json($updatedBranch, 200);
 
     }

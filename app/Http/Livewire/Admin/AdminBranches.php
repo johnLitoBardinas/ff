@@ -26,7 +26,7 @@ class AdminBranches extends Component
     public function mount()
     {
         $this->getAllBranches();
-        $this->activeBranchId = Branch::first()->branch_id;
+        $this->activeBranchId = $this->branches->first()->branch_id;
     }
 
     /**
@@ -38,9 +38,14 @@ class AdminBranches extends Component
         $this->emit('onChangeBranch', $this->activeBranchId);
     }
 
-    public function onUpdateBranch()
+    public function onUpdateBranch(Int $branchId = null)
     {
+        if ( ! is_null( $branchId )) {
+            $this->activeBranchId = $branchId;
+        }
+
        $this->getAllBranches();
+
     }
 
     /**
@@ -55,7 +60,7 @@ class AdminBranches extends Component
 
     protected function getAllBranches()
     {
-        $this->branches = Branch::with('user.role')->get();
+        $this->branches = Branch::orderBy('branch_id', 'DESC')->with('user.role')->get();
     }
 
     /**

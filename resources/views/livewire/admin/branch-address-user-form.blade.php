@@ -1,11 +1,13 @@
 <div class="col-md-5 offset-md-1 vh-59 overflow-y-scroll chrome-hide-scroll admin-branches-form" x-data="{ action: '{{$action}}', 'branchId': '{{$currentBranchId}}' }">
     {{-- BranchAddressUserForm = {{ $action }} --}}
+    {{-- BranchId = {{ $currentBranchId }} --}}
     <form id="frm-branch" method="POST">
         @csrf
         <input type="hidden" name="action" x-bind:value="action">
         <input type="hidden" name="current_branch_id" x-bind:value="branchId">
         <div class="d-flex justify-content-end position-relative admin-action">
         {{-- Alphine - <span x-text="action"></span> --}}
+        {{-- Alphine - <span x-text="branchId"></span> --}}
             <a href="javascript:void(0);" class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__delete position-absolute l-0 d-none">DELETE</a>
 
             <div class="d-flex justify-content-around">

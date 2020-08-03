@@ -5,11 +5,10 @@ import Swal from 'sweetalert2';
 export default class BranchStatus {
 
     constructor() {
-        // register handler
-        this.deactivateBranch();
+        this.onChangeBranchStatus();
     }
 
-    deactivateBranch() {
+    onChangeBranchStatus() {
         $('.admin-branches-form').on('click', '#btn-branch-status', (e) => {
             const branchId = e.target.dataset.branchid || 0;
             const branchAction = e.target.dataset.action;
@@ -21,8 +20,8 @@ export default class BranchStatus {
                     axios.put(url, {})
                     .then((response) => {
                         if (response.status === 200) {
-                            window.livewire.emit('onUpdateBranch');
-                            window.livewire.emit('onChangeBranch');
+                            window.livewire.emit('onUpdateBranch', branchId);
+                            window.livewire.emit('onChangeBranch', branchId);
                             Swal.fire('Branch Updated!!!', '', 'success');
                         }
                     })

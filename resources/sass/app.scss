@@ -8,6 +8,9 @@
 @import './base';
 @import './mixins';
 
+// Plugins
+@import './plugins/swal2';
+
 // Custom
 @import './core/buttons';
 @import './core/switcher';
