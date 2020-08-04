@@ -68,7 +68,7 @@ class BranchAddressUserForm extends Component
         $this->branchName = $this->currentBranch->branch_name;
         $this->branchStatus = $this->currentBranch->branch_status;
         $this->branchAddress = $this->currentBranch->branch_address;
-        $this->branchUsers = $this->currentBranch->user->toArray();
+        $this->branchUsers = json_encode($this->currentBranch->user->toArray());
     }
 
     public function editBranch()

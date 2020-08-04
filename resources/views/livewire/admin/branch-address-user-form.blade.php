@@ -1,4 +1,10 @@
-<div class="col-md-5 offset-md-1 vh-59 overflow-y-scroll chrome-hide-scroll admin-branches-form" x-data="{ action: '{{$action}}', 'branchId': '{{$currentBranchId}}' }">
+<div
+class="col-md-5 offset-md-1 vh-59 overflow-y-scroll chrome-hide-scroll admin-branches-form"
+x-data="{
+    action: '{{$action}}',
+    branchId: '{{$currentBranchId}}',
+    users: JSON.parse({{json_encode($branchUsers)}})
+}">
     {{-- BranchAddressUserForm = {{ $action }} --}}
     {{-- BranchId = {{ $currentBranchId }} --}}
     <form id="frm-branch" method="POST">
@@ -27,7 +33,9 @@
                 <a href="javascript:void(0);"
                 title="Add User to the Branch."
                 class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__adduser d-none"
-                :class="{ 'd-flex': action === 'readBranch' }">ADD USER</a>
+                :class="{ 'd-flex': action === 'readBranch' }"
+                data-branchid="{{$currentBranchId}}"
+                id="btn-add-branch-user">ADD USER</a>
 
                 <a href="javascript:void(0);"
                 title="Edit Branch."
@@ -75,70 +83,66 @@
 
         <div class="mt-4" wire:loading.remove>
 
-            @forelse($branchUsers as $user)
-                <div class="user-form">
-                    <h6 class="text-center text-primary text-bold">
-                        <span class="icon icon__account--violet mr-0 align-bottom"></span>
-                        USERS
-                    </h6>
+            <h6 x-show="users.length === 0">No User Yet</h6>
 
-                        <input type="hidden" name="user_id" value="{{$user['user_id']}}">
-                        <input type="hidden" name="branch_id" value="{{$currentBranchId}}"/>
+            <template x-if="users.length">
+                <template x-for="(user, index) in users" :key="index">
+                    <div class="user-form">
+                        <h6 class="text-center text-primary text-bold">
+                            <span class="icon icon__account--violet mr-0 align-bottom"></span>
+                            USERS
+                        </h6>
+
+                        <input type="hidden" name="user_id" :value="user.user_id" />
+                        <input type="hidden" name="branch_id" :value="branchId" />
+
                         <div class="form-group">
                             <small for="exampleInputEmail1" class="form-text text-muted">First Name</small>
                             <input type="text" class="form-control border-primary"
                             :disabled="action === 'readBranch'"
-                        aria-describedby="emailHelp" placeholder="First Name" name="first_name" value="{{$user['first_name']}}" />
+                            aria-describedby="firstName"
+                            placeholder="First Name" name="first_name" :value="user.first_name" />
                         </div>
 
                         <div class="form-group">
                             <small for="exampleInputEmail1" class="form-text text-muted">Last Name</small>
                             <input type="text" class="form-control border-primary"
                             :disabled="action === 'readBranch'"
-                                aria-describedby="emailHelp" placeholder="Last Name" name="last_name" value="{{$user['last_name']}}" />
+                            aria-describedby="lastName"
+                            placeholder="Last Name" name="last_name" :value="user.last_name"/>
                         </div>
 
                         <div class="form-group">
                             <small for="exampleInputEmail1" class="form-text text-muted">Email</small>
                             <input type="email" class="form-control border-primary"
                             :disabled="action === 'readBranch'"
-                                aria-describedby="emailHelp" placeholder="Enter email" name="email" value="{{$user['email']}}" readonly />
+                                aria-describedby="emailAddress" placeholder="Enter email" name="email" :value="user.email" readonly />
                         </div>
 
                         <div class="form-group">
                             <small for="exampleInputEmail1" class="form-text text-muted">Mobile</small>
                             <input type="text" class="form-control border-primary"
                             :disabled="action === 'readBranch'"
-                                aria-describedby="emailHelp" placeholder="Enter email" name="mobile_number" value="{{$user['mobile_number']}}" />
+                            aria-describedby="mobileNumber" placeholder="Enter email" name="mobile_number" :value="user.mobile_number" />
                         </div>
 
                         <div class="form-group">
                             <small for="exampleInputEmail1" class="form-text text-muted">User Type</small>
                             <select class="custom-select border-primary"
-                            :disabled="action === 'readBranch'" name="role_id" >
+                            :disabled="action === 'readBranch'" name="role_id" :value="user.role_id">
                                 @forelse($roles as $role)
-                                    <option value="{{ $role['role_id'] }}"
-                                        @if($role['role_id']===$user['role_id']) selected @endif>
-                                        {{ ucfirst($role['name']) }}</option>
+                                    <option value="{{$role['role_id']}}">{{ ucfirst($role['name']) }}</option>
                                 @empty
                                     <option readonly disabled> No data.. </option>
                                 @endforelse
                             </select>
                         </div>
-                </div>
-            @empty
-                <h6>No User Yet</h6>
-            @endforelse
+
+                    </div>
+                </template>
+            </template>
 
         </div>
         {{-- Branch Users --}}
     </form>
 </div>
-
-{{--
-    EDIT            -> DONE
-    DEACTIVATE      -> DONE
-    ADD BRANCH      -> INPROGRESS
-    ADD USER        -> PENDING
-    DELETE BRANCH   -> PENDING
---}}
