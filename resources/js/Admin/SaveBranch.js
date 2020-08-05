@@ -16,10 +16,15 @@ export default class SaveBranch {
 
     saveBranchForm() {
         this.$btnSaveBranch.on('click', () => {
-            const data = utils.formatBranchData(this.$adminBranchForm.find("#frm-branch").serializeObject());
-            const url = data.action === 'editBranch' ? `${ApiUrl.branch}/${data['current_branch_id']}` : ApiUrl.branch;
+            const formAction = $('input[name="action"]').val() || 'readBranch';
+            const data = utils.formatBranchData(this.$adminBranchForm.find("#frm-branch").serializeObject(), formAction);
+            const url = formAction === 'editBranch' ? `${ApiUrl.branch}/${data['current_branch_id']}` : ApiUrl.branch;
 
-            if ( data.action === 'editBranch' ) {
+            console.log('action', formAction);
+            console.log('data', data);
+            console.log('url', url);
+            return;
+            if ( formAction === 'editBranch' ) {
                 axios.put(url, data)
                 .then((response) => {
                     if (response.status === 200) {
@@ -28,6 +33,13 @@ export default class SaveBranch {
                     }
                 })
                 .catch((error) => console.log(error));
+            } else if ( formAction === 'addNewUser' ) {
+                // Adding new User to the fucking branch.
+                console.log('Win this fucking life...');
+                console.log('data', data);
+                console.log('url', url);
+            } else {
+                console.log('ReadBranch');
             }
 
         });

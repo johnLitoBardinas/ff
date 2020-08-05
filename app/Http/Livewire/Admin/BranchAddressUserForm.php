@@ -36,7 +36,7 @@ class BranchAddressUserForm extends Component
      */
     public function mount()
     {
-        $this->roles = Role::all()->toArray();
+        $this->roles = json_encode(Role::all()->toArray());
 
         $this->action = AdminAction::READ_BRANCH;
 
