@@ -28,15 +28,14 @@ PHP: Action = {{$action}}
 
                 <a href="javascript:void(0);"
                 class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__save d-none"
-                :class="[ (action === 'editBranch') || users.length && (action === 'addNewUser' && action === 'addBranch') ? 'd-flex' : '' ]"
+                :class="[ action === 'editBranch' ? 'd-flex' : '' ]"
                 id="btn-savebranch">SAVE</a>
 
                 <a href="javascript:void(0);"
                 title="Add User to the Branch."
                 class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__adduser d-none"
                 :class="{ 'd-flex': action === 'readBranch' }"
-                data-branchid="{{$currentBranchId}}"
-                x-on:click="action = 'addNewUser'">ADD USER</a>
+                data-branchid="{{$currentBranchId}}">ADD USER</a>
 
                 <a href="javascript:void(0);"
                 title="Edit Branch."
@@ -48,8 +47,8 @@ PHP: Action = {{$action}}
                 <a href="javascript:void(0);"
                 title="Click to Exit."
                 class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__exit d-none"
-                :class="[ (action === 'addNewUser') || (action === 'editBranch') || (action === 'addBranch') ? 'd-flex' : '' ]"
-                x-on:click="action = 'readBranch'; users = users.splice(defaultUserCount, users.length - 1)"
+                :class="[ action === 'editBranch' ? 'd-flex' : '' ]"
+                x-on:click="action = 'readBranch';"
                 wire:click="exit">EXIT</a>
             </div>
         </div>
@@ -70,21 +69,21 @@ PHP: Action = {{$action}}
                 <div class="form-group">
                     <small for="exampleInputEmail1" class="form-text text-muted">Branch Name</small>
                     <input type="text" class="form-control border-primary" aria-describedby="branchName"
-                    :disabled="action === 'readBranch' || action === 'addNewUser' || action === 'addBranch'"
+                    :disabled="action === 'readBranch'"
                 placeholder="Enter Branch Name" name="branch_name" :value="branchName"/>
                 </div>
 
                 <div class="form-group">
                     <small for="exampleInputEmail1" class="form-text text-muted">Branch Address</small>
                     <input type="text" class="form-control border-primary"
-                    :disabled="action === 'readBranch' || action === 'addNewUser' || action === 'addBranch'" aria-describedby="branchAddress"
+                    :disabled="action === 'readBranch'" aria-describedby="branchAddress"
                 placeholder="Enter Branch Address" name="branch_address" :value="branchAddress"/>
                 </div>
             </div>
         </div>
         {{-- Address Form --}}
 
-        <h6 x-show="users.length === 0 && action != 'addNewUser'">No User Yet</h6>
+        <h6 x-show="users.length === 0">No User Yet</h6>
         <div class="mt-4" wire:loading.remove>
 
             <template x-if="users.length" x-for="(user, index) in users" :key="index">
@@ -94,7 +93,6 @@ PHP: Action = {{$action}}
                         USERS
                     </h6>
 
-                    <a href="javascript:void(0);" x-on:click="testFunction()" class="float-right">Remove User</a>
                     <input type="hidden" name="user_id" :value="user.user_id" />
                     <input type="hidden" name="branch_id" :value="branchId" />
 
@@ -117,7 +115,6 @@ PHP: Action = {{$action}}
                     <div class="form-group">
                         <small for="exampleInputEmail1" class="form-text text-muted">Email</small>
                         <input type="email" class="form-control border-primary"
-                        :disabled="action === 'editBranch' || action === 'readBranch'"
                         :readonly="action === 'editBranch' || action === 'readBranch'"
                             aria-describedby="emailAddress" placeholder="Enter email" name="email" :value="user.email" readonly />
                     </div>
@@ -145,9 +142,3 @@ PHP: Action = {{$action}}
         {{-- Branch Users --}}
     </form>
 </div>
-
-<script>
-    function testFunction() {
-
-    }
-</script>

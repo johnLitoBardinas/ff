@@ -1,0 +1,1 @@
+This script will be used by the manager and cashier for the application.

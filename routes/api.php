@@ -1,11 +1,17 @@
 <?php
 
-use App\Http\Controllers\BranchController;
 use App\User;
-use Dotenv\Exception\ValidationException;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\BranchController;
+
+Route::get('/', function (Request $request)
+{
+    $environment = App::environment();
+    dd($environment);
+});
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
@@ -34,4 +40,5 @@ Route::post('/login', function (Request $request)
 Route::resource('branch', 'BranchController', ['except' => ['index', 'create', 'edit'] ] );
 Route::put('/branch/status/{branch}/{status}', [BranchController::class, 'updateBranchStatus']);
 
+// User Resource Endpoint
 Route::resource('user', 'UserController', ['except' => ['create', 'edit'] ] );

@@ -9,12 +9,9 @@ const util = {
      *
      * @param {$.serializeObject} data Branch Form Data.
      */
-    formatBranchData: (data, type) => {
+    formatBranchData: (data) => {
         const users = [];
 
-        console.log({data});
-        console.log({type});
-        return;
         if ( data['user_id'] === undefined ) {
             data.users = users;
         } else if ( typeof data['user_id'] === "string" ) {

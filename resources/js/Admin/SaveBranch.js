@@ -17,13 +17,9 @@ export default class SaveBranch {
     saveBranchForm() {
         this.$btnSaveBranch.on('click', () => {
             const formAction = $('input[name="action"]').val() || 'readBranch';
-            const data = utils.formatBranchData(this.$adminBranchForm.find("#frm-branch").serializeObject(), formAction);
+            const data = utils.formatBranchData(this.$adminBranchForm.find("#frm-branch").serializeObject());
             const url = formAction === 'editBranch' ? `${ApiUrl.branch}/${data['current_branch_id']}` : ApiUrl.branch;
 
-            console.log('action', formAction);
-            console.log('data', data);
-            console.log('url', url);
-            return;
             if ( formAction === 'editBranch' ) {
                 axios.put(url, data)
                 .then((response) => {
@@ -33,11 +29,6 @@ export default class SaveBranch {
                     }
                 })
                 .catch((error) => console.log(error));
-            } else if ( formAction === 'addNewUser' ) {
-                // Adding new User to the fucking branch.
-                console.log('Win this fucking life...');
-                console.log('data', data);
-                console.log('url', url);
             } else {
                 console.log('ReadBranch');
             }
