@@ -19,8 +19,15 @@ export default class BranchUsers {
 
     onSubmitForm() {
         this.$btnSaveBranchUser.on('click', (e) => {
-            const data = this.$frmBranchUser.serializeObject();
-            console.log('data', data);
+            const parsleyForm = this.$frmBranchUser.parsley();
+            parsleyForm.validate();
+
+            if ( parsleyForm.isValid() ) {
+                const data = this.$frmBranchUser.serializeObject();
+                console.log('data', data);
+            }
+
+
         });
     }
 }
