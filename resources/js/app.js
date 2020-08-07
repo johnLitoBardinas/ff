@@ -1,7 +1,6 @@
 require('./bootstrap');
 
 import 'alpinejs';
-import Parsley from 'parsleyjs';
 
 // Modules for the Application
 import SaveBranch from './Admin/SaveBranch';
