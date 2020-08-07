@@ -25,6 +25,7 @@ export default class SaveBranch {
                 .then((response) => {
                     if (response.status === 200) {
                         window.livewire.emit('onUpdateBranch', response.data['branch_id']);
+                        window.livewire.emit('onChangeBranch', response.data['branch_id']);
                         Swal.fire('Branch Updated!!!', '', 'success');
                     }
                 })
@@ -48,14 +49,19 @@ export default class SaveBranch {
                 icon: 'question',
                 confirmButtonText: 'Save',
                 preConfirm: () => {
-                    let branchName = Swal.getPopup().querySelector('#branch-name').value
-                    let branchAddress = Swal.getPopup().querySelector('#branch-address').value
+                    let branchName = Swal.getPopup().querySelector('#branch-name').value || '';
+                    let branchAddress = Swal.getPopup().querySelector('#branch-address').value || '';
                     if (branchName === '' || branchAddress === '') {
                         Swal.showValidationMessage(`Empty &nbsp <b>Branch Name</b> &nbsp or &nbsp <b>Branch Address</b>`)
                     }
                     return {branchName, branchAddress}
                 }
             }).then((result) => {
+
+                if ( result.value === undefined) {
+                    return;
+                }
+
                 const data = {
                     'branch_name': result.value.branchName,
                     'branch_address': result.value.branchAddress,
@@ -68,9 +74,19 @@ export default class SaveBranch {
                         window.livewire.emit('onChangeBranch', response.data['branch_id']);
                         Swal.fire('Branch Added!!!', '', 'success');
                     }
+                }).catch((error) => {
+                    const errorData = error.response.data;
+                    const errorMessage = errorData.message || 'Error';
+                    Swal.fire({
+                        icon: 'error',
+                        title: errorMessage,
+                        html: `<b>Branch Name</b> or <b>Branch Address</b> already existed.`
+                    });
                 });
+
+
             })
-            .catch((error) => console.log(error));
+            .catch((error) => console.log('Is this called??'));
 
         });
     }
