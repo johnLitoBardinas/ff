@@ -23,7 +23,8 @@ try {
 
 window.ApiUrl = {
     branch: '/api/branch',
-}
+    users: '/api/users',
+};
 
 window.axios = require('axios');
 

@@ -14,6 +14,9 @@ export default class SaveBranch {
         this.saveBranchForm();
     }
 
+    /**
+     * Saving the Branch Form.
+     */
     saveBranchForm() {
         this.$btnSaveBranch.on('click', () => {
             const formAction = $('input[name="action"]').val() || 'readBranch';
@@ -24,8 +27,7 @@ export default class SaveBranch {
                 axios.put(url, data)
                 .then((response) => {
                     if (response.status === 200) {
-                        window.livewire.emit('onUpdateBranch', response.data['branch_id']);
-                        window.livewire.emit('onChangeBranch', response.data['branch_id']);
+                        util.updateBranch(response.data['branch_id']);
                         Swal.fire('Branch Updated!!!', '', 'success');
                     }
                 })
@@ -37,6 +39,9 @@ export default class SaveBranch {
         });
     }
 
+    /**
+     * Showing the Add Branch SWAL2.
+     */
     onShowAddBranchForm() {
         this.$btnShowAddBranch.on('click', (e) => {
             Swal.fire({
@@ -70,8 +75,7 @@ export default class SaveBranch {
                 axios.post(ApiUrl.branch, data)
                 .then((response) => {
                     if (response.status === 200) {
-                        window.livewire.emit('onUpdateBranch', response.data['branch_id']);
-                        window.livewire.emit('onChangeBranch', response.data['branch_id']);
+                        util.updateBranch(response.data['branch_id']);
                         Swal.fire('Branch Added!!!', '', 'success');
                     }
                 }).catch((error) => {

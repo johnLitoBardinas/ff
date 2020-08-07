@@ -1,6 +1,7 @@
 const utils = require('../utils');
 
 import Swal from 'sweetalert2';
+import util from '../utils';
 
 export default class BranchStatus {
 
@@ -20,8 +21,7 @@ export default class BranchStatus {
                     axios.put(url, {})
                     .then((response) => {
                         if (response.status === 200) {
-                            window.livewire.emit('onUpdateBranch', branchId);
-                            window.livewire.emit('onChangeBranch', branchId);
+                            util.updateBranch(branchId);
                             Swal.fire('Branch Updated!!!', '', 'success');
                         }
                     })

@@ -41,4 +41,4 @@ Route::resource('branch', 'BranchController', ['except' => ['index', 'create', '
 Route::put('/branch/status/{branch}/{status}', [BranchController::class, 'updateBranchStatus']);
 
 // User Resource Endpoint
-Route::resource('user', 'UserController', ['except' => ['create', 'edit'] ] );
+Route::resource('users', 'UserController', ['except' => ['create', 'edit'] ] );

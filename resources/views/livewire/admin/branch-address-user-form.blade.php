@@ -35,6 +35,7 @@ PHP: Action = {{$action}}
                 title="Add User to the Branch."
                 class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__adduser d-none"
                 :class="{ 'd-flex': action === 'readBranch' }"
+                id="btn-branch-user"
                 data-branchid="{{$currentBranchId}}">ADD USER</a>
 
                 <a href="javascript:void(0);"
@@ -141,4 +142,11 @@ PHP: Action = {{$action}}
         </div>
         {{-- Branch Users --}}
     </form>
+
+    @livewire('admin.modal-user-form', [
+        'roles' => json_decode($roles),
+        'branchId' => $currentBranchId,
+        'branchName' => $branchName,
+    ])
+
 </div>
