@@ -30,9 +30,8 @@ Route::post('/login', function (Request $request)
 
 });
 
-// Branch Resource
+// Branch Resource Endpoint.
 Route::resource('branch', 'BranchController', ['except' => ['index', 'create', 'edit'] ] );
-
-// /branch/status/{id}/{status}
 Route::put('/branch/status/{branch}/{status}', [BranchController::class, 'updateBranchStatus']);
 
+Route::resource('user', 'UserController', ['except' => ['create', 'edit'] ] );

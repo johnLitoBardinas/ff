@@ -3,8 +3,9 @@
 namespace App\Exceptions;
 
 use App\Traits\ApiResponser;
+use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Symfony\Component\HttpKernel\Exception\NotFoundHttpException;
+use Symfony\Component\HttpKernel\Exception\NotFoundHttpException as NotFoundException;
 use Throwable;
 
 class Handler extends ExceptionHandler
@@ -54,8 +55,13 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        if ($exception instanceof NotFoundHttpException) { // missing endpoint
+        if ($exception instanceof NotFoundException) {
             return $this->errorResponse('The specified URL cannot be found', 404);
+        }
+
+        if ($exception instanceof ModelNotFoundException) {
+            $modelName = strtolower(class_basename($exception->getModel()));
+            return $this->errorResponse("Does not exists any {$modelName} with the specified identificator", 404);
         }
 
         return parent::render($request, $exception);

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Branch;
-use App\Enums\AdminAction;
+use App\Enums\BranchStatus;
 use Illuminate\Http\Request;
 use App\Http\Controllers\ApiController;
 use App\User;
@@ -11,15 +11,8 @@ use App\User;
 class BranchController extends ApiController
 {
 
-    function __construct()  {
-        $this->middleware('auth:sanctum');
-    }
-
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
@@ -35,16 +28,16 @@ class BranchController extends ApiController
             'branch_address' => request('branch_address')
         ]);
 
-        return response()->json($branch, 200);
+        return $this->showOne($branch);
 
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified branch resource.
      */
     public function show(Branch $branch)
     {
-        //
+        return $this->showOne($branch);
     }
 
     /**
@@ -77,18 +70,18 @@ class BranchController extends ApiController
         }
 
         $updatedBranch = Branch::where('branch_id', request('current_branch_id'))->with('user.role')->first();
-        return response()->json($updatedBranch, 200);
+        return $this->showOne($updatedBranch);
 
     }
 
     /**
      * Update Branch Status.
      */
-    public function updateBranchStatus(Branch $branch, String $status)
+    public function updateBranchStatus(Branch $branch, BranchStatus $status)
     {
         $branch->branch_status = $status;
         $branch->save();
-        return response()->json($branch, 200);
+        return $this->showOne($branch);
     }
 
     /**
