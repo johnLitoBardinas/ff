@@ -8,13 +8,13 @@ x-data="{
     users: JSON.parse({{json_encode($branchUsers)}}),
     roles: JSON.parse({{json_encode($roles)}})
 }" @add-new-user="users.push($event.detail)" @reset-new-user="action = 'addBranch'">
-PHP: Action = {{$action}}
+{{-- PHP: Action = {{$action}} --}}
     <form id="frm-branch" method="POST">
         @csrf
         <input type="hidden" name="action" x-bind:value="action">
         <input type="hidden" name="current_branch_id" x-bind:value="branchId">
         <div class="d-flex justify-content-end position-relative admin-action">
-            AP: Action = <span x-text="action"></span>
+            {{-- AP: Action = <span x-text="action"></span> --}}
             <a href="javascript:void(0);" class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__delete position-absolute l-0 d-none">DELETE</a>
 
             <div class="d-flex justify-content-around">
@@ -66,7 +66,7 @@ PHP: Action = {{$action}}
                     ADDRESS
                 </h6>
 
-                <span x-text="users.length"></span>
+                {{-- <span x-text="users.length"></span> --}}
 
                 <div class="form-group">
                     <small for="exampleInputEmail1" class="form-text text-muted">Branch Name</small>
