@@ -77,7 +77,7 @@ class BranchController extends ApiController
     /**
      * Update Branch Status.
      */
-    public function updateBranchStatus(Branch $branch, BranchStatus $status)
+    public function updateBranchStatus(Branch $branch, String $status)
     {
         $branch->branch_status = $status;
         $branch->save();
