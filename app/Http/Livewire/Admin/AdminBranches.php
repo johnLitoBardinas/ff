@@ -9,7 +9,13 @@ use App\Enums\UserStatus;
 
 class AdminBranches extends Component
 {
-    protected $listeners = ['onUpdateBranch'];
+    protected $listeners = ['onUpdateBranch', 'onSearchBranch'];
+
+    /**
+     * Track the current branch name search.
+     */
+    public $currentBranchSearch;
+
     /**
      * List of all branches [active, inactive].
      */
@@ -38,6 +44,9 @@ class AdminBranches extends Component
         $this->emit('onChangeBranch', $this->activeBranchId);
     }
 
+    /**
+     * Updating the current branch card.
+     */
     public function onUpdateBranch(Int $branchId = null)
     {
         if ( ! is_null( $branchId )) {
@@ -45,6 +54,27 @@ class AdminBranches extends Component
         }
 
        $this->getAllBranches();
+
+    }
+
+    public function updatedCurrentBranchSearch()
+    {
+        if ( empty( $this->currentBranchSearch ) ) {
+            $this->getAllBranches();
+            $this->activeBranchId = $this->branches->first()->branch_id;
+        }
+    }
+
+    /**
+     * Searchable Branch Name or Branch Address.
+     */
+    public function onSearchBranch(String $branch)
+    {
+        // Create a query for accessing the branch id or the branch name dynamically
+        $this->currentBranchSearch = $branch;
+
+        $this->branches = Branch::where('branch_code', 'LIKE', '%'.$branch.'%')
+                            ->orWhere('branch_name', 'LIKE', '%'.$branch.'%')->get();
 
     }
 
