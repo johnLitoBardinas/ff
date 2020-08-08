@@ -2,7 +2,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
         <div class="modal-header">
-        <h5 class="modal-title" id="modal-title">Add User to <u><b>{{$branchName}}</b></u></h5>
+        <h5 class="modal-title" id="modal-title">Add User to <u><b id="modal-user-form__branch-name"></b></u></h5>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -10,7 +10,7 @@
         <div class="modal-body">
           <form method="POST" id="frm-branch-users" novalidate>
             @csrf
-            <input type="hidden" name="branch_id" value="{{$branchId}}">
+            <input type="hidden" name="branch_id" id="modal-user-form__branch-id">
             <div class="form-group">
                 <label for="first_name" class="col-form-label">First Name:</label>
                 <input type="text" class="form-control" id="first-name" name="first_name" placeholder="First Name" data-parsley-required-message="The field is Required." required />

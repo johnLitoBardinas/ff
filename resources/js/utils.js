@@ -4,15 +4,6 @@
 
 const util = {
 
-    /**
-     * Fire the onUpdateBranch && onChangeBranch event.
-     *
-     * @param {Int} branchId Branch ID.
-     */
-    updateBranch: (branchId) => {
-        window.livewire.emit('onUpdateBranch', branchId);
-        window.livewire.emit('onChangeBranch', branchId);
-    },
 
     /**
      * Format the branch form data to accepted API data.

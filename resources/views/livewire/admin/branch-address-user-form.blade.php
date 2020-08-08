@@ -36,7 +36,8 @@ PHP: Action = {{$action}}
                 class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__adduser d-none"
                 :class="{ 'd-flex': action === 'readBranch' }"
                 id="btn-branch-user"
-                data-branchid="{{$currentBranchId}}">ADD USER</a>
+                data-branchid="{{$currentBranchId}}"
+                data-branchname="{{$branchName}}">ADD USER</a>
 
                 <a href="javascript:void(0);"
                 title="Edit Branch."

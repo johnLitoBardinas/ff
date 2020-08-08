@@ -21,7 +21,8 @@ export default class BranchStatus {
                     axios.put(url, {})
                     .then((response) => {
                         if (response.status === 200) {
-                            util.updateBranch(branchId);
+                            window.livewire.emit('onUpdateBranch', branchId);
+                            window.livewire.emit('onChangeBranch', branchId);
                             Swal.fire('Branch Updated!!!', '', 'success');
                         }
                     })

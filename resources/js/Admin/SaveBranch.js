@@ -27,7 +27,8 @@ export default class SaveBranch {
                 axios.put(url, data)
                 .then((response) => {
                     if (response.status === 200) {
-                        util.updateBranch(response.data['branch_id']);
+                        window.livewire.emit('onUpdateBranch', response.data['branch_id']);
+                        window.livewire.emit('onChangeBranch', response.data['branch_id']);
                         Swal.fire('Branch Updated!!!', '', 'success');
                     }
                 })
@@ -75,7 +76,8 @@ export default class SaveBranch {
                 axios.post(ApiUrl.branch, data)
                 .then((response) => {
                     if (response.status === 200) {
-                        util.updateBranch(response.data['branch_id']);
+                        window.livewire.emit('onUpdateBranch', response.data['branch_id']);
+                        window.livewire.emit('onChangeBranch', response.data['branch_id']);
                         Swal.fire('Branch Added!!!', '', 'success');
                     }
                 }).catch((error) => {

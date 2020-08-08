@@ -13,11 +13,14 @@ export default class BranchUsers {
 
         this.onClickAddUser();
         this.onSubmitForm();
+        this.onModalClose();
     }
 
     onClickAddUser() {
         this.$btnAddUser.on('click', (e) => {
-            this.$frmBranchUser[0].reset();
+            const { branchid, branchname } = e.currentTarget.dataset;
+            this.$modalBranchUser.find('#modal-user-form__branch-name').text(branchname);
+            this.$modalBranchUser.find('#modal-user-form__branch-id').val(branchid);
             this.$modalBranchUser.modal({backdrop: 'static', keyboard: false});
         });
     }
@@ -33,20 +36,29 @@ export default class BranchUsers {
 
                 axios.post(ApiUrl.users, data)
                 .then((response) => {
-                    console.log(response);
-                    console.log('isTrue?:', response.status === 200);
+                    this.$modalBranchUser.modal('hide');
+
                     if (response.status === 200) {
                         const data = response.data;
-                        util.updateBranch(data['branch_id']);
+                        window.livewire.emit('onUpdateBranch', data['branch_id']);
+                        window.livewire.emit('onChangeBranch', data['branch_id']);
                         Swal.fire('User Added', `${data['first_name']} is now in Branch ${branchName}`, 'success');
                     }
                 })
                 .catch((error) => {
-                    // Tomorrow will be the error on server here.
+                    // Must append a alert section for the modal showing all the error  listed
+
                 });
             }
 
 
+        });
+    }
+
+    onModalClose() {
+        this.$modalBranchUser.on('hidden.bs.modal', (e) => {
+            this.$frmBranchUser[0].reset();
+            this.$frmBranchUser.parsley().reset();
         });
     }
 }
