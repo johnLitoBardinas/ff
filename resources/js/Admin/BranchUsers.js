@@ -28,7 +28,7 @@ export default class BranchUsers {
     onSubmitForm() {
         this.$btnSaveBranchUser.on('click', (e) => {
             const parsleyForm = this.$frmBranchUser.parsley();
-            const branchName = $(e.currentTarget).closest("#modal-title").text();
+            const branchName = $(e.currentTarget).closest("#modal-user-form__branch-name").text();
             parsleyForm.validate();
 
             if ( parsleyForm.isValid() ) {
