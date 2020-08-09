@@ -5,7 +5,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\BranchController;
+use App\Http\Controllers\Api\BranchController;
 
 Route::get('/', function (Request $request)
 {
@@ -19,7 +19,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::post('/login', function (Request $request)
 {
-    $data = $request->validate([
+    $request->validate([
         'email' => 'required',
         'password' => 'required'
     ]);
@@ -37,8 +37,8 @@ Route::post('/login', function (Request $request)
 });
 
 // Branch Resource Endpoint.
-Route::resource('branch', 'BranchController', ['except' => ['index', 'create', 'edit'] ] );
+Route::resource('branch', 'Api\BranchController', ['except' => ['index', 'create', 'edit'] ] );
 Route::put('/branch/status/{branch}/{status}', [BranchController::class, 'updateBranchStatus']);
 
 // User Resource Endpoint
-Route::resource('users', 'UserController', ['except' => ['create', 'edit'] ] );
+Route::resource('users', 'Api\UserController', ['except' => ['create', 'edit'] ] );

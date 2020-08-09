@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Profile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminDashboard;
@@ -18,9 +19,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/admin', [AdminDashboard::class, 'index'])->name('admin');
 
-    Route::get('/profile', function () {
-        echo 'Profile here';
-    })->name('profile');
+    Route::get('/profile', [Profile::class, 'index'])->name('profile');
 });
 
 Auth::routes();
