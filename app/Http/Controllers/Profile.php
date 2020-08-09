@@ -8,6 +8,8 @@ class Profile extends Controller
 {
     public function index(Request $request)
     {
-        return view('profile');
+        return view('profile')->with([
+            'logo' => get_logo()
+        ]);
     }
 }

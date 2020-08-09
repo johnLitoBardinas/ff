@@ -18,7 +18,6 @@ class LoginController extends Controller
 
     /**
      * Where to redirect users after login.
-     * @var string
      */
     protected $redirectTo;
 
@@ -58,17 +57,12 @@ class LoginController extends Controller
         }
 
         $this->redirectTo = RouteServiceProvider::HOME;
-        // $this->createAccessToken($authUser, 'user:mgr');
+        $this->createAccessToken($authUser, 'user:mgr');
         return $this->redirectTo;
     }
 
     /**
      * Generating API Token for the Client Application.
-     *
-     * @param User $user Valid User
-     * @param String $ability The ability for the user.
-     *
-     * @return String Valid API Token.
      */
     protected function createAccessToken(User $user, String $ability)
     {

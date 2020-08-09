@@ -12717,6 +12717,10 @@ Contains the base style and default variable values.
   background-repeat: no-repeat;
 }
 
+.is-invalid {
+  border: thin solid #dc3545 !important;
+}
+
 /**
  Sweet Alert 2 Customization.
 **/

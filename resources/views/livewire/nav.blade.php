@@ -1,14 +1,14 @@
 <nav class="admin-header">
     <div class="container ">
-        <div class="d-flex align-items-center justify-content-center py-5 admin-header__logo">
+    <div class="d-flex align-items-center justify-content-center py-5 admin-header__logo cursor-pointer">
             <img src="{{ asset( $logo ) }}"
                 alt="Fix and Free Salon">
         </div>
         <div class="row justify-content-between">
             <div class="col-md-3">
                 <span class="d-flex align-items-baseline">
-                <img src="{{ asset('svg/icons/store.svg') }}" alt="Icon Total Branch" class="mr-2 mb-3">
-                    Total Active Branch: &nbsp; <b> {{ $totalBranch }} </b>
+                    <img src="{{ asset('svg/icons/store.svg') }}" alt="Icon Total Branch" class="mr-2 mb-3">
+                    Total Active Branch: &nbsp; <b> {{ $totalBranch  }} </b>
                 </span>
             </div>
             <div class="col-md-4">

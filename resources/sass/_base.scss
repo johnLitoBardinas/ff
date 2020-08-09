@@ -11,3 +11,7 @@ Contains the base style and default variable values.
     background-position: center;
     background-repeat: no-repeat;
 }
+
+.is-invalid {
+    border: thin solid #dc3545 !important;
+}
