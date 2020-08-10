@@ -9,16 +9,34 @@ class Nav extends Component
 {
     public $logo;
 
+    public $homeUrl;
+
     public $totalBranch;
 
-    public function mount(String $logo)
+    /**
+     * Mounting component properties data.
+     */
+    public function mount()
     {
-        $this->logo = $logo;
-        $this->totalBranch = Branch::where('branch_status', 'active')->count();
+        $this->getTotalBranch();
+        $this->logo = session('logo');
+        $this->homeUrl = session('homeUrl');
     }
 
+    /**
+     * Rendering the component.
+     */
     public function render()
     {
         return view('livewire.nav');
     }
+
+    /**
+     * Returning the current totalBranch.
+     */
+    private function getTotalBranch()
+    {
+        $this->totalBranch = Branch::where('branch_status', 'active')->count();
+    }
+
 }

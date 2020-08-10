@@ -52,12 +52,21 @@ class LoginController extends Controller
         if ( $requestAccessPage === AccessHomeType::FFCO && $userRole->name === UserType::ADMIN )  {
             $this->redirectTo = route('admin');
             $apiToken = $this->createAccessToken($authUser, 'user:admin');
-            session(['apiToken' => $apiToken]);
+            session([
+                'apiToken' => $apiToken,
+                'logo' => config('constant.fix_and_free_co_logo'),
+                'homeUrl' => route('admin'),
+            ]);
             return $this->redirectTo;
         }
 
         $this->redirectTo = RouteServiceProvider::HOME;
-        $this->createAccessToken($authUser, 'user:mgr');
+        $apiToken = $this->createAccessToken($authUser, 'user:mgr');
+        session([
+            'apiToken' => $apiToken,
+            'logo' => config('constant.fix_and_free_salon_logo'),
+            'homeUrl' => route('home'),
+        ]);
         return $this->redirectTo;
     }
 

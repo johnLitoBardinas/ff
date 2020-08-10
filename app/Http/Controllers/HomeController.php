@@ -12,10 +12,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home')->with([
-            'logo' => 'svg/fixandfree.salon_logo_horizontal.svg',
-            'homeUrl' => 'home',
-        ]);
+        return view('home');
     }
 
 }

@@ -31,24 +31,3 @@ if ( ! function_exists( 'generate_user_token' ) ) {
 
 }
 
-if ( ! function_exists( 'get_logo' ) ) {
-
-  /**
-   * Based on the current session return the appropriate logo.
-   *
-   * for now this one but next time ask for advice for the common pages.
-   */
-  function get_logo()
-  {
-
-    $previousPath = explode('/', url()->previous());
-
-    if ( $previousPath[count($previousPath) - 1] === 'admin' ) {
-      return 'svg/fixandfree.co_logo_horizontal.svg';
-    }
-
-    return 'svg/fixandfree.salon_logo_horizontal.svg';
-
-  }
-
-}

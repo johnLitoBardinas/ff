@@ -14,7 +14,7 @@
 <body>
     <div id="app">
         @auth
-            @livewire('nav', [ 'logo' => $logo ] )
+            @livewire('nav')
         @endauth
 
         <main>
