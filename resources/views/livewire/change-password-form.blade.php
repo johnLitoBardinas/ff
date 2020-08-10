@@ -1,23 +1,46 @@
 <div>
-    <form action="POST" id ="">
+
+    <form action="POST" wire:submit.prevent="submitChangePassword">
+
+        @if ( session()->has('success') )
+            <div>
+                <div class="alert alert-success">
+                    {{ session('success') }}
+                </div>
+            </div>
+        @endif
+
+        @if ( session()->has('error') )
+            <div>
+                <div class="alert alert-danger">
+                    {{ session('error') }}
+                </div>
+            </div>
+        @endif
+
         <div class="d-flex justify-content-end">
             <button type="submit" class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__save">UPDATE PASSWORD</button>
         </div>
         @csrf
-        <input type="hidden" name="user_id" value="{{ Auth::id() }}">
+        {{-- <input type="hidden" wire:model="currentUserId" > --}}
+        {{-- {{ dd(Auth::id()) }} --}}
         <div class="form-group">
             <small for="old_password" class="form-text text-muted">Old Password</small>
-            <input type="text" class="form-control border-primary" aria-describedby="oldPassword" placeholder="Enter Old Password" />
+            <input type="password" class="form-control border-primary @error('oldPassword') is-invalid @enderror" aria-describedby="oldPassword" placeholder="Enter Old Password" wire:model.lazy="oldPassword"/>
+            @error('oldPassword') <span class="invalid-feedback" role="alert">{{ $message }}</span>@enderror
         </div>
 
         <div class="form-group">
-            <small for="new_password" class="form-text text-muted">New Password</small>
-            <input type="text" class="form-control border-primary" aria-describedby="newPassword" placeholder="Enter New Password" />
+            <small for="password" class="form-text text-muted">New Password</small>
+            <input type="password" class="form-control border-primary @error('password_confirmation') is-invalid @enderror" aria-describedby="password_confirmation" placeholder="Password"  wire:model.lazy="password_confirmation"/>
+            @error('password_confirmation') <span class="invalid-feedback" role="alert">{{ $message }}</span>@enderror
         </div>
 
         <div class="form-group">
-            <small for="confirmPassword" class="form-text text-muted">Last Name</small>
-            <input type="text" class="form-control border-primary" aria-describedby="confirmPassword" placeholder="Confirm Password"  />
+            <small for="password_confirmation" class="form-text text-muted">Confirm Password</small>
+            <input type="password" class="form-control border-primary @error('password') is-invalid @enderror" aria-describedby="password" placeholder="Password" wire:model.lazy="password"/>
+            @error('password') <span class="invalid-feedback" role="alert">{{ $message }}</span>@enderror
         </div>
     </form>
+
 </div>
