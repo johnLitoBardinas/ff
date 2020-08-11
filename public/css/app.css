@@ -12798,7 +12798,7 @@ This may include the ff:
 
 @media (min-width: 1920px) {
   .container {
-    max-width: 1560px;
+    max-width: calc(100% - 150px);
   }
 }
 

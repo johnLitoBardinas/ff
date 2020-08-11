@@ -23,29 +23,9 @@ class AdminActions extends Component
         $this->action = $actionType;
     }
 
-    public function deleteBranch(Int $branchId)
-    {
-        # code...
-    }
-
-    public function deactivateBranch(Int $branchId)
-    {
-        # code...
-    }
-
     public function saveBranch()
     {
         $this->emitUp('Action', 'saveBranch');
-    }
-
-    public function addBranchUser()
-    {
-        # code...
-    }
-
-    public function editBranch(Int $branchId)
-    {
-        # code...
     }
 
     public function render()
