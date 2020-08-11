@@ -12763,18 +12763,20 @@ textarea.parsley-error {
   opacity: 1;
 }
 
-.btn__ff--primary {
-  color: #463291;
-  border: 1px solid #463291 !important;
-}
-
-.btn__ff--primary:hover {
+.btn__ff--primary:hover,
+.btn__ff--primary.active {
   background-color: #463291 !important;
   color: #fff !important;
 }
 
-.btn__ff--primary:hover span {
+.btn__ff--primary:hover span,
+.btn__ff--primary.active span {
   color: #fff;
+}
+
+.btn__ff--primary {
+  color: #463291;
+  border: 1px solid #463291 !important;
 }
 
 .btn--ff {

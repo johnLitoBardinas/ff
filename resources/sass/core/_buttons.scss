@@ -18,6 +18,16 @@
     }
 }
 
+// Extendable style.
+%active-state {
+    background-color: $primary-color !important;
+    color: $white !important;
+
+    span {
+        color: $white;
+    }
+}
+
 .btn {
 
     // Element
@@ -25,13 +35,12 @@
         color: $primary-color;
         border: 1px solid $primary-color !important;
 
-        &:hover {
-            background-color: $primary-color !important;
-            color: $white !important;
+        &.active {
+            @extend %active-state;
+        }
 
-            span {
-                color: $white;
-            }
+        &:hover {
+            @extend %active-state;
         }
     }
 

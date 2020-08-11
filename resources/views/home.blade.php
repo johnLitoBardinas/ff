@@ -3,10 +3,10 @@
 @section('content')
 <div class="container mt-4">
     <div class="row justify-content-between align-items-center">
-        <div class="col-md-6 flex">
-            <button class="btn btn-sm btn-default border btn__ff--primary">NEW & ACTIVE ACCNT</button>
-            <button class="btn btn-sm btn-default border btn__ff--primary">EXPIRED & COMPLETED ACCNT</button>
-        </div>
+
+        {{-- Salon Actions --}}
+        @livewire('salon.salon-actions')
+
         <div class="col-md-5">
             <div class="input-group md-form form-sm form-1 pl-0 admin-searchbar">
                 <form action="#" class="d-flex w-100 position-relative">
