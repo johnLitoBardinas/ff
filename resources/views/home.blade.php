@@ -4,10 +4,10 @@
 <div class="container mt-4">
     <div class="row justify-content-between align-items-center">
 
-        {{-- Salon Actions --}}
         @livewire('salon.salon-actions')
+        {{-- Salon Actions --}}
 
-        <div class="col-md-5">
+        <div class="col-md-4">
             <div class="input-group md-form form-sm form-1 pl-0 admin-searchbar">
                 <form action="#" class="d-flex w-100 position-relative">
                     @csrf
@@ -19,6 +19,7 @@
     </div>
 
     @livewire('salon.salon-table')
+    {{-- Salon Table --}}
 
 </div>
 @endsection

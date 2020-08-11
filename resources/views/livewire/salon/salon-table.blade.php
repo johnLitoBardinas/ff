@@ -2,39 +2,107 @@
     <div class="col-md-12">
 
         <div class="table-responsive">
-            <table class="table admin-table">
+            <table class="table table-hover admin-table">
                 <thead class="text-white bg-primary">
                     <tr>
-                        <th scope="col">REF. NUMBER</th>
-                        <th scope="col">FIRST NAME</th>
-                        <th scope="col">LAST NAME</th>
-                        <th scope="col">PAYMENT</th>
-                        <th scope="col">PACKAGE</th>
-                        <th scope="col">DATE OF VISITS</th>
-                        <th scope="col">DATE VALID</th>
-                        <th scope="col">STATUS</th>
+                        <th scope="col">
+                            REF. NUMBER
+                        </th>
+                        <th scope="col">
+                            FIRST NAME
+                        </th>
+                        <th scope="col">
+                            LAST NAME
+                        </th>
+                        <th scope="col">
+                            PAYMENT
+                        </th>
+                        <th scope="col">
+                            PACKAGE
+                        </th>
+                        <th scope="col">
+                            DATE OF VISITS
+                            <small><em>(Month-Day-Year)</em></small>
+                        </th>
+                        <th scope="col">
+                            DATE VALID
+                        </th>
+                        <th scope="col">
+                            STATUS
+                        </th>
+                        <th scope="col"></th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <th>00000000</th>
+                        <td>00000000</td>
                         <td>John Lito</td>
                         <td>Bardinas</td>
-                        <td>paymaya</td>
-                        <th>1</th>
-                        <td>07-14-2020</td>
-                        <td>09-14-2020</td>
-                        <td>active</td>
+                        <td>PAYMAYA</td>
+                        <td>Plan 1800</td>
+                        <td>
+                            @livewire('salon.date-visits-tracker', [
+                                'packageStatus' => 'active'
+                            ])
+                        </td>
+                        <td>Oct. 11, 2020</td>
+                        <td>
+                            @livewire('salon.package-status-label', [
+                                'type' => 'active'
+                            ])
+                        </td>
+                        <td>
+                            @livewire('salon.table-action', [
+                                'type' => 'newOrActiveAccount'
+                            ])
+                            {{-- type (New | ExpiredCompleted) --}}
+                        </td>
                     </tr>
                     <tr>
-                        <th>00000000</th>
+                        <td>00000000</td>
                         <td>Stephen Reon</td>
                         <td>Francisco</td>
-                        <td>gcash</td>
-                        <td>1</td>
-                        <th>07-14-2020</th>
-                        <td>09-14-2020</td>
-                        <td>active</td>
+                        <td>GCASH</td>
+                        <td>Plan 1800</td>
+                        <td>
+                            @livewire('salon.date-visits-tracker', [
+                                'packageStatus' => 'expired'
+                            ])
+                        </td>
+                        <td>Oct. 11, 2020</td>
+                        <td>
+                            @livewire('salon.package-status-label', [
+                                'type' => 'expired'
+                            ])
+                        </td>
+                        <td>
+                            @livewire('salon.table-action', [
+                                'type' => 'expiredOrComplementedAccount'
+                            ])
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>00000000</td>
+                        <td>Customer Fname</td>
+                        <td>Customer Lname</td>
+                        <td>GCASH</td>
+                        <td>Plan 1800</td>
+                        <td>
+                            @livewire('salon.date-visits-tracker', [
+                                'packageStatus' => 'completed'
+                            ])
+                        </td>
+                        <td>Oct. 11, 2020</td>
+                        <td>
+                            @livewire('salon.package-status-label', [
+                                'type' => 'completed'
+                            ])
+                        </td>
+                        <td>
+                            @livewire('salon.table-action', [
+                                'type' => 'expiredOrComplementedAccount'
+                            ])
+                        </td>
                     </tr>
                 </tbody>
             </table>

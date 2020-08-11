@@ -17,5 +17,4 @@ return [
 
     'fix_and_free_co_logo' => 'svg/fixandfree.co_logo_horizontal.svg',
     'fix_and_free_salon_logo' => 'svg/fixandfree.salon_logo_horizontal.svg',
-
 ];

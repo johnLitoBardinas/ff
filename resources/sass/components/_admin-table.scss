@@ -1,9 +1,24 @@
 .admin-table {
 
-    th {
-        font-size: 15px;
-        font-weight: normal;
-        padding: 5px;
-        border-bottom: unset !important;
+    thead {
+
+        th {
+            font-size: 15px;
+            font-weight: normal;
+            padding: 5px;
+            border-bottom: unset !important;
+            text-align: center;
+        }
+
     }
+
+    tbody {
+        text-align: center;
+
+        td {
+            font-size: 15px;
+            font-weight: normal;
+        }
+    }
+
 }

@@ -13038,11 +13038,21 @@ This may include the ff:
   border-radius: 0px 5px 5px 0px;
 }
 
-.admin-table th {
+.admin-table thead th {
   font-size: 15px;
   font-weight: normal;
   padding: 5px;
   border-bottom: unset !important;
+  text-align: center;
+}
+
+.admin-table tbody {
+  text-align: center;
+}
+
+.admin-table tbody td {
+  font-size: 15px;
+  font-weight: normal;
 }
 
 .admin-branches {
@@ -13060,5 +13070,25 @@ This may include the ff:
 
 .admin-branches .branch__info img {
   width: 40px;
+}
+
+.package-status {
+  color: #fff;
+  display: inline-block;
+  width: 100px;
+  border-radius: 15px;
+  text-transform: uppercase;
+}
+
+.package-status--active {
+  background: #2CE500;
+}
+
+.package-status--expired {
+  background: #E51F00;
+}
+
+.package-status--completed {
+  background: #463291;
 }
 
