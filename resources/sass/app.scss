@@ -5,14 +5,15 @@
 
 // Miscellaneous
 @import './utils';
-@import './base';
 @import './mixins';
+@import './breakpoints';
 
 // Plugins
 @import './plugins/swal2';
 @import './plugins/parsley';
 
 // Custom
+@import './base';
 @import './core/buttons';
 @import './core/switcher';
 @import './core/icons';

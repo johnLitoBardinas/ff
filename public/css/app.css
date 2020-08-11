@@ -12561,6 +12561,16 @@ body.swal2-toast-column .swal2-toast .swal2-validation-message {
 }
 
 /**
+Holds all the constant value for the application design.
+==================================================================
+1. Primary Color.
+2. Typhography.
+3. Colors.
+4. Custom Device Max-Width.
+==================================================================
+**/
+
+/**
 FORMS
 **/
 
@@ -12689,37 +12699,18 @@ CHECKER
 }
 
 /**
-Contains the base style and default variable values.
+All Custom SASS Mixins here.
+==================================================================
+
+==================================================================
 **/
 
-.icon__edit--violet,
-.icon__account--violet,
-.icon__account--black,
-.icon__location--violet,
-.icon__location--black,
-.btn.btn-icon__exit:hover:before,
-.btn.btn-icon__exit:before,
-.btn.btn-icon__edit:hover:before,
-.btn.btn-icon__edit:before,
-.btn.btn-icon__adduser:hover:before,
-.btn.btn-icon__adduser:before,
-.btn.btn-icon__save:hover:before,
-.btn.btn-icon__save:before,
-.btn.btn-icon__deactivate:hover:before,
-.btn.btn-icon__deactivate:before,
-.btn.btn-icon__delete:hover:before,
-.btn.btn-icon__delete:before {
-  display: inline-block;
-  width: 20px;
-  height: 20px;
-  background-size: contain;
-  background-position: center;
-  background-repeat: no-repeat;
-}
+/**
+Handles the general breakpoints for the application.
+==================================================================
 
-.is-invalid {
-  border: thin solid #dc3545 !important;
-}
+==================================================================
+**/
 
 /**
  Sweet Alert 2 Customization.
@@ -12761,6 +12752,54 @@ textarea.parsley-error {
 
 .parsley-errors-list.filled {
   opacity: 1;
+}
+
+/**
+Contains the base style and default variable values.
+==================================================================
+This may include the ff:
+1. Extendable/ Parent style.
+2. GLobal Styling.
+==================================================================
+**/
+
+.icon__edit--violet,
+.icon__account--violet,
+.icon__account--black,
+.icon__location--violet,
+.icon__location--black,
+.btn.btn-icon__exit:hover:before,
+.btn.btn-icon__exit:before,
+.btn.btn-icon__edit:hover:before,
+.btn.btn-icon__edit:before,
+.btn.btn-icon__adduser:hover:before,
+.btn.btn-icon__adduser:before,
+.btn.btn-icon__save:hover:before,
+.btn.btn-icon__save:before,
+.btn.btn-icon__deactivate:hover:before,
+.btn.btn-icon__deactivate:before,
+.btn.btn-icon__delete:hover:before,
+.btn.btn-icon__delete:before {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background-size: contain;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+/**
+* Form input error.
+*/
+
+.is-invalid {
+  border: thin solid #dc3545 !important;
+}
+
+@media (min-width: 1920px) {
+  .container {
+    max-width: 1560px;
+  }
 }
 
 .btn__ff--primary:hover,

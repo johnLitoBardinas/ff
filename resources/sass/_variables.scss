@@ -1,3 +1,13 @@
+/**
+Holds all the constant value for the application design.
+==================================================================
+1. Primary Color.
+2. Typhography.
+3. Colors.
+4. Custom Device Max-Width.
+==================================================================
+**/
+
 // Theme COlors
 $primary-color: #463291;
 
@@ -23,3 +33,6 @@ $teal: #4dc0b5;
 $cyan: #6cb2eb;
 $gray: #F3F3F3;
 
+
+// Containers Max-width
+$LgDesktop-max-width: 1560px;
