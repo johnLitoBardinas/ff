@@ -5,13 +5,12 @@
     x-on:click="action = 'newOrActiveAccount'"
     title="Click to view all NEW and ACTIVE Accounts.">NEW & ACTIVE ACCNT</button>
 
-    <button
+    <a href="{{ route('new-customer') }}"
     class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__adduser d-none"
     :class="[ action === 'newOrActiveAccount' ? 'd-inline' : ( action === 'expiredOrComplementedAccount' ? 'd-none' : '') ]"
-    x-on:click="action = 'addNewCustomerAccount'"
-    title="Click to ADD New Customer Account.">
-        ADD NEW CUSTOMER
-    </button>
+    {{-- x-on:click="action = 'addNewCustomerAccount'" --}}
+    title="Click to ADD New Customer Account."
+    >ADD NEW CUSTOMER</a>
 
     <button
     class="btn btn-sm btn-default border btn__ff--primary"

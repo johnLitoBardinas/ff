@@ -16,6 +16,7 @@ Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 
 Route::middleware('auth')->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::livewire('/newaccount', 'salon.add-new-customer')->name('new-customer'); // amazing
 
     Route::get('/admin', [AdminDashboard::class, 'index'])->name('admin');
 

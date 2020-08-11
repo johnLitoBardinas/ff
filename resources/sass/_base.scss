@@ -29,4 +29,10 @@ This may include the ff:
     @include media('>=LGdesktop') {
         max-width: $LgDesktop-max-width;
     }
+
+    &--new-customer {
+        @include media('>=desktop') {
+            max-width: 600px;
+        }
+    }
 }

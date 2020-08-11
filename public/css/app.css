@@ -12802,6 +12802,12 @@ This may include the ff:
   }
 }
 
+@media (min-width: 1366px) {
+  .container--new-customer {
+    max-width: 600px;
+  }
+}
+
 .btn__ff--primary:hover,
 .btn__ff--primary.active {
   background-color: #463291 !important;
