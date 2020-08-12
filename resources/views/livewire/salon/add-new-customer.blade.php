@@ -33,34 +33,41 @@
         <div class="form-group">
             <small for="exampleInputEmail1" class="form-text text-muted">Subscription Plan</small>
             <select class="custom-select border-primary">
-                <option value="plan-1500">Plan 1500</option>
-                <option value="plan-1800">Plan 1800</option>
-                <option value="plan-2000">Plan 2000</option>
+                @forelse ($subscriptionPlans as $plan)
+                    <option value="{{$plan['package_id']}}" title="{{$plan['package_description']}}">
+                        {{number_format($plan['package_price'])}}</option>
+                @empty
+                    <option readonly disabled>No available Plan</option>
+                @endforelse
             </select>
         </div>
 
         <div class="form-group d-flex customer-visits-tracker">
             <div class="w-24 mr-2">
-                <small for="exampleInputEmail1" class="form-text font-weight-bold text-dark pb-1">&nbsp; 1st Visit</small>
-                <input type="text" class="form-control">
+                <label for="exampleInputEmail1" class="form-text font-weight-bold text-dark pb-1 mb-0">&nbsp; 1st Visit</label>
+                <small><em>(Year-Month-Day)</em></small>
+                <input type="text" class="form-control" data-plugin="pikaday">
                 <input type="file">
             </div>
 
             <div class="w-24 mr-2">
-                <small for="exampleInputEmail1" class="form-text font-weight-bold text-dark pb-1">&nbsp; 2nd Visit</small>
-                <input type="text" class="form-control">
+                <label for="exampleInputEmail1" class="form-text font-weight-bold text-dark pb-1 mb-0">&nbsp; 2nd Visit</label>
+                <small><em>(Year-Month-Day)</em></small>
+                <input type="text" class="form-control" data-plugin="pikaday">
                 <input type="file">
             </div>
 
             <div class="w-24 mr-2">
-                <small for="exampleInputEmail1" class="form-text font-weight-bold text-dark pb-1">&nbsp; 3rd Visit</small>
-                <input type="text" class="form-control">
+                <label for="exampleInputEmail1" class="form-text font-weight-bold text-dark pb-1 mb-0">&nbsp; 3rd Visit</label>
+                <small><em>(Year-Month-Day)</em></small>
+                <input type="text" class="form-control" data-plugin="pikaday">
                 <input type="file">
             </div>
 
             <div class="w-24">
-                <small for="exampleInputEmail1" class="form-text font-weight-bold text-dark pb-1">&nbsp; 4th Visit</small>
-                <input type="text" class="form-control">
+                <label for="exampleInputEmail1" class="form-text font-weight-bold text-dark pb-1 mb-0">&nbsp; 4th Visit</label>
+                <small><em>(Year-Month-Day)</em></small>
+                <input type="text" class="form-control" data-plugin="pikaday">
                 <input type="file">
             </div>
         </div>

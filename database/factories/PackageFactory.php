@@ -9,6 +9,6 @@ $factory->define(Package::class, function (Faker $faker) {
     return [
         'package_name' => $faker->word,
         'package_description' => $faker->text,
-        'package_price' => number_format((float) $faker->randomFloat(), 2, '.', ''),
+        'package_price' => number_format((float) $faker->randomFloat(2, 1, 9999), 2, '.', ''),
     ];
 });

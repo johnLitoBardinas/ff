@@ -110,6 +110,14 @@ const util = {
         }
 
         return option;
+    },
+
+    pikADayOption: (field) => {
+        return {
+            field: field,
+            firstDay: 1,
+            minDate: new Date(),
+        };
     }
 };
 
