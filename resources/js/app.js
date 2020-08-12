@@ -7,9 +7,14 @@ import SaveBranch from './Admin/SaveBranch';
 import BranchStatus from './Admin/BranchStatus';
 import BranchUsers from './Admin/BranchUsers';
 
+import SaveNewCustomer from './Salon/SaveNewCustomer';
+
 $(document).ready(() => {
-    // Register Admin Interactions.
+    // Admin Interactions.
     new SaveBranch();
     new BranchStatus();
     new BranchUsers();
+
+    // Salon Interaction
+    new SaveNewCustomer();
 });

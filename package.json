@@ -26,6 +26,7 @@
     "dependencies": {
         "alpinejs": "^2.5.0",
         "parsleyjs": "^2.9.2",
+        "pikaday": "^1.8.0",
         "sweetalert2": "^9.17.1"
     }
 }

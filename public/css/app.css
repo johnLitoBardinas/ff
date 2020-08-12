@@ -12658,6 +12658,10 @@ WIDTH
   width: 25rem;
 }
 
+.w-24 {
+  width: 24%;
+}
+
 /**
 CURSORS
 **/
