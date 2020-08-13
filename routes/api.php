@@ -17,7 +17,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('/login', function (Request $request)
+Route::post('login', function (Request $request)
 {
     $request->validate([
         'email' => 'required',
@@ -38,7 +38,13 @@ Route::post('/login', function (Request $request)
 
 // Branch Resource Endpoint.
 Route::resource('branch', 'Api\BranchController', ['except' => ['index', 'create', 'edit'] ] );
-Route::put('/branch/status/{branch}/{status}', [BranchController::class, 'updateBranchStatus']);
+Route::put('branch/status/{branch}/{status}', [BranchController::class, 'updateBranchStatus']);
 
 // User Resource Endpoint
 Route::resource('users', 'Api\UserController', ['except' => ['create', 'edit'] ] );
+
+// Customer Resource Endpoint
+Route::resource('customers', 'Api\CustomerController', ['only' => ['store', 'show'] ] );
+
+// Customer Package Endpoint
+Route::resource('customers.package', 'Api\CustomerPackageController', ['only' => ['index', 'store', 'show']]);

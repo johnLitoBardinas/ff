@@ -6,5 +6,33 @@ use Illuminate\Database\Eloquent\Model;
 
 class CustomerPackage extends Model
 {
-    //
+    // Disabling the default created_at, updated_at.
+    public $timestamps = false;
+
+    // Model custom table name.
+    protected $table = 'customer_package';
+
+    // Model custom table primary key.
+    protected $primaryKey = 'customer_package_id';
+
+    protected $fillable = [
+        'branch_id',
+        'package_id',
+        'user_id',
+        'customer_id',
+        'reference_no',
+        'payment_type',
+    ];
+
+    // Many row from Customer Package can belong to Single/One Customer.
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'customer_id', 'customer_id');
+    }
+
+    // Many possible Customer Package Row can belong to a Single/One Package
+    public function package()
+    {
+        return $this->belongsTo(Package::class, 'package_id', 'package_id');
+    }
 }

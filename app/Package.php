@@ -15,4 +15,9 @@ class Package extends Model
         'package_description',
         'package_price',
     ];
+
+    public function customer()
+    {
+        return $this->hasMany(CustomerPackage::class, 'customer_id', 'customer_id');
+    }
 }

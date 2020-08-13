@@ -9,38 +9,26 @@ class CustomerController extends ApiController
 {
 
     /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        // Return a view for creating a new Customer
-    }
-
-    /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
     {
-        /**
-         * Use Form Request for validating the request.
-         * Then save the data
-         */
+        $customerData = $request->validate([
+            'first_name' => ['required', 'string', 'max:191'],
+            'last_name' => ['required', 'string', 'max:191']
+        ]);
+
+        $customer = Customer::create($customerData);
+
+        return $this->showOne($customer);
     }
 
     /**
      * Display the specified resource.
-     *
-     * @param  \App\Customer  $customer
-     * @return \Illuminate\Http\Response
      */
     public function show(Customer $customer)
     {
-        // ORM must return a single customer.
+        return $this->showOne($customer);
     }
 
 }

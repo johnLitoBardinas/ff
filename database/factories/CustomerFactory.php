@@ -9,6 +9,5 @@ $factory->define(Customer::class, function (Faker $faker) {
     return [
         'first_name' => $faker->firstName,
         'last_name' => $faker->lastName,
-        'middle_initial' => $faker->word,
     ];
 });

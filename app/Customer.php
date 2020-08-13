@@ -13,8 +13,12 @@ class Customer extends Model
     protected $fillable = [
         'first_name',
         'last_name',
-        'middle_initial',
     ];
 
+    // One Customer Model can appear to Many CustomerPackage.
+    public function package()
+    {
+        return $this->hasMany(CustomerPackage::class, 'customer_id', 'customer_id');
+    }
 
 }
