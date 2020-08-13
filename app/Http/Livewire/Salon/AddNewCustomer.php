@@ -4,13 +4,14 @@ namespace App\Http\Livewire\Salon;
 
 use App\Package;
 use Livewire\Component;
-use stdClass;
+use Illuminate\Support\Facades\Auth;
 
 class AddNewCustomer extends Component
 {
+    // List of Payment Options.
+    public $paymentsOptions;
 
-    public $payments;
-
+    // List of Packages or Subscription Plan.
     public $subscriptionPlans;
 
     /**
@@ -18,7 +19,7 @@ class AddNewCustomer extends Component
      */
     public function mount()
     {
-        $this->payments = config('constant.payment_options');
+        $this->paymentsOptions = config('constant.payment_options');
         $this->getAllSubscriptionPlans();
     }
 
@@ -30,6 +31,9 @@ class AddNewCustomer extends Component
         $this->subscriptionPlans = Package::all()->toArray();
     }
 
+    /**
+     * Rendering the component.
+     */
     public function render()
     {
         return view('livewire.salon.add-new-customer');

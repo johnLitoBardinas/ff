@@ -1,12 +1,8 @@
 <div>
     <form method="POST" wire:submit.prevent="profileSubmit">
-        @if ( session()->has('success') )
-            <div>
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            </div>
-        @endif
+
+        {{-- Alert Component Success/ Error --}}
+        @livewire('form-success-error-alert')
 
         @csrf
         <div class="d-flex justify-content-end">
@@ -17,7 +13,6 @@
             <small for="email" class="form-text text-muted">Email</small>
             <input type="text" class="form-control border-primary" aria-describedby="firstName" placeholder="Enter FirstName" value="{{ Auth::user()->email }}" disabled readonly />
         </div>
-
 
         <div class="form-group">
             <small for="first_name" class="form-text text-muted">First Name</small>
@@ -36,7 +31,6 @@
             <input type="text" class="form-control border-primary @error('mobileNumber') is-invalid @enderror" aria-describedby="firstName" placeholder="Enter MobileNumber" wire:model.lazy="mobileNumber" />
             @error('mobileNumber') <div class="invalid-feedback">{{ $message }}</div> @enderror
         </div>
-
 
     </form>
 </div>

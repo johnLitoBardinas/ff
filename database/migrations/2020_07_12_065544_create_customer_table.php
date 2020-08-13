@@ -17,7 +17,6 @@ class CreateCustomerTable extends Migration
             $table->bigIncrements('customer_id');
             $table->string('first_name');
             $table->string('last_name');
-            $table->string('middle_initial')->nullable();
             $table->timestamps();
         });
     }

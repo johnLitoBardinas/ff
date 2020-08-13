@@ -20,7 +20,7 @@ class CreateCustomerPackageTable extends Migration
             $table->string('reference_no');
             $table->enum('customer_package_status', ['active', 'expired', 'completed']);
             $table->tinyInteger('total_consumable_visits')->default(Config::get('constant.package_visits_limit'));
-            $table->enum('payment_type', ['gcash', 'paymaya', 'card']);
+            $table->enum('payment_type', Config::get('constant.payment_options'));
             $table->timestamp('customer_package_start')->useCurrent();
             $table->timestamp('customer_package_end')->default(Carbon::now()->addDays(Config::get('constant.package_duration_days')));
 

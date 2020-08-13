@@ -2,28 +2,13 @@
 
     <form action="POST" wire:submit.prevent="submitChangePassword">
 
-        @if ( session()->has('success') )
-            <div>
-                <div class="alert alert-success">
-                    {{ session('success') }}
-                </div>
-            </div>
-        @endif
-
-        @if ( session()->has('error') )
-            <div>
-                <div class="alert alert-danger">
-                    {{ session('error') }}
-                </div>
-            </div>
-        @endif
+        @livewire('form-success-error-alert')
 
         <div class="d-flex justify-content-end">
             <button type="submit" class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__save">UPDATE PASSWORD</button>
         </div>
         @csrf
-        {{-- <input type="hidden" wire:model="currentUserId" > --}}
-        {{-- {{ dd(Auth::id()) }} --}}
+
         <div class="form-group">
             <small for="old_password" class="form-text text-muted">Old Password</small>
             <input type="password" class="form-control border-primary @error('oldPassword') is-invalid @enderror" aria-describedby="oldPassword" placeholder="Enter Old Password" wire:model.lazy="oldPassword"/>

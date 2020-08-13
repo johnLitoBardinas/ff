@@ -9,8 +9,15 @@ export default class SaveNewCustomer {
 
     onSubmitFormNewCustomer() {
         this.$btnSaveNewCustomer.on('click', (e) => {
+            const parsleyForm = this.$frmNewCustomer.parsley();
             const data = this.$frmNewCustomer.serializeArray();
-            console.log('data', data);
+
+            parsleyForm.validate();
+
+            if (parsleyForm.isValid()) {
+                console.log('data', data);
+            }
+
         });
     }
 

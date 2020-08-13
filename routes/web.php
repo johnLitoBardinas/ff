@@ -1,5 +1,6 @@
 <?php
 
+use App\Package;
 use App\Http\Controllers\Profile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -9,7 +10,8 @@ use App\Http\Controllers\Auth\LoginController;
 
 Route::get('/test', function ()
 {
-    dd('Be like water my friend!!');
+    $result = Package::all()->map(fn($item) => $item->package_id)->toArray();
+    dd($result);
 });
 
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
