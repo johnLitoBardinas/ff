@@ -2,7 +2,8 @@
 
     <form action="POST" wire:submit.prevent="submitChangePassword">
 
-        @livewire('form-success-error-alert')
+        {{-- Alert Component Success/ Error --}}
+        @include('alert-message')
 
         <div class="d-flex justify-content-end">
             <button type="submit" class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__save">UPDATE PASSWORD</button>

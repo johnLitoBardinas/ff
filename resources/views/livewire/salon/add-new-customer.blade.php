@@ -34,7 +34,7 @@
             <select class="custom-select border-primary" name="package_id" required>
                 @forelse ($subscriptionPlans as $plan)
                     <option value="{{$plan['package_id']}}" title="{{$plan['package_description']}}">
-                        {{number_format($plan['package_price'])}}</option>
+                        {{number_format($plan['package_name'])}}</option>
                 @empty
                     <option readonly disabled>No available Plan</option>
                 @endforelse

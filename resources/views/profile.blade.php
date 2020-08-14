@@ -3,6 +3,7 @@
 @section('content')
 
 <div class="container mt-4">
+
     <div class="row justify-content-between">
         <div class="col-md-6">
             @livewire('profile-form')

@@ -2,7 +2,7 @@
     <form method="POST" wire:submit.prevent="profileSubmit">
 
         {{-- Alert Component Success/ Error --}}
-        @livewire('form-success-error-alert')
+        @include('alert-message')
 
         @csrf
         <div class="d-flex justify-content-end">
