@@ -47,8 +47,9 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class, 'role_id', 'role_id');
     }
 
+    // One to Many Inverse
     public function branch()
     {
-        return $this->belongsTo(Branch::class, 'branch_id', 'branch_id');
+        return $this->belongsTo(Branch::class, 'branch_id');
     }
 }
