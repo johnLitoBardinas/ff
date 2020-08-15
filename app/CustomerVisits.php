@@ -10,5 +10,10 @@ class CustomerVisits extends Model
 
     protected $primaryKey = 'customer_visits_id';
 
-    protected $fillable = [ 'date' ];
+    // Many Row in Customer Visits can be related to ONE Customer.
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class);
+    }
+
 }

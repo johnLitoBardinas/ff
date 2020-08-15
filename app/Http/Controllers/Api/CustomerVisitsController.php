@@ -2,84 +2,42 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\CustomerVisits;
+use App\Customer;
 use Illuminate\Http\Request;
 
 class CustomerVisitsController extends ApiController
 {
     /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
+     * Display a listing of the customer visits resource.
      */
-    public function index()
+    public function index(Customer $customer)
     {
-        //
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+        dd($customer);
     }
 
     /**
      * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(Request $request, Customer $customer)
     {
-        //
-    }
+        $rules = [
+            'customer_package_id' => $request->customer_package_id,
+            'customer_id' => $customer->customer_id,
+            'branch_id' => $request->branch_id,
+            'user_id' => $request->user_id,
+        ];
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\CustomerVisits  $customerVisits
-     * @return \Illuminate\Http\Response
-     */
-    public function show(CustomerVisits $customerVisits)
-    {
-        //
-    }
+        if ($request->has('customer_associate')) {
+            $rules['customer_associate'] = $request->customer_associate;
+        }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\CustomerVisits  $customerVisits
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(CustomerVisits $customerVisits)
-    {
-        //
-    }
+        if($request->has('customer_associate_picture')) {
+            $rules['customer_associate_picture'] = $request->customer_associate_picture;
+        }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\CustomerVisits  $customerVisits
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, CustomerVisits $customerVisits)
-    {
-        //
-    }
+        $validCustomerVisits = $request->validate($rules);
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\CustomerVisits  $customerVisits
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(CustomerVisits $customerVisits)
-    {
-        //
+
+        dd($validCustomerVisits);
     }
 }

@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\CustomerVisits;
+use App\CustomerPackage;
 use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
@@ -19,6 +21,12 @@ class Customer extends Model
     public function package()
     {
         return $this->hasMany(CustomerPackage::class, 'customer_id', 'customer_id');
+    }
+
+    // One Customer can appear to Many CustomerVisits.
+    public function visits()
+    {
+        return $this->hasMany(CustomerVisits::class, 'customer_id', 'customer_id');
     }
 
 }

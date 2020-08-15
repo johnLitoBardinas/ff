@@ -47,4 +47,7 @@ Route::resource('users', 'Api\UserController', ['except' => ['create', 'edit'] ]
 Route::resource('customers', 'Api\CustomerController', ['only' => ['store', 'show'] ] );
 
 // Customer Package Endpoint
-Route::resource('customers.package', 'Api\CustomerPackageController', ['only' => ['index', 'store', 'show']]);
+Route::resource('customers.packages', 'Api\CustomerPackageController', ['only' => ['index', 'store', 'show']]);
+
+// Customer Visits Endpoint.
+Route::resource('customers.visits', 'Api\CustomerVisitsController', ['only' => ['index', 'store']]);

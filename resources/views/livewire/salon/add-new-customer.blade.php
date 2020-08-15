@@ -33,8 +33,8 @@
             <small for="exampleInputEmail1" class="form-text text-muted">Subscription Plan</small>
             <select class="custom-select border-primary" name="package_id" required>
                 @forelse ($subscriptionPlans as $plan)
-                    <option value="{{$plan['package_id']}}" title="{{$plan['package_description']}}">
-                        {{number_format($plan['package_name'])}}</option>
+                    <option value="{{$plan['package_id']}}" title="{{$plan['package_description']}} - {{number_format($plan['package_price'])}}">
+                        {{$plan['package_name']}}</option>
                 @empty
                     <option readonly disabled>No available Plan</option>
                 @endforelse
@@ -45,7 +45,6 @@
             <a href="{{ route('home') }}" title="Click to Exit." class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__exit d-flex">EXIT</a>
 
             <a href="javascript:void(0);" class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__save d-flex" id="btn-save-new-customer">SAVE</a>
-
         </div>
     </form>
 </div>
