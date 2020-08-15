@@ -17,7 +17,8 @@ class Branch extends Model
         'branch_address',
     ];
 
-    public function user()
+    // One Branch Model can be related to multiple User Model.
+    public function users()
     {
         return $this->hasMany(User::class, 'branch_id', 'branch_id');
     }

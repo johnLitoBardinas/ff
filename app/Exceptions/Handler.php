@@ -5,6 +5,7 @@ namespace App\Exceptions;
 use App\Traits\ApiResponser;
 use Illuminate\Database\Eloquent\ModelNotFoundException;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
+use Illuminate\Session\TokenMismatchException;
 use Symfony\Component\HttpKernel\Exception\NotFoundHttpException as NotFoundException;
 use Throwable;
 
@@ -14,8 +15,6 @@ class Handler extends ExceptionHandler
 
     /**
      * A list of the exception types that are not reported.
-     *
-     * @var array
      */
     protected $dontReport = [
         //
@@ -23,8 +22,6 @@ class Handler extends ExceptionHandler
 
     /**
      * A list of the inputs that are never flashed for validation exceptions.
-     *
-     * @var array
      */
     protected $dontFlash = [
         'password',
@@ -33,11 +30,6 @@ class Handler extends ExceptionHandler
 
     /**
      * Report or log an exception.
-     *
-     * @param  \Throwable  $exception
-     * @return void
-     *
-     * @throws \Exception
      */
     public function report(Throwable $exception)
     {
@@ -46,12 +38,6 @@ class Handler extends ExceptionHandler
 
     /**
      * Render an exception into an HTTP response.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \Throwable  $exception
-     * @return \Symfony\Component\HttpFoundation\Response
-     *
-     * @throws \Throwable
      */
     public function render($request, Throwable $exception)
     {
@@ -62,6 +48,10 @@ class Handler extends ExceptionHandler
         if ($exception instanceof ModelNotFoundException) {
             $modelName = strtolower(class_basename($exception->getModel()));
             return $this->errorResponse("Does not exists any {$modelName} with the specified identificator", 404);
+        }
+
+        if ($exception instanceof TokenMismatchException) {
+            return redirect('/login');
         }
 
         return parent::render($request, $exception);
