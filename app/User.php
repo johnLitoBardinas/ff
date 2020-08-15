@@ -18,8 +18,6 @@ class User extends Authenticatable
 
     /**
      * The attributes that are mass assignable.
-     *
-     * @var array
      */
     protected $fillable = [
         'email',
@@ -34,20 +32,19 @@ class User extends Authenticatable
 
     /**
      * The attributes that are guarded
-     *
-     * @var array
      */
     protected $guarded = [
         'user_status',
         'user_type',
     ];
 
+    // One to Many Inverse.
     public function role()
     {
         return $this->belongsTo(Role::class, 'role_id', 'role_id');
     }
 
-    // One to Many Inverse
+    // One to Many Inverse.
     public function branch()
     {
         return $this->belongsTo(Branch::class, 'branch_id');

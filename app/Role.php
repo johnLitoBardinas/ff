@@ -13,8 +13,9 @@ class Role extends Model
 
     protected $fillable = [ 'name' ];
 
-    public function user()
+    // One to Many (1{Role} : n{User})
+    public function users()
     {
-        return $this->hasMany(User::class, 'role_id', 'role_id');
+        return $this->hasMany(User::class, 'role_id');
     }
 }
