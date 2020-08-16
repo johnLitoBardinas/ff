@@ -15,10 +15,15 @@ class CreatePackageTable extends Migration
     {
         Schema::create('package', function (Blueprint $table) {
             $table->bigIncrements('package_id');
-            $table->string('package_name');
+            $table->string('package_name')->unique();
             $table->string('package_description');
             $table->decimal('package_price');
             $table->timestamps();
+        });
+
+        Schema::table('package', function (Blueprint $table)
+        {
+            $table->softDeletes();
         });
     }
 
@@ -29,6 +34,11 @@ class CreatePackageTable extends Migration
      */
     public function down()
     {
+        Schema::table('package', function (Blueprint $table)
+        {
+            $table->dropSoftDeletes();
+        });
+
         Schema::dropIfExists('package');
     }
 }

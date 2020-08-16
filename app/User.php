@@ -16,9 +16,6 @@ class User extends Authenticatable
 
     protected $primaryKey = 'user_id';
 
-    /**
-     * The attributes that are mass assignable.
-     */
     protected $fillable = [
         'email',
         'password',
@@ -30,9 +27,6 @@ class User extends Authenticatable
         'api_token'
     ];
 
-    /**
-     * The attributes that are guarded
-     */
     protected $guarded = [
         'user_status',
         'user_type',

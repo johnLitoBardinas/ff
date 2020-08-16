@@ -51,3 +51,6 @@ Route::resource('customers.packages', 'Api\CustomerPackageController', ['only' =
 
 // Customer Visits Endpoint.
 Route::resource('customers.visits', 'Api\CustomerVisitsController', ['only' => ['index', 'store']]);
+
+// Package Resource Endpoint.
+Route::resource('packages', 'Api\PackageController', ['except' => ['create', 'edit']]);
