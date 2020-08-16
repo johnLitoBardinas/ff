@@ -9,8 +9,7 @@ use App\Http\Controllers\Api\BranchController;
 
 Route::get('/', function (Request $request)
 {
-    $environment = App::environment();
-    dd($environment);
+    dd('Fix&Free API - By: John Lito Bardinas');
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
@@ -37,7 +36,7 @@ Route::post('login', function (Request $request)
 });
 
 // Branch Resource Endpoint.
-Route::resource('branch', 'Api\BranchController', ['except' => ['index', 'create', 'edit'] ] );
+Route::resource('branch', 'Api\BranchController', ['except' => ['create', 'edit'] ] );
 Route::put('branch/status/{branch}/{status}', [BranchController::class, 'updateBranchStatus']);
 
 // User Resource Endpoint

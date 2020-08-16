@@ -9,6 +9,14 @@ use App\User;
 class BranchController extends ApiController
 {
 
+/**
+     * Display a listing of the resource.
+     */
+    public function index()
+    {
+        return $this->showAll(Branch::all());
+    }
+
     /**
      * Store a newly created resource in storage.
      */
@@ -26,7 +34,7 @@ class BranchController extends ApiController
             'branch_address' => request('branch_address')
         ]);
 
-        return $this->showOne($branch);
+        return $this->showOne($branch, 201);
 
     }
 

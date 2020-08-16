@@ -9,7 +9,7 @@ use App\Http\Requests\CustomerPackage as RequestsCustomerPackage;
 class CustomerPackageController extends ApiController
 {
     /**
-     * Display a listing of the resource.
+     * Display a listing of the Customer Package Resource.
      */
     public function index(Customer $customer)
     {
@@ -37,6 +37,7 @@ class CustomerPackageController extends ApiController
      */
     public function show(CustomerPackage $customerPackage)
     {
+
     }
 
 }

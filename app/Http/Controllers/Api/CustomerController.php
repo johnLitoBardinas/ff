@@ -9,7 +9,7 @@ class CustomerController extends ApiController
 {
 
     /**
-     * Store a newly created resource in storage.
+     * Store new Customer Resource.
      */
     public function store(Request $request)
     {
@@ -24,7 +24,7 @@ class CustomerController extends ApiController
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified Customer Resource.
      */
     public function show(Customer $customer)
     {
