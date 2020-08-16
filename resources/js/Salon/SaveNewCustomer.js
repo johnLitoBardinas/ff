@@ -38,8 +38,16 @@ export default class SaveNewCustomer {
     async subcribeCustomerPackage(data) {
 
         const customerId = await this.postNewCustomer(data);
-        const customerPackage = await this.postNewCustomerPackage(data, customerId);
+        // const customerPackage = await this.postNewCustomerPackage(data, customerId);
+        return customerId;
 
+        /**
+         * Check all the following storing.
+         *
+         * 1. New Customer.
+         * 2. Tag the Customer to its Package.
+         * 3. Tag the first Customer Package Visits.
+         */
 
     }
 
