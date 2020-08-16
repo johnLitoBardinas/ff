@@ -38,8 +38,6 @@ class PackageController extends ApiController
      */
     public function update(Request $request, Package $package)
     {
-        $this->validatePackageDataRequest($request);
-
         if ($request->has('package_name')) {
             $package->package_name = $request->package_name;
         }
