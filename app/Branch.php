@@ -22,4 +22,10 @@ class Branch extends Model
     {
         return $this->hasMany(User::class, 'branch_id');
     }
+
+    // One Branch Model can be related to (n) of CustomerVisits Model.
+    public function customer_visits()
+    {
+        return $this->hasMany(CustomerVisits::class, 'branch_id');
+    }
 }

@@ -92,6 +92,6 @@ class UserController extends ApiController
      */
     public function destroy(User $user)
     {
-        dd('You hit the destroy endpoint');
+
     }
 }

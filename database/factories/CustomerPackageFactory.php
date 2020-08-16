@@ -11,7 +11,7 @@ $factory->define(CustomerPackage::class, function (Faker $faker) {
         'branch_id' => $faker->randomElement([1, 2, 3]),
         'package_id' => $faker->randomElement([1, 2, 3]),
         'user_id' => $faker->randomElement([1, 2, 3]),
-        'customer_id' => 1,
+        'customer_id' => $faker->create(App\User::class)->user_id,
         'reference_no' => $faker->word,
         'payment_type' => $faker->randomElement(Config::get('constant.payment_options')),
     ];

@@ -7,7 +7,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Branch::class, function (Faker $faker) {
     return [
-        'branch_code' => $faker->word,
+        'branch_code' => strtolower( 'FAF-' . strtotime(now()) ),
         'branch_name' => $faker->word,
         'branch_address' => $faker->address,
     ];

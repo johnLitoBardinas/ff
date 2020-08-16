@@ -14,7 +14,6 @@ class CreateCustomerVisitsTable extends Migration
         Schema::create('customer_visits', function (Blueprint $table) {
             $table->bigIncrements('customer_visits_id');
             $table->unsignedBigInteger('customer_package_id');
-            $table->unsignedBigInteger('customer_id');
             $table->unsignedBigInteger('branch_id');
             $table->unsignedBigInteger('user_id');
             $table->timestamp('date')->useCurrent();
@@ -23,7 +22,6 @@ class CreateCustomerVisitsTable extends Migration
 
             // Foreign Keys
             $table->foreign('customer_package_id')->references('customer_package_id')->on('customer_package');
-            $table->foreign('customer_id')->references('customer_id')->on('customer');
             $table->foreign('branch_id')->references('branch_id')->on('branch');
             $table->foreign('user_id')->references('user_id')->on('user');
         });
@@ -36,7 +34,6 @@ class CreateCustomerVisitsTable extends Migration
     {
         Schema::table('customer_visits', function (Blueprint $table) {
             $table->dropForeign('customer_visits_customer_package_id_foreign');
-            $table->dropForeign('customer_visits_customer_id_foreign');
             $table->dropForeign('customer_visits_branch_id_foreign');
             $table->dropForeign('customer_visits_user_id_foreign');
         });
