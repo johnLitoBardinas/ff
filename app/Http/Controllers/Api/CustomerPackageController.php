@@ -9,11 +9,12 @@ use App\Http\Requests\CustomerPackage as RequestsCustomerPackage;
 class CustomerPackageController extends ApiController
 {
     /**
-     * Display a listing of the Customer Package Resource.
+     * Displaying the Customer with its packages.
      */
     public function index(Customer $customer)
     {
-        return $this->showAll(Customer::where('customer_id', $customer->customer_id)->with('package')->get());
+        $customerWithPackages = Customer::where('customer_id', $customer->customer_id)->with('packages')->get();
+        return $this->showAll($customerWithPackages);
     }
 
     /**
@@ -37,7 +38,7 @@ class CustomerPackageController extends ApiController
      */
     public function show(CustomerPackage $customerPackage)
     {
-
+        dd('Showing a specific Customer with CustomerPackage');
     }
 
 }

@@ -1,6 +1,8 @@
 <?php
 
 use App\Package;
+use App\Customer;
+use App\CustomerPackage;
 use App\Http\Controllers\Profile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -10,7 +12,8 @@ use App\Http\Controllers\Auth\LoginController;
 
 Route::get('/test', function ()
 {
-    $result = Package::all()->map(fn($item) => $item->package_id)->toArray();
+    // $result = Package::all()->map(fn($item) => $item->package_id)->toArray();
+    $result = CustomerPackage::where('customer_id', 1)->where('customer_package_status', 'active')->pluck('customer_package_id');
     dd($result);
 });
 

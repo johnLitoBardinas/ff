@@ -7,11 +7,10 @@ use Faker\Generator as Faker;
 
 $factory->define(CustomerVisits::class, function (Faker $faker) {
     return [
-        // 'customer_package_id' => $faker->,
-        // 'branch_id' => $faker->,
-        // 'user_id' => $faker-> ,
-        // 'date' => $faker->,
-        // 'customer_associate' => $faker->,
-        // 'customer_associate_picture' => $faker->,
+        'customer_package_id' => $faker->randomElement([1,2,3]),
+        'branch_id' => $faker->randomElement([1,2,3]),
+        'user_id' => $faker->randomElement([1,2,3]),
+        'customer_associate' => $faker->name,
+        'customer_associate_picture' => $faker->imageUrl($width=640, $height=480),
     ];
 });

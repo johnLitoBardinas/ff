@@ -15,6 +15,7 @@ class CustomerPackage extends Model
     // Model custom table primary key.
     protected $primaryKey = 'customer_package_id';
 
+    // Fillable Model Fields.
     protected $fillable = [
         'branch_id',
         'package_id',
@@ -27,12 +28,18 @@ class CustomerPackage extends Model
     // Many row from Customer Package can belong to Single/One Customer.
     public function customer()
     {
-        return $this->belongsTo(Customer::class, 'customer_id', 'customer_id');
+        return $this->belongsTo(Customer::class, 'customer_id');
     }
 
     // Many possible Customer Package Row can belong to a Single/One Package
     public function package()
     {
-        return $this->belongsTo(Package::class, 'package_id', 'package_id');
+        return $this->belongsTo(Package::class, 'package_id');
+    }
+
+    // One CustomerPackage Row can be in Many CustomerVisits.
+    public function customer_visits()
+    {
+        return $this->hasMany(CustomerVisits::class, 'customer_package_id');
     }
 }

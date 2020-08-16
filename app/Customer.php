@@ -8,25 +8,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
 {
+    // Custom table name.
     protected $table = 'customer';
 
+    // Custom table primaryKey.
     protected $primaryKey = 'customer_id';
 
+    // Fillable  Model fields.
     protected $fillable = [
         'first_name',
         'last_name',
     ];
 
     // One Customer Model can appear to Many CustomerPackage.
-    public function package()
+    public function customer_packages()
     {
-        return $this->hasMany(CustomerPackage::class, 'customer_id', 'customer_id');
-    }
-
-    // One Customer can appear to Many CustomerVisits.
-    public function visits()
-    {
-        return $this->hasMany(CustomerVisits::class, 'customer_id', 'customer_id');
+        return $this->hasMany(CustomerPackage::class, 'customer_id');
     }
 
 }

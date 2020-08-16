@@ -42,7 +42,7 @@ export default class SaveNewCustomer {
         return customerId;
 
         /**
-         * Check all the following storing.
+         * Check all the following storing Request Multiple AJAX Request for this One.
          *
          * 1. New Customer.
          * 2. Tag the Customer to its Package.
