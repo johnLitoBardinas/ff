@@ -10,7 +10,6 @@ use Illuminate\Support\Facades\Auth;
 use App\Providers\RouteServiceProvider;
 use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
-use Illuminate\Support\Facades\Hash;
 
 class LoginController extends Controller
 {
@@ -52,28 +51,20 @@ class LoginController extends Controller
         if ( $requestAccessPage === AccessHomeType::FFCO && $userRole->name === UserType::ADMIN )  {
             $this->redirectTo = route('admin');
             $apiToken = $this->createAccessToken($authUser, 'user:admin');
-            session([
-                'apiToken' => $apiToken,
-                'logo' => config('constant.fix_and_free_co_logo'),
-                'homeUrl' => route('admin'),
-            ]);
+            generate_session_data($apiToken, config('constant.fix_and_free_co_logo'), route('admin'));
             return $this->redirectTo;
         }
 
         $this->redirectTo = RouteServiceProvider::HOME;
         $apiToken = $this->createAccessToken($authUser, 'user:mgr');
-        session([
-            'apiToken' => $apiToken,
-            'logo' => config('constant.fix_and_free_salon_logo'),
-            'homeUrl' => route('home'),
-        ]);
+        generate_session_data($apiToken, config('constant.fix_and_free_salon_logo'), route('home'));
         return $this->redirectTo;
     }
 
     /**
      * Generating API Token for the Client Application.
      */
-    protected function createAccessToken(User $user, String $ability)
+    private function createAccessToken(User $user, String $ability)
     {
         $userToken = generate_user_token($user);
         return $user->createToken($userToken, [$ability])->plainTextToken;

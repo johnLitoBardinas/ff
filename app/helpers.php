@@ -30,3 +30,16 @@ if ( ! function_exists( 'generate_user_token' ) ) {
 
 }
 
+if ( ! function_exists( 'generate_session_data' ) ) {
+
+  function generate_session_data(String $apiToken, String $logo, String $homeUrl)
+  {
+    session([
+      'apiToken' => $apiToken,
+      'logo' => $logo,
+      'homeUrl' => $homeUrl,
+    ]);
+  }
+
+}
+
