@@ -36,7 +36,7 @@ class BranchAddressUserForm extends Component
      */
     public function mount()
     {
-        $this->roles = json_encode(Role::all()->toArray());
+        $this->roles = Role::all()->toJson();
 
         $this->action = AdminAction::READ_BRANCH;
 
@@ -64,11 +64,11 @@ class BranchAddressUserForm extends Component
      */
     private function setBranchUsingBranchId()
     {
-        $this->currentBranch = Branch::where('branch_id', $this->currentBranchId)->with('user.role')->get()->first();
+        $this->currentBranch = Branch::where('branch_id', $this->currentBranchId)->with('users.role')->get()->first();
         $this->branchName = $this->currentBranch->branch_name;
         $this->branchStatus = $this->currentBranch->branch_status;
         $this->branchAddress = $this->currentBranch->branch_address;
-        $this->branchUsers = json_encode($this->currentBranch->user->toArray());
+        $this->branchUsers = $this->currentBranch->users->toJson();
     }
 
     public function editBranch()

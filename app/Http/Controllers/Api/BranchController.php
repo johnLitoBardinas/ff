@@ -75,7 +75,7 @@ class BranchController extends ApiController
             }
         }
 
-        $updatedBranch = Branch::where('branch_id', request('current_branch_id'))->with('user.role')->first();
+        $updatedBranch = Branch::where('branch_id', request('current_branch_id'))->with('users.role')->first();
         return $this->showOne($updatedBranch);
 
     }

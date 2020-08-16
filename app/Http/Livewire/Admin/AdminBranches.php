@@ -88,9 +88,12 @@ class AdminBranches extends Component
         $user->save();
     }
 
+    /**
+     * Getting all Branches.
+     */
     protected function getAllBranches()
     {
-        $this->branches = Branch::orderBy('branch_id', 'DESC')->with('user.role')->get();
+        $this->branches = Branch::orderBy('branch_id', 'DESC')->with('users.role')->get();
     }
 
     /**
