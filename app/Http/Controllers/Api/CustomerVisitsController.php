@@ -32,10 +32,8 @@ class CustomerVisitsController extends ApiController
             return $this->errorResponse('Invalid Data', 422);
         }
 
-        $this->isCustomerOwnthePackagePlan($customer, $request->customer_package_id);
-
         $rules = [
-            'customer_package_id' => ['required', 'integer', new IsCustomerHasPackage($customer->customer_id, request('customer_package_id'))],
+            'customer_package_id' => ['required', 'integer', new IsCustomerHasPackage($customer->customer_id)],
             'branch_id' => ['required', 'integer'],
             'user_id' => ['required', 'integer'],
         ];
@@ -59,19 +57,6 @@ class CustomerVisitsController extends ApiController
         // $customerVisits = CustomerVisits::create();
 
         dd($customerVisitsData);
-    }
-
-    /**
-     * Determine if the users has the particular CustomerPackage
-     */
-    private function isCustomerOwnthePackagePlan(Customer $customer, Int $customerPackageId)
-    {
-        // ->contains($customerPackageId)
-        $isAllowed = CustomerPackage::where('customer_id', $customer->customer_id)->pluck('customer_package_id')->contains($customerPackageId);
-
-        if (! $isAllowed) {
-            return $this->errorResponse('Customer is invalid for this action', 401);
-        }
     }
 
 }
