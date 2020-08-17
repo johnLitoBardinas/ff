@@ -12,8 +12,6 @@ class IsCustomerHasPackage implements Rule
 
     /**
      * Create a new rule instance.
-     *
-     * @return void
      */
     public function __construct(Int $customerId)
     {
@@ -22,10 +20,6 @@ class IsCustomerHasPackage implements Rule
 
     /**
      * Determine if the validation rule passes.
-     *
-     * @param  string  $attribute
-     * @param  mixed  $value
-     * @return bool
      */
     public function passes($attribute, $value)
     {
@@ -37,8 +31,6 @@ class IsCustomerHasPackage implements Rule
 
     /**
      * Get the validation error message.
-     *
-     * @return string
      */
     public function message()
     {
