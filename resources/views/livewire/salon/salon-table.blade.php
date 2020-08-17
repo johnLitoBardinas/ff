@@ -34,76 +34,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <tr>
-                        <td>00000000</td>
-                        <td>John Lito</td>
-                        <td>Bardinas</td>
-                        <td>PAYMAYA</td>
-                        <td>Plan 1800</td>
-                        <td>
-                            @livewire('salon.date-visits-tracker', [
-                                'packageStatus' => 'active'
-                            ])
-                        </td>
-                        <td>Oct. 11, 2020</td>
-                        <td>
-                            @livewire('salon.package-status-label', [
-                                'type' => 'active'
-                            ])
-                        </td>
-                        <td>
-                            @livewire('salon.table-action', [
-                                'type' => 'newOrActiveAccount'
-                            ])
-                            {{-- type (New | ExpiredCompleted) --}}
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>00000000</td>
-                        <td>Stephen Reon</td>
-                        <td>Francisco</td>
-                        <td>GCASH</td>
-                        <td>Plan 1800</td>
-                        <td>
-                            @livewire('salon.date-visits-tracker', [
-                                'packageStatus' => 'expired'
-                            ])
-                        </td>
-                        <td>Oct. 11, 2020</td>
-                        <td>
-                            @livewire('salon.package-status-label', [
-                                'type' => 'expired'
-                            ])
-                        </td>
-                        <td>
-                            @livewire('salon.table-action', [
-                                'type' => 'expiredOrComplementedAccount'
-                            ])
-                        </td>
-                    </tr>
-                    <tr>
-                        <td>00000000</td>
-                        <td>Customer Fname</td>
-                        <td>Customer Lname</td>
-                        <td>GCASH</td>
-                        <td>Plan 1800</td>
-                        <td>
-                            @livewire('salon.date-visits-tracker', [
-                                'packageStatus' => 'completed'
-                            ])
-                        </td>
-                        <td>Oct. 11, 2020</td>
-                        <td>
-                            @livewire('salon.package-status-label', [
-                                'type' => 'completed'
-                            ])
-                        </td>
-                        <td>
-                            @livewire('salon.table-action', [
-                                'type' => 'expiredOrComplementedAccount'
-                            ])
-                        </td>
-                    </tr>
+                    {{ $currentDisplayType }}
                 </tbody>
             </table>
         </div>
