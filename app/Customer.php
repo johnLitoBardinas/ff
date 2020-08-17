@@ -4,6 +4,7 @@ namespace App;
 
 use App\CustomerVisits;
 use App\CustomerPackage;
+use App\Http\Controllers\Api\CustomerPackageController;
 use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model
@@ -20,10 +21,10 @@ class Customer extends Model
         'last_name',
     ];
 
-    // One Customer Model can appear to Many CustomerPackage.
-    public function customer_packages()
+    // Many to Many Relationship
+    public function packages()
     {
-        return $this->hasMany(CustomerPackage::class, 'customer_id');
+        return $this->belongsToMany('App\Package', 'customer_package', 'package_id', 'package_id');
     }
 
 }

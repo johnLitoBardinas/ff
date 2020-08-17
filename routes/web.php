@@ -13,9 +13,7 @@ use App\Http\Controllers\Auth\LoginController;
 
 Route::get('/test', function ()
 {
-    // $result = Package::all()->map(fn($item) => $item->package_id)->toArray();
-    // $result = CustomerPackage::where('customer_id', 1)->where('customer_package_status', 'active')->pluck('customer_package_id');
-    $result = 'Fix&Free By: John Lito';
+    $result = 'Fix and Free By: John Lito Bardinas';
     dd($result);
 });
 

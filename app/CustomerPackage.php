@@ -26,15 +26,21 @@ class CustomerPackage extends Model
     ];
 
     // Many row from Customer Package can belong to Single/One Customer.
-    public function customer()
-    {
-        return $this->belongsTo(Customer::class, 'customer_id');
-    }
+    // public function customer()
+    // {
+    //     return $this->belongsTo(Customer::class, 'customer_id');
+    // }
 
     // Many possible Customer Package Row can belong to a Single/One Package
-    public function package()
+    // public function package()
+    // {
+    //     return $this->belongsTo(Package::class, 'package_id');
+    // }
+
+    // One to Many (Inverse)
+    public function branch()
     {
-        return $this->belongsTo(Package::class, 'package_id');
+        return $this->belongsTo(Branch::class, 'branch_id');
     }
 
     // One CustomerPackage Row can be in Many CustomerVisits.
@@ -42,4 +48,5 @@ class CustomerPackage extends Model
     {
         return $this->hasMany(CustomerVisits::class, 'customer_package_id');
     }
+
 }
