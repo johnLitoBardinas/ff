@@ -15,7 +15,7 @@ Route::get('/test', function ()
 {
     // $result = Package::all()->map(fn($item) => $item->package_id)->toArray();
     // $result = CustomerPackage::where('customer_id', 1)->where('customer_package_status', 'active')->pluck('customer_package_id');
-    $result = Branch::where('branch_id', 10)->exists();
+    $result = 'Fix&Free By: John Lito';
     dd($result);
 });
 

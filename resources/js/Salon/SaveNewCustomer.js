@@ -13,7 +13,7 @@ export default class SaveNewCustomer {
      * @param {Object} customerData
      */
     postNewCustomer(customerData) {
-        return axios.post(ApiUrl.customers, customerData);
+        return ;
     }
 
     /**
@@ -37,9 +37,11 @@ export default class SaveNewCustomer {
 
     async subcribeCustomerPackage(data) {
 
-        const customerId = await this.postNewCustomer(data);
-        // const customerPackage = await this.postNewCustomerPackage(data, customerId);
-        return customerId;
+        // let customer = await ;
+        // // const customerPackage = await this.postNewCustomerPackage(data, customer_id);
+
+        // console.log('customer', customer);
+        // return customer;
 
         /**
          * Check all the following storing Request Multiple AJAX Request for this One.
@@ -59,7 +61,24 @@ export default class SaveNewCustomer {
             parsleyForm.validate();
 
             if (parsleyForm.isValid()) {
-                this.subcribeCustomerPackage(data);
+                // this.subcribeCustomerPackage(data);
+
+                axios.post(ApiUrl.customers, data)
+                .then((result) => result.data)
+                .then((customerData) => {
+                    const customerPackageUrl = `${ApiUrl.customers}/${customerData['customer_id']}/packages`;
+                    const customerPackageData = {
+                        ...customerData,
+                        ...data
+                    };
+                    delete customerPackageData['created_at'];
+                    delete customerPackageData['updated_at'];
+
+                    axios.post(customerPackageUrl, customerPackageData)
+                    .then((customerPackage) => {
+                       console.log('customerPackage', customerPackage);
+                    });
+                }).catch((error) => console.error(error));
             }
 
         });

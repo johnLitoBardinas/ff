@@ -15,6 +15,14 @@ class CustomerVisits extends Model
     // setting the custom primaryKey Table.
     protected $primaryKey = 'customer_visits_id';
 
+    protected $fillable = [
+        'customer_package_id',
+        'branch_id',
+        'user_id',
+        'customer_associate',
+        'customer_associate_picture',
+    ];
+
     // Many Row in Customer Visits can be related to ONE Customer.
     public function customer()
     {

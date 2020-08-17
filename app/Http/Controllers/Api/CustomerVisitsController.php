@@ -33,7 +33,7 @@ class CustomerVisitsController extends ApiController
      */
     public function store(Request $request, Customer $customer)
     {
-        if( ! $request->has('customer_package_id') || empty( $request->customer_package_id ) ) {
+        if( ! $request->has('customer_package_id') || empty( request('customer_package_id') ) ) {
             return $this->errorResponse('Invalid Data', 422);
         }
 
@@ -59,9 +59,9 @@ class CustomerVisitsController extends ApiController
             $customerVisitsData['customer_associate_picture'] = request('customer_associate_picture');
         }
 
-        // $customerVisits = CustomerVisits::create();
+        $customerVisits = CustomerVisits::create($customerVisitsData);
+        return $this->showOne($customerVisits);
 
-        dd($customerVisitsData);
     }
 
 }
