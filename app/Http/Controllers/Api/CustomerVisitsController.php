@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Api;
 use App\Customer;
 use App\CustomerPackage;
 use App\CustomerVisits;
+use App\Rules\IsBranchIdExist;
 use Illuminate\Http\Request;
 use App\Rules\IsCustomerHasPackage;
+use App\Rules\IsUserIdExist;
 
 class CustomerVisitsController extends ApiController
 {
@@ -19,7 +21,10 @@ class CustomerVisitsController extends ApiController
          * Customers + Customer Packages + Package
          * Customer + Customer Packages + Customer Visits Data.
          */
-        $customerVisits = Customer::where('customer_id', 1)->with('customer_packages.package', 'customer_packages.customer_visits')->get();
+        $customerVisits = Customer::where('customer_id', 1)
+                            ->with('customer_packages.package', 'customer_packages.customer_visits')
+                            ->get();
+
         return $this->showAll($customerVisits);
     }
 
@@ -34,8 +39,8 @@ class CustomerVisitsController extends ApiController
 
         $rules = [
             'customer_package_id' => ['required', 'integer', new IsCustomerHasPackage($customer->customer_id)],
-            'branch_id' => ['required', 'integer'],
-            'user_id' => ['required', 'integer'],
+            'branch_id' => ['required', 'integer', new IsBranchIdExist()],
+            'user_id' => ['required', 'integer', new IsUserIdExist()],
         ];
 
         $request->validate($rules);

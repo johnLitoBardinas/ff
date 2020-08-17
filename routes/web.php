@@ -1,5 +1,6 @@
 <?php
 
+use App\Branch;
 use App\Package;
 use App\Customer;
 use App\CustomerPackage;
@@ -13,7 +14,8 @@ use App\Http\Controllers\Auth\LoginController;
 Route::get('/test', function ()
 {
     // $result = Package::all()->map(fn($item) => $item->package_id)->toArray();
-    $result = CustomerPackage::where('customer_id', 1)->where('customer_package_status', 'active')->pluck('customer_package_id');
+    // $result = CustomerPackage::where('customer_id', 1)->where('customer_package_status', 'active')->pluck('customer_package_id');
+    $result = Branch::where('branch_id', 10)->exists();
     dd($result);
 });
 
