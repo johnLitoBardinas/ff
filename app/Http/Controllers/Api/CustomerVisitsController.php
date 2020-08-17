@@ -60,7 +60,7 @@ class CustomerVisitsController extends ApiController
         }
 
         $customerVisits = CustomerVisits::create($customerVisitsData);
-        return $this->showOne($customerVisits);
+        return $this->showOne($customerVisits, 201);
 
     }
 

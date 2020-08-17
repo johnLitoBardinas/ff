@@ -1,3 +1,5 @@
+import Swal from 'sweetalert2';
+
 export default class SaveNewCustomer {
 
     constructor() {
@@ -8,75 +10,45 @@ export default class SaveNewCustomer {
     }
 
     /**
-     * Posting new Customer.
-     *
-     * @param {Object} customerData
+     * Submiting new Customer Data.
      */
-    postNewCustomer(customerData) {
-        return ;
-    }
-
-    /**
-     * Subscribing new Customer to a particular package.
-     *
-     * @param {Object} customerPackageData
-     * @param {Int} customerId
-     */
-    postNewCustomerPackage(customerPackageData, customerId) {
-        const url = `${ApiUrl.customers}/${customerId}/packages`;
-        return axios.post(url, customerPackageData);
-    }
-
-    /**
-     * Logging the visits for Customer.
-     * @param {Object} visitsInfo
-     */
-    postNewCustomerVisits(visitsInfo, customerId) {
-        const url = `${ApiUrl.customers}/${customerId}/visits`;
-    }
-
-    async subcribeCustomerPackage(data) {
-
-        // let customer = await ;
-        // // const customerPackage = await this.postNewCustomerPackage(data, customer_id);
-
-        // console.log('customer', customer);
-        // return customer;
-
-        /**
-         * Check all the following storing Request Multiple AJAX Request for this One.
-         *
-         * 1. New Customer.
-         * 2. Tag the Customer to its Package.
-         * 3. Tag the first Customer Package Visits.
-         */
-
-    }
-
     onSubmitFormNewCustomer() {
         this.$btnSaveNewCustomer.on('click', (e) => {
+
             const parsleyForm = this.$frmNewCustomer.parsley();
             const data = this.$frmNewCustomer.serializeObject();
 
             parsleyForm.validate();
 
             if (parsleyForm.isValid()) {
-                // this.subcribeCustomerPackage(data);
-
+                // Need to Refactor But for now this is GOOD but not GREAT
                 axios.post(ApiUrl.customers, data)
                 .then((result) => result.data)
                 .then((customerData) => {
+                    console.log('1 customerData', customerData);
                     const customerPackageUrl = `${ApiUrl.customers}/${customerData['customer_id']}/packages`;
                     const customerPackageData = {
                         ...customerData,
                         ...data
                     };
-                    delete customerPackageData['created_at'];
-                    delete customerPackageData['updated_at'];
 
                     axios.post(customerPackageUrl, customerPackageData)
                     .then((customerPackage) => {
-                       console.log('customerPackage', customerPackage);
+                       console.log('2 customerPackage', customerPackage.data);
+
+                       delete customerPackage.data['payment_type'];
+                       delete customerPackage.data['reference_no'];
+
+                       const customerVisitsUrl = `${ApiUrl.customers}/${customerPackage.data['customer_id']}/visits`;
+                       axios.post(customerVisitsUrl, customerPackage.data)
+                       .then((customerVisits) => {
+                            if (customerVisits.status === 201) {
+                                Swal.fire('Customer Successfully Subscribed', '', 'success');
+                                this.$frmNewCustomer[0].reset();
+                                parsleyForm.reset();
+                            }
+                       });
+
                     });
                 }).catch((error) => console.error(error));
             }
