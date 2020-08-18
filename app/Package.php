@@ -24,9 +24,10 @@ class Package extends Model
         'package_price',
     ];
 
-    // One Package Model can be related To Many Customer
-    public function customers()
+    public function customer_packages()
     {
-        return $this->belongsToMany('App\Customer', 'customer_package', 'customer_id', 'customer_id');
+        return $this->hasMany(CustomerPackage::class, 'package_id');
     }
+
+
 }

@@ -25,28 +25,33 @@ class CustomerPackage extends Model
         'payment_type',
     ];
 
-    // Many row from Customer Package can belong to Single/One Customer.
-    // public function customer()
-    // {
-    //     return $this->belongsTo(Customer::class, 'customer_id');
-    // }
+    // One CustomerPackage Row can be in Many CustomerVisits.
+    public function customer_visits()
+    {
+        return $this->hasMany(CustomerVisits::class, 'customer_package_id');
+    }
 
-    // Many possible Customer Package Row can belong to a Single/One Package
-    // public function package()
-    // {
-    //     return $this->belongsTo(Package::class, 'package_id');
-    // }
-
-    // One to Many (Inverse)
+    // One to Many Inverse.
     public function branch()
     {
         return $this->belongsTo(Branch::class, 'branch_id');
     }
 
-    // One CustomerPackage Row can be in Many CustomerVisits.
-    public function customer_visits()
+    // One to Many Inverse.
+    public function user()
     {
-        return $this->hasMany(CustomerVisits::class, 'customer_package_id');
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    // One to Many (Inverse)
+    public function customer()
+    {
+        return $this->belongsTo(Customer::class, 'customer_id');
+    }
+
+    public function package()
+    {
+       return $this->belongsTo(Package::class, 'package_id');
     }
 
 }

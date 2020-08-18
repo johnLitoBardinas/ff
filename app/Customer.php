@@ -21,10 +21,10 @@ class Customer extends Model
         'last_name',
     ];
 
-    // Many to Many Relationship
-    public function packages()
+    // One to Many.
+    public function customer_packages()
     {
-        return $this->belongsToMany('App\Package', 'customer_package', 'package_id', 'package_id');
+        return $this->hasMany(CustomerPackage::class, 'customer_id');
     }
 
 }

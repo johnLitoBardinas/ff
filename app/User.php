@@ -43,4 +43,15 @@ class User extends Authenticatable
     {
         return $this->belongsTo(Branch::class, 'branch_id');
     }
+
+    // One to Many
+    public function customer_packages()
+    {
+        return $this->hasMany(CustomerPackage::class, 'user_id');
+    }
+
+    public function customer_visits()
+    {
+        return $this->hasMany(CustomerVisits::class, 'user_id');
+    }
 }

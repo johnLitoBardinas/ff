@@ -35,4 +35,21 @@ class CustomerVisits extends Model
         return $this->belongsTo(CustomerPackage::class);
     }
 
+    // One to Many (inverse)
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
+
+    // One to Many (Inverse)
+    public function branch()
+    {
+        return $this->belongsTo(Branch::class, 'branch_id');
+    }
+
+    public function customer_visits()
+    {
+        return $this->belongsTo(CustomerPackage::class, 'customer_package_id');
+    }
+
 }

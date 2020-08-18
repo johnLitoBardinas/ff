@@ -23,8 +23,8 @@ class Branch extends Model
         return $this->hasMany(User::class, 'branch_id');
     }
 
-    // One Branch Model related to (n) CustomerPackage Model.
-    public function customer_package()
+    // One to Many Relationship Branch -> Customer Package.
+    public function customer_packages()
     {
         return $this->hasMany(CustomerPackage::class, 'branch_id');
     }

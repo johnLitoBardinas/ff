@@ -13,8 +13,11 @@ use App\Http\Controllers\Auth\LoginController;
 
 Route::get('/test', function ()
 {
-    $result = 'Fix and Free By: John Lito Bardinas';
-    dd($result);
+    $customer = Customer::find(1);
+    foreach ($customer->packages as $package) {
+        dump($package->pivot->reference_no);
+    }
+    // ddd();
 });
 
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');

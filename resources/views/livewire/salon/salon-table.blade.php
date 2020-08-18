@@ -34,7 +34,24 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{ $currentDisplayType }}
+                    {{-- {{ $currentDisplayType }} --}}
+                    <tr>
+                        <td>00000000</td>
+                        <td>John Lito</td>
+                        <td>Bardinas</td>
+                        <td>PAYMAYA</td>
+                        <td>Plan 1800</td>
+                        <td>
+                            @livewire('salon.date-visits-tracker', [ 'packageStatus' => 'active' ])
+                        </td>
+                        <td>Oct. 11, 2020</td>
+                        <td>
+                            @livewire('salon.package-status-label', [ 'type' => 'active' ])
+                        </td>
+                        <td>
+                            @livewire('salon.table-action', [ 'type' => 'newOrActiveAccount' ]) {{-- type (New | ExpiredCompleted) --}}
+                        </td>
+                    </tr>
                 </tbody>
             </table>
         </div>
