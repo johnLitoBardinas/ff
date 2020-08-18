@@ -1,4 +1,5 @@
 <div class="row mt-4">
+    {{-- {{dd($customerPackageVisitsInfo)}} --}}
     <div class="col-md-12">
 
         <div class="table-responsive">
@@ -34,24 +35,40 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {{-- {{ $currentDisplayType }} --}}
-                    <tr>
-                        <td>00000000</td>
-                        <td>John Lito</td>
-                        <td>Bardinas</td>
-                        <td>PAYMAYA</td>
-                        <td>Plan 1800</td>
-                        <td>
-                            @livewire('salon.date-visits-tracker', [ 'packageStatus' => 'active' ])
-                        </td>
-                        <td>Oct. 11, 2020</td>
-                        <td>
-                            @livewire('salon.package-status-label', [ 'type' => 'active' ])
-                        </td>
-                        <td>
-                            @livewire('salon.table-action', [ 'type' => 'newOrActiveAccount' ]) {{-- type (New | ExpiredCompleted) --}}
-                        </td>
-                    </tr>
+                    @forelse ($customerPackageVisitsInfo as $row)
+                        <tr>
+                            <td>{{$row->reference_no}}</td>
+                            <td>{{$row->customer->first_name}}</td>
+                            <td>{{$row->customer->last_name}}</td>
+                            <td>{{strtoupper($row->payment_type)}}</td>
+                            <td>{{$row->package->package_name}}</td>
+                            <td>
+                                @livewire('salon.date-visits-tracker', [
+                                    'customerPackageVisits' => $row->customer_visits
+                                ])
+                            </td>
+                            <td>
+                                {{date('M. d, Y', strtotime( $row->customer_package_end ) )}}
+                            </td>
+                            <td>
+                                @livewire('salon.package-status-label', [
+                                    'type' => $row->customer_package_status
+                                ])
+                            </td>
+                            <td>
+                                @livewire('salon.table-action', [
+                                    'type' => $currentDisplayType
+                                ])
+                            </td>
+                        </tr>
+                    @empty
+                        <tr>
+                            <td colspan="9">
+                                <h6>No Records Found!!</h6>
+                            </td>
+                        </tr>
+                    @endforelse
+
                 </tbody>
             </table>
         </div>

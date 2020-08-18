@@ -3,14 +3,18 @@
 namespace App\Http\Livewire\Salon;
 
 use Livewire\Component;
+use Illuminate\Database\Eloquent\Collection;
 
 class DateVisitsTracker extends Component
 {
-    public $packageStatus;
+    // Determine the Curre
+    public $customerPackageVisits;
 
-    public function mount(String $packageStatus)
+    public $maxVisits = 4;
+
+    public function mount(Collection $customerPackageVisits)
     {
-        $this->packageStatus = $packageStatus ?: 'active';
+        $this->customerPackageVisits = $customerPackageVisits->toArray();
     }
 
     public function render()

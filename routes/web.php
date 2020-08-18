@@ -13,11 +13,9 @@ use App\Http\Controllers\Auth\LoginController;
 
 Route::get('/test', function ()
 {
-    $customer = Customer::find(1);
-    foreach ($customer->packages as $package) {
-        dump($package->pivot->reference_no);
-    }
-    // ddd();
+    $result = CustomerPackage::orderBy('customer_package_start')->where('customer_package_status', 'completed')->with('customer', 'package', 'customer_visits', 'branch', 'user')->get();
+
+    dd($result);
 });
 
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');

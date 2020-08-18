@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Salon;
 
+use App\CustomerPackage;
 use App\Enums\SalonAction;
 use Livewire\Component;
 
@@ -24,7 +25,9 @@ class SalonTable extends Component
      */
     public function mount()
     {
-        $this->currentDisplayType = SalonAction::NONE;
+        $this->OnNone();
+        $this->getCustomerPackageData();
+        // dd($this->customerPackageVisitsInfo);
     }
 
     /**
@@ -33,6 +36,7 @@ class SalonTable extends Component
     public function onClickNewOrActiveAccount()
     {
        $this->currentDisplayType = SalonAction::NEW_ACTIVE_ACCOUNT;
+       $this->getCustomerPackageData('active');
     }
 
     /**
@@ -40,7 +44,8 @@ class SalonTable extends Component
      */
     public function onExpiredOrComplementedAccount()
     {
-        $this->currentDisplayType = SalonAction::EXPIRED_COMPLETED_ACCOUNT;
+        // $this->currentDisplayType = SalonAction::EXPIRED_COMPLETED_ACCOUNT;
+        $this->OnNone();
     }
 
     /**
@@ -49,7 +54,28 @@ class SalonTable extends Component
     public function OnNone()
     {
         $this->currentDisplayType = SalonAction::NONE;
+        $this->getCustomerPackageData();
     }
+
+    /**
+     * Getting the CostumerPackageData.
+     */
+    private function getCustomerPackageData(String $filterType = 'active')
+    {
+        // 'active', 'expired', 'completed'
+        // dd($this->currentDisplayType === SalonAction::NONE);
+        if ($this->currentDisplayType === SalonAction::NONE) {
+            $this->customerPackageVisitsInfo = [];
+            return;
+        }
+
+        $this->customerPackageVisitsInfo = CustomerPackage::orderBy('customer_package_start')
+                                            ->where('customer_package_status', $filterType)
+                                            ->with('customer', 'package', 'customer_visits', 'branch', 'user')
+                                            ->get();
+    }
+
+
     /**
      * Rendering the component.
      */

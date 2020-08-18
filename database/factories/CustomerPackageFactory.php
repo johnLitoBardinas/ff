@@ -12,7 +12,7 @@ $factory->define(CustomerPackage::class, function (Faker $faker) {
         'package_id' => $faker->randomElement([1, 2, 3]),
         'user_id' => $faker->randomElement([1, 2, 3]),
         'customer_id' => $faker->randomElement([1,2,3]),
-        'reference_no' => $faker->word,
+        'reference_no' => strtotime(now()),
         'payment_type' => $faker->randomElement(Config::get('constant.payment_options')),
     ];
 });
