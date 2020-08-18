@@ -41,7 +41,7 @@
                             <td>{{$row->customer->first_name}}</td>
                             <td>{{$row->customer->last_name}}</td>
                             <td>{{strtoupper($row->payment_type)}}</td>
-                            <td>{{$row->package->package_name}}</td>
+                            <td>{{strtoupper($row->package->package_name)}}</td>
                             <td>
                                 @livewire('salon.date-visits-tracker', [
                                     'customerPackageVisits' => $row->customer_visits

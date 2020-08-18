@@ -1,5 +1,4 @@
 <div>
-
     @if ($type === 'expiredOrComplementedAccount')
         <a href="javascript:void(0);">
             <img src="{{ asset($editRowIcon) }}" alt="Edit Transacition">
