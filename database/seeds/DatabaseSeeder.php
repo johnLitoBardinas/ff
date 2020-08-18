@@ -13,8 +13,8 @@ class DatabaseSeeder extends Seeder
         $this->call(BranchSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(PackageSeeder::class);
-        $this->call(CustomerSeeder::class);
-        $this->call(CustomerPackageSeeder::class);
-        $this->call(CustomerVisitsSeeder::class);
+        // $this->call(CustomerSeeder::class);
+        // $this->call(CustomerPackageSeeder::class);
+        // $this->call(CustomerVisitsSeeder::class);
     }
 }
