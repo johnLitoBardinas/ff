@@ -13065,6 +13065,10 @@ This may include the ff:
   background-repeat: no-repeat;
 }
 
+hr {
+  background: #463291;
+}
+
 /**
 * Form input error.
 */
@@ -13080,7 +13084,8 @@ This may include the ff:
 }
 
 @media (min-width: 1366px) {
-  .container--new-customer {
+  .container--new-customer,
+  .container--customer-visits {
     max-width: 600px;
   }
 }

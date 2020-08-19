@@ -17,6 +17,10 @@ This may include the ff:
     background-repeat: no-repeat;
 }
 
+hr {
+background: $primary-color;
+}
+
 /**
 * Form input error.
 */
@@ -30,7 +34,8 @@ This may include the ff:
         max-width: $LgDesktop-max-width;
     }
 
-    &--new-customer {
+    &--new-customer,
+    &--customer-visits {
         @include media('>=desktop') {
             max-width: 600px;
         }

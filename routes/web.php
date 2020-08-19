@@ -13,8 +13,7 @@ use App\Http\Controllers\Auth\LoginController;
 
 Route::get('/test', function ()
 {
-    $result = CustomerPackage::orderBy('customer_package_start')->where('customer_package_status', 'completed')->with('customer', 'package', 'customer_visits', 'branch', 'user')->get();
-
+    $result = 'Chasing my Magnum Opus - VERnt';
     dd($result);
 });
 
@@ -23,6 +22,7 @@ Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 Route::middleware('auth')->group(function () {
     Route::get('/home', [HomeController::class, 'index'])->name('home');
     Route::livewire('/newaccount', 'salon.add-new-customer')->name('new-customer'); // amazing
+    Route::livewire('/customervisits/{customer_package_id}', 'salon.add-customer-visits')->name('customer-visits'); // amazing
 
     Route::get('/admin', [AdminDashboard::class, 'index'])->name('admin');
 
