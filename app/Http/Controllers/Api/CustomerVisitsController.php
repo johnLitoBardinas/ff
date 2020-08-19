@@ -37,6 +37,9 @@ class CustomerVisitsController extends ApiController
             return $this->errorResponse('Invalid Data', 422);
         }
 
+        /**
+         * , new IsAvailableCustomerPackageToVisits() => Determining the current count of customer visits.
+         */
         $rules = [
             'customer_package_id' => ['required', 'integer', new IsCustomerHasPackage($customer->customer_id)],
             'branch_id' => ['required', 'integer', new IsBranchIdExist()],

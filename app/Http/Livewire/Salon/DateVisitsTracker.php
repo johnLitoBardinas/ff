@@ -10,14 +10,29 @@ class DateVisitsTracker extends Component
     // Determine the Curre
     public $customerPackageVisits;
 
+    // Customer Package Id
     public $customerPackageId;
 
-    public $maxVisits = 4;
+    // Customer Package reference No.
+    public $customerPackageReferenceNo;
 
-    public function mount(Collection $customerPackageVisits)
+    // CustomerMaximum Visits
+    public $maxVisits;
+
+    public function mount(
+        Collection $customerPackageVisits,
+        String $customerPackageReferenceNo,
+        Int $customerPackageId
+    )
     {
+        $this->maxVisits = config('constant.package_visits_limit');
+
         $this->customerPackageVisits = $customerPackageVisits->toArray();
-        $this->customerPackageId = $this->customerPackageVisits[0]['customer_package_id'];
+
+        $this->customerPackageReferenceNo = $customerPackageReferenceNo;
+
+        // Hanging first?
+        $this->customerPackageId = $customerPackageId;
     }
 
     public function render()

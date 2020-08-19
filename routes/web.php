@@ -1,9 +1,5 @@
 <?php
 
-use App\Branch;
-use App\Package;
-use App\Customer;
-use App\CustomerPackage;
 use App\Http\Controllers\Profile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;

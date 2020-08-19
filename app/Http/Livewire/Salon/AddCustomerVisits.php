@@ -2,25 +2,35 @@
 
 namespace App\Http\Livewire\Salon;
 
-use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
+use App\CustomerPackage;
 
 class AddCustomerVisits extends Component
 {
-    public $encryptedCustomerPackageId;
+    public $referenceNo;
 
+    public $customerPackageInfo;
+
+    /**
+     * Mounting some default data.
+     */
     public function mount()
     {
-        $this->encryptedCustomerPackageId = request('customer_package_id') ?? null;
+        $this->referenceNo = request('reference_no');
+        $this->getCustomerPackageVisits();
     }
 
+    private function getCustomerPackageVisits()
+    {
+        $this->customerPackageInfo = CustomerPackage::where('reference_no', 'YRUEWYTU-4760')->with('customer', 'package', 'customer_visits')->first();
+    }
+
+
+    /**
+     * Rendering the component.
+     */
     public function render()
     {
-        if ( empty($this->encryptedCustomerPackageId) ) {
-            Auth::logout();
-           return redirect('/');
-        }
-
         return view('livewire.salon.add-customer-visits');
     }
 }

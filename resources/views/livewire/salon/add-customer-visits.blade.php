@@ -1,23 +1,27 @@
 <div class="container mt-4 container--customer-visits">
-    <h3 class="text-uppercase text-white bg-primary text-center font-weight-light">CUSTOMER VISITS</h3>
+    <h3 class="text-uppercase text-white bg-primary text-center font-weight-light">ADD CUSTOMER VISITS</h3>
     <div class="row">
         <div class="col-6">
             <small>First Name</small>
-            <h5>John Lito</h5>
+            <h5>{{$customerPackageInfo->customer->first_name}}</h5>
         </div>
         <div class="col-6">
             <small>Last Name</small>
-            <h5>Bardinas</h5>
+            <h5>{{$customerPackageInfo->customer->last_name}}</h5>
         </div>
     </div>
     <div class="row">
         <div class="col-6">
             <small>Ref. Number</small>
-            <h5>000000000000</h5>
+            <h5>{{decrypt($referenceNo)}}</h5>
         </div>
         <div class="col-6">
             <small>Payment</small>
-            <h5>Paymaya</h5>
+            <h5>{{strtoupper($customerPackageInfo->payment_type)}}</h5>
+        </div>
+        <div class="col-12">
+            <small>Plan</small>
+            <h5>{{ucfirst($customerPackageInfo->package->package_name)}}</h5>
         </div>
     </div>
     <hr>
@@ -25,13 +29,14 @@
         @csrf
         <input type="hidden" name="user_id" value="{{Auth::id()}}">
         <input type="hidden" name="branch_id" value="{{Auth::user()->branch_id}}">
-        <input type="hidden" name="customer_package_id" value="{{$encryptedCustomerPackageId}}">
+        <input type="hidden" name="reference_no" value="{{$referenceNo}}">
 
         <div class="form-group d-flex customer-visits-tracker">
             <div class="w-24 mr-2">
                 <label for="exampleInputEmail1" class="form-text font-weight-bold text-dark pb-1 mb-0">&nbsp; 1st Visit</label>
                 <small><em>(Year-Month-Day)</em></small>
-                <input type="text" class="form-control" data-plugin="pikaday">
+                {{-- date('Y-m-d', )  --}}
+                <input type="text" class="form-control" data-plugin="pikaday" disabled value="{{$customerPackageInfo->customer_visits[0]->date}}">
             </div>
 
             <div class="w-24 mr-2">

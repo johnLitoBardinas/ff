@@ -27,7 +27,6 @@ class SalonTable extends Component
     {
         $this->OnNone();
         $this->getCustomerPackageData();
-        // dd($this->customerPackageVisitsInfo);
     }
 
     /**
@@ -62,8 +61,6 @@ class SalonTable extends Component
      */
     private function getCustomerPackageData(String $filterType = 'active')
     {
-        // 'active', 'expired', 'completed'
-        // dd($this->currentDisplayType === SalonAction::NONE);
         if ($this->currentDisplayType === SalonAction::NONE) {
             $this->customerPackageVisitsInfo = [];
             return;

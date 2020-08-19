@@ -44,7 +44,9 @@
                             <td>{{strtoupper($row->package->package_name)}}</td>
                             <td>
                                 @livewire('salon.date-visits-tracker', [
-                                    'customerPackageVisits' => $row->customer_visits
+                                    'customerPackageVisits' => $row->customer_visits,
+                                    'customerPackageReferenceNo' => $row->reference_no,
+                                    'customerPackageId' => $row->customer_package_id
                                 ])
                             </td>
                             <td>
