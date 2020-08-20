@@ -3,11 +3,11 @@
 namespace App\Http\Controllers\Api;
 
 use App\Customer;
-use App\CustomerPackage;
 use App\CustomerVisits;
 use App\Rules\IsBranchIdExist;
 use Illuminate\Http\Request;
 use App\Rules\IsCustomerHasPackage;
+use App\Rules\IsCustomerPackageAvailableToVisit;
 use App\Rules\IsUserIdExist;
 
 class CustomerVisitsController extends ApiController
@@ -39,11 +39,25 @@ class CustomerVisitsController extends ApiController
 
         /**
          * , new IsAvailableCustomerPackageToVisits() => Determining the current count of customer visits.
+         * IsCustomerPackageAvailableToVisit
          */
         $rules = [
-            'customer_package_id' => ['required', 'integer', new IsCustomerHasPackage($customer->customer_id)],
-            'branch_id' => ['required', 'integer', new IsBranchIdExist()],
-            'user_id' => ['required', 'integer', new IsUserIdExist()],
+            'customer_package_id' => [
+                'required',
+                'integer',
+                new IsCustomerHasPackage($customer->customer_id),
+                new IsCustomerPackageAvailableToVisit()
+            ],
+            'branch_id' => [
+                'required',
+                'integer',
+                new IsBranchIdExist()
+            ],
+            'user_id' => [
+                'required',
+                'integer',
+                new IsUserIdExist()
+            ],
         ];
 
         $request->validate($rules);
@@ -53,6 +67,10 @@ class CustomerVisitsController extends ApiController
         $customerVisitsData['customer_package_id'] = request('customer_package_id');
         $customerVisitsData['branch_id'] = request('branch_id');
         $customerVisitsData['user_id'] = request('user_id');
+
+        if ($request->has('date')) {
+            $customerVisitsData['date'] = request('date');
+        }
 
         if ($request->has('customer_associate')) {
             $customerVisitsData['customer_associate'] = request('customer_associate');

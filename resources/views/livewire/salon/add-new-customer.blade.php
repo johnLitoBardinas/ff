@@ -17,7 +17,7 @@
 
         <div class="form-group">
             <small for="first_name" class="form-text text-muted">Ref. Number</small>
-            <input type="text" class="form-control border-primary" aria-describedby="refNo" placeholder="Enter Reference Number" name="reference_no" required />
+            <input type="text" class="form-control border-primary text-uppercase" aria-describedby="refNo" placeholder="Enter Reference Number" name="reference_no" required />
         </div>
 
         <div class="form-group">

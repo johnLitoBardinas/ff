@@ -43,3 +43,10 @@ if ( ! function_exists( 'generate_session_data' ) ) {
 
 }
 
+if ( ! function_exists( 'pikaday_date_format' ) ) {
+
+  function pikaday_date_format(String $timestamp)
+  {
+    return date('Y-m-d', strtotime($timestamp));
+  }
+}

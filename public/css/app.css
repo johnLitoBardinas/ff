@@ -12594,6 +12594,10 @@ TEXT UTILITIES
   text-transform: uppercase;
 }
 
+.text-line-through {
+  text-decoration: line-through;
+}
+
 .font-15px {
   font-size: 0.9rem;
 }

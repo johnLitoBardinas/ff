@@ -11,7 +11,7 @@
         @else
             <div class="w-25 d-flex flex-column mr-1">
                 <a
-                href="{{ route('customer-visits', encrypt($customerPackageReferenceNo)) }}"
+                href="{{ route('customer-visits', encrypt($customerPackageId))}}"
                 class="btn btn-sm btn-default border btn__ff--primary">
                 +add
                 </a>

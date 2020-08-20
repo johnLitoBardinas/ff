@@ -112,12 +112,25 @@ const util = {
         return option;
     },
 
+    /**
+     * Default Pikaday Option.
+     */
     pikADayOption: (field) => {
         return {
             field: field,
             firstDay: 1,
             minDate: new Date(),
         };
+    },
+
+    /**
+     * Remove Empty Value from an iterable.
+     */
+    removeEmptyValueFromIterable: (iterable) => {
+        if (typeof iterable === 'string') {
+            return [iterable];
+        }
+        return iterable.filter((el) => el != null && el !== "");
     }
 };
 

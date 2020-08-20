@@ -10,6 +10,8 @@ export default class AppPlugins {
     }
 
     initPikADay() {
-        this.$pikADayField.each((index, element) => new Pikaday(util.pikADayOption(element)));
+        this.$pikADayField.each((index, element) => {
+            new Pikaday(util.pikADayOption(element));
+        });
     }
 }

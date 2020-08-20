@@ -10,6 +10,7 @@ import BranchStatus from './Admin/BranchStatus';
 import BranchUsers from './Admin/BranchUsers';
 
 import SaveNewCustomer from './Salon/SaveNewCustomer';
+import SaveCustomerVisits from './Salon/SaveCustomerVisits';
 
 $(document).ready(() => {
     // Plugins
@@ -22,4 +23,5 @@ $(document).ready(() => {
 
     // Salon Interaction
     new SaveNewCustomer();
+    new SaveCustomerVisits();
 });

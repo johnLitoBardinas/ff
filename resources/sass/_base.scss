@@ -30,6 +30,7 @@ background: $primary-color;
 
 // Override the default media query bootstrap.
 .container{
+
     @include media('>=LGdesktop') {
         max-width: $LgDesktop-max-width;
     }
