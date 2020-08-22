@@ -74,7 +74,7 @@
             <a href="{{ route('home') }}" title="Click to Exit." class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__exit d-flex">EXIT</a>
 
             @if (empty($customerPackageForthVisit))
-                <a href="javascript:void(0);" class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__edit d-flex" id="btn-save-customer-visits">UPDATE</a>
+                <button class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__edit d-flex" id="btn-save-customer-visits">UPDATE</button>
             @else
                 <span class="text-line-through">Completed Package</span>
             @endif

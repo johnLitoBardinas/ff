@@ -14,7 +14,7 @@ export default class SaveNewCustomer {
      */
     onSubmitFormNewCustomer() {
         this.$btnSaveNewCustomer.on('click', (e) => {
-
+            $(e.currentTarget).attr('disabled', true);
             const parsleyForm = this.$frmNewCustomer.parsley();
             const data = this.$frmNewCustomer.serializeObject();
 
@@ -47,10 +47,14 @@ export default class SaveNewCustomer {
                                 this.$frmNewCustomer[0].reset();
                                 parsleyForm.reset();
                             }
+                            $(e.currentTarget).attr('disabled', false);
                        });
 
                     });
                 }).catch((error) => console.error(error));
+
+            }else {
+                $(e.currentTarget).attr('disabled', false);
             }
 
         });

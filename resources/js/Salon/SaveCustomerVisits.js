@@ -13,6 +13,7 @@ export default class SaveCustomerVisits {
 
     onCustomerVisitsUpdate() {
         this.$btnSaveCustomerVisits.on('click', (e) => {
+            $(e.currentTarget).attr('disabled', true);
             const data = this.$frmCustomerVisits.serializeObject();
             const dates = utils.removeEmptyValueFromIterable(data['date']);
 
@@ -39,6 +40,7 @@ export default class SaveCustomerVisits {
                         Swal.fire('Saved Customer Visits', '', 'success');
                     }
                     window.livewire.emit('onUpdateCustomerVisits', data['customer_package_id']);
+                    $(e.currentTarget).attr('disabled', true);
                 })
                 .catch((error) => console.error(error));
             });

@@ -17,7 +17,7 @@
 
         <div class="form-group">
             <small for="first_name" class="form-text text-muted">Ref. Number</small>
-            <input type="text" class="form-control border-primary text-uppercase" aria-describedby="refNo" placeholder="Enter Reference Number" name="reference_no" required />
+            <input type="text" class="form-control border-primary" aria-describedby="refNo" placeholder="Enter Reference Number" name="reference_no" required />
         </div>
 
         <div class="form-group">
@@ -44,7 +44,7 @@
         <div class="d-flex justify-content-between">
             <a href="{{ route('home') }}" title="Click to Exit." class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__exit d-flex">EXIT</a>
 
-            <a href="javascript:void(0);" class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__save d-flex" id="btn-save-new-customer">SAVE</a>
+            <button class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__save d-flex" id="btn-save-new-customer">SAVE</button>
         </div>
     </form>
 </div>
