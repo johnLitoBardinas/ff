@@ -43,8 +43,9 @@ class SalonTable extends Component
      */
     public function onExpiredOrComplementedAccount()
     {
-        // $this->currentDisplayType = SalonAction::EXPIRED_COMPLETED_ACCOUNT;
-        $this->OnNone();
+        $this->currentDisplayType = SalonAction::EXPIRED_COMPLETED_ACCOUNT;
+        $this->getCustomerPackageData('notActive');
+        // $this->OnNone();
     }
 
     /**
@@ -66,10 +67,18 @@ class SalonTable extends Component
             return;
         }
 
-        $this->customerPackageVisitsInfo = CustomerPackage::orderBy('customer_package_start')
-                                            ->where('customer_package_status', $filterType)
-                                            ->with('customer', 'package', 'customer_visits', 'branch', 'user')
-                                            ->get();
+        $customerPackage = CustomerPackage::query();
+        $customerPackage->orderBy('customer_package_start');
+
+        if($filterType === 'notActive') {
+            $customerPackage->where('customer_package_status', '!=', 'active');
+        } else {
+            $customerPackage->where('customer_package_status', 'active');
+        }
+
+        $customerPackage->with('customer', 'package', 'customer_visits', 'branch', 'user');
+
+        $this->customerPackageVisitsInfo = $customerPackage->get();
     }
 
 
