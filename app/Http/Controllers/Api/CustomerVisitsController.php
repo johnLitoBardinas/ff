@@ -3,7 +3,9 @@
 namespace App\Http\Controllers\Api;
 
 use App\Customer;
+use App\CustomerPackage;
 use App\CustomerVisits;
+use App\Enums\CustomerPackageStatus;
 use App\Rules\IsBranchIdExist;
 use Illuminate\Http\Request;
 use App\Rules\IsCustomerHasPackage;
@@ -21,7 +23,7 @@ class CustomerVisitsController extends ApiController
          * Customers + Customer Packages + Package
          * Customer + Customer Packages + Customer Visits Data.
          */
-        $customerVisits = Customer::where('customer_id', 1)
+        $customerVisits = Customer::where('customer_id', $customer->customer_id)
                             ->with('customer_packages.package', 'customer_packages.customer_visits')
                             ->get();
 
@@ -81,8 +83,22 @@ class CustomerVisitsController extends ApiController
         }
 
         $customerVisits = CustomerVisits::create($customerVisitsData);
+
+        if ( $this->getTotalCustomerVisits( request('customer_package_id') ) === (int) config('constant.package_visits_limit') ) {
+            CustomerPackage::where('customer_package_id', request('customer_package_id'))
+            ->update(['customer_package_status' => CustomerPackageStatus::COMPLETED]);
+        }
+
         return $this->showOne($customerVisits, 201);
 
+    }
+
+    /**
+     * Checking the customer Visitation.
+     */
+    private function getTotalCustomerVisits(Int $customerPackageId)
+    {
+        return CustomerVisits::where('customer_package_id', $customerPackageId)->count();
     }
 
 }
