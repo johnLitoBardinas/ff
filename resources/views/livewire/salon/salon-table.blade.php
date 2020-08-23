@@ -1,7 +1,7 @@
 <div class="row mt-4">
     {{-- {{dd($customerPackageVisitsInfo)}} --}}
     <div class="col-md-12">
-
+        {{ $searchingText }}
         <div class="table-responsive">
             <table class="table table-hover admin-table">
                 <thead class="text-white bg-primary">

@@ -11,7 +11,8 @@ class SalonTable extends Component
     protected $listeners = [
         'onClickNewOrActiveAccount',
         'onExpiredOrComplementedAccount',
-        'OnNone'
+        'OnNone',
+        'onSearchSalonTable'
     ];
 
     // Displaying the current Table Data.
@@ -20,6 +21,8 @@ class SalonTable extends Component
     // Store the Customer Package VIsits Table.
     public $customerPackageVisitsInfo;
 
+    public $searchingText;
+
     /**
      * Mounting the Component data.
      */
@@ -27,6 +30,36 @@ class SalonTable extends Component
     {
         $this->OnNone();
         $this->getCustomerPackageData();
+    }
+
+    /**
+     * On search Table.
+     * Customer Name.
+     */
+    public function onSearchSalonTable(String $searchSalonTable = '')
+    {
+        if (empty( $searchSalonTable )) {
+            $this->currentDisplayType = SalonAction::NONE;
+            $this->customerPackageVisitsInfo = [];
+        } else {
+            $this->currentDisplayType = SalonAction::ALL;
+            $this->getCustomerPackageData();
+
+            $filtered = $this->customerPackageVisitsInfo->filter(function ($package) use ($searchSalonTable)
+            {
+                if (strpos(strtolower($package->customer->first_name), trim($searchSalonTable)) > -1) {
+                    return true;
+                } else if (strpos(strtolower($package->customer->last_name), trim($searchSalonTable)) > -1) {
+                    return true;
+                }
+
+                return false;
+
+            });
+
+            $this->customerPackageVisitsInfo = $filtered;
+        }
+
     }
 
     /**
@@ -45,7 +78,6 @@ class SalonTable extends Component
     {
         $this->currentDisplayType = SalonAction::EXPIRED_COMPLETED_ACCOUNT;
         $this->getCustomerPackageData('notActive');
-        // $this->OnNone();
     }
 
     /**
@@ -60,7 +92,7 @@ class SalonTable extends Component
     /**
      * Getting the CostumerPackageData.
      */
-    private function getCustomerPackageData(String $filterType = 'active')
+    private function getCustomerPackageData(String $filterType = 'all')
     {
         if ($this->currentDisplayType === SalonAction::NONE) {
             $this->customerPackageVisitsInfo = [];
@@ -72,7 +104,7 @@ class SalonTable extends Component
 
         if($filterType === 'notActive') {
             $customerPackage->where('customer_package_status', '!=', 'active');
-        } else {
+        } else if ($filterType === 'active') {
             $customerPackage->where('customer_package_status', 'active');
         }
 
