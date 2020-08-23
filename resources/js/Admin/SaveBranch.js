@@ -75,7 +75,7 @@ export default class SaveBranch {
 
                 axios.post(ApiUrl.branch, data)
                 .then((response) => {
-                    if (response.status === 200) {
+                    if (response.status === 201) {
                         window.livewire.emit('onUpdateBranch', response.data['branch_id']);
                         window.livewire.emit('onChangeBranch', response.data['branch_id']);
                         Swal.fire('Branch Added!!!', '', 'success');
