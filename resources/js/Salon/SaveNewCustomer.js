@@ -25,7 +25,7 @@ export default class SaveNewCustomer {
                 axios.post(ApiUrl.customers, data)
                 .then((result) => result.data)
                 .then((customerData) => {
-                    console.log('1 customerData', customerData);
+                    // console.log('1 customerData', customerData);
                     const customerPackageUrl = `${ApiUrl.customers}/${customerData['customer_id']}/packages`;
                     const customerPackageData = {
                         ...customerData,
@@ -34,7 +34,7 @@ export default class SaveNewCustomer {
 
                     axios.post(customerPackageUrl, customerPackageData)
                     .then((customerPackage) => {
-                       console.log('2 customerPackage', customerPackage.data);
+                    //    console.log('2 customerPackage', customerPackage.data);
 
                        delete customerPackage.data['payment_type'];
                        delete customerPackage.data['reference_no'];

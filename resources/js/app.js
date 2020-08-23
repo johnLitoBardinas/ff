@@ -12,6 +12,8 @@ import BranchUsers from './Admin/BranchUsers';
 import SaveNewCustomer from './Salon/SaveNewCustomer';
 import SaveCustomerVisits from './Salon/SaveCustomerVisits';
 
+import RenewCustomer from './Salon/RenewCustomer';
+
 $(document).ready(() => {
     // Plugins
     new AppPlugins();
@@ -24,4 +26,5 @@ $(document).ready(() => {
     // Salon Interaction
     new SaveNewCustomer();
     new SaveCustomerVisits();
+    new RenewCustomer();
 });

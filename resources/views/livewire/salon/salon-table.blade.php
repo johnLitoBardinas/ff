@@ -59,7 +59,8 @@
                             </td>
                             <td>
                                 @livewire('salon.table-action', [
-                                    'type' => $currentDisplayType
+                                    'type' => $currentDisplayType,
+                                    'customerId' => $row->customer->customer_id
                                 ])
                             </td>
                         </tr>

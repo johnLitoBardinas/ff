@@ -1,0 +1,47 @@
+import Swal from 'sweetalert2';
+
+export default class RenewCustomer {
+
+    constructor() {
+        this.$frmRenewCustomer = $("#frm-renew-customer");
+        this.$btnSaveRenewCustomer = $("#btn-save-renew-customer");
+
+        this.onSubmitRenewCustomer();
+    }
+
+    onSubmitRenewCustomer() {
+        this.$btnSaveRenewCustomer.on('click', (e) => {
+            $(e.currentTarget).attr('disabled', true);
+            const parsleyForm = this.$frmRenewCustomer.parsley();
+            const data = this.$frmRenewCustomer.serializeObject();
+
+            parsleyForm.validate();
+
+            if (parsleyForm.isValid()) {
+                const customerPackageUrl = `${ApiUrl.customers}/${data['customer_id']}/packages`;
+                const customerVisitsUrl = `${ApiUrl.customers}/${data['customer_id']}/visits`;
+
+                axios.post(customerPackageUrl, data)
+                .then((response) => response.data)
+                .then((customerPackageData) => {
+                    axios.post(customerVisitsUrl, customerPackageData)
+                    .then((response) => {
+                        console.log('response', response);
+                        if (response.status === 201) {
+                            Swal.fire('Customer Successfully Renew', '', 'success');
+                            this.$frmRenewCustomer[0].reset();
+                            parsleyForm.reset();
+                        }
+                        $(e.currentTarget).attr('disabled', false);
+                    }).catch((error) => console.error(error));
+                })
+                .catch((error) => console.error(error))
+            } else {
+                $(e.currentTarget).attr('disabled', false);
+            }
+
+        });
+    }
+
+
+}

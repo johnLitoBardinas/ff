@@ -81,7 +81,6 @@ class SalonTable extends Component
         $this->customerPackageVisitsInfo = $customerPackage->get();
     }
 
-
     /**
      * Rendering the component.
      */
