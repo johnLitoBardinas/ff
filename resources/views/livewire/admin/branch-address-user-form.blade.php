@@ -8,13 +8,13 @@ x-data="{
     users: JSON.parse({{json_encode($branchUsers)}}),
     roles: JSON.parse({{json_encode($roles)}})
 }" @add-new-user="users.push($event.detail)" @reset-new-user="action = 'addBranch'">
-{{-- PHP: Action = {{$action}} --}}
-    <form id="frm-branch" method="POST">
+
+    <form id="frm-branch" method="POST" novalidate>
         @csrf
         <input type="hidden" name="action" x-bind:value="action">
         <input type="hidden" name="current_branch_id" x-bind:value="branchId">
         <div class="d-flex justify-content-end position-relative admin-action">
-            {{-- AP: Action = <span x-text="action"></span> --}}
+
             <a href="javascript:void(0);" class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__delete position-absolute l-0 d-none">DELETE</a>
 
             <div class="d-flex justify-content-around">
@@ -26,10 +26,12 @@ x-data="{
                 data-action="{{ $branchStatus === 'active' ? 'inactive' : 'active' }}"
                 id="btn-branch-status">@if($branchStatus === 'active') DEACTIVATE @else ACTIVATE @endif</a>
 
-                <a href="javascript:void(0);"
+                <button
                 class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__save d-none"
                 :class="[ action === 'editBranch' ? 'd-flex' : '' ]"
-                id="btn-savebranch">SAVE</a>
+                id="btn-savebranch">
+                SAVE
+                </button>
 
                 <a href="javascript:void(0);"
                 title="Add User to the Branch."
@@ -66,20 +68,30 @@ x-data="{
                     ADDRESS
                 </h6>
 
-                {{-- <span x-text="users.length"></span> --}}
-
                 <div class="form-group">
-                    <small for="exampleInputEmail1" class="form-text text-muted">Branch Name</small>
-                    <input type="text" class="form-control border-primary" aria-describedby="branchName"
+                    <small for="branchName" class="form-text text-muted">Branch Name</small>
+                    <input
+                    type="text"
+                    class="form-control border-primary"
+                    aria-describedby="branchName"
+                    placeholder="Enter Branch Name"
+                    name="branch_name"
                     :disabled="action === 'readBranch'"
-                placeholder="Enter Branch Name" name="branch_name" :value="branchName"/>
+                    :value="branchName"
+                    required />
                 </div>
 
                 <div class="form-group">
-                    <small for="exampleInputEmail1" class="form-text text-muted">Branch Address</small>
-                    <input type="text" class="form-control border-primary"
-                    :disabled="action === 'readBranch'" aria-describedby="branchAddress"
-                placeholder="Enter Branch Address" name="branch_address" :value="branchAddress"/>
+                    <small for="branchAddress" class="form-text text-muted">Branch Address</small>
+                    <input
+                    type="text"
+                    class="form-control border-primary"
+                    aria-describedby="branchAddress"
+                    placeholder="Enter Branch Address"
+                    name="branch_address"
+                    :disabled="action === 'readBranch'"
+                    :value="branchAddress"
+                    required />
                 </div>
             </div>
         </div>
@@ -99,39 +111,67 @@ x-data="{
                     <input type="hidden" name="branch_id" :value="branchId" />
 
                     <div class="form-group">
-                        <small for="exampleInputEmail1" class="form-text text-muted">First Name</small>
-                        <input type="text" class="form-control border-primary"
-                        :disabled="action === 'readBranch'"
+                        <small for="firstName" class="form-text text-muted">First Name</small>
+                        <input
+                        type="text"
+                        class="form-control border-primary"
                         aria-describedby="firstName"
-                        placeholder="First Name" name="first_name" :value="user.first_name" />
+                        placeholder="First Name"
+                        name="first_name"
+                        :disabled="action === 'readBranch'"
+                        :value="user.first_name"
+                        required />
                     </div>
 
                     <div class="form-group">
-                        <small for="exampleInputEmail1" class="form-text text-muted">Last Name</small>
-                        <input type="text" class="form-control border-primary"
-                        :disabled="action === 'readBranch'"
+                        <small for="lastName" class="form-text text-muted">Last Name</small>
+                        <input
+                        type="text"
+                        class="form-control border-primary"
                         aria-describedby="lastName"
-                        placeholder="Last Name" name="last_name" :value="user.last_name"/>
-                    </div>
-
-                    <div class="form-group">
-                        <small for="exampleInputEmail1" class="form-text text-muted">Email</small>
-                        <input type="email" class="form-control border-primary"
-                        :readonly="action === 'editBranch' || action === 'readBranch'"
-                            aria-describedby="emailAddress" placeholder="Enter email" name="email" :value="user.email" readonly />
-                    </div>
-
-                    <div class="form-group">
-                        <small for="exampleInputEmail1" class="form-text text-muted">Mobile</small>
-                        <input type="text" class="form-control border-primary"
+                        placeholder="Last Name"
+                        name="last_name"
                         :disabled="action === 'readBranch'"
-                        aria-describedby="mobileNumber" placeholder="Enter email" name="mobile_number" :value="user.mobile_number" />
+                        :value="user.last_name"
+                        required />
+                    </div>
+
+                    <div class="form-group">
+                        <small for="emailAddress" class="form-text text-muted">Email</small>
+                        <input
+                        type="email"
+                        class="form-control border-primary"
+                        aria-describedby="emailAddress"
+                        placeholder="Enter email"
+                        name="email"
+                        :readonly="action === 'editBranch' || action === 'readBranch'"
+                        :value="user.email"
+                        readonly />
+                    </div>
+
+                    <div class="form-group">
+                        <small for="mobileNumber" class="form-text text-muted">Mobile</small>
+                        <input
+                        type="text"
+                        class="form-control border-primary"
+                        aria-describedby="mobileNumber"
+                        placeholder="Enter email"
+                        name="mobile_number"
+                        :disabled="action === 'readBranch'"
+                        :value="user.mobile_number"
+                        data-parsley-minlength-message=" "
+                        data-parsley-maxlength-message="The field allowed length is 11"
+                        minlength="11"
+                        maxlength="11"
+                        data-parsley-type="number"
+                        required />
                     </div>
 
                     <div class="form-group">
                         <small for="exampleInputEmail1" class="form-text text-muted">User Type</small>
-                        <select class="custom-select border-primary"
-                        :disabled="action === 'readBranch'" name="role_id" :value="user.role_id">
+                        <select
+                        class="custom-select border-primary"
+                        :disabled="action === 'readBranch'" name="role_id" :value="user.role_id" required >
                             <template x-for="(role, index)  in roles" :key="index">
                                 <option :value="role.role_id" x-text="role.name" x-bind:selected="user.role_id == role.role_id"></option>
                             </template>

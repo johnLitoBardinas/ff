@@ -18,12 +18,15 @@ export default class SaveBranch {
      * Saving the Branch Form.
      */
     saveBranchForm() {
-        this.$btnSaveBranch.on('click', () => {
-            const formAction = $('input[name="action"]').val() || 'readBranch';
+        this.$btnSaveBranch.on('click', (e) => {
+            $(e.currentTarget).attr('disabled', true);
+            const frmBranchInfo = this.$adminBranchForm.find("#frm-branch").parsley();
             const data = utils.formatBranchData(this.$adminBranchForm.find("#frm-branch").serializeObject());
-            const url = formAction === 'editBranch' ? `${ApiUrl.branch}/${data['current_branch_id']}` : ApiUrl.branch;
+            const url = `${ApiUrl.branch}/${data['current_branch_id']}`;
 
-            if ( formAction === 'editBranch' ) {
+            frmBranchInfo.validate();
+
+            if (frmBranchInfo.isValid()) {
                 axios.put(url, data)
                 .then((response) => {
                     if (response.status === 200) {
@@ -32,9 +35,12 @@ export default class SaveBranch {
                         Swal.fire('Branch Updated!!!', '', 'success');
                     }
                 })
-                .catch((error) => console.log(error));
+                .catch((error) => console.log(error))
+                .finally(() => {
+                    $(e.currentTarget).attr('disabled', false);
+                });
             } else {
-                console.log('ReadBranch');
+                $(e.currentTarget).attr('disabled', false);
             }
 
         });

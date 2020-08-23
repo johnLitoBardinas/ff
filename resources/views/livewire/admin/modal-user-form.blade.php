@@ -25,7 +25,7 @@
             </div>
             <div class="form-group">
                 <label for="mobile_number" class="col-form-label">Mobile Number:</label>
-                <input type="number" class="form-control" id="mobile-number" name="mobile_number" placeholder="Mobile Number" data-parsley-maxlength-message="The field allowed length is 11" minlength="11" maxlength="11" data-parsley-type="number" required />
+                <input type="number" class="form-control" id="mobile-number" name="mobile_number" placeholder="Mobile Number" data-parsley-minlength-message=" " data-parsley-maxlength-message="The field allowed length is 11" minlength="11" maxlength="11" data-parsley-type="number" required />
             </div>
             <div class="form-group">
               <label for="message-text" class="col-form-label">Role:</label>
