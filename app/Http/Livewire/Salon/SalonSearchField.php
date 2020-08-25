@@ -8,7 +8,7 @@ class SalonSearchField extends Component
 {
     public $customerOrRefNumberField;
 
-    public function updatedCustomerOrRefNumberField()
+    public function submitSalonSearchField ()
     {
         $this->emitTo('salon.salon-table', 'onSearchSalonTable', $this->customerOrRefNumberField);
     }

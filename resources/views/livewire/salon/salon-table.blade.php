@@ -1,7 +1,5 @@
 <div class="row mt-4">
-    {{-- {{dd($customerPackageVisitsInfo)}} --}}
     <div class="col-md-12">
-        {{ $searchingText }}
         <div class="table-responsive">
             <table class="table table-hover admin-table">
                 <thead class="text-white bg-primary">
@@ -36,32 +34,53 @@
                 </thead>
                 <tbody>
                     @forelse ($customerPackageVisitsInfo as $row)
+                        <?php $customerVisits = $row->customer_visits->toArray(); ?>
                         <tr>
-                            <td>{{$row->reference_no}}</td>
-                            <td>{{$row->customer->first_name}}</td>
-                            <td>{{$row->customer->last_name}}</td>
+                            <td>{{strtoupper($row->reference_no)}}</td>
+                            <td>{{ucwords($row->customer->first_name)}}</td>
+                            <td>{{ucwords($row->customer->last_name)}}</td>
                             <td>{{strtoupper($row->payment_type)}}</td>
                             <td>{{strtoupper($row->package->package_name)}}</td>
                             <td>
-                                @livewire('salon.date-visits-tracker', [
-                                    'customerPackageVisits' => $row->customer_visits,
-                                    'customerPackageReferenceNo' => $row->reference_no,
-                                    'customerPackageId' => $row->customer_package_id
-                                ])
+                                <div class="w-100 d-flex justify-content-around">
+                                    @for ($i = 0; $i < config('constant.package_visits_limit'); $i++)
+                                        @if (! empty($customerVisits[$i]))
+                                            <div class="w-25 d-flex flex-column mr-1">
+                                                <button class="btn btn-sm btn-default border btn__ff--primary active" disabled>
+                                                    {{date('n-j-Y', strtotime($customerVisits[$i]['date']))}}
+                                                </button>
+                                            </div>
+                                        @else
+                                            <div class="w-25 d-flex flex-column mr-1">
+                                                <a
+                                                href="{{ route('customer-visits', encrypt($row->customer_package_id))}}"
+                                                class="btn btn-sm btn-default border btn__ff--primary">
+                                                +add
+                                                </a>
+                                            </div>
+                                        @endif
+                                    @endfor
+                                </div>
                             </td>
                             <td>
                                 {{date('M. d, Y', strtotime( $row->customer_package_end ) )}}
                             </td>
                             <td>
-                                @livewire('salon.package-status-label', [
-                                    'type' => $row->customer_package_status
-                                ])
+                                <span class="package-status package-status--{{$row->customer_package_status}}">{{ strtoupper($row->customer_package_status) }}</span>
                             </td>
                             <td>
-                                @livewire('salon.table-action', [
-                                    'type' => $currentDisplayType,
-                                    'customerId' => $row->customer->customer_id
-                                ])
+                                @if ($row->customer_package_status !== 'active')
+                                    <a class="cursor-pointer" href="{{route('customer-renew', encrypt($row->customer->customer_id))}}" title="Renew the Customer">
+                                        <img src="{{ asset('svg/icons/table_edit.svg') }}" alt="Edit Transacition">
+                                    </a>
+                                    <a class="cursor-pointer" href="javascript:void(0);" title="View Related Assets (Image)">
+                                        <img src="{{ asset('svg/icons/view_more.svg') }}" alt="View More Detalils">
+                                    </a>
+                                @else
+                                    <a class="cursor-pointer" href="javascript:void(0);" title="View Related Assets (Image)">
+                                        <img src="{{ asset('svg/icons/view_more.svg') }}" alt="View More Detalils">
+                                    </a>
+                                @endif
                             </td>
                         </tr>
                     @empty

@@ -2,9 +2,10 @@
 
 namespace App\Http\Livewire\Salon;
 
+use App\Customer;
+use Livewire\Component;
 use App\CustomerPackage;
 use App\Enums\SalonAction;
-use Livewire\Component;
 
 class SalonTable extends Component
 {
@@ -21,6 +22,8 @@ class SalonTable extends Component
     // Store the Customer Package VIsits Table.
     public $customerPackageVisitsInfo;
 
+    public $customerListId;
+
     public $searchingText;
 
     /**
@@ -36,30 +39,21 @@ class SalonTable extends Component
      * On search Table.
      * Customer Name.
      */
-    public function onSearchSalonTable(String $searchSalonTable = '')
+    public function onSearchSalonTable($searchSalonTable = null)
     {
         if (empty( $searchSalonTable )) {
-            $this->currentDisplayType = SalonAction::NONE;
-            $this->customerPackageVisitsInfo = [];
-        } else {
-            $this->currentDisplayType = SalonAction::ALL;
-            $this->getCustomerPackageData();
-
-            $filtered = $this->customerPackageVisitsInfo->filter(function ($package) use ($searchSalonTable)
-            {
-                if (strpos(strtolower($package->customer->first_name), trim($searchSalonTable)) > -1) {
-                    return true;
-                } else if (strpos(strtolower($package->customer->last_name), trim($searchSalonTable)) > -1) {
-                    return true;
-                }
-
-                return false;
-
-            });
-
-            $this->customerPackageVisitsInfo = $filtered;
+            $this->OnNone();
         }
 
+        $this->searchingText = $searchSalonTable;
+        $this->customerListId = Customer::where('first_name', 'LIKE', '%' . trim($searchSalonTable) . '%')->orWhere('last_name', 'LIKE', '%' . trim($searchSalonTable) . '%')->pluck('customer_id')->toArray();
+
+        if ( empty($this->customerListId) ) {
+            $this->OnNone();
+        }
+
+        $this->customerPackageVisitsInfo = CustomerPackage::whereIn('customer_id', $this->customerListId)->with('customer', 'package', 'customer_visits', 'branch', 'user')->get();
+        // dd($this->customerPackageVisitsInfo->toArray());
     }
 
     /**
@@ -94,6 +88,8 @@ class SalonTable extends Component
      */
     private function getCustomerPackageData(String $filterType = 'all')
     {
+        $this->customerPackageVisitsInfo = [];
+
         if ($this->currentDisplayType === SalonAction::NONE) {
             $this->customerPackageVisitsInfo = [];
             return;
