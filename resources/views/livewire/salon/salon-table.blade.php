@@ -44,9 +44,12 @@
                             <td>
                                 <div class="w-100 d-flex justify-content-around">
                                     @for ($i = 0; $i < config('constant.package_visits_limit'); $i++)
-                                        @if (! empty($customerVisits[$i]))
+
+                                        @if( empty($customerVisits[$i]) &&  $row->customer_package_status === 'expired')
+                                            <button class="btn btn-sm btn-default border w-25" disabled>X</button>
+                                        @elseif (! empty($customerVisits[$i]))
                                             <div class="w-25 d-flex flex-column mr-1">
-                                                <button class="btn btn-sm btn-default border btn__ff--primary active" disabled>
+                                                <button class="btn btn-sm btn-default border btn__ff--primary bg-gray active" disabled>
                                                     {{date('n-j-Y', strtotime($customerVisits[$i]['date']))}}
                                                 </button>
                                             </div>
