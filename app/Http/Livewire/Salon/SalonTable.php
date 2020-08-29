@@ -53,7 +53,6 @@ class SalonTable extends Component
         }
 
         $this->customerPackageVisitsInfo = CustomerPackage::whereIn('customer_id', $this->customerListId)->with('customer', 'package', 'customer_visits', 'branch', 'user')->get();
-        // dd($this->customerPackageVisitsInfo->toArray());
     }
 
     /**

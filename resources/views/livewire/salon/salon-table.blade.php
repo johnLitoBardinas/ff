@@ -66,7 +66,7 @@
                                 </div>
                             </td>
                             <td>
-                                {{date('M. d, Y', strtotime( $row->customer_package_end ) )}}
+                                {{date('M. d, Y', strtotime( '-1 day', strtotime( $row->customer_package_end ) ) )}}
                             </td>
                             <td>
                                 <span class="package-status package-status--{{$row->customer_package_status}}">{{ strtoupper($row->customer_package_status) }}</span>
