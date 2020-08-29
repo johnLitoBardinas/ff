@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Branch;
+use App\Enums\UserStatus;
 use Illuminate\Http\Request;
 use App\User;
 
@@ -85,6 +86,13 @@ class BranchController extends ApiController
      */
     public function updateBranchStatus(Branch $branch, String $status)
     {
+        // Get all the Branch User Here
+        $branchUsersId = Branch::find($branch->branch_id)->users->pluck('user_id');
+
+        if ( ! empty( $branchUsersId ) ) {
+            User::whereIn('user_id', $branchUsersId)->update(['user_status' => $status]);
+        }
+
         $branch->branch_status = $status;
         $branch->save();
         return $this->showOne($branch);

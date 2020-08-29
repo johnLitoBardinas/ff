@@ -9,7 +9,7 @@ use App\Http\Controllers\Api\BranchController;
 
 Route::get('/', function (Request $request)
 {
-    dd('Fix&Free API - By: John Lito Bardinas');
+    dd('Fix&Free API - By: John Lito Bardinas ;)');
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
