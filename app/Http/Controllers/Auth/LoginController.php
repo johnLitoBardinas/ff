@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Rules\IsActive;
-use App\Enums\AccessHomeType;
+use App\User;
 use App\Enums\UserType;
+use App\Rules\IsActive;
+use Illuminate\Http\Request;
+use App\Enums\AccessHomeType;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use App\Rules\IsUserBranchDeactivated;
 use App\Providers\RouteServiceProvider;
-use App\User;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
 class LoginController extends Controller
@@ -31,10 +33,10 @@ class LoginController extends Controller
     /**
      * Validate the user login request.
      */
-    protected function validateLogin($request)
+    protected function validateLogin( Request $request )
     {
         $request->validate([
-            'email' => ['required', 'string:max:191', new IsActive()],
+            'email' => ['required', 'string:max:191', new IsActive(), new IsUserBranchDeactivated()],
             'password' => 'required|string',
         ]);
     }
