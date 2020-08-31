@@ -2,3 +2,6 @@
     <span class="float-left">+</span>
     <span class="text-bold font-15px">Add Branch</span>
 </button>
+
+{{-- Modal Branch --}}
+@livewire('admin.modal-branch-form')

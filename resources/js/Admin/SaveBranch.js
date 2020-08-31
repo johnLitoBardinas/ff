@@ -6,16 +6,22 @@ export default class SaveBranch {
 
     constructor () {
         this.$btnShowAddBranch = $("#showAddBranch");
+        this.$modalBranchForm = $("#modal-branch-form");
+        this.$frmBranchFormNew = $("#frm-branch-new");
+        this.$btnSaveNewBranch = $("#btn-save-new-branch");
 
+        // Editing the Branch.
         this.$adminBranchForm = $(".admin-branches-form");
         this.$btnSaveBranch = $("#btn-savebranch");
 
-        this.onShowAddBranchForm();
         this.saveBranchForm();
+
+        this.onShowAddBranchForm();
+        this.onSaveModalBranchForm();
     }
 
     /**
-     * Saving the Branch Form.
+     * Saving the Branch Form. for editing the branch data and Branch User.
      */
     saveBranchForm() {
         this.$btnSaveBranch.on('click', (e) => {
@@ -47,59 +53,30 @@ export default class SaveBranch {
     }
 
     /**
-     * Showing the Add Branch SWAL2.
+     * Showing the Add Branch Modal.
      */
     onShowAddBranchForm() {
         this.$btnShowAddBranch.on('click', (e) => {
-            Swal.fire({
-                title: 'Branch Form',
-                html: `
-                    <em> You can add user after the branch is save.. </em>
-                    <input type="text" id="branch-name" class="swal2-input" placeholder="Branch Name" />
-                    <input type="text" id="branch-address" class="swal2-input" placeholder="Branch Address" />
-                `,
-                icon: 'question',
-                confirmButtonText: 'Save',
-                preConfirm: () => {
-                    let branchName = Swal.getPopup().querySelector('#branch-name').value || '';
-                    let branchAddress = Swal.getPopup().querySelector('#branch-address').value || '';
-                    if (branchName === '' || branchAddress === '') {
-                        Swal.showValidationMessage(`Empty &nbsp <b>Branch Name</b> &nbsp or &nbsp <b>Branch Address</b>`)
-                    }
-                    return {branchName, branchAddress}
-                }
-            }).then((result) => {
+            this.$modalBranchForm.modal({backdrop: 'static', keyboard: false});
+        });
+    }
 
-                if ( result.value === undefined) {
-                    return;
-                }
+    /**
+     * Saving the Add Branch Modal form.
+     */
+    onSaveModalBranchForm() {
+        this.$btnSaveNewBranch.on('click', (e) => {
+            $(e.currentTarget).attr('disabled', true);
+            const parsleyForm = this.$frmBranchFormNew.parsley();
+            const data = this.$frmBranchFormNew.serializeObject();
+            parsleyForm.validate();
 
-                const data = {
-                    'branch_name': result.value.branchName,
-                    'branch_address': result.value.branchAddress,
-                };
-
-                axios.post(ApiUrl.branch, data)
-                .then((response) => {
-                    if (response.status === 201) {
-                        window.livewire.emit('onUpdateBranch', response.data['branch_id']);
-                        window.livewire.emit('onChangeBranch', response.data['branch_id']);
-                        Swal.fire('Branch Added!!!', '', 'success');
-                    }
-                }).catch((error) => {
-                    const errorData = error.response.data;
-                    const errorMessage = errorData.message || 'Error';
-                    Swal.fire({
-                        icon: 'error',
-                        title: errorMessage,
-                        html: `<b>Branch Name</b> or <b>Branch Address</b> already existed.`
-                    });
-                });
-
-
-            })
-            .catch((error) => console.log('Is this called??'));
-
+            if (parsleyForm.isValid()) {
+                console.log('Modal Branch Form is Valid');
+                console.log('data', data);
+            } else {
+                $(e.currentTarget).attr('disabled', false);
+            }
         });
     }
 
