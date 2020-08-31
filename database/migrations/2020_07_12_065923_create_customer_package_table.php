@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\CustomerPackageStatus;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
@@ -18,7 +19,7 @@ class CreateCustomerPackageTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('customer_id');
             $table->string('reference_no');
-            $table->enum('customer_package_status', ['active', 'expired', 'completed']);
+            $table->enum('customer_package_status', CustomerPackageStatus::getValues())->default(CustomerPackageStatus::ACTIVE);
             $table->tinyInteger('total_consumable_visits')->default(Config::get('constant.package_visits_limit'));
             $table->enum('payment_type', Config::get('constant.payment_options'));
             $table->date('customer_package_start')->default(Carbon::now());
@@ -40,6 +41,7 @@ class CreateCustomerPackageTable extends Migration
             $table->dropForeign('customer_package_user_id_foreign');
             $table->dropForeign('customer_package_customer_id_foreign');
         });
+
         Schema::dropIfExists('customer_package');
 
     }

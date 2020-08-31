@@ -15,6 +15,7 @@ class Branch extends Model
         'branch_code',
         'branch_name',
         'branch_address',
+        'branch_type',
     ];
 
     // One Branch Model can be related to multiple User Model.

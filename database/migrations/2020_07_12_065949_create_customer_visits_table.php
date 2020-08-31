@@ -37,6 +37,7 @@ class CreateCustomerVisitsTable extends Migration
             $table->dropForeign('customer_visits_branch_id_foreign');
             $table->dropForeign('customer_visits_user_id_foreign');
         });
+
         Schema::dropIfExists('customer_visits');
     }
 }

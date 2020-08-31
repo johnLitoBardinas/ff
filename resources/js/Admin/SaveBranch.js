@@ -73,11 +73,29 @@ export default class SaveBranch {
             parsleyForm.validate();
 
             if (parsleyForm.isValid()) {
-                console.log('Modal Branch Form is Valid');
-                console.log('data', data);
+                axios.post(ApiUrl.branch, data)
+                .then((response) => {
+                    this.$modalBranchForm.modal('hide');
+                    if (response.status === 201) {
+                        window.livewire.emit('onUpdateBranch', response.data['branch_id']);
+                        window.livewire.emit('onChangeBranch', response.data['branch_id']);
+                        Swal.fire('Branch Added!!!', '', 'success');
+                    }
+                }).catch((error) => {
+                    const errorData = error.response.data;
+                    const errorMessage = errorData.message || 'Error';
+                    Swal.fire({
+                        icon: 'error',
+                        title: errorMessage,
+                        html: `<b>Branch Name</b> or <b>Branch Address</b> already existed.`
+                    });
+                })
+                .finally(() => $(e.currentTarget).attr('disabled', false));
+
             } else {
                 $(e.currentTarget).attr('disabled', false);
             }
+
         });
     }
 

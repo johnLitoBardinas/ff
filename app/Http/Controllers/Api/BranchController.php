@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Branch;
+use App\Enums\BranchType;
 use App\Enums\UserStatus;
 use Illuminate\Http\Request;
 use App\User;
@@ -27,12 +28,14 @@ class BranchController extends ApiController
         $request->validate([
             'branch_name' => ['required', 'string', 'unique:branch,branch_name', 'max:50'],
             'branch_address' => ['required', 'string', 'unique:branch,branch_address', 'max:190'],
+            'branch_type' => ['required', 'in:' . implode(',', BranchType::getValues())]
         ]);
 
         $branch = Branch::create([
             'branch_code' => generate_branch_code(),
             'branch_name' => request('branch_name'),
-            'branch_address' => request('branch_address')
+            'branch_address' => request('branch_address'),
+            'branch_type' => request('branch_type'),
         ]);
 
         return $this->showOne($branch, 201);
