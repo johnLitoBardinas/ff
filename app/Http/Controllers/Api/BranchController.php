@@ -86,7 +86,7 @@ class BranchController extends ApiController
      */
     public function updateBranchStatus(Branch $branch, String $status)
     {
-        // Get all the Branch User Here
+        // Get all the Branch User Id converting to array.
         $branchUsersId = Branch::find($branch->branch_id)->users->pluck('user_id');
 
         if ( ! empty( $branchUsersId ) ) {

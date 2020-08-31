@@ -18,6 +18,7 @@ export default class SaveBranch {
 
         this.onShowAddBranchForm();
         this.onSaveModalBranchForm();
+        this.onCloseBranchModal();
     }
 
     /**
@@ -77,6 +78,16 @@ export default class SaveBranch {
             } else {
                 $(e.currentTarget).attr('disabled', false);
             }
+        });
+    }
+
+    /**
+     * On Close Branch Modal.
+     */
+    onCloseBranchModal() {
+        this.$modalBranchForm.on('hidden.bs.modal', (e) => {
+            this.$frmBranchFormNew[0].reset();
+            this.$frmBranchFormNew.parsley().reset();
         });
     }
 
