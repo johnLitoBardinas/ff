@@ -18,22 +18,19 @@ export default class SaveCustomerVisits {
             const dates = utils.removeEmptyValueFromIterable(data['date']);
 
             if (! dates.length) {
-                Swal.fire({
-                    icon: 'error',
-                    title: 'Error!!!',
-                    text: 'Fill out the Visitation Date'
-                });
+                Swal.fire(utils.swal2Option('error', 'Error!', 'Fill out the Visitation Date.'));
                 return;
             }
 
             delete data['date'];
 
             dates.forEach((element, index) => {
+
                 const customerVisitsData = {
                     ... data,
                     date: element
                 };
-                console.log(index, customerVisitsData);
+
                 axios.post(`${ApiUrl.customers}/${data['customer_id']}/visits`, customerVisitsData)
                 .then((response) => {
                     if (response.status === 201) {
@@ -43,6 +40,7 @@ export default class SaveCustomerVisits {
                     $(e.currentTarget).attr('disabled', true);
                 })
                 .catch((error) => console.error(error));
+
             });
         });
     }

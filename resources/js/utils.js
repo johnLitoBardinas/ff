@@ -104,6 +104,13 @@ const util = {
                     confirmButtonText: 'OK'
                 };
                 break;
+            case 'error':
+                option = {
+                    title,
+                    text,
+                    icon: 'error'
+                };
+                break;
 
             default:
                 break;

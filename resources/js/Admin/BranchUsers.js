@@ -45,13 +45,8 @@ export default class BranchUsers {
                         Swal.fire('User Added', `${data['first_name']} is now in Branch ${branchName}`, 'success');
                     }
                 })
-                .catch((error) => {
-                    // Must append a alert section for the modal showing all the error  listed
-
-                });
+                .catch((error) => console.error(error));
             }
-
-
         });
     }
 

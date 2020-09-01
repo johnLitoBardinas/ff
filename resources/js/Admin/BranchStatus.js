@@ -1,7 +1,5 @@
 const utils = require('../utils');
-
 import Swal from 'sweetalert2';
-import util from '../utils';
 
 export default class BranchStatus {
 
@@ -10,6 +8,7 @@ export default class BranchStatus {
     }
 
     onChangeBranchStatus() {
+
         $('.admin-branches-form').on('click', '#btn-branch-status', (e) => {
             const branchId = e.target.dataset.branchid || 0;
             const branchAction = e.target.dataset.action;

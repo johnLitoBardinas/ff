@@ -26,7 +26,6 @@ export default class RenewCustomer {
                 .then((customerPackageData) => {
                     axios.post(customerVisitsUrl, customerPackageData)
                     .then((response) => {
-                        console.log('response', response);
                         if (response.status === 201) {
                             Swal.fire('Customer Successfully Renew', '', 'success');
                             this.$frmRenewCustomer[0].reset();
