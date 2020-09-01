@@ -1,5 +1,3 @@
-const utils = require('../utils');
-
 import 'parsleyjs';
 import Swal from 'sweetalert2';
 

@@ -6,14 +6,16 @@
     <div class="row justify-content-center login">
         <div class="col-md-8 h-100 d-flex justify-content-center align-items-center">
             <div class="d-flex flex-column justify-content-center align-items-center login__form">
-                <img src="{{ asset('svg/fixandfree.co_logo.svg') }}" alt="Fix and Free Co Login">
+                <img src="{{ asset('png/f_and_f.co_login.png') }}" alt="Fix and Free Co Login">
                 <form class="w-100 my-4" method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="form-group">
                         <select class="form-control w-400px vh-50px" id="login__type" name="home_type">
                             <option disabled readonly>Select Account</option>
-                            <option value="fix-and-free.co">fix&free.co</option>
+                            <option value="f-and-f.co">f&f.co</option>
                             <option value="fix-and-free.salon">fix&free.salon</option>
+                            <option value="fit-and-free.gym">fit&free.gym</option>
+                            <option value="fib-and-free.wellness">fab&free.wellness</option>
                         </select>
                     </div>
                     <div class="form-group">
