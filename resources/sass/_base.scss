@@ -17,6 +17,10 @@ This may include the ff:
     background-repeat: no-repeat;
 }
 
+.default-icon-style {
+    @extend %icon-style;
+}
+
 hr {
 background: $primary-color;
 }

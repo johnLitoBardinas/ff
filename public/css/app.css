@@ -13060,7 +13060,8 @@ This may include the ff:
 .btn.btn-icon__deactivate:hover:before,
 .btn.btn-icon__deactivate:before,
 .btn.btn-icon__delete:hover:before,
-.btn.btn-icon__delete:before {
+.btn.btn-icon__delete:before,
+.default-icon-style {
   display: inline-block;
   width: 20px;
   height: 20px;
