@@ -16,13 +16,21 @@ Route::get('/test', function ()
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 
 Route::middleware('auth')->group(function () {
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
-    Route::livewire('/newaccount', 'salon.add-new-customer')->name('new-customer'); // amazing
-    Route::livewire('/customervisits/{customer_package_id}', 'salon.add-customer-visits')->name('customer-visits'); // amazing
-    Route::livewire('/customerrenew/{encrypted_customer_id}', 'salon.customer-renew')->name('customer-renew'); // amazing
 
+    // Admin Side.
     Route::get('/admin', [AdminDashboard::class, 'index'])->name('admin');
 
+    Route::livewire('/packages', 'admin.packages')->name('packages');
+
+    // Open new Customer
+    Route::livewire('/newaccount', 'salon.add-new-customer')->name('new-customer');
+    Route::livewire('/customervisits/{customer_package_id}', 'salon.add-customer-visits')->name('customer-visits');
+    Route::livewire('/customerrenew/{encrypted_customer_id}', 'salon.customer-renew')->name('customer-renew');
+
+    // Manager/Cashier Side.
+    Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+    // User Profile
     Route::get('/profile', [Profile::class, 'index'])->name('profile');
 });
 
