@@ -15,7 +15,12 @@ x-data="{
         <input type="hidden" name="current_branch_id" x-bind:value="branchId">
         <div class="d-flex justify-content-end position-relative admin-action">
 
-            <a href="javascript:void(0);" class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__delete position-absolute l-0 d-none">DELETE</a>
+            <a href="javascript:void(0);"
+            class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__delete position-absolute l-0 d-none"
+            :class="{ 'd-flex' : action === 'editBranch' }"
+            title="Click Here to Remove the Branch."
+            id="btn-destroy-branch"
+            >DELETE</a>
 
             <div class="d-flex justify-content-around">
 

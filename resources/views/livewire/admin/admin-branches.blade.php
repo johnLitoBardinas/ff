@@ -44,7 +44,36 @@
             </div>
             {{-- ./card-header --}}
             <div class="card-body w-90 align-self-end branch__info">
-                Card Body
+                <div class="d-flex align-items-base branch__address">
+                    <span class="icon icon__location--black"></span>
+                    <address class="w-80">{{ $branch->branch_address }}</address>
+                </div>
+                @forelse($branch->users as $user)
+                    <div class="d-flex branch__users" x-data="{ userStatus: '{{ $user->user_status }}' }"
+                        :class="{ 'opacity-point5' : userStatus === 'inactive' }">
+                        <span class="icon icon__account--black"></span>
+
+                        <div class="user_info w-75">
+                            <p class="mb-0"><b>Name:</b>
+                                {{ sprintf('%s %s', $user->first_name, $user->last_name) }}
+                            </p>
+                            <p class="mb-0"><b>Type:</b> {{ $user->role->name }}</p>
+                            <p class="mb-0"><b>Email:</b> {{ $user->email }}</p>
+                        </div>
+
+                        <div class="switcher">
+                            <label class="switch">
+                                <input type="checkbox" wire:click="toggleUserStatus({{ $user->user_id }})"
+                                    x-bind:checked="userStatus === 'active'">
+                                <span class="slider round"></span>
+                            </label>
+                        </div>
+
+                    </div>
+                    <br>
+                @empty
+                    <h6>No User yet..</h6>
+                @endforelse
             </div>
             {{-- ./ card-body --}}
         </div>

@@ -13,8 +13,11 @@ export default class SaveBranch {
         // Editing the Branch.
         this.$adminBranchForm = $(".admin-branches-form");
         this.$btnSaveBranch = $("#btn-savebranch");
+        this.$btnDestroyBranch = $("#btn-destroy-branch");
 
         this.saveBranchForm();
+
+        this.onDestroyBranch();
 
         this.onShowAddBranchForm();
         this.onSaveModalBranchForm();
@@ -106,6 +109,15 @@ export default class SaveBranch {
         this.$modalBranchForm.on('hidden.bs.modal', (e) => {
             this.$frmBranchFormNew[0].reset();
             this.$frmBranchFormNew.parsley().reset();
+        });
+    }
+
+    /**
+     * On Destroy Branch.
+     */
+    onDestroyBranch() {
+        this.$btnDestroyBranch.on('click', (e) => {
+            console.log('This will remove the branch..');
         });
     }
 
