@@ -106,7 +106,8 @@ class BranchController extends ApiController
      */
     public function destroy(Branch $branch)
     {
-        //
+        $branch->delete();
+        return $this->showOne($branch);
     }
 
 }

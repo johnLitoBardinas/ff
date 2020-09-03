@@ -18,6 +18,7 @@ class CreateBranchTable extends Migration
             $table->enum('branch_type', BranchType::getValues())->default(BranchType::SALON);
             $table->enum('branch_status', BranchStatus::getValues())->default(BranchStatus::ACTIVE);
             $table->timestamps();
+            $table->softDeletes();
         });
     }
 
