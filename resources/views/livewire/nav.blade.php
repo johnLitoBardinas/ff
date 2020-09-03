@@ -10,7 +10,7 @@
             <div class="col-md-4">
                 <span class="d-flex align-items-baseline">
                     <a href="{{route('packages')}}" title="Click to view all the packages." class="text-dark">
-                        <img src="https://via.placeholder.com/20x20" alt="Packages" /> &nbsp; Packages
+                        <img src="{{ asset('svg/icons/total_packages.svg') }}" alt="Packages" /> &nbsp; Packages
                     </a>
                 </span>
             </div>
@@ -18,7 +18,7 @@
                 <ul class="list-unstyled d-flex justify-content-md-around p-0 m-0">
                     <li>
                        <span>
-                           <img src="{{ asset('svg/icons/store.svg') }}" alt="Total Branch.">
+                           <img src="{{ asset('svg/icons/total_branch.svg') }}" alt="Total Branch.">
                            &nbsp; Total Branch: <b>{{$totalActiveBranchCount}}</b>
                        </span>
                     </li>
