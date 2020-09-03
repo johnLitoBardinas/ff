@@ -15,7 +15,7 @@ return [
     'package_duration_days' => env('PACKAGE_DURATION_DAYS', 60), // buffer ahead of time
     'default_user_password' => env('DEFAULT_USER_PASSWORD'), // for security hidden to the environment variable
 
-    'fix_and_free_co_logo' => 'svg/fixandfree.co_logo_horizontal.svg',
+    'fix_and_free_co_logo' => 'svg/fandf.co_horizontal.svg',
     'fix_and_free_salon_logo' => 'svg/fixandfree.salon_logo_horizontal.svg',
 
     'payment_options' => [ 'gcash', 'paymaya', 'card'],
