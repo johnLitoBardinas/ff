@@ -9,7 +9,7 @@
         <div class="row justify-content-between">
             <div class="col-md-4">
                 <span class="d-flex align-items-baseline">
-                    <a href="{{route('packages')}}" title="Click to view all the packages." class="text-dark">
+                    <a href="{{route('packages')}}" title="Click to view all the packages." class="text-dark text-decoration-none">
                         <img src="{{ asset('svg/icons/total_packages.svg') }}" alt="Packages" /> &nbsp; Packages
                     </a>
                 </span>
@@ -45,7 +45,7 @@
             <div class="col-md-4 justify-content-end">
                 <ul class="list-unstyled d-flex justify-content-end p-0 m-0">
                     <li>
-                        <a href="{{ route( 'profile' ) }}" class="text-dark">
+                        <a href="{{ route( 'profile' ) }}" class="text-dark text-decoration-none">
                             {{ Auth::user()->first_name .' '.Auth::user()->last_name }}
                             <img src="{{ asset( 'svg/icons/profile.svg' ) }}" alt="Icon Profile" class="ml-2">
                         </a>

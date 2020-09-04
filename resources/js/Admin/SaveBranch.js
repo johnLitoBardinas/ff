@@ -46,9 +46,7 @@ export default class SaveBranch {
                     }
                 })
                 .catch((error) => console.log(error))
-                .finally(() => {
-                    $(e.currentTarget).attr('disabled', false);
-                });
+                .finally(() => $(e.currentTarget).attr('disabled', false));
             } else {
                 $(e.currentTarget).attr('disabled', false);
             }
@@ -117,7 +115,22 @@ export default class SaveBranch {
      */
     onDestroyBranch() {
         this.$btnDestroyBranch.on('click', (e) => {
-            console.log('This will remove the branch..');
+            const { branchid } = e.currentTarget.dataset;
+
+            console.log('Branch Id', branchid);
+            // Swal.fire(utils.swal2Option('warning', 'Warning', `Are you sure to Permanently Delete the Branch? Branch Users will be deleted as well.`))
+            // .then((result) => {
+            //     if (result.value) {
+            //         axios.delete(`${ApiUrl.branch}/${branchid}`)
+            //         .then((response) => {
+            //             window.livewire.emit('onUpdateBranch');
+            //             Swal.fire('Branch Updated!!!', '', 'success');
+            //         })
+            //         .catch((error) => console.error(error));
+            //     }
+            // });
+
+
         });
     }
 

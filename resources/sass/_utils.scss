@@ -22,8 +22,13 @@ TEXT UTILITIES
 .text-uppercase {
     text-transform: uppercase;
 }
+
 .text-line-through {
     text-decoration: line-through;
+}
+
+.text-decoration-none {
+    text-decoration: none;
 }
 
 .font-15px {
@@ -124,4 +129,16 @@ CHECKER
 
 .check-col {
     border: thin solid green;
+}
+
+
+/**
+Text Animation.
+**/
+.on-hover-primary {
+    color: $black;
+    &:hover {
+        color: $primary-color !important;
+        font-weight: bold !important;
+    }
 }

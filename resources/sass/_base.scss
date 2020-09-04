@@ -39,6 +39,10 @@ background: $primary-color;
         max-width: $LgDesktop-max-width;
     }
 
+    @include media('>=desktop') {
+        max-width: $Desktop-max-width;
+    }
+
     &--new-customer,
     &--customer-visits {
         @include media('>=desktop') {
@@ -46,3 +50,17 @@ background: $primary-color;
         }
     }
 }
+
+button {
+
+    &:hover {
+        color: $primary-color !important;
+        font-weight: bold;
+    }
+
+    &:focus {
+        outline: none !important;
+        box-shadow: none !important;
+    }
+}
+

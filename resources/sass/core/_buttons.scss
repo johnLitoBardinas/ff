@@ -30,6 +30,12 @@
 
 .btn {
 
+    &--active {
+        font-weight: bold;
+        color: $primary-color;
+        background-color: $gray;
+    }
+
     // Element
     &__ff--primary {
         color: $primary-color;

@@ -17,7 +17,8 @@ x-data="{
 
             <a href="javascript:void(0);"
             class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__delete position-absolute l-0 d-none"
-            :class="{ 'd-flex' : action === 'editBranch' }"
+            data-branchid="{{$currentBranchId}}"
+            {{-- :class="{ 'd-flex' : action === 'editBranch' }" --}}
             title="Click Here to Remove the Branch."
             id="btn-destroy-branch"
             >DELETE</a>
