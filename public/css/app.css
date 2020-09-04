@@ -12606,6 +12606,10 @@ TEXT UTILITIES
   font-size: 0.9rem;
 }
 
+.bg-none {
+  background: none;
+}
+
 /**
 BACKGROUNDS COLORS
 **/
@@ -12664,6 +12668,10 @@ WIDTH
 
 .w-400px {
   width: 25rem;
+}
+
+.w-33 {
+  width: 33%;
 }
 
 .w-24 {
@@ -13113,7 +13121,8 @@ hr {
 
 @media (min-width: 1366px) {
   .container--new-customer,
-  .container--customer-visits {
+  .container--customer-visits,
+  .container--new-package {
     max-width: 600px;
   }
 }

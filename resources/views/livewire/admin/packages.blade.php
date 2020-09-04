@@ -1,23 +1,24 @@
-<div class="container" x-data="{ activeTab: '{{$activeTab}}' }">
-    {{-- {{$activeTab}} --}}
+<div class="container" x-data="{ activeTab: '{{$activeTab}}' }" x-init="activeTab = '{{$activeTab}}'">
+    {{-- <span>LV: {{$activeTab}}</span> --}}
+    {{-- ALP: <span x-text="activeTab"></span> --}}
     <div class="row justify-content-between mt-4">
         <div class="col-md-4">
             <button
-            class="btn btn-sm btn-default w-25 p-1 m-2"
+            class="btn btn-sm btn-default w-25 p-1 m-2 cursor-pointer"
             :class="{ 'btn--active': activeTab === 'salon' }"
             x-on:click="activeTab = 'salon'"
             wire:click="onClickTab('salon')"
             ><i>Salon</i></button>
 
             <button
-            class="btn btn-sm btn-default w-25 p-1 m-2"
+            class="btn btn-sm btn-default w-25 p-1 m-2 cursor-pointer"
             :class="{ 'btn--active': activeTab === 'gym' }"
             x-on:click="activeTab = 'gym'"
             wire:click="onClickTab('gym')"
             ><i>Gym</i></button>
 
             <button
-            class="btn btn-sm btn-default w-25 p-1 m-2"
+            class="btn btn-sm btn-default w-25 p-1 m-2 cursor-pointer"
             :class="{ 'btn--active': activeTab === 'spa' }"
             x-on:click="activeTab = 'spa'"
             wire:click="onClickTab('spa')"
@@ -26,7 +27,12 @@
 
         <div class="col-md-2 d-flex justify-content-end align-items-center">
             <img src="{{ asset('svg/icons/add_icon.svg') }}" alt="Icon Add Package"> &nbsp;
-            <a href="javascript:void(0);" class="text-decoration-none on-hover-primary">Add Package</a>
+            <button
+            onclick="window.location.href='{{route('add-package', $activeTab)}}'"
+            :disabled="activeTab !== '{{$activeTab}}'"
+            class="text-decoration-none on-hover-primary bg-none border-0"
+            title="Click here to add Package"
+            >Add Package</button>
         </div>
 
     </div>

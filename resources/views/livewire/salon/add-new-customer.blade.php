@@ -1,6 +1,6 @@
 <div class="container mt-4 container--new-customer">
     <h3 class="text-uppercase text-white bg-primary text-center font-weight-light">ADD NEW CUSTOMER</h3>
-    <form action="POST" id="frm-new-account" novaliate>
+    <form method="POST" id="frm-new-account" novaliate>
         @csrf
         <input type="hidden" name="user_id" value="{{Auth::id()}}">
         <input type="hidden" name="branch_id" value="{{Auth::user()->branch_id}}">

@@ -35,6 +35,11 @@ TEXT UTILITIES
     font-size: $font-size-base;
 }
 
+
+.bg-none {
+    background: none;
+}
+
 /**
 BACKGROUNDS COLORS
 **/
@@ -89,6 +94,10 @@ WIDTH
 
 .w-400px {
     width: 25rem;
+}
+
+.w-33 {
+    width: 33%;
 }
 
 .w-24 {

@@ -11,7 +11,7 @@
         </div>
     </div>
     <hr>
-    <form action="POST" id="frm-renew-customer" novaliate>
+    <form method="POST" id="frm-renew-customer" novaliate>
         @csrf
         <input type="hidden" name="user_id" value="{{Auth::id()}}">
         <input type="hidden" name="branch_id" value="{{Auth::user()->branch_id}}">

@@ -8,6 +8,7 @@ import AppPlugins from './plugins';
 import SaveBranch from './Admin/SaveBranch';
 import BranchStatus from './Admin/BranchStatus';
 import BranchUsers from './Admin/BranchUsers';
+import Package from './Admin/Package';
 
 import SaveNewCustomer from './Salon/SaveNewCustomer';
 import SaveCustomerVisits from './Salon/SaveCustomerVisits';
@@ -22,6 +23,8 @@ $(document).ready(() => {
     new SaveBranch();
     new BranchStatus();
     new BranchUsers();
+
+    new Package();
 
     // Salon Interaction
     new SaveNewCustomer();

@@ -1,6 +1,6 @@
 <div>
 
-    <form action="POST" wire:submit.prevent="submitChangePassword">
+    <form method="POST" wire:submit.prevent="submitChangePassword">
 
         {{-- Alert Component Success/ Error --}}
         @include('alert-message')
