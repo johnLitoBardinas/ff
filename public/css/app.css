@@ -12598,6 +12598,10 @@ TEXT UTILITIES
   text-decoration: line-through;
 }
 
+.text-decoration-none {
+  text-decoration: none;
+}
+
 .font-15px {
   font-size: 0.9rem;
 }
@@ -12704,6 +12708,19 @@ CHECKER
 
 .check-col {
   border: thin solid green;
+}
+
+/**
+Text Animation.
+**/
+
+.on-hover-primary {
+  color: #000;
+}
+
+.on-hover-primary:hover {
+  color: #463291 !important;
+  font-weight: bold !important;
 }
 
 /**
@@ -13089,10 +13106,26 @@ hr {
 }
 
 @media (min-width: 1366px) {
+  .container {
+    max-width: calc(100vw - 150px);
+  }
+}
+
+@media (min-width: 1366px) {
   .container--new-customer,
   .container--customer-visits {
     max-width: 600px;
   }
+}
+
+button:hover {
+  color: #463291 !important;
+  font-weight: bold;
+}
+
+button:focus {
+  outline: none !important;
+  box-shadow: none !important;
 }
 
 .btn__ff--primary:hover,
@@ -13104,6 +13137,12 @@ hr {
 .btn__ff--primary:hover span,
 .btn__ff--primary.active span {
   color: #fff;
+}
+
+.btn--active {
+  font-weight: bold;
+  color: #463291;
+  background-color: #F3F3F3;
 }
 
 .btn__ff--primary {
@@ -13206,7 +13245,7 @@ hr {
 }
 
 .switcher {
-  background-color: #fff;
+  background-color: transparent;
   display: flex;
   justify-content: flex-end;
   align-content: center;
