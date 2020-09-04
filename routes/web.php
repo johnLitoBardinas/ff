@@ -21,7 +21,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/admin', [AdminDashboard::class, 'index'])->name('admin');
 
     Route::livewire('/packages', 'admin.packages')->name('packages');
-    Route::livewire('/addnewpackage/{salon_type}', 'admin.add-new-package')->name('add-package');
+    Route::livewire('/addnewpackage/{type}', 'admin.add-new-package')->name('add-package');
 
     // Open new Customer
     Route::livewire('/newaccount', 'salon.add-new-customer')->name('new-customer');

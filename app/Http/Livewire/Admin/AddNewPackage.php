@@ -7,15 +7,15 @@ use Livewire\Component;
 
 class AddNewPackage extends Component
 {
-    public $salonType;
+    public $type;
 
-    public function mount(String $salon_type)
+    public function mount(String $type)
     {
-        if ( ! in_array( $salon_type, BranchType::getValues() ) ) {
+        if ( ! in_array( $type, BranchType::getValues() ) ) {
             return redirect()->route('packages');
         }
 
-        $this->salonType = $salon_type;
+        $this->type = $type;
     }
 
     public function render()
