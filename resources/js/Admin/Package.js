@@ -1,4 +1,4 @@
-const utils = require('../utils');
+import Swal from "sweetalert2";
 
 export default class Package {
 
@@ -19,8 +19,20 @@ export default class Package {
             parsleyForm.validate();
 
             if (parsleyForm.isValid()) {
-                console.log('current Element', e.currentTarget);
-                console.log('current Data', data);
+                axios.post(ApiUrl.packages, data)
+                .then((response) => {
+                    if (response.status === 201) {
+                        Swal.fire(`Package added!!!`, '', 'success');
+                        parsleyForm.reset();
+                        $(e.currentTarget).attr('disabled', false);
+                        this.$frmPackage[0].reset();
+                    }
+                })
+                .catch((error) => console.error(error))
+                .finally(() => {
+                    console.log('finally block.');
+                });
+
             } else {
                 $(e.currentTarget).attr('disabled', false);
             }

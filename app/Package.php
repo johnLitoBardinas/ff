@@ -20,8 +20,14 @@ class Package extends Model
     // Fillable Model fields.
     protected $fillable = [
         'package_name',
-        'package_description',
         'package_price',
+        'package_type',
+        'salon_no_of_visits',
+        'salon_days_valid_count',
+        'gym_no_of_visits',
+        'gym_days_valid_count',
+        'spa_no_of_visits',
+        'spa_days_valid_count',
     ];
 
     public function customer_packages()

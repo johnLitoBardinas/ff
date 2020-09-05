@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Enums\BranchType;
+use App\Http\Requests\Package as RequestsPackage;
 use App\Package;
 use Illuminate\Http\Request;
 
@@ -18,10 +20,20 @@ class PackageController extends ApiController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(RequestsPackage $request)
     {
-        $data = $this->validatePackageDataRequest($request);
-        $package = Package::create($data);
+        $package = Package::create([
+            'package_name' => $request->input('package_name'),
+            'package_price' => $request->input('package_price'),
+            'package_type' => $request->input('package_type'),
+            'salon_no_of_visits' => $request->input('salon_no_of_visits'),
+            'salon_days_valid_count' => $request->input('salon_days_valid_count'),
+            'gym_no_of_visits' => $request->input('gym_no_of_visits'),
+            'gym_days_valid_count' => $request->input('gym_days_valid_count'),
+            'spa_no_of_visits' => $request->input('spa_no_of_visits'),
+            'spa_days_valid_count' => $request->input('spa_days_valid_count'),
+        ]);
+
         return $this->showOne($package, 201);
     }
 
@@ -70,14 +82,4 @@ class PackageController extends ApiController
         return $this->showOne($package);
     }
 
-    private function validatePackageDataRequest(Request $request)
-    {
-        $data = $request->validate([
-            'package_name' => ['required', 'unique:package,package_name', 'string'],
-            'package_description' => ['required', 'string'],
-            'package_price' => ['required', 'regex:/^\d*(\.\d{1,2})?$/'],
-        ]);
-
-        return $data;
-    }
 }
