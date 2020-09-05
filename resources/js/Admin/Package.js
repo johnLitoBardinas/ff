@@ -31,7 +31,7 @@ export default class Package {
                 .catch((error) => {
                     let errorMsg = error.response.data.message;
                     let errors = error.response.data.errors;
-                    let errorHtml = '<dl class="d-flex justify-content-start align-items-start">';
+                    let errorHtml = '<dl class="d-flex flex-column justify-content-start align-items-start">';
 
                     for (const field in errors) {
                         errorHtml += '<dt>' + field.replace('_', ' ').toUpperCase() + '</dt>'
