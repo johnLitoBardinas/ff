@@ -1,4 +1,5 @@
-<nav class="admin-header" wire:poll.750ms>
+<nav class="admin-header">
+    {{-- wire:poll.750ms --}}
     <div class="container ">
         <div class="d-flex align-items-center justify-content-center py-5 admin-header__logo cursor-pointer">
             <a href="{{ $homeUrl }}" title="Click to return home.">
