@@ -29,7 +29,7 @@ class AddNewCustomer extends Component
      */
     private function getAllSubscriptionPlans()
     {
-        $this->subscriptionPlans = Package::where('package_status', PackageStatus::ACTIVE)->toArray();
+        $this->subscriptionPlans = Package::where('package_status', PackageStatus::ACTIVE)->get()->toArray();
     }
 
     /**
