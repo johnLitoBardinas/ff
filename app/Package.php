@@ -2,7 +2,6 @@
 
 namespace App;
 
-use App\Http\Controllers\Api\CustomerPackageController;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

@@ -11,6 +11,10 @@ FORMS
 /**
 TEXT UTILITIES
 **/
+.uc-first {
+    text-transform: capitalize;
+}
+
 .text-bold {
     font-weight: bold;
 }

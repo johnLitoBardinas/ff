@@ -65,32 +65,43 @@
                             </th>
                         </tr>
                     </thead>
-
-                    <tbody>
+                    <tbody wire:loading wire:target="onClickTab">
                         <tr>
-                            <td>GROOM</td>
-                            <td>1,800</td>
-                            <td>4/60 Days</td>
-                            <td>1/5 Days</td>
-                            <td>1/5 Days</td>
-                            <td>Sept. 10, 2020</td>
+                            <td colspan="7">Loading..</td>
+                        </tr>
+                    </tbody>
+                    <tbody wire:loading.remove wire:target="onClickTab">
+                        @forelse ($packageList as $package)
+                        <tr>
+                            <td>{{strtoupper($package['package_name'])}}</td>
+                            <td>{{number_format($package['package_price'])}}</td>
+                            <td>{{sprintf('%s/%s Days', $package['salon_no_of_visits'], $package['salon_days_valid_count'])}}</td>
+                            @if ($package['package_type'] !== 'gym')
+                            <td>{{sprintf('%s/%s Days', $package['gym_no_of_visits'], $package['gym_days_valid_count'])}}</td>
+                            @else
+                            <td>{{sprintf('%s Days', $package['gym_days_valid_count'])}}</td>
+                            @endif
+                            <td>{{sprintf('%s/%s Days', $package['spa_no_of_visits'], $package['spa_days_valid_count'])}}</td>
                             <td>
-                               <div class="d-flex justify-content-around">
+                                {{date('M. d, Y', strtotime( $package['created_at'] ) )}}
+                            </td>
+                            <td>
+                               <div class="d-flex justify-content-around" x-data="{
+                                   packageId: '{{$package['package_id']}}',
+                                   packageStatus: '{{$package['package_status']}}',
+                                }
+                                ">
                                  <div class="switcher w-25">
                                     <label class="switch mb-0">
-                                       <input type="checkbox">
+                                       <input type="checkbox"
+                                       wire:click="togglePackageStatus({{ $package['package_id'] }})"
+                                       x-on:click="packageStatus = (packageStatus === 'active' ? 'inactive' : 'active')"
+                                       :checked="packageStatus === 'active'">
                                        <span class="slider round"></span>
                                     </label>
                                  </div>
 
-                                 <strong class="text-primary">
-                                    Active
-                                 </strong>
-
-                                 <a href="javascript:void(0);"
-                                 title="Edit Package."
-                                 class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__edit">
-                                 EDIT</a>
+                                 <strong class="text-primary uc-first" x-text="packageStatus"></strong>
 
                                  <a href="javascript:void(0);"
                                  title="Delete Package."
@@ -101,24 +112,11 @@
 
                            </td>
                         </tr>
+                        @empty
                         <tr>
-                            <td>FAB</td>
-                            <td>3,000</td>
-                            <td>4/60 Days</td>
-                            <td>1/15 Days</td>
-                            <td>1/15 Days</td>
-                            <td>Sept. 10, 2020</td>
-                            <td>action</td>
+                            <td colspan="7">No Package.</td>
                         </tr>
-                        <tr>
-                            <td>PAMPER</td>
-                            <td>5,200</td>
-                            <td>4/60 Days</td>
-                            <td>2/60 Days</td>
-                            <td>2/60 Days</td>
-                            <td>Sept. 10, 2020</td>
-                            <td>action</td>
-                        </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
