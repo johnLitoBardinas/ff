@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\BranchType;
 use App\Enums\PackageStatus;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
@@ -9,16 +10,15 @@ class CreatePackageTable extends Migration
 {
     /**
      * Run the migrations.
-     *
-     * @return void
      */
     public function up()
     {
         Schema::create('package', function (Blueprint $table) {
             $table->bigIncrements('package_id');
             $table->string('package_name')->unique();
-            $table->decimal('package_price');
+            $table->string('package_price', 9);
             $table->enum('package_status', PackageStatus::getValues())->default(PackageStatus::INACTIVE);
+            $table->enum('package_type', BranchType::getValues());
             $table->tinyInteger('salon_no_of_visits')->unsigned();
             $table->tinyInteger('salon_days_valid_count')->unsigned();
             $table->tinyInteger('gym_no_of_visits')->unsigned()->default(0); // if 0 then it is only days
@@ -26,27 +26,17 @@ class CreatePackageTable extends Migration
             $table->tinyInteger('spa_no_of_visits')->unsigned();
             $table->tinyInteger('spa_days_valid_count');
             $table->timestamps();
-            $table->softDeletes();
         });
 
-        Schema::table('package', function (Blueprint $table)
-        {
-            $table->softDeletes();
-        });
+        Schema::table('package', fn(Blueprint $table) => $table->softDeletes());
     }
 
     /**
      * Reverse the migrations.
-     *
-     * @return void
      */
     public function down()
     {
-        Schema::table('package', function (Blueprint $table)
-        {
-            $table->dropSoftDeletes();
-        });
-
+        Schema::table('package', fn(Blueprint $table) => $table->dropSoftDeletes());
         Schema::dropIfExists('package');
     }
 }
