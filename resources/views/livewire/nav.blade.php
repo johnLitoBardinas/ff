@@ -9,11 +9,13 @@
         {{-- Header Logo --}}
         <div class="row justify-content-between">
             <div class="col-md-4">
-                <span class="d-flex align-items-baseline">
-                    <a href="{{route('packages')}}" title="Click to view all the packages." class="text-dark text-decoration-none">
-                        <img src="{{ asset('svg/icons/total_packages.svg') }}" alt="Packages" /> &nbsp; Packages
-                    </a>
-                </span>
+                @can('access-packages')
+                    <span class="d-flex align-items-baseline">
+                        <a href="{{route('packages')}}" title="Click to view all the packages." class="text-dark text-decoration-none">
+                            <img src="{{ asset('svg/icons/total_packages.svg') }}" alt="Packages" /> &nbsp; Packages
+                        </a>
+                    </span>
+                @endcan
             </div>
             <div class="col-md-4 mb-3">
                 <ul class="list-unstyled d-flex justify-content-md-around p-0 m-0">
