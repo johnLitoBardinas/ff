@@ -1,9 +1,10 @@
+const Swal = require('sweetalert2');
+
 /**
  * Utility Functions.
  */
 
 const util = {
-
 
     /**
      * Format the branch form data to accepted API data.
@@ -138,6 +139,30 @@ const util = {
             return [iterable];
         }
         return iterable.filter((el) => el != null && el !== "");
+    },
+
+    /**
+     * Error axios callback.
+     */
+    axiosErrorCallback(error) {
+        let errorMsg = error.response.data.message;
+        let errors = error.response.data.errors;
+        let errorHtml = '<dl class="d-flex flex-column justify-content-start align-items-start">';
+
+        for (const field in errors) {
+            errorHtml += '<dt>' + field.replace('_', ' ').toUpperCase() + '</dt>'
+            for (let index = 0; index < errors[field].length; index++) {
+                errorHtml += '<dd><span class="text-danger">*' +errors[field][index]+ '</dd>'
+            }
+        }
+
+        errorHtml += '</dl>';
+
+        Swal.fire({
+            title:'Error',
+            icon:'error',
+            html: errorHtml
+        });
     }
 };
 
