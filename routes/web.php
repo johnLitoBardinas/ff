@@ -18,10 +18,10 @@ Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 Route::middleware('auth')->group(function () {
 
     // Admin Side.
-    Route::get('/admin', [AdminDashboard::class, 'index'])->name('admin');
+    Route::get('/admin', [AdminDashboard::class, 'index'])->name('admin')->middleware('can:access-admin');
 
-    Route::livewire('/packages', 'admin.packages')->name('packages');
-    Route::livewire('/addnewpackage/{type}', 'admin.add-new-package')->name('add-package');
+    Route::livewire('/packages', 'admin.packages')->name('packages')->middleware('can:access-admin');
+    Route::livewire('/addnewpackage/{type}', 'admin.add-new-package')->name('add-package')->middleware('can:access-admin');
 
     // Open new Customer
     Route::livewire('/newaccount', 'salon.add-new-customer')->name('new-customer');

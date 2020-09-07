@@ -50,8 +50,10 @@ class User extends Authenticatable
         return $this->hasMany(CustomerPackage::class, 'user_id');
     }
 
+    // One to Many
     public function customer_visits()
     {
         return $this->hasMany(CustomerVisits::class, 'user_id');
     }
+
 }

@@ -9,7 +9,7 @@
         {{-- Header Logo --}}
         <div class="row justify-content-between">
             <div class="col-md-4">
-                @can('access-packages')
+                @can('access-admin')
                     <span class="d-flex align-items-baseline">
                         <a href="{{route('packages')}}" title="Click to view all the packages." class="text-dark text-decoration-none">
                             <img src="{{ asset('svg/icons/total_packages.svg') }}" alt="Packages" /> &nbsp; Packages
