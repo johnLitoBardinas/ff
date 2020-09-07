@@ -8,9 +8,9 @@
     <meta name="token" content="{{ session()->get('apiToken') }}">
     <title>{{ config('app.name', 'Laravel') }}</title>
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link rel="shortcut icon" href="{{asset('svg/icons/total_branch.svg')}}" type="image/x-icon">
     @livewireStyles
 </head>
-
 <body>
     <div id="app">
         @auth
