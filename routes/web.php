@@ -24,15 +24,15 @@ Route::middleware('auth')->group(function () {
     Route::livewire('/addnewpackage/{type}', 'admin.add-new-package')->name('add-package')->middleware('can:access-admin');
 
     // Open new Customer
-    Route::livewire('/newaccount', 'salon.add-new-customer')->name('new-customer');
-    Route::livewire('/customervisits/{customer_package_id}', 'salon.add-customer-visits')->name('customer-visits');
-    Route::livewire('/customerrenew/{encrypted_customer_id}', 'salon.customer-renew')->name('customer-renew');
+    Route::livewire('/newaccount', 'salon.add-new-customer')->name('new-customer')->middleware('can:access-user');
+    Route::livewire('/customervisits/{customer_package_id}', 'salon.add-customer-visits')->name('customer-visits')->middleware('can:access-user');
+    Route::livewire('/customerrenew/{encrypted_customer_id}', 'salon.customer-renew')->name('customer-renew')->middleware('can:access-user');
 
     // Manager/Cashier Side.
-    Route::get('/home', [HomeController::class, 'index'])->name('home');
+    Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('can:access-user');
 
     // User Profile
-    Route::get('/profile', [Profile::class, 'index'])->name('profile');
+    Route::get('/profile', [Profile::class, 'index'])->name('profile')->middleware('can:access-user');
 });
 
 Auth::routes();
