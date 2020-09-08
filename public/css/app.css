@@ -12674,6 +12674,14 @@ WIDTH
   width: 25rem;
 }
 
+.w-12 {
+  width: 12%;
+}
+
+.w-15 {
+  width: 15%;
+}
+
 .w-33 {
   width: 33%;
 }
