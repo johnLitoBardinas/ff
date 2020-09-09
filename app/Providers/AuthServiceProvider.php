@@ -24,12 +24,12 @@ class AuthServiceProvider extends ServiceProvider
         $this->registerPolicies();
 
         // For admin only.
-        Gate::define('access-admin', fn($user) => $user->role->name === UserType::ADMIN && $user->user_status === UserStatus::ACTIVE);
+        Gate::define('access-admin', fn($user) => $user->isAdmin() && $user->isActive());
 
         // For management.
-        Gate::define('access-management', fn($user) => in_array($user->role->name, [UserType::MANAGER, UserType::CASHIER]) && $user->user_status === UserStatus::ACTIVE);
+        Gate::define('access-management', fn($user) => $user->isManagement() && $user->isActive());
 
         // Allow Admin/ Management user to access.
-        Gate::define('access-user', fn($user) => in_array($user->role->name, UserType::getValues()) && $user->user_status === UserStatus::ACTIVE);
+        Gate::define('access-user', fn($user) => $user->isValidUserType() && $user->isActive());
     }
 }

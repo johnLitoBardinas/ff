@@ -58,7 +58,6 @@ class AddCustomerVisits extends Component
         $this->customerPackageForthVisit = ! empty($this->getCustomerVisitsDate(3)) ? pikaday_date_format( $this->getCustomerVisitsDate(3) ) : 0;
     }
 
-
     private function getCustomerVisitsDate(Int $index)
     {
         return $this->customerPackageInfo->customer_visits[$index]['date'] ?? null;

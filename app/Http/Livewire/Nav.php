@@ -9,8 +9,10 @@ use Livewire\Component;
 
 class Nav extends Component
 {
+    // Store the Current Logo.
     public $logo;
 
+    // Store the CUrrent Home Url
     public $homeUrl;
 
     public $totalActiveBranchCount;
@@ -35,6 +37,9 @@ class Nav extends Component
         $this->homeUrl = session('homeUrl');
     }
 
+    /**
+     * Hyrdating the Component.
+     */
     public function hydrate()
     {
         $this->getTotalActiveBranchCount();

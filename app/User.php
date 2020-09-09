@@ -4,6 +4,8 @@ namespace App;
 
 use App\Role;
 use App\Branch;
+use App\Enums\UserStatus;
+use App\Enums\UserType;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
@@ -56,4 +58,40 @@ class User extends Authenticatable
         return $this->hasMany(CustomerVisits::class, 'user_id');
     }
 
+    /**
+     * Determining if a user is a Admin.
+     */
+    public function isAdmin()
+    {
+        return $this->role->name === UserType::ADMIN;
+    }
+
+    /**
+     * Determining of the user is an Manager/Cashier.
+     */
+    public function isManagement()
+    {
+        return in_array($this->role->name, [UserType::MANAGER, UserType::CASHIER]);
+    }
+
+    /**
+     * Determining if the user type is a valid [admin, manager, cashier].
+     */
+    public function isValidUserType()
+    {
+        return in_array($this->role->name, UserType::getValues());
+    }
+
+    /**
+     * Determining if the user is active/inactive.
+     */
+    public function isActive()
+    {
+        return $this->user_status === UserStatus::ACTIVE;
+    }
+
+    public function branchType()
+    {
+        return $this->branch->branch_type;
+    }
 }
