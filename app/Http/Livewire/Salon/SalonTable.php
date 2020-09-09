@@ -115,4 +115,6 @@ class SalonTable extends Component
     {
         return view('livewire.salon.salon-table');
     }
+
+
 }

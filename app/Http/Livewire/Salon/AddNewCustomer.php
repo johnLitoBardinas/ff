@@ -2,10 +2,9 @@
 
 namespace App\Http\Livewire\Salon;
 
-use App\Enums\PackageStatus;
 use App\Package;
 use Livewire\Component;
-use Illuminate\Support\Facades\Auth;
+use App\Enums\PackageStatus;
 
 class AddNewCustomer extends Component
 {
@@ -29,7 +28,13 @@ class AddNewCustomer extends Component
      */
     private function getAllSubscriptionPlans()
     {
-        $this->subscriptionPlans = Package::where('package_status', PackageStatus::ACTIVE)->get()->toArray();
+
+        if ( auth()->user()->isManagement() ) {
+            $this->subscriptionPlans = Package::where('package_status', PackageStatus::ACTIVE)->where('package_type', session('userAccessType'))->get()->toArray();
+        } else {
+            $this->subscriptionPlans = Package::where('package_status', PackageStatus::ACTIVE)->get()->toArray();
+        }
+
     }
 
     /**
@@ -39,4 +44,6 @@ class AddNewCustomer extends Component
     {
         return view('livewire.salon.add-new-customer');
     }
+
+
 }
