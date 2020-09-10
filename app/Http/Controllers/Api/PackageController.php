@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\Api;
 
-use App\Enums\BranchType;
 use App\Http\Requests\Package as RequestsPackage;
 use App\Package;
 use Illuminate\Http\Request;
@@ -50,27 +49,26 @@ class PackageController extends ApiController
      */
     public function update(Request $request, Package $package)
     {
-        if ($request->has('package_name')) {
-            $package->package_name = $request->package_name;
-        }
+        // Temporary Hidden.
+        // if ($request->has('package_name')) {
+        //     $package->package_name = $request->package_name;
+        // }
 
-        if ($request->has('package_description')) {
-            $package->package_description = $request->package_description;
-        }
+        // if ($request->has('package_description')) {
+        //     $package->package_description = $request->package_description;
+        // }
 
-        if ($request->has('package_price')) {
-            $package->package_price = $request->package_price;
-        }
+        // if ($request->has('package_price')) {
+        //     $package->package_price = $request->package_price;
+        // }
 
-        if (!$package->isDirty()) {
-            return $this->errorResponse('You need to specify a different value to update', 422);
-        }
+        // if (!$package->isDirty()) {
+        //     return $this->errorResponse('You need to specify a different value to update', 422);
+        // }
 
-        $package->save();
+        // $package->save();
 
-        return $this->showOne($package);
-
-
+        // return $this->showOne($package);
     }
 
     /**
