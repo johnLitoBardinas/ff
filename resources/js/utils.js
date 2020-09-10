@@ -112,6 +112,13 @@ const util = {
                     icon: 'error'
                 };
                 break;
+            case 'success':
+                option = {
+                    title,
+                    text,
+                    icon: 'success'
+                };
+                break;
 
             default:
                 break;

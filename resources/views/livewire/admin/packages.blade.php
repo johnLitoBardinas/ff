@@ -39,7 +39,7 @@
     <div class="row">
         <div class="col-md-12">
             <div class="table-responsive">
-                <table class="table table-hover admin-table">
+                <table class="table table-hover admin-table" id="tbl-package">
                     <thead class="text-white bg-primary">
                         <tr>
                             <th scope="col">
@@ -105,7 +105,7 @@
 
                                  <a href="javascript:void(0);"
                                  title="Delete Package."
-                                 class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__delete">
+                                class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__delete" data-action="delete" data-packageid="{{$package['package_id']}}">
                                  DELETE</a>
 
                                </div>

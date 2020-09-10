@@ -9,22 +9,36 @@ use App\Enums\PackageStatus;
 
 class Packages extends Component
 {
+    // Event Listeners.
+    protected $listeners = [ 'onDeletePackage' ];
+
+    // Current Active Package Type.
     public $activeTab;
 
+    // Package List.
     public $packageList;
 
+    /**
+     * Mounting some data.
+     */
     public function mount()
     {
         $this->activeTab = BranchType::SALON;
         $this->getPackageList();
     }
 
+    /**
+     * Switching the Tab.
+     */
     public function onClickTab(String $activeTab)
     {
         $this->activeTab = $activeTab;
         $this->getPackageList();
     }
 
+    /**
+     * Toggling Package Status.
+     */
     public function togglePackageStatus(Int $packageId)
     {
         $package = Package::find($packageId);
@@ -33,11 +47,22 @@ class Packages extends Component
         $this->getPackageList();
     }
 
+    /**
+     * Event Listener for deletion of specific Package.
+     */
+    public function onDeletePackage()
+    {
+        $this->getPackageList();
+    }
+
     public function render()
     {
         return view('livewire.admin.packages');
     }
 
+    /**
+     * Getting the Current Package.
+     */
     private function getPackageList()
     {
        $this->packageList = Package::orderBy('created_at', 'DESC')->where('package_type', $this->activeTab)->get()->toArray();
