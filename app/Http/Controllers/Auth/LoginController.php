@@ -33,6 +33,7 @@ class LoginController extends Controller
     {
         $request->validate([
             'email' => [
+                'bail',
                 'required',
                 'string:max:191',
                 new IsActive(),

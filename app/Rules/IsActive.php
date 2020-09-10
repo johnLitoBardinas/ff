@@ -10,8 +10,6 @@ class IsActive implements Rule
 {
     /**
      * Create a new rule instance.
-     *
-     * @return void
      */
     public function __construct()
     {
@@ -19,21 +17,21 @@ class IsActive implements Rule
 
     /**
      * Determine if the validation rule passes.
-     *
-     * @param  string  $attribute [email field]
-     * @param  mixed  $value [email field value]
-     * @return bool
      */
     public function passes($attribute, $value)
     {
         $user = User::whereEmail($value)->first();
+
+        if ( is_null($user) ) {
+            return false;
+            dd('Testing??');
+        }
+
         return $user->user_status === UserStatus::ACTIVE;
     }
 
     /**
      * Get the validation error message.
-     *
-     * @return string
      */
     public function message()
     {
