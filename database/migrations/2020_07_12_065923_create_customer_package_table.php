@@ -20,10 +20,13 @@ class CreateCustomerPackageTable extends Migration
             $table->unsignedBigInteger('customer_id');
             $table->string('reference_no');
             $table->enum('customer_package_status', CustomerPackageStatus::getValues())->default(CustomerPackageStatus::ACTIVE);
-            $table->tinyInteger('total_consumable_visits')->default(Config::get('constant.package_visits_limit'));
             $table->enum('payment_type', Config::get('constant.payment_options'));
-            $table->date('customer_package_start')->default(Carbon::now());
-            $table->date('customer_package_end')->default(Carbon::now()->addDays(Config::get('constant.package_duration_days')));
+            $table->date('salon_package_start');
+            $table->date('salon_package_end');
+            $table->date('gym_package_start');
+            $table->date('gym_package_end');
+            $table->date('spa_package_ start');
+            $table->date('spa_package_end');
 
             // Foreign keys
             $table->foreign('branch_id')->references('branch_id')->on('branch');

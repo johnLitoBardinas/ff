@@ -33,8 +33,7 @@
             <small for="exampleInputEmail1" class="form-text text-muted">Subscription Plan</small>
             <select class="custom-select border-primary" name="package_id" required>
                 @forelse ($subscriptionPlans as $plan)
-                    <option value="{{$plan['package_id']}}">
-                        {{$plan['package_name']}}</option>
+                    <option value="{{$plan['package_id']}}">{{ucfirst($plan['package_name'])}}</option>
                 @empty
                     <option readonly disabled>No available Plan</option>
                 @endforelse

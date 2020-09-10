@@ -25,9 +25,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('check:customerpackageexpiration')->cron('* * * * *')
-                ->onSuccess(fn() =>Log::notice('Expired Customer Packages Updated!'))
-                ->onFailure(fn() => Log::alert('Error updating Expired Customer Package'));
+        // $schedule->command('check:customerpackageexpiration')->cron('* * * * *')
+        //         ->onSuccess(fn() =>Log::notice('Expired Customer Packages Updated!'))
+        //         ->onFailure(fn() => Log::alert('Error updating Expired Customer Package'));
     }
 
     /**
