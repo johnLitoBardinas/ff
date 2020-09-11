@@ -25,7 +25,7 @@ class CreateCustomerPackageTable extends Migration
             $table->date('salon_package_end');
             $table->date('gym_package_start');
             $table->date('gym_package_end');
-            $table->date('spa_package_ start');
+            $table->date('spa_package_start');
             $table->date('spa_package_end');
 
             // Foreign keys

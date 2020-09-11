@@ -23,6 +23,12 @@ class CustomerPackage extends Model
         'customer_id',
         'reference_no',
         'payment_type',
+        'salon_package_start',
+        'salon_package_end',
+        'gym_package_start',
+        'gym_package_end',
+        'spa_package_start',
+        'spa_package_end',
     ];
 
     // One CustomerPackage Row can be in Many CustomerVisits.

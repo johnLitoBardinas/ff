@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Customer;
 use App\CustomerPackage;
 use App\Http\Requests\CustomerPackage as RequestsCustomerPackage;
+use App\Package;
+use Carbon\Carbon;
 
 class CustomerPackageController extends ApiController
 {
@@ -22,13 +24,22 @@ class CustomerPackageController extends ApiController
      */
     public function store(RequestsCustomerPackage $request, Customer $customer)
     {
+        // Get the Package Model here..
+        $chosenPackage = Package::findOrFail($request->package_id);
+
         $customerPackage = CustomerPackage::create([
             'user_id' => $request->user_id,
             'branch_id' => $request->branch_id,
             'customer_id' => $customer->customer_id,
             'reference_no' => $request->reference_no,
             'payment_type' => $request->payment_type,
-            'package_id' => $request->package_id
+            'package_id' => $request->package_id,
+            'salon_package_start' => Carbon::now(),
+            'salon_package_end' => Carbon::now()->addDays($chosenPackage->salon_days_valid_count),
+            'gym_package_start' => Carbon::now(),
+            'gym_package_end' => Carbon::now()->addDays($chosenPackage->gym_days_valid_count),
+            'spa_package_start' => Carbon::now(),
+            'spa_package_end' => Carbon::now()->addDays($chosenPackage->spa_days_valid_count)
         ]);
         return $this->showOne($customerPackage);
     }

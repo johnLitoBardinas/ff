@@ -95,7 +95,7 @@ class SalonTable extends Component
         }
 
         $customerPackage = CustomerPackage::query();
-        $customerPackage->orderBy('customer_package_start');
+        $customerPackage->orderBy('customer_package_id');
 
         if($filterType === 'notActive') {
             $customerPackage->where('customer_package_status', '!=', 'active');
