@@ -15,9 +15,6 @@ class CreateRoleTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down()
     {
         Schema::dropIfExists('role');
