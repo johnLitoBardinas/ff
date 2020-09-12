@@ -10,6 +10,7 @@ export default class SaveNewCustomer {
     }
 
     submitNewCustomer(data, parsley, event) {
+
         axios.post(ApiUrl.customers, data)
         .then((result) => result.data)
         .then((customerData) => {

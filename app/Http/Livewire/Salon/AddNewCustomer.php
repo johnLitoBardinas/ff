@@ -14,11 +14,15 @@ class AddNewCustomer extends Component
     // List of Packages or Subscription Plan.
     public $subscriptionPlans;
 
+    // Determine the current customerPackageType.
+    public $currentCustomerPackageType;
+
     /**
      * Mounting data to the component.
      */
     public function mount()
     {
+        $this->currentCustomerPackageType = session('userAccessType');
         $this->paymentsOptions = config('constant.payment_options');
         $this->getAllSubscriptionPlans();
     }
@@ -28,13 +32,7 @@ class AddNewCustomer extends Component
      */
     private function getAllSubscriptionPlans()
     {
-
-        if ( auth()->user()->isManagement() ) {
-            $this->subscriptionPlans = Package::where('package_status', PackageStatus::ACTIVE)->where('package_type', session('userAccessType'))->get()->toArray();
-        } else {
-            $this->subscriptionPlans = Package::where('package_status', PackageStatus::ACTIVE)->get()->toArray();
-        }
-
+        $this->subscriptionPlans = Package::where('package_status', PackageStatus::ACTIVE)->where('package_type', $this->currentCustomerPackageType)->get()->toArray();
     }
 
     /**

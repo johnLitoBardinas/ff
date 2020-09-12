@@ -36,6 +36,8 @@ class CustomerVisitsController extends ApiController
      */
     public function store(Request $request, Customer $customer)
     {
+
+        dd($customer);
         if( ! $request->has('customer_package_id') || empty( request('customer_package_id') ) ) {
             return $this->errorResponse('Invalid Data', 422);
         }
@@ -60,7 +62,7 @@ class CustomerVisitsController extends ApiController
             'customer_package_type' => [
                 'required',
                 'string',
-                'in' . implode(',', BranchType::getValues())
+                'in:' . implode(',', BranchType::getValues())
             ]
         ];
 
@@ -87,7 +89,7 @@ class CustomerVisitsController extends ApiController
         $customerVisits = CustomerVisits::create($customerVisitsData);
 
         // Get the customer Package Type Total Current Cunsomable Date of visitation.
-        $customerPackageTotalVisitation = CustomerPackage::where('customer_package_id', request('customer_package_id'))->with('package')->get()->package->salon_no_of_visits;
+        $customerPackageTotalVisitation = CustomerPackage::where('customer_package_id', request('customer_package_id'))->with('package')->get()->package->salon_no_of_visitss;
 
         if ( $this->getTotalCustomerVisits( request('customer_package_id') ) === (int) $customerPackageTotalVisitation ) {
             CustomerPackage::where('customer_package_id', request('customer_package_id'))

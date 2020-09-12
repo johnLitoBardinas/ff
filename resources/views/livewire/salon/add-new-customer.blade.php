@@ -4,6 +4,7 @@
         @csrf
         <input type="hidden" name="user_id" value="{{Auth::id()}}">
         <input type="hidden" name="branch_id" value="{{Auth::user()->branch_id}}">
+        <input type="hidden" name="customer_package_type" value="{{$currentCustomerPackageType}}">
 
         <div class="form-group">
             <small for="first_name" class="form-text text-muted">First Name</small>
