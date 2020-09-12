@@ -19,6 +19,7 @@ class CustomerVisits extends Model
         'customer_package_id',
         'branch_id',
         'user_id',
+        'customer_package_type',
         'date',
         'customer_associate',
         'customer_associate_picture',
@@ -48,6 +49,7 @@ class CustomerVisits extends Model
         return $this->belongsTo(Branch::class, 'branch_id');
     }
 
+    // One to Many (Inverse)
     public function customer_visits()
     {
         return $this->belongsTo(CustomerPackage::class, 'customer_package_id');

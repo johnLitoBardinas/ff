@@ -13,9 +13,9 @@ class DatabaseSeeder extends Seeder
         $this->call(BranchSeeder::class);
         $this->call(UserSeeder::class);
 
-        if (config('app.env') !== 'production' ) {
-            $this->call(PackageSeeder::class);
-        }
+        // if (config('app.env') !== 'production' ) {
+            // $this->call(PackageSeeder::class);
+        // }
 
         // $this->call(CustomerSeeder::class);
         // $this->call(CustomerPackageSeeder::class);

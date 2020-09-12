@@ -8,16 +8,19 @@
                             REF. NUMBER
                         </th>
                         <th scope="col">
-                            FIRST NAME
-                        </th>
-                        <th scope="col">
-                            LAST NAME
+                            NAME
                         </th>
                         <th scope="col">
                             PAYMENT
                         </th>
                         <th scope="col">
                             PACKAGE
+                        </th>
+                        <th scope="col">
+                            TYPE
+                        </th>
+                        <th scope="col">
+                            PRICE
                         </th>
                         <th scope="col">
                             DATE OF VISITS
@@ -34,66 +37,91 @@
                 </thead>
                 <tbody>
                     @forelse ($customerPackageVisitsInfo as $row)
-                        <?php $customerVisits = $row->customer_visits->toArray(); ?>
                         <tr>
                             <td>{{strtoupper($row->reference_no)}}</td>
-                            <td>{{ucwords($row->customer->first_name)}}</td>
-                            <td>{{ucwords($row->customer->last_name)}}</td>
+                            <td>{{ucwords($row->customer->first_name). ' ' .ucwords($row->customer->last_name)}}</td>
                             <td>{{strtoupper($row->payment_type)}}</td>
                             <td>{{strtoupper($row->package->package_name)}}</td>
                             <td>
-                                <div class="w-100 d-flex justify-content-around">
-                                    @for ($i = 0; $i < config('constant.package_visits_limit'); $i++)
-
-                                        @if( empty($customerVisits[$i]) &&  $row->customer_package_status === 'expired')
-                                            <button class="btn btn-sm btn-default border w-25" disabled>X</button>
-                                        @elseif (! empty($customerVisits[$i]))
-                                            <div class="w-25 d-flex flex-column mr-1">
-                                                <button class="btn btn-sm btn-default border btn__ff--primary bg-gray active" disabled>
-                                                    {{date('n-j-Y', strtotime($customerVisits[$i]['date']))}}
-                                                </button>
-                                            </div>
-                                        @else
-                                            <div class="w-25 d-flex flex-column mr-1">
-                                                <a
-                                                href="{{ route('customer-visits', encrypt($row->customer_package_id))}}"
-                                                class="btn btn-sm btn-default border btn__ff--primary">
-                                                +add
-                                                </a>
-                                            </div>
-                                        @endif
-                                    @endfor
+                                <div class="d-flex flex-column">
+                                    @if (session('userAccessType') === 'salon')
+                                        <h6 class="mt-2">{{ucfirst(session('userAccessType'))}}</h6>
+                                        <h6 class="mt-2">Gym</h6>
+                                        <h6 class="mt-2">Spa</h6>
+                                    @elseif(session('userAccessType') === 'gym')
+                                        <h6 class="mt-2">{{ucfirst(session('userAccessType'))}}</h6>
+                                        <h6 class="mt-2">Salon</h6>
+                                        <h6 class="mt-2">Spa</h6>
+                                    @elseif(session('userAccessType') === 'spa')
+                                        <h6 class="mt-2">{{ucfirst(session('userAccessType'))}}</h6>
+                                        <h6 class="mt-2">Salon</h6>
+                                        <h6 class="mt-2">Gym</h6>
+                                    @endif
                                 </div>
                             </td>
                             <td>
-                                {{date('M. d, Y', strtotime( '-1 day', strtotime( $row->customer_package_end ) ) )}}
+                                <div class="d-flex flex-column">
+                                    <h6 class="mt-2">{{number_format($row->package->package_price)}}</h6>
+                                    <h6 class="mt-2 text-line-through">Free</h6>
+                                    <h6 class="mt-2 text-line-through">Free</h6>
+                                </div>
                             </td>
                             <td>
-                                <span class="package-status package-status--{{$row->customer_package_status}}">{{ strtoupper($row->customer_package_status) }}</span>
+
+                                {{-- Paid Package Plan --}}
+                                <div class="w-100 d-flex justify-content-start">
+                                    @for ($i = 0; $i < $row->package->salon_no_of_visits; $i++)
+                                        <div class="w-auto d-flex flex-column mr-1">
+                                            <button class="btn btn-sm btn-default border btn__ff--primary active" disabled>
+                                                {{-- {{date('n-j-Y', strtotime($customerVisits[$i]['date']))}} --}}
+                                                {{date('n-j-Y', strtotime(now()))}}
+                                            </button>
+                                        </div>
+                                    @endfor
+                                </div>
+
+                                {{-- Freebies Package --}}
+                                <div class="w-100 justify-content-start mt-2 check">
+                                    Test 2
+                                </div>
+
+                                {{-- Freebies Package --}}
+                                <div class="w-100 justify-content-start mt-2 check">
+                                    Test 3
+                                </div>
+
                             </td>
                             <td>
-                                @if ($row->customer_package_status !== 'active')
-                                    <a class="cursor-pointer" href="{{route('customer-renew', encrypt($row->customer->customer_id))}}" title="Renew the Customer">
-                                        <img src="{{ asset('svg/icons/table_edit.svg') }}" alt="Edit Transacition">
-                                    </a>
-                                    <a class="cursor-pointer" href="javascript:void(0);" title="View Related Assets (Image)">
-                                        <img src="{{ asset('svg/icons/view_more.svg') }}" alt="View More Detalils">
-                                    </a>
-                                @else
-                                    <a class="cursor-pointer" href="javascript:void(0);" title="View Related Assets (Image)">
-                                        <img src="{{ asset('svg/icons/view_more.svg') }}" alt="View More Detalils">
-                                    </a>
-                                @endif
+                                <?php $packageRowType = session('userAccessType') . '_package_end'; ?>
+
+                                <div class="d-flex flex-column">
+                                    <h6 class="mt-2">{{date('M. d, Y', strtotime($row->$packageRowType))}}</h6>
+                                    <h6 class="mt-2">{{date('M. d, Y', strtotime($row->$packageRowType))}}</h6>
+                                    <h6 class="mt-2">{{date('M. d, Y', strtotime($row->$packageRowType))}}</h6>
+                                </div>
+
+                            </td>
+                            <td>
+                                {{-- <span class="package-status package-status--active">{{ strtoupper($row->customer_package_status) }}</span> --}}
+                                {{-- <span class="package-status package-status--active">Active</span> --}}
+                                <div class="d-flex flex-column">
+                                    <h6 class="package-status package-status--active">Active</h6>
+                                    <h6 class="package-status package-status--active">Active</h6>
+                                    <h6 class="package-status package-status--active">Active</h6>
+                                </div>
+                            </td>
+                            <td>
+                                <a href="javascript:void(0);" class="btn btn-sm btn-default btn-icon btn-icon__open-row cursor-pointer" :class="{ 'd-flex': isOpen === false }" title="View More Details" x-on:click="alert('Test 1?')"></a>
+                                <a href="javascript:void(0);" class="btn btn-sm btn-default btn-icon btn-icon__close-row  cursor-pointer" :class="{ 'd-flex': isOpen === true }" title="View Less Details" x-on:click="alert('Test 2?')"></a>
                             </td>
                         </tr>
                     @empty
                         <tr>
                             <td colspan="9">
-                                <h6>No Records Found!!</h6>
+                                <h6>No Records Found!!!</h6>
                             </td>
                         </tr>
                     @endforelse
-
                 </tbody>
             </table>
         </div>

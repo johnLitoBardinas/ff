@@ -1,5 +1,6 @@
 <?php
 
+use App\Enums\BranchType;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,6 +17,7 @@ class CreateCustomerVisitsTable extends Migration
             $table->unsignedBigInteger('customer_package_id');
             $table->unsignedBigInteger('branch_id');
             $table->unsignedBigInteger('user_id');
+            $table->enum('customer_package_type', BranchType::getValues());
             $table->timestamp('date')->useCurrent();
             $table->string('customer_associate')->nullable();
             $table->string('customer_associate_picture')->nullable();

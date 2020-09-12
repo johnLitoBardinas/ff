@@ -12622,6 +12622,10 @@ BACKGROUNDS COLORS
   background-color: #463291 !important;
 }
 
+.bg-gray {
+  background: #F3F3F3 !important;
+}
+
 /**
 BORDERS
 **/
@@ -12631,11 +12635,15 @@ BORDERS
 }
 
 /**
-OVERFLOW
+OVERFLOW - Y
 **/
 
 .overflow-y-scroll {
   overflow-y: scroll;
+}
+
+.overflow-x-scroll {
+  overflow-x: scroll;
 }
 
 .chrome-hide-scroll::-webkit-scrollbar {
@@ -12645,6 +12653,10 @@ OVERFLOW
 /**
 HEIGHT
 **/
+
+.h-auto {
+  height: auto;
+}
 
 .vh-50px {
   height: 3.125rem;
@@ -12661,6 +12673,10 @@ HEIGHT
 /**
 WIDTH
 **/
+
+.w-auto {
+  width: auto;
+}
 
 .w-90 {
   width: 90%;
@@ -13086,6 +13102,12 @@ This may include the ff:
 .icon__account--black,
 .icon__location--violet,
 .icon__location--black,
+.btn.btn-icon__edit-row:hover:before,
+.btn.btn-icon__edit-row:before,
+.btn.btn-icon__close-row:hover:before,
+.btn.btn-icon__close-row:before,
+.btn.btn-icon__open-row:hover:before,
+.btn.btn-icon__open-row:before,
 .btn.btn-icon__exit:hover:before,
 .btn.btn-icon__exit:before,
 .btn.btn-icon__edit:hover:before,
@@ -13158,6 +13180,14 @@ button:focus {
 .btn__ff--primary:hover span,
 .btn__ff--primary.active span {
   color: #fff;
+}
+
+.btn.btn-icon__edit-row:before,
+.btn.btn-icon__close-row:before,
+.btn.btn-icon__open-row:before {
+  width: 25px !important;
+  height: 25px !important;
+  margin: auto;
 }
 
 .btn--active {
@@ -13263,6 +13293,48 @@ button:focus {
   width: 15px;
   height: 15px;
   background-image: url(/images/exit_icon_white.svg?cbca741cd872e2079eef1836695be41b);
+}
+
+.btn.btn-icon__open-row:before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url(/images/view_more.svg?46302b82dc261e47efb447e89a1d0c1d);
+}
+
+.btn.btn-icon__open-row:hover:before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url(/images/view_more.svg?46302b82dc261e47efb447e89a1d0c1d);
+}
+
+.btn.btn-icon__close-row:before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url(/images/view_less.svg?4c9327cda90f0cf1aed933ed406cb09e);
+}
+
+.btn.btn-icon__close-row:hover:before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url(/images/view_less.svg?4c9327cda90f0cf1aed933ed406cb09e);
+}
+
+.btn.btn-icon__edit-row:before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url(/images/table_edit.svg?401776485ba6986b3168b2aa104b549c);
+}
+
+.btn.btn-icon__edit-row:hover:before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url(/images/table_edit.svg?401776485ba6986b3168b2aa104b549c);
 }
 
 .switcher {

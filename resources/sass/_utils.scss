@@ -51,6 +51,10 @@ BACKGROUNDS COLORS
     background-color: $primary-color !important;
 }
 
+.bg-gray {
+    background: $gray !important;
+}
+
 /**
 BORDERS
 **/
@@ -60,10 +64,15 @@ BORDERS
 
 
 /**
-OVERFLOW
+OVERFLOW - Y
 **/
 .overflow-y-scroll {
     overflow-y: scroll;
+}
+
+// OVERFLOW - X
+.overflow-x-scroll {
+    overflow-x: scroll;
 }
 
 .chrome-hide-scroll {
@@ -73,6 +82,11 @@ OVERFLOW
 /**
 HEIGHT
 **/
+
+.h-auto {
+    height: auto;
+}
+
 .vh-50px {
     height: 3.125rem;
 }
@@ -88,6 +102,11 @@ HEIGHT
 /**
 WIDTH
 **/
+
+.w-auto {
+    width: auto;
+}
+
 .w-90 {
     width: 90%;
 }

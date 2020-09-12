@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Customer;
 use App\CustomerPackage;
 use App\CustomerVisits;
+use App\Enums\BranchType;
 use App\Enums\CustomerPackageStatus;
 use App\Rules\IsBranchIdExist;
 use Illuminate\Http\Request;
@@ -56,6 +57,11 @@ class CustomerVisitsController extends ApiController
                 'integer',
                 new IsUserIdExist()
             ],
+            'customer_package_type' => [
+                'required',
+                'string',
+                'in' . implode(',', BranchType::getValues())
+            ]
         ];
 
         $request->validate($rules);
@@ -80,7 +86,10 @@ class CustomerVisitsController extends ApiController
 
         $customerVisits = CustomerVisits::create($customerVisitsData);
 
-        if ( $this->getTotalCustomerVisits( request('customer_package_id') ) === (int) config('constant.package_visits_limit') ) {
+        // Get the customer Package Type Total Current Cunsomable Date of visitation.
+        $customerPackageTotalVisitation = CustomerPackage::where('customer_package_id', request('customer_package_id'))->with('package')->get()->package->salon_no_of_visits;
+
+        if ( $this->getTotalCustomerVisits( request('customer_package_id') ) === (int) $customerPackageTotalVisitation ) {
             CustomerPackage::where('customer_package_id', request('customer_package_id'))
             ->update(['customer_package_status' => CustomerPackageStatus::COMPLETED]);
         }

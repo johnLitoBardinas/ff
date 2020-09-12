@@ -28,6 +28,14 @@
     }
 }
 
+%salon-table-icons {
+    &:before {
+        width: 25px !important;
+        height: 25px !important;
+        margin: auto;
+    }
+}
+
 .btn {
 
     &--active {
@@ -83,6 +91,21 @@
 
         &__exit {
             @include include_hover_icon('../../images/svg/exit_icon_violet.svg', '../../images/svg/exit_icon_white.svg');
+        }
+
+        &__open-row {
+            @include include_hover_icon('../../images/svg/view_more.svg', '../../images/svg/view_more.svg');
+            @extend %salon-table-icons;
+        }
+
+        &__close-row {
+            @include include_hover_icon('../../images/svg/view_less.svg', '../../images/svg/view_less.svg');
+            @extend %salon-table-icons;
+        }
+
+        &__edit-row {
+            @include include_hover_icon('../../images/svg/table_edit.svg', '../../images/svg/table_edit.svg');
+            @extend %salon-table-icons;
         }
 
     }
