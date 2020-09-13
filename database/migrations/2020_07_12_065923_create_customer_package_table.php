@@ -19,12 +19,15 @@ class CreateCustomerPackageTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('customer_id');
             $table->string('reference_no');
-            $table->enum('customer_package_status', CustomerPackageStatus::getValues())->default(CustomerPackageStatus::ACTIVE);
+            // $table->enum('customer_package_status', CustomerPackageStatus::getValues())->default(CustomerPackageStatus::ACTIVE);
             $table->enum('payment_type', Config::get('constant.payment_options'));
+            $table->enum('salon_package_status', CustomerPackageStatus::getValues())->default(CustomerPackageStatus::ACTIVE);
             $table->date('salon_package_start');
             $table->date('salon_package_end');
+            $table->enum('gym_package_status', CustomerPackageStatus::getValues())->default(CustomerPackageStatus::ACTIVE);
             $table->date('gym_package_start');
             $table->date('gym_package_end');
+            $table->enum('spa_package_status', CustomerPackageStatus::getValues())->default(CustomerPackageStatus::ACTIVE);
             $table->date('spa_package_start');
             $table->date('spa_package_end');
 
