@@ -15,7 +15,7 @@ class CreateBranchTable extends Migration
             $table->string('branch_code')->unique();
             $table->string('branch_name')->unique();
             $table->string('branch_address', 191)->unique();
-            $table->enum('branch_type', BranchType::getValues())->default(BranchType::SALON);
+            $table->enum('branch_type', BranchType::getValues());
             $table->enum('branch_status', BranchStatus::getValues())->default(BranchStatus::ACTIVE);
             $table->timestamps();
             $table->softDeletes();

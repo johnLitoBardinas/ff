@@ -14,10 +14,13 @@ class User extends Authenticatable
 {
     use Notifiable, HasApiTokens;
 
+    // Defining the table name.
     protected $table = 'user';
 
+    // Defining the table primaryKey.
     protected $primaryKey = 'user_id';
 
+    // Allowed mass assign properties.
     protected $fillable = [
         'email',
         'password',
@@ -29,6 +32,7 @@ class User extends Authenticatable
         'api_token'
     ];
 
+    // Guarded properties.
     protected $guarded = [
         'user_status',
         'user_type',

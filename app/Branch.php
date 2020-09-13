@@ -8,12 +8,16 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Branch extends Model
 {
+    // Implementing Soft Deletes.
     use SoftDeletes;
 
+    // Defining the table name.
     protected $table = 'branch';
 
+    // Defining the table primary Key.
     protected $primaryKey = 'branch_id';
 
+    // Mass assigned filled.
     protected $fillable = [
         'branch_code',
         'branch_name',

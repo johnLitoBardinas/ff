@@ -6,11 +6,7 @@ use Illuminate\Support\Facades\DB;
 
 class RoleTableSeeder extends Seeder
 {
-    /**
-     * Run the database seeds.
-     *
-     * @return void
-     */
+
     public function run()
     {
         DB::statement('SET FOREIGN_KEY_CHECKS=0;');
@@ -22,4 +18,5 @@ class RoleTableSeeder extends Seeder
         Role::create(['name' => 'cashier']);
 
     }
+
 }
