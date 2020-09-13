@@ -15,6 +15,7 @@ class CustomerVisits extends Model
     // setting the custom primaryKey Table.
     protected $primaryKey = 'customer_visits_id';
 
+    // Fillable Properties.
     protected $fillable = [
         'customer_package_id',
         'branch_id',

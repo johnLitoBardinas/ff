@@ -7,20 +7,18 @@ use Illuminate\Support\Facades\Schema;
 
 class CreateCustomerVisitsTable extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up()
     {
         Schema::create('customer_visits', function (Blueprint $table) {
             $table->bigIncrements('customer_visits_id');
             $table->unsignedBigInteger('customer_package_id');
             $table->unsignedBigInteger('branch_id');
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id'); // the one post the visitation of the customer with its package
             $table->enum('customer_package_type', BranchType::getValues());
             $table->timestamp('date')->useCurrent();
             $table->string('customer_associate')->nullable();
-            $table->string('customer_associate_picture')->nullable();
+            $table->string('customer_associate_picture')->nullable(); // url of the picture for customer companion
 
             // Foreign Keys
             $table->foreign('customer_package_id')->references('customer_package_id')->on('customer_package');
@@ -29,9 +27,6 @@ class CreateCustomerVisitsTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down()
     {
         Schema::table('customer_visits', function (Blueprint $table) {
@@ -42,4 +37,5 @@ class CreateCustomerVisitsTable extends Migration
 
         Schema::dropIfExists('customer_visits');
     }
+
 }
