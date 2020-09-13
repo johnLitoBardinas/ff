@@ -8,9 +8,7 @@ use Illuminate\Support\Facades\Schema;
 
 class CreatePackageTable extends Migration
 {
-    /**
-     * Run the migrations.
-     */
+
     public function up()
     {
         Schema::create('package', function (Blueprint $table) {
@@ -19,8 +17,8 @@ class CreatePackageTable extends Migration
             $table->string('package_price', 9);
             $table->enum('package_status', PackageStatus::getValues())->default(PackageStatus::INACTIVE);
             $table->enum('package_type', BranchType::getValues());
-            $table->tinyInteger('salon_no_of_visits')->unsigned();
-            $table->tinyInteger('salon_days_valid_count')->unsigned();
+            $table->tinyInteger('salon_no_of_visits')->unsigned(); // visitation (number) for salon.
+            $table->tinyInteger('salon_days_valid_count')->unsigned(); // number of days that the valid will be valid
             $table->tinyInteger('gym_no_of_visits')->unsigned()->default(0); // if 0 then it is only days
             $table->tinyInteger('gym_days_valid_count')->unsigned();
             $table->tinyInteger('spa_no_of_visits')->unsigned();
@@ -31,12 +29,10 @@ class CreatePackageTable extends Migration
         Schema::table('package', fn(Blueprint $table) => $table->softDeletes());
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down()
     {
         Schema::table('package', fn(Blueprint $table) => $table->dropSoftDeletes());
         Schema::dropIfExists('package');
     }
+
 }

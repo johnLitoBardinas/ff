@@ -29,6 +29,7 @@ class Package extends Model
         'spa_days_valid_count',
     ];
 
+    // One to Many Relationship.
     public function customer_packages()
     {
         return $this->hasMany(CustomerPackage::class, 'package_id');
