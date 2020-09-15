@@ -7,12 +7,14 @@ use Illuminate\Contracts\Validation\Rule;
 
 class IsCustomerPackageAvailableToVisit implements Rule
 {
+    private $packageVisitsLimit;
+
     /**
      * Create a new rule instance.
      */
-    public function __construct()
+    public function __construct(Int $packageVisitsLimit)
     {
-        //
+        $this->packageVisitsLimit = $packageVisitsLimit;
     }
 
     /**
@@ -20,7 +22,7 @@ class IsCustomerPackageAvailableToVisit implements Rule
      */
     public function passes($attribute, $value)
     {
-        return CustomerVisits::where('customer_package_id', $value)->count() < config('constant.package_visits_limit');
+        return CustomerVisits::where('customer_package_id', $value)->count() < $this->packageVisitsLimit;
     }
 
     /**

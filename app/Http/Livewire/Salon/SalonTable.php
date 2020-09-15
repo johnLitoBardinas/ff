@@ -9,6 +9,7 @@ use App\Enums\SalonAction;
 
 class SalonTable extends Component
 {
+    // Listeners.
     protected $listeners = [
         'onClickNewOrActiveAccount',
         'onExpiredOrComplementedAccount',
@@ -22,15 +23,20 @@ class SalonTable extends Component
     // Store the Customer Package VIsits Table.
     public $customerPackageVisitsInfo;
 
+    // List of customer filters.
     public $customerListId;
 
+    // Current Search String.
     public $searchingText;
+
+    public $packageCustomerFilter;
 
     /**
      * Mounting the Component data.
      */
     public function mount()
     {
+        $this->packageCustomerFilter = session('userAccessType') . '_package_status';
         $this->OnNone();
         $this->getCustomerPackageData();
     }
@@ -98,16 +104,16 @@ class SalonTable extends Component
         $customerPackage->orderBy('customer_package_id');
 
         if($filterType === 'notActive') {
-            $customerPackage->where('customer_package_status', '!=', 'active');
+            $customerPackage->where($this->packageCustomerFilter, '!=', 'active');
         } else if ($filterType === 'active') {
-            $customerPackage->where('customer_package_status', 'active');
+            $customerPackage->where($this->packageCustomerFilter, 'active');
         }
 
         $customerPackage->with('customer', 'package', 'customer_visits', 'branch', 'user');
 
         $this->customerPackageVisitsInfo = $customerPackage->get()->filter(fn($customerPackage) => $customerPackage->branch->branch_type === session('userAccessType'))->values();
 
-        // dd($this->customerPackageVisitsInfo);
+        dd($this->customerPackageVisitsInfo);
     }
 
     /**

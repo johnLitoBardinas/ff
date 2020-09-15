@@ -20,8 +20,8 @@ class CustomerVisits extends Model
         'customer_package_id',
         'branch_id',
         'user_id',
-        'customer_package_type',
         'date',
+        'package_type',
         'customer_associate',
         'customer_associate_picture',
     ];

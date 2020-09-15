@@ -36,18 +36,18 @@ class CustomerVisitsController extends ApiController
      */
     public function store(Request $request, Customer $customer)
     {
-
-        dd($customer);
-        if( ! $request->has('customer_package_id') || empty( request('customer_package_id') ) ) {
+        if( empty( request('customer_package_id') ) ) {
             return $this->errorResponse('Invalid Data', 422);
         }
+
+        $customerPackageLimit = $this->getCustomerPackageVisitsLimit($request->customer_package_id, $request->package_type);
 
         $rules = [
             'customer_package_id' => [
                 'required',
                 'integer',
-                new IsCustomerHasPackage($customer->customer_id),
-                new IsCustomerPackageAvailableToVisit()
+                new IsCustomerHasPackage($customer->customer_id, $request->package_type),
+                new IsCustomerPackageAvailableToVisit($customerPackageLimit)
             ],
             'branch_id' => [
                 'required',
@@ -59,7 +59,7 @@ class CustomerVisitsController extends ApiController
                 'integer',
                 new IsUserIdExist()
             ],
-            'customer_package_type' => [
+            'package_type' => [
                 'required',
                 'string',
                 'in:' . implode(',', BranchType::getValues())
@@ -86,15 +86,12 @@ class CustomerVisitsController extends ApiController
             $customerVisitsData['customer_associate_picture'] = request('customer_associate_picture');
         }
 
-        $customerVisits = CustomerVisits::create($customerVisitsData);
-
-        // Get the customer Package Type Total Current Cunsomable Date of visitation.
-        $customerPackageTotalVisitation = CustomerPackage::where('customer_package_id', request('customer_package_id'))->with('package')->get()->package->salon_no_of_visitss;
-
-        if ( $this->getTotalCustomerVisits( request('customer_package_id') ) === (int) $customerPackageTotalVisitation ) {
+        if ( $this->getTotalCustomerVisits( request('customer_package_id'), $request->package_type ) === (int) $customerPackageLimit ) {
             CustomerPackage::where('customer_package_id', request('customer_package_id'))
             ->update(['customer_package_status' => CustomerPackageStatus::COMPLETED]);
         }
+
+        $customerVisits = CustomerVisits::create($customerVisitsData);
 
         return $this->showOne($customerVisits, 201);
 
@@ -103,9 +100,18 @@ class CustomerVisitsController extends ApiController
     /**
      * Checking the customer Visitation.
      */
-    private function getTotalCustomerVisits(Int $customerPackageId)
+    private function getTotalCustomerVisits(Int $customerPackageId, String $packageType)
     {
-        return CustomerVisits::where('customer_package_id', $customerPackageId)->count();
+        return CustomerVisits::where('customer_package_id', $customerPackageId)->where('package_type', $packageType)->count();
+    }
+
+    /**
+     * Get the customer visit limit in a package.
+     */
+    private function getCustomerPackageVisitsLimit(Int $customerPackageId, String $packageType)
+    {
+        $packageTypeNoOfVisits = $packageType . '_no_of_visits';
+        return CustomerPackage::where('customer_package_id', $customerPackageId)->with('package')->first()->package->$packageTypeNoOfVisits;
     }
 
 }

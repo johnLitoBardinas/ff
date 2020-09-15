@@ -8,7 +8,7 @@ class PackageSeeder extends Seeder
 
     public function run()
     {
-        factory(Package::class, 5)->create();
+        factory(Package::class, 1)->create();
     }
 
 }

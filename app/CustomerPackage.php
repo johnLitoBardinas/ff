@@ -24,13 +24,13 @@ class CustomerPackage extends Model
         'customer_id',
         'reference_no',
         'payment_type',
-        'salon_package_status', // Salon Package Status
+        // 'salon_package_status', // Salon Package Status
         'salon_package_start', // Salon Start Date
         'salon_package_end', // Salon End Date
-        'gym_package_status', // Gym Package Status
+        // 'gym_package_status', // Gym Package Status
         'gym_package_start', // Gym Package Start Date
         'gym_package_end', // Gym Package End Date
-        'spa_package_status', // Spa Package Status
+        // 'spa_package_status', // Spa Package Status
         'spa_package_start', // Spa Start Date
         'spa_package_end', // Spa End Date
     ];

@@ -9,7 +9,7 @@ export default class SaveNewCustomer {
         this.onSubmitFormNewCustomer();
     }
 
-    submitNewCustomer(data, parsley, event) {
+    submitNewCustomer(data, parsley, event, packageType) {
 
         axios.post(ApiUrl.customers, data)
         .then((result) => result.data)
@@ -24,6 +24,7 @@ export default class SaveNewCustomer {
             .then((customerPackage) => {
                 delete customerPackage.data['payment_type'];
                 delete customerPackage.data['reference_no'];
+                customerPackage['data']['package_type'] = packageType;
 
                 const customerVisitsUrl = `${ApiUrl.customers}/${customerPackage.data['customer_id']}/visits`;
                 axios.post(customerVisitsUrl, customerPackage.data)
@@ -44,15 +45,16 @@ export default class SaveNewCustomer {
      * Submiting new Customer Data.
      */
     onSubmitFormNewCustomer() {
-        this.$btnSaveNewCustomer.on('click', (e) => {
-            $(e.currentTarget).attr('disabled', true);
+        this.$btnSaveNewCustomer.on('click', (event) => {
+            $(event.currentTarget).attr('disabled', true);
             const parsleyForm = this.$frmNewCustomer.parsley();
             const data = this.$frmNewCustomer.serializeObject();
+            const packageType = data['package_type'];
 
             parsleyForm.validate();
 
             if (parsleyForm.isValid()) {
-                this.submitNewCustomer(data, parsleyForm, e);
+                this.submitNewCustomer(data, parsleyForm, event, packageType);
             }else {
                 $(e.currentTarget).attr('disabled', false);
             }

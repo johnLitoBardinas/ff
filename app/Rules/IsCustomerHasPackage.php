@@ -10,12 +10,16 @@ class IsCustomerHasPackage implements Rule
     // Customer Id.
     protected $customerId;
 
+    // Filtering PackageStatus.
+    protected $packageStatus;
+
     /**
      * Create a new rule instance.
      */
-    public function __construct(Int $customerId)
+    public function __construct(Int $customerId, String $packageType)
     {
         $this->customerId = $customerId;
+        $this->packageStatus = $packageType . '_package_status';
     }
 
     /**
@@ -24,7 +28,7 @@ class IsCustomerHasPackage implements Rule
     public function passes($attribute, $value)
     {
         return CustomerPackage::where('customer_id', $this->customerId)
-                                ->where('customer_package_status', 'active')
+                                ->where($this->packageStatus, 'active')
                                 ->pluck('customer_package_id')
                                 ->contains($value);
     }
