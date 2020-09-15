@@ -31,7 +31,7 @@
                 <tr x-data="{isOpen:false}">
                     <td>{{strtoupper($row->reference_no)}}</td>
                     <td>{{sprintf('%s, %s', ucfirst($row->customer->last_name), ucfirst($row->customer->first_name))}}</td>
-                    <td>{{$row->payment_type}}</td>
+                    <td>{{strtoupper($row->payment_type)}}</td>
                    <td>
                       <div class="table-responsive table-hover cursor-pointer">
                          <table class="table">
@@ -52,13 +52,25 @@
                                     <td>{{strtoupper($row->package->package_type)}}</td>
                                     <td>{{number_format($row->package->package_price)}}</td>
                                      <td>
+                                        <?php $customerSalonVisits = $row->customer_visits->filter(fn($item) => $item->package_type === 'salon')->toArray(); ?>
                                         <div class="w-100 d-flex justify-content-between">
                                            @for ($i = 0; $i < $row->package->salon_no_of_visits; $i++)
-                                           <div class="w-auto d-flex flex-column mr-1">
-                                              <button class="btn btn-sm btn-default border btn__ff--primary active" disabled>
-                                              {{-- {{date('n-j-Y', strtotime($customerVisits[$i]['date']))}} --}}
-                                              {{date('n-j-Y', strtotime(now()))}}
-                                              </button>
+                                           <div class="w-auto d-flex flex-column">
+                                            @if ( ! empty($customerSalonVisits[$i]) )
+                                                <div class="w-auto d-flex flex-column">
+                                                    <button class="btn btn-sm btn-default border btn__ff--primary active" disabled>
+                                                        {{date('n-j-Y', strtotime($customerSalonVisits[$i]['date']))}}
+                                                    </button>
+                                                </div>
+                                            @else
+                                                <div class="w-auto d-flex flex-column">
+                                                    <a
+                                                    href="{{ route('customer-visits', encrypt($row->customer_package_id))}}"
+                                                    class="btn btn-sm btn-default border btn__ff--primary">
+                                                    +add
+                                                    </a>
+                                                </div>
+                                             @endif
                                            </div>
                                            @endfor
                                         </div>
@@ -76,13 +88,25 @@
                                      <td>GYM</td>
                                      <td class="text-line-through">Free</td>
                                      <td>
+                                        <?php $customerGymVisits = $row->customer_visits->filter(fn($item) => $item->package_type === 'gym')->toArray(); ?>
                                         <div class="w-100 d-flex justify-content-start">
                                            @for ($i = 0; $i < $row->package->gym_no_of_visits; $i++)
                                            <div class="w-auto d-flex flex-column mr-1">
-                                              <button class="btn btn-sm btn-default border btn__ff--primary active" disabled>
-                                              {{-- {{date('n-j-Y', strtotime($customerVisits[$i]['date']))}} --}}
-                                              {{date('n-j-Y', strtotime(now()))}}
-                                              </button>
+                                            @if ( ! empty($customerGymVisits[$i]) )
+                                                <div class="w-auto d-flex flex-column">
+                                                    <button class="btn btn-sm btn-default border btn__ff--primary active" disabled>
+                                                        {{date('n-j-Y', strtotime($customerGymVisits[$i]['date']))}}
+                                                    </button>
+                                                </div>
+                                            @else
+                                                <div class="w-auto d-flex flex-column">
+                                                    <a
+                                                    href="{{ route('customer-visits', encrypt($row->customer_package_id))}}"
+                                                    class="btn btn-sm btn-default border btn__ff--primary">
+                                                    +add
+                                                    </a>
+                                                </div>
+                                            @endif
                                            </div>
                                            @endfor
                                         </div>
@@ -100,13 +124,26 @@
                                      <td>SPA</td>
                                      <td class="text-line-through">Free</td>
                                      <td>
+                                        <?php $customerSpaVisits = $row->customer_visits->filter(fn($item) => $item->package_type === 'spa')->toArray(); ?>
+
                                         <div class="w-100 d-flex justify-content-start">
                                            @for ($i = 0; $i < $row->package->spa_no_of_visits; $i++)
                                            <div class="w-auto d-flex flex-column mr-1">
-                                              <button class="btn btn-sm btn-default border btn__ff--primary active" disabled>
-                                              {{-- {{date('n-j-Y', strtotime($customerVisits[$i]['date']))}} --}}
-                                              {{date('n-j-Y', strtotime(now()))}}
-                                              </button>
+                                            @if ( ! empty($customerSpaVisits[$i]) )
+                                                <div class="w-auto d-flex flex-column">
+                                                    <button class="btn btn-sm btn-default border btn__ff--primary active" disabled>
+                                                        {{date('n-j-Y', strtotime($customerSpaVisits[$i]['date']))}}
+                                                    </button>
+                                                </div>
+                                            @else
+                                                <div class="w-auto d-flex flex-column">
+                                                    <a
+                                                    href="{{ route('customer-visits', encrypt($row->customer_package_id))}}"
+                                                    class="btn btn-sm btn-default border btn__ff--primary">
+                                                    +add
+                                                    </a>
+                                                </div>
+                                            @endif
                                            </div>
                                            @endfor
                                         </div>

@@ -56,7 +56,7 @@ export default class SaveNewCustomer {
             if (parsleyForm.isValid()) {
                 this.submitNewCustomer(data, parsleyForm, event, packageType);
             }else {
-                $(e.currentTarget).attr('disabled', false);
+                $(event.currentTarget).attr('disabled', false);
             }
 
         });
