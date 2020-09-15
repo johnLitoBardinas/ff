@@ -113,7 +113,7 @@ class SalonTable extends Component
 
         $this->customerPackageVisitsInfo = $customerPackage->get()->filter(fn($customerPackage) => $customerPackage->branch->branch_type === session('userAccessType'))->values();
 
-        dd($this->customerPackageVisitsInfo);
+        // dd($this->customerPackageVisitsInfo);
     }
 
     /**
