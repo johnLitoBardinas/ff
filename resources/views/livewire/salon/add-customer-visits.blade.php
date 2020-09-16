@@ -25,7 +25,7 @@
         </div>
         <div class="col-6">
             <small>Plan Expiration Date <strong>(60 Days)</strong></small>
-            <h5>{{ date('M. d, Y', strtotime( '-1 day', strtotime( $customerPackageInfo->customer_package_end ) ) ) }}</h5>
+            {{-- <h5>{{ date('M. d, Y', strtotime( '-1 day', strtotime( $customerPackageInfo->customer_package_end ) ) ) }}</h5> --}}
         </div>
     </div>
     <hr>

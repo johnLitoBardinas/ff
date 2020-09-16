@@ -25,7 +25,7 @@ Route::middleware('auth')->group(function () {
 
     // Open new Customer
     Route::livewire('/newaccount', 'salon.add-new-customer')->name('new-customer')->middleware('can:access-management');
-    Route::livewire('/customervisits/{customer_package_id}', 'salon.add-customer-visits')->name('customer-visits')->middleware('can:access-management');
+    Route::livewire('/customervisits/{customer_package_id}/{package_type}', 'salon.add-customer-visits')->name('customer-visits')->middleware('can:access-management');
     Route::livewire('/customerrenew/{encrypted_customer_id}', 'salon.customer-renew')->name('customer-renew')->middleware('can:access-management');
 
     // Manager/Cashier Side.
