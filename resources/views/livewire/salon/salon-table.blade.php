@@ -1,7 +1,7 @@
 <div class="row mt-4">
     <div class="col-md-12">
        <div class="table-responsive">
-          <table class="table table-hover admin-table" style="width:100%;">
+          <table class="table table-hover admin-table" style="width:100%;" id="salon-table">
              <colgroup>
                 <col span="1" style="width: 10%;">
                 <col span="1" style="width: 15%;">
@@ -28,7 +28,7 @@
              </thead>
              <tbody>
                 @forelse ($customerPackageVisitsInfo as $row)
-                <tr x-data="{isOpen:false}" x-init="isOpen = false">
+                <tr>
                     <td>{{strtoupper($row->reference_no)}}</td>
                     <td>{{sprintf('%s, %s', ucfirst($row->customer->last_name), ucfirst($row->customer->first_name))}}</td>
                     <td>{{strtoupper($row->payment_type)}}</td>
@@ -45,8 +45,7 @@
                                   <th class="text-primary font-weight-bold">STATUS</th>
                                </tr>
                             </thead>
-                            <template x-if="isOpen">
-                               <tbody style="white-space:nowrap;">
+                               <tbody style="white-space:nowrap;" class="d-none">
                                   <tr>
                                      <td>{{strtoupper($row->package->package_name)}}</td>
                                     <td>{{strtoupper($row->package->package_type)}}</td>
@@ -157,22 +156,19 @@
                                   </tr>
                                   {{-- ./spa-row --}}
                                </tbody>
-                            </template>
                          </table>
                       </div>
                    </td>
                    <td>
                       <a
                          href="javascript:void(0);"
-                         class="btn btn-sm btn-default btn-icon btn-icon__open-row cursor-pointer d-none"
-                         :class="{ 'd-flex' : isOpen === false }"
-                         title="View More Details"
-                         x-on:click="isOpen = true"></a>
+                         class="btn btn-sm btn-default btn-icon btn-icon__open-row cursor-pointer"
+                         data-action="togglePackageInfo"
+                         title="View More Details"></a>
                       <a
                          href="javascript:void(0);"
                          class="btn btn-sm btn-default btn-icon btn-icon__close-row  cursor-pointer d-none"
-                         :class="{ 'd-flex': isOpen === true }"
-                         title="View Less Details" x-on:click="isOpen = false"></a>
+                         title="View Less Details"></a>
                    </td>
                 </tr>
                 @empty

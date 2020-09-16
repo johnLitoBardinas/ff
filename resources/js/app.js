@@ -10,6 +10,7 @@ import BranchStatus from './Admin/BranchStatus';
 import BranchUsers from './Admin/BranchUsers';
 import Package from './Admin/Package';
 
+import SalonTable from './Salon/SalonTable';
 import SaveNewCustomer from './Salon/SaveNewCustomer';
 import SaveCustomerVisits from './Salon/SaveCustomerVisits';
 
@@ -27,6 +28,7 @@ $(document).ready(() => {
     new Package();
 
     // Salon Interaction
+    new SalonTable();
     new SaveNewCustomer();
     new SaveCustomerVisits();
     new RenewCustomer();
