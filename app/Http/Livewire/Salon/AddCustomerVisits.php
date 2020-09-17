@@ -4,63 +4,75 @@ namespace App\Http\Livewire\Salon;
 
 use Livewire\Component;
 use App\CustomerPackage;
-use Illuminate\Support\Facades\Auth;
+use App\CustomerVisits;
 
 class AddCustomerVisits extends Component
 {
-    protected $listeners = ['onUpdateCustomerVisits'];
+    protected $listeners = [
+        'onUpdateCustomerVisits' => 'getCustomerPackageVisitation'
+    ];
 
+    // Current Customer Package ID.
     public $customerPackageId;
 
-    // Customer Package
+    // Current Customer Package Type.
+    public $customerPackageType;
+
+    // Customer Package.
     public $customerPackageInfo;
 
-    // Customer Visits
-    public $customerPackageFirstVisit;
-    public $customerPackageSecondVisit;
-    public $customerPackageThirdVisit;
-    public $customerPackageForthVisit;
+    // Package End Date.
+    public $customerPackageEndDate;
+
+    // Total Visitation Count for the customerPackage.
+    public $customerPackageVisitation;
+
+    // Total Allocated Customer Visitation.
+    public $customerPackageTotalVisitationCount = 0;
 
     /**
      * Mounting some default data.
      */
     public function mount()
     {
-        $this->customerPackageId = request('customer_package_id');
+        $this->customerPackageId = decrypt(request('customer_package_id'));
+        $this->customerPackageType = decrypt(request('package_type'));
+
+        // Get the CustomerPackage, Customer, Package, Visits Info.
         $this->getCustomerPackageVisits();
+
+        $this->getCustomerPackageEndDate();
+
+        $this->getTotalPackageVisitation();
+
+        $this->getCustomerPackageVisitation();
+
     }
 
-    private function getCustomerPackageVisits()
-    {
-        $this->customerPackageInfo = CustomerPackage::where('customer_package_id', decrypt($this->customerPackageId))->with('customer', 'package', 'customer_visits')->first();
-
-        if (empty( $this->customerPackageInfo )) {
-            Auth::logout();
-            return redirect('/');
+        // Current Number of customer visitaion.
+        public function getCustomerPackageVisitation()
+        {
+            $this->customerPackageVisitation = CustomerVisits::where('customer_package_id', $this->customerPackageId)->where('package_type', 'salon')->get()->toArray();
         }
 
-        $this->setCustomerVisitationDate();
-
+    // Get the info for customerPackageVisits
+    private function getCustomerPackageVisits()
+    {
+        $this->customerPackageInfo = CustomerPackage::where('customer_package_id', $this->customerPackageId)->with('customer', 'package', 'customer_visits')->first();
     }
 
-    // On Update Customer Visits
-    public function onUpdateCustomerVisits(Int $customerPackageId)
+    // Getting the current Package End Date.
+    private function getCustomerPackageEndDate()
     {
-        $this->customerPackageInfo = CustomerPackage::where('customer_package_id', $customerPackageId)->with('customer', 'package', 'customer_visits')->first();
-        $this->setCustomerVisitationDate();
+        $package_type = $this->customerPackageType . '_package_end';
+        $this->customerPackageEndDate = $this->customerPackageInfo->toArray()[$package_type];
     }
 
-    private function setCustomerVisitationDate()
+    // Total number of Visitation for the Package.
+    private function getTotalPackageVisitation()
     {
-        $this->customerPackageFirstVisit = pikaday_date_format( $this->getCustomerVisitsDate(0) );
-        $this->customerPackageSecondVisit = ! empty($this->getCustomerVisitsDate(1)) ? pikaday_date_format( $this->getCustomerVisitsDate(1) ) : 0;
-        $this->customerPackageThirdVisit = ! empty($this->getCustomerVisitsDate(2)) ? pikaday_date_format( $this->getCustomerVisitsDate(2) ) : 0;
-        $this->customerPackageForthVisit = ! empty($this->getCustomerVisitsDate(3)) ? pikaday_date_format( $this->getCustomerVisitsDate(3) ) : 0;
-    }
-
-    private function getCustomerVisitsDate(Int $index)
-    {
-        return $this->customerPackageInfo->customer_visits[$index]['date'] ?? null;
+        $package_type = $this->customerPackageType . '_no_of_visits';
+        $this->customerPackageTotalVisitationCount = $this->customerPackageInfo->toArray()['package'][$package_type];
     }
 
     /**

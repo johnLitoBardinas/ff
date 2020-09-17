@@ -28,7 +28,8 @@ export default class SaveCustomerVisits {
 
                 const customerVisitsData = {
                     ... data,
-                    date: element
+                    date: element,
+                    'package_type': data['package_type']
                 };
 
                 axios.post(`${ApiUrl.customers}/${data['customer_id']}/visits`, customerVisitsData)
@@ -39,7 +40,7 @@ export default class SaveCustomerVisits {
                     window.livewire.emit('onUpdateCustomerVisits', data['customer_package_id']);
                     $(e.currentTarget).attr('disabled', true);
                 })
-                .catch((error) => console.error(error));
+                .catch(error => utils.axiosErrorCallback(error));
 
             });
         });

@@ -102,14 +102,15 @@
                                                 </div>
                                             @else
                                                 <div class="w-auto d-flex flex-column">
-                                                    <a
+                                                    {{-- <a
                                                     href="{{ route('customer-visits', [
                                                        'customer_package_id' => encrypt($row->customer_package_id),
                                                        'package_type' => encrypt('gym')
                                                     ])}}"
                                                     class="btn btn-sm btn-default border btn__ff--primary">
                                                     +add
-                                                    </a>
+                                                    </a> --}}
+                                                    <span class="text-line-through">Unavailable</span>
                                                 </div>
                                             @endif
                                            </div>
@@ -142,14 +143,15 @@
                                                 </div>
                                             @else
                                                 <div class="w-auto d-flex flex-column">
-                                                    <a
+                                                    {{-- <a
                                                     href="{{ route('customer-visits', [
                                                       'customer_package_id' => encrypt($row->customer_package_id),
                                                       'package_type' => encrypt('spa')
                                                       ])}}"
                                                     class="btn btn-sm btn-default border btn__ff--primary">
                                                     +add
-                                                    </a>
+                                                    </a> --}}
+                                                    <span class="text-line-through">Unavailable</span>
                                                 </div>
                                             @endif
                                            </div>

@@ -86,12 +86,15 @@ class CustomerVisitsController extends ApiController
             $customerVisitsData['customer_associate_picture'] = request('customer_associate_picture');
         }
 
-        if ( $this->getTotalCustomerVisits( request('customer_package_id'), $request->package_type ) === (int) $customerPackageLimit ) {
-            CustomerPackage::where('customer_package_id', request('customer_package_id'))
-            ->update(['customer_package_status' => CustomerPackageStatus::COMPLETED]);
-        }
-
         $customerVisits = CustomerVisits::create($customerVisitsData);
+
+        if ( $this->getTotalCustomerVisits( request('customer_package_id'), $request->package_type ) === (int) $customerPackageLimit ) {
+
+            $package_type_field = $request->package_type . '_package_status';
+            CustomerPackage::where('customer_package_id', request('customer_package_id'))
+            ->update([$package_type_field => CustomerPackageStatus::COMPLETED]);
+
+        }
 
         return $this->showOne($customerVisits, 201);
 
