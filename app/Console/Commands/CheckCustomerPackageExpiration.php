@@ -33,11 +33,20 @@ class CheckCustomerPackageExpiration extends Command
      */
     public function handle()
     {
-        $checkingCustomerPackage = CustomerPackage::where('customer_package_end', '<', Carbon::now())
-                                    ->where('customer_package_status', CustomerPackageStatus::ACTIVE)
-                                    ->update(['customer_package_status' => CustomerPackageStatus::EXPIRED]);
+        // $checkingCustomerPackage = CustomerPackage::where('customer_package_end', '<', Carbon::now())
+        //                             ->where('customer_package_status', CustomerPackageStatus::ACTIVE)
+        //                             ->update(['customer_package_status' => CustomerPackageStatus::EXPIRED]);
+
+        $salonPackage = CustomerPackage::where('salon_package_end', '<', Carbon::now())->where('salon_package_status', CustomerPackageStatus::ACTIVE)->update(['salon_package_status' => CustomerPackageStatus::EXPIRED]);
+
+        $gymPackage = CustomerPackage::where('gym_package_end', '<', Carbon::now())->where('gym_package_status', CustomerPackageStatus::ACTIVE)->update(['gym_package_status' => CustomerPackageStatus::EXPIRED]);
+
+        $spaPackage = CustomerPackage::where('spa_package_end', '<', Carbon::now())->where('spa_package_status', CustomerPackageStatus::ACTIVE)->update(['spa_package_status' => CustomerPackageStatus::EXPIRED]);
 
         Log::notice('Finished Checked on Customer Expired Package');
-        $this->info('Total Expired Customer Package =>' . $checkingCustomerPackage);
+        $this->info('Total Expired Salon Package =>' . $salonPackage);
+        $this->info('Total Expired Gym Package =>' . $gymPackage);
+        $this->info('Total Expired Spa Package =>' . $spaPackage);
+
     }
 }
