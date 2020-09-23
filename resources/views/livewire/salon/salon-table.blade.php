@@ -170,7 +170,11 @@
                          </table>
                       </div>
                    </td>
-                   <td>
+                   <td class="d-flex">
+                      @if ($row->$packageCustomerFilter !== 'active')
+                      <a class="btn btn-sm btn-default btn-icon btn-icon__edit-row cursor-pointer" href="{{route('customer-renew', encrypt($row->customer->customer_id))}}" title="Renew the Customer">
+                      </a>
+                      @endif
                       <a
                          href="javascript:void(0);"
                          class="btn btn-sm btn-default btn-icon btn-icon__open-row cursor-pointer"

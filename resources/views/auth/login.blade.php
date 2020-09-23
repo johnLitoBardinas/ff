@@ -14,8 +14,8 @@
                             <option disabled readonly>Select Account</option>
                             <option value="f-and-f.co">f&f.co</option>
                             <option value="fix-and-free.salon">fix&free.salon</option>
-                            <option value="fit-and-free.gym">fit&free.gym</option>
-                            <option value="fib-and-free.wellness">fab&free.wellness</option>
+                            <option value="fit-and-free.gym" disabled>fit&free.gym</option>
+                            <option value="fib-and-free.wellness" disabled>fab&free.wellness</option>
                         </select>
                     </div>
                     <div class="form-group">
