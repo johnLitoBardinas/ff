@@ -36,27 +36,27 @@ class UserSeeder extends Seeder
             'role_id' => $adminRole->role_id,
         ]);
 
-        User::create([
-            'email' => 'manager@ff.com',
-            'password' => Hash::make('password'),
-            'first_name' => 'Manager',
-            'last_name' => 'User',
-            'mobile_number' => '09123456789',
-            'user_status' => UserStatus::ACTIVE,
-            'branch_id' => $branchIds[array_rand($branchIds)],
-            'role_id' => $managerRole->role_id,
-        ]);
+        // User::create([
+        //     'email' => 'manager@ff.com',
+        //     'password' => Hash::make('password'),
+        //     'first_name' => 'Manager',
+        //     'last_name' => 'User',
+        //     'mobile_number' => '09123456789',
+        //     'user_status' => UserStatus::ACTIVE,
+        //     'branch_id' => $branchIds[array_rand($branchIds)],
+        //     'role_id' => $managerRole->role_id,
+        // ]);
 
-        User::create([
-            'email' => 'cashier@ff.com',
-            'password' => Hash::make('password'),
-            'first_name' => 'Cashier',
-            'last_name' => 'User',
-            'mobile_number' => '09123456789',
-            'user_status' => UserStatus::ACTIVE,
-            'branch_id' => $branchIds[array_rand($branchIds)],
-            'role_id' => $cashierRole->role_id,
-        ]);
+        // User::create([
+        //     'email' => 'cashier@ff.com',
+        //     'password' => Hash::make('password'),
+        //     'first_name' => 'Cashier',
+        //     'last_name' => 'User',
+        //     'mobile_number' => '09123456789',
+        //     'user_status' => UserStatus::ACTIVE,
+        //     'branch_id' => $branchIds[array_rand($branchIds)],
+        //     'role_id' => $cashierRole->role_id,
+        // ]);
 
     }
 }

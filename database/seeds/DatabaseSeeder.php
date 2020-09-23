@@ -11,11 +11,11 @@ class DatabaseSeeder extends Seeder
     {
         $this->call(RoleTableSeeder::class);
         $this->call(BranchSeeder::class);
+        // if (config('app.env') !== 'production' ) {
+        //     $this->call(BranchSeeder::class);
+        //     $this->call(PackageSeeder::class);
+        // }
         $this->call(UserSeeder::class);
-
-        if (config('app.env') !== 'production' ) {
-            $this->call(PackageSeeder::class);
-        }
 
         // $this->call(CustomerSeeder::class);
         // $this->call(CustomerPackageSeeder::class);
