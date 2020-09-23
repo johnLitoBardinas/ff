@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Salon;
 
 use App\Customer;
+use App\Enums\PackageStatus;
 use App\Package;
 use Livewire\Component;
 
@@ -17,11 +18,16 @@ class CustomerRenew extends Component
     // List of Packages or Subscription Plan.
     public $subscriptionPlans;
 
+    // Type of the Package (Salon, Gym, Spa)
+    public $currentCustomerPackageType;
+
     /**
      * Mounting data to the component.
      */
     public function mount(String $encrypted_customer_id)
     {
+        $this->currentCustomerPackageType = session('userAccessType');
+
         $this->getCustomerInfo(decrypt($encrypted_customer_id));
 
         $this->paymentsOptions = config('constant.payment_options');
@@ -34,7 +40,7 @@ class CustomerRenew extends Component
      */
     private function getAllSubscriptionPlans()
     {
-        $this->subscriptionPlans = Package::all()->toArray();
+        $this->subscriptionPlans = Package::where('package_status', PackageStatus::ACTIVE)->where('package_type', $this->currentCustomerPackageType)->get()->toArray();
     }
 
     /**

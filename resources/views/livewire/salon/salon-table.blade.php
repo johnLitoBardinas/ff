@@ -172,7 +172,9 @@
                    </td>
                    <td class="d-flex">
                       @if ($row->$packageCustomerFilter !== 'active')
-                      <a class="btn btn-sm btn-default btn-icon btn-icon__edit-row cursor-pointer" href="{{route('customer-renew', encrypt($row->customer->customer_id))}}" title="Renew the Customer">
+                      <a class="btn btn-sm btn-default btn-icon btn-icon__edit-row cursor-pointer" href="{{route('customer-renew', [
+                         'encrypted_customer_id' => encrypt($row->customer->customer_id)
+                        ])}}" title="Renew the Customer">
                       </a>
                       @endif
                       <a

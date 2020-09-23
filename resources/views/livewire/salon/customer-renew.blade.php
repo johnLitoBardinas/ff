@@ -16,6 +16,7 @@
         <input type="hidden" name="user_id" value="{{Auth::id()}}">
         <input type="hidden" name="branch_id" value="{{Auth::user()->branch_id}}">
         <input type="hidden" name="customer_id" value="{{$customerInfo->customer_id}}">
+        <input type="hidden" name="package_type" value="{{$currentCustomerPackageType}}">
 
         <div class="form-group">
             <small for="first_name" class="form-text text-muted">Ref. Number</small>
@@ -35,8 +36,8 @@
             <small for="exampleInputEmail1" class="form-text text-muted">Subscription Plan</small>
             <select class="custom-select border-primary" name="package_id" required>
                 @forelse ($subscriptionPlans as $plan)
-                    <option value="{{$plan['package_id']}}" title="{{$plan['package_description']}} - {{number_format($plan['package_price'])}}">
-                        {{$plan['package_name']}}</option>
+                    <option value="{{$plan['package_id']}}" title="{{number_format($plan['package_price'])}}">
+                        {{ucfirst($plan['package_name'])}}</option>
                 @empty
                     <option readonly disabled>No available Plan</option>
                 @endforelse

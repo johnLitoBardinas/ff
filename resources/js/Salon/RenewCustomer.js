@@ -1,3 +1,5 @@
+const utils = require('../utils');
+
 import Swal from 'sweetalert2';
 
 export default class RenewCustomer {
@@ -17,13 +19,17 @@ export default class RenewCustomer {
 
             parsleyForm.validate();
 
+
+
             if (parsleyForm.isValid()) {
                 const customerPackageUrl = `${ApiUrl.customers}/${data['customer_id']}/packages`;
                 const customerVisitsUrl = `${ApiUrl.customers}/${data['customer_id']}/visits`;
+                const packageType = data['package_type'];
 
                 axios.post(customerPackageUrl, data)
                 .then((response) => response.data)
                 .then((customerPackageData) => {
+                    customerPackageData['package_type'] = packageType;
                     axios.post(customerVisitsUrl, customerPackageData)
                     .then((response) => {
                         if (response.status === 201) {
@@ -32,9 +38,9 @@ export default class RenewCustomer {
                             parsleyForm.reset();
                         }
                         $(e.currentTarget).attr('disabled', false);
-                    }).catch((error) => console.error(error));
+                    }).catch((error) => utils.axiosErrorCallback(error));
                 })
-                .catch((error) => console.error(error))
+                .catch((error) => utils.axiosErrorCallback(error))
             } else {
                 $(e.currentTarget).attr('disabled', false);
             }
