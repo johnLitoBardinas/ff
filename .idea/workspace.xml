@@ -2,54 +2,16 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00657363-ff5b-409d-abc9-51dd981bfb1a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/.gitignore" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/codeStyles/codeStyleConfig.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/ff.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/textfile.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/php.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/phpunit.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/app/Repositories/UserRoleRepository.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Enums/BranchType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enums/BranchType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Enums/UserType.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Enums/UserType.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/Auth/LoginController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Admin/AdminBranches.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Admin/AdminBranches.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Admin/BranchAddressUserForm.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Admin/BranchAddressUserForm.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Http/Livewire/Nav.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Livewire/Nav.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Providers/AuthServiceProvider.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Rules/IsActive.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Rules/IsActive.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Rules/IsUserCanAccessBranch.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Rules/IsUserCanAccessBranch.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/helpers.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/helpers.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/BranchSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/BranchSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/DatabaseSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/RoleTableSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/RoleTableSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/seeds/UserSeeder.php" beforeDir="false" afterPath="$PROJECT_DIR$/database/seeds/UserSeeder.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql/ff/branch.frm" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ff/branch.frm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql/ff/branch.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ff/branch.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql/ff/customer.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ff/customer.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql/ff/customer_package.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ff/customer_package.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql/ff/customer_visits.frm" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ff/customer_visits.frm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql/ff/customer_visits.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ff/customer_visits.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql/ff/failed_jobs.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ff/failed_jobs.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql/ff/migrations.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ff/migrations.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql/ff/package.frm" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ff/package.frm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql/ff/package.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ff/package.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql/ff/password_resets.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ff/password_resets.ibd" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/Repositories/UserBranchRepository.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysql/ff/personal_access_tokens.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ff/personal_access_tokens.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql/ff/role.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ff/role.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql/ff/user.frm" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ff/user.frm" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql/ff/user.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ff/user.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql/ib_buffer_pool" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ib_buffer_pool" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysql/ib_logfile0" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ib_logfile0" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysql/ibdata1" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ibdata1" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/mysql/ibtmp1" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ibtmp1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysql/mysql/innodb_index_stats.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/mysql/innodb_index_stats.ibd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysql/mysql/innodb_table_stats.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/mysql/innodb_table_stats.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/views/livewire/admin/branch-address-user-form.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/livewire/admin/branch-address-user-form.blade.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/js/Admin/SaveBranch.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Admin/SaveBranch.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -183,6 +145,9 @@
     </include_path>
   </component>
   <component name="ProjectId" id="1hw8vnR2UE0LnMIim3vLhmFrnHV" />
+  <component name="ProjectLevelVcsManager">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -213,8 +178,9 @@
       <updated>1600911027023</updated>
       <workItem from="1600957642744" duration="2987000" />
       <workItem from="1601001665858" duration="246000" />
-      <workItem from="1601012228849" duration="1305000" />
+      <workItem from="1601012228849" duration="3527000" />
     </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -232,10 +198,10 @@
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
     <state x="2008" y="349" key="#com.intellij.fileTypes.FileTypeChooser/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1601013612773" />
-    <state x="2139" y="208" key="NewPhpClassDialog" timestamp="1600959766223">
+    <state x="2139" y="208" key="NewPhpClassDialog" timestamp="1601015772929">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
-    <state x="2139" y="208" key="NewPhpClassDialog/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1600959766223" />
+    <state x="2139" y="208" key="NewPhpClassDialog/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1601015772929" />
     <state x="2155" y="249" key="RollbackChangesDialog" timestamp="1601013460028">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
@@ -244,9 +210,13 @@
       <screen x="1440" y="23" width="1920" height="1057" />
     </state>
     <state x="1971" y="212" key="SettingsEditor/0.23.1440.821/1440.23.1920.1057@1440.23.1920.1057" timestamp="1600958447798" />
-    <state x="2065" y="241" width="670" height="676" key="search.everywhere.popup" timestamp="1601013639766">
+    <state x="2065" y="378" key="SimpleOpenTaskDialog" timestamp="1601015975075">
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
-    <state x="2065" y="241" width="670" height="676" key="search.everywhere.popup/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1601013639766" />
+    <state x="2065" y="378" key="SimpleOpenTaskDialog/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1601015975075" />
+    <state x="2065" y="241" width="670" height="676" key="search.everywhere.popup" timestamp="1601015701986">
+      <screen x="1440" y="0" width="1920" height="1080" />
+    </state>
+    <state x="2065" y="241" width="670" height="676" key="search.everywhere.popup/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1601015701986" />
   </component>
 </project>

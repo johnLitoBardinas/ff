@@ -1,10 +1,12 @@
 import 'parsleyjs';
 import Swal from 'sweetalert2';
 
+const utils = require('../utils');
+
 export default class BranchUsers {
 
     constructor() {
-        this.$btnAddUser = $("#btn-branch-user");
+        this.$divAdminBranchForm = $("#admin-branches-form");
         this.$modalBranchUser = $("#modal-user-form");
         this.$frmBranchUser = $("#frm-branch-users");
         this.$btnSaveBranchUser = $("#btn-save-branch-user");
@@ -15,12 +17,14 @@ export default class BranchUsers {
     }
 
     onClickAddUser() {
-        this.$btnAddUser.on('click', (e) => {
+
+        this.$divAdminBranchForm.on("click", "#btn-branch-user", (e) => {
             const { branchid, branchname } = e.currentTarget.dataset;
-            this.$modalBranchUser.find('#modal-user-form__branch-name').text(branchname);
-            this.$modalBranchUser.find('#modal-user-form__branch-id').val(branchid);
-            this.$modalBranchUser.modal({backdrop: 'static', keyboard: false});
+            this.$divAdminBranchForm.find("#modal-user-form").find('#modal-user-form__branch-name').text(branchname);
+            this.$divAdminBranchForm.find("#modal-user-form").find('#modal-user-form__branch-id').val(branchid);
+            this.$divAdminBranchForm.find("#modal-user-form").modal({backdrop: 'static', keyboard: false});
         });
+
     }
 
     onSubmitForm() {
@@ -31,6 +35,7 @@ export default class BranchUsers {
 
             if ( parsleyForm.isValid() ) {
                 const data = this.$frmBranchUser.serializeObject();
+                $(e.currentTarget).attr('disabled', true);
 
                 axios.post(ApiUrl.users, data)
                 .then((response) => {
@@ -43,7 +48,8 @@ export default class BranchUsers {
                         Swal.fire('User Added', `${data['first_name']} is now in Branch ${branchName}`, 'success');
                     }
                 })
-                .catch((error) => console.error(error));
+                .catch((error) => utils.axiosErrorCallback(error))
+                .finally(() => $(e.currentTarget).attr('disabled', false));
             }
         });
     }

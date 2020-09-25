@@ -45,7 +45,7 @@ export default class SaveBranch {
                         Swal.fire('Branch Updated!!!', '', 'success');
                     }
                 })
-                .catch((error) => console.log(error))
+                .catch((error) => utils.axiosErrorCallback(error))
                 .finally(() => $(e.currentTarget).attr('disabled', false));
             } else {
                 $(e.currentTarget).attr('disabled', false);
@@ -79,18 +79,14 @@ export default class SaveBranch {
                     this.$modalBranchForm.modal('hide');
                     if (response.status === 201) {
                         window.livewire.emit('onUpdateBranch', response.data['branch_id']);
-                        window.livewire.emit('onChangeBranch', response.data['branch_id']);
+
+                        setTimeout(() => {
+                            window.livewire.emit('onChangeBranch', response.data['branch_id']);
+                        }, 1500);
+
                         Swal.fire('Branch Added!!!', '', 'success');
                     }
-                }).catch((error) => {
-                    const errorData = error.response.data;
-                    const errorMessage = errorData.message || 'Error';
-                    Swal.fire({
-                        icon: 'error',
-                        title: errorMessage,
-                        html: `<b>Branch Name</b> or <b>Branch Address</b> already existed.`
-                    });
-                })
+                }).catch((error) => utils.axiosErrorCallback(error))
                 .finally(() => $(e.currentTarget).attr('disabled', false));
 
             } else {

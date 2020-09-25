@@ -2,9 +2,7 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Enums\BranchStatus;
 use App\Repositories\UserRoleRepository;
-use App\Role;
 use App\Branch;
 use App\Enums\AdminAction;
 use App\Enums\BranchType;
@@ -26,7 +24,7 @@ class BranchAddressUserForm extends Component
     public string $branchName;
     public string $branchAddress;
     public string $branchStatus;
-    public string $branchUsers;
+    public $branchUsers;
 
     // Current action into  the component.
     public string $action;
@@ -45,7 +43,7 @@ class BranchAddressUserForm extends Component
 
         $this->currentBranchId = Branch::orderBy('branch_id', 'DESC')->where('branch_type', '!=', BranchType::SUPER_ADMIN)->first()->branch_id ?? 0;
 
-        $this->setBranch();
+        $this->setBranchUsingBranchId();
     }
 
     /**
@@ -53,14 +51,19 @@ class BranchAddressUserForm extends Component
      *
      * @param null|int $brandId
      */
-    public function setBranch($brandId = null)
+    public function setBranch($branchId = null)
     {
         $this->action = AdminAction::READ_BRANCH;
 
-        if (! is_null($brandId)) {
-            $this->currentBranchId = $brandId;
+        if (! is_null($branchId)) {
+            $this->currentBranchId = $branchId;
+            // dump($this->currentBranchId);
         }
+
         $this->setBranchUsingBranchId();
+
+        // dd($this->currentBranch);
+
     }
 
     /**
@@ -70,11 +73,12 @@ class BranchAddressUserForm extends Component
     {
         $this->currentBranch = Branch::where('branch_id', $this->currentBranchId)->where('branch_type', '!=', BranchType::SUPER_ADMIN)->with('users.role')->get()->first();
 
-        if ( ! empty( $this->currentBranch )) {
-            $this->branchName = $this->currentBranch->branch_name;
-            $this->branchStatus = $this->currentBranch->branch_status;
-            $this->branchAddress = $this->currentBranch->branch_address;
-            $this->branchUsers = $this->currentBranch->users->toJson();
+        $this->branchName = $this->currentBranch->branch_name ?? '';
+        $this->branchStatus = $this->currentBranch->branch_status ?? '';
+        $this->branchAddress = $this->currentBranch->branch_address ?? '';
+
+        if (! empty($this->currentBranch->users) ) {
+            $this->branchUsers = $this->currentBranch->users->toJson() ?? json_encode([]);
         }
 
     }
