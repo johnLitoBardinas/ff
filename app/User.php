@@ -63,6 +63,14 @@ class User extends Authenticatable
     }
 
     /**
+     * Determine if the user is a Super Admin Type.
+     */
+    public function isSuperAdmin()
+    {
+        return $this->role->name === UserType::SUPER_ADMIN;
+    }
+
+    /**
      * Determining if a user is a Admin.
      */
     public function isAdmin()

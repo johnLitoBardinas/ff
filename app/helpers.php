@@ -85,7 +85,7 @@ if ( ! function_exists( 'login_user_redirection' ) ) {
   {
     $redirectedUrl = route('login');
 
-    if ($requestedHomeType === AccessHomeType::FFCO && $user->isAdmin())  {
+    if ($requestedHomeType === AccessHomeType::FFCO && $user->isAdmin() || $user->isSuperAdmin())  {
         $redirectedUrl = route('admin');
         $apiToken = create_access_token($user, 'user:admin');
         generate_session_data($apiToken, config('constant.fnf_co_logo'), route('admin'));

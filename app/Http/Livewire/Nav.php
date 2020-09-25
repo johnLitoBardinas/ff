@@ -54,7 +54,7 @@ class Nav extends Component
      */
     private function getTotalActiveBranchCount()
     {
-        $this->totalActiveBranchCount = Branch::where('branch_status', BranchStatus::ACTIVE)->count();
+        $this->totalActiveBranchCount = Branch::where('branch_status', BranchStatus::ACTIVE)->where('branch_type', '!=', BranchType::SUPER_ADMIN)->count();
     }
 
     /**

@@ -4,6 +4,7 @@ namespace App\Http\Livewire\Admin;
 
 use App\User;
 use App\Branch;
+use App\Enums\BranchType;
 use Livewire\Component;
 use App\Enums\UserStatus;
 
@@ -32,7 +33,9 @@ class AdminBranches extends Component
     public function mount()
     {
         $this->getAllBranches();
-        $this->activeBranchId = $this->branches->first()->branch_id;
+        if ( ! $this->branches->isEmpty() ) {
+            $this->activeBranchId = $this->branches->first()->branch_id;
+        }
     }
 
     /**
@@ -93,7 +96,7 @@ class AdminBranches extends Component
      */
     protected function getAllBranches()
     {
-        $this->branches = Branch::orderBy('branch_id', 'DESC')->with('users.role')->get();
+        $this->branches = Branch::orderBy('branch_id', 'DESC')->where('branch_type', '!=', BranchType::SUPER_ADMIN)->with('users.role')->get();
     }
 
     /**

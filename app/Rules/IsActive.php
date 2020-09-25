@@ -24,7 +24,6 @@ class IsActive implements Rule
 
         if ( is_null($user) ) {
             return false;
-            dd('Testing??');
         }
 
         return $user->user_status === UserStatus::ACTIVE;

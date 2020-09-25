@@ -9,6 +9,8 @@ x-data="{
     roles: JSON.parse({{json_encode($roles)}})
 }" @add-new-user="users.push($event.detail)" @reset-new-user="action = 'addBranch'">
 
+    @if (! empty($currentBranchId) )
+
     <form id="frm-branch" method="POST" novalidate>
         @csrf
         <input type="hidden" name="action" x-bind:value="action">
@@ -195,5 +197,8 @@ x-data="{
         'branchId' => $currentBranchId,
         'branchName' => $branchName,
     ])
+    @else
+        <h2>Empty User Info...</h2>
+    @endif
 
 </div>

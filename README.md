@@ -1,10 +1,5 @@
-<p align="center">
-    <a href="https://fixandfree.herokuapp.com/" title="FixandFree">
-        <img src="https://fixandfree.herokuapp.com/svg/fixandfree.co_logo.svg" width="400">
-    </a>
-</p>
 
-<br />
+![Markdown Logo](https://fixandfree.herokuapp.com/svg/fandf.co_horizontal.svg)
 
 #### Automated Salon Subscription Application.
 
