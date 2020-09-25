@@ -12,7 +12,7 @@ export default class BranchUsers {
         this.$btnSaveBranchUser = $("#btn-save-branch-user");
 
         this.onClickAddUser();
-        this.onSubmitForm();
+        this.onSubmitBranchUserForm();
         this.onModalClose();
     }
 
@@ -22,13 +22,15 @@ export default class BranchUsers {
             const { branchid, branchname } = e.currentTarget.dataset;
             this.$divAdminBranchForm.find("#modal-user-form").find('#modal-user-form__branch-name').text(branchname);
             this.$divAdminBranchForm.find("#modal-user-form").find('#modal-user-form__branch-id').val(branchid);
-            this.$divAdminBranchForm.find("#modal-user-form").modal({backdrop: 'static', keyboard: false});
+            $("#modal-user-form").modal({backdrop: 'static', keyboard: false});
         });
 
     }
 
-    onSubmitForm() {
-        this.$btnSaveBranchUser.on('click', (e) => {
+    onSubmitBranchUserForm() {
+
+        this.$modalBranchUser.find("#btn-save-branch-user").on("click", (e) => {
+
             const parsleyForm = this.$frmBranchUser.parsley();
             const branchName = $(e.currentTarget).closest("#modal-user-form__branch-name").text();
             parsleyForm.validate();

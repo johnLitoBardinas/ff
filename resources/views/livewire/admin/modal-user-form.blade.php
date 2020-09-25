@@ -41,8 +41,10 @@
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-default bg-primary text-white" id="btn-save-branch-user">Save</button>
+          <button type="button" class="btn btn-default bg-primary text-white">Save</button>
         </div>
       </div>
     </div>
 </div>
+
+{{-- Use Livewire for sending the user to the baskend --}}

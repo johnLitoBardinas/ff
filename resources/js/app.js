@@ -16,7 +16,8 @@ import SaveCustomerVisits from './Salon/SaveCustomerVisits';
 
 import RenewCustomer from './Salon/RenewCustomer';
 
-$(document).ready(() => {
+$(document).ready(function() {
+
     // Plugins
     new AppPlugins();
 
@@ -32,4 +33,11 @@ $(document).ready(() => {
     new SaveNewCustomer();
     new SaveCustomerVisits();
     new RenewCustomer();
+
 });
+
+// $(document).on("#btn-save-branch-user", "click", (e) => {
+//     console.log('Event in app.js');
+//     console.log('event', e);
+//     console.log('target', e.currentTarget);
+// });

@@ -22,6 +22,6 @@
         </main>
     </div>
     @livewireScripts
-    <script src="{{ mix('js/app.js') }}"></script>
+    <script src="{{ mix('js/app.js') }}" defer></script>
 </body>
 </html>
