@@ -2,16 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="00657363-ff5b-409d-abc9-51dd981bfb1a" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/app/Repositories/UserBranchRepository.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql/ff/branch.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ff/branch.ibd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql/ff/customer.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ff/customer.ibd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql/ff/customer_package.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ff/customer_package.ibd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql/ff/customer_visits.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ff/customer_visits.ibd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql/ff/failed_jobs.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ff/failed_jobs.ibd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql/ff/migrations.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ff/migrations.ibd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql/ff/package.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ff/package.ibd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql/ff/password_resets.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ff/password_resets.ibd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysql/ff/personal_access_tokens.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ff/personal_access_tokens.ibd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql/ff/role.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ff/role.ibd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql/ff/user.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ff/user.ibd" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql/ib_buffer_pool" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ib_buffer_pool" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysql/ib_logfile0" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ib_logfile0" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql/ib_logfile1" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ib_logfile1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysql/ibdata1" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ibdata1" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/mysql/ibtmp1" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/ibtmp1" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysql/mysql/innodb_index_stats.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/mysql/innodb_index_stats.ibd" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/mysql/mysql/innodb_table_stats.ibd" beforeDir="false" afterPath="$PROJECT_DIR$/mysql/mysql/innodb_table_stats.ibd" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/js/app.js" beforeDir="false" afterPath="$PROJECT_DIR$/public/js/app.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/public/mix-manifest.json" beforeDir="false" afterPath="$PROJECT_DIR$/public/mix-manifest.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/resources/js/Admin/SaveBranch.js" beforeDir="false" afterPath="$PROJECT_DIR$/resources/js/Admin/SaveBranch.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/resources/views/auth/login.blade.php" beforeDir="false" afterPath="$PROJECT_DIR$/resources/views/auth/login.blade.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -179,6 +189,9 @@
       <workItem from="1600957642744" duration="2987000" />
       <workItem from="1601001665858" duration="246000" />
       <workItem from="1601012228849" duration="3527000" />
+      <workItem from="1601078757314" duration="28000" />
+      <workItem from="1601126870798" duration="869000" />
+      <workItem from="1601129557923" duration="1736000" />
     </task>
     <option name="localTasksCounter" value="2" />
     <servers />
@@ -202,10 +215,11 @@
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
     <state x="2139" y="208" key="NewPhpClassDialog/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1601015772929" />
-    <state x="2155" y="249" key="RollbackChangesDialog" timestamp="1601013460028">
-      <screen x="1440" y="0" width="1920" height="1080" />
+    <state x="2155" y="267" key="RollbackChangesDialog" timestamp="1601134657262">
+      <screen x="1440" y="23" width="1920" height="1057" />
     </state>
     <state x="2155" y="249" key="RollbackChangesDialog/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1601013460028" />
+    <state x="2155" y="267" key="RollbackChangesDialog/0.23.1440.821/1440.23.1920.1057@1440.23.1920.1057" timestamp="1601134657262" />
     <state x="1971" y="212" key="SettingsEditor" timestamp="1600958447798">
       <screen x="1440" y="23" width="1920" height="1057" />
     </state>
@@ -214,9 +228,10 @@
       <screen x="1440" y="0" width="1920" height="1080" />
     </state>
     <state x="2065" y="378" key="SimpleOpenTaskDialog/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1601015975075" />
-    <state x="2065" y="241" width="670" height="676" key="search.everywhere.popup" timestamp="1601015701986">
-      <screen x="1440" y="0" width="1920" height="1080" />
+    <state x="2065" y="259" width="670" height="662" key="search.everywhere.popup" timestamp="1601130503906">
+      <screen x="1440" y="23" width="1920" height="1057" />
     </state>
-    <state x="2065" y="241" width="670" height="676" key="search.everywhere.popup/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1601015701986" />
+    <state x="2065" y="241" width="670" height="676" key="search.everywhere.popup/0.0.1440.900/1440.0.1920.1080@1440.0.1920.1080" timestamp="1601127884140" />
+    <state x="2065" y="259" width="670" height="662" key="search.everywhere.popup/0.23.1440.821/1440.23.1920.1057@1440.23.1920.1057" timestamp="1601130503906" />
   </component>
 </project>
