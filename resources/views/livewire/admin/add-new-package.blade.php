@@ -29,8 +29,9 @@
                 </div>
                 @if($type !== 'gym')
                     <small>No. of Visits</small>
-                    <input type="number" class="form-control" name="gym_no_of_visits" min="1" max="4" required />
+                    <input type="number" class="form-control" name="gym_no_of_visits" min="0" max="4" required />
                 @else
+                    {{-- empty the total no of gym visitation --}}
                     <input type="hidden" class="form-control" name="gym_no_of_visits" min="0" max="4" value="0" />
                 @endif
             </div>
@@ -40,7 +41,7 @@
                     @if( $type === 'spa') PAID SPA @else FREE SPA @endif
                 </div>
                 <small>No. of Visits</small>
-                <input type="number" class="form-control" name="spa_no_of_visits" min="1" max="4" required/>
+                <input type="number" class="form-control" name="spa_no_of_visits" min="0" max="4" required/>
             </div>
         </div>
 
@@ -52,12 +53,12 @@
 
             <div class="w-33 mr-2">
                 <small>Days Valid</small>
-                <input type="number" class="form-control" name="gym_days_valid_count" min="1" max="365" required/>
+                <input type="number" class="form-control" name="gym_days_valid_count" min="0" max="365" required/>
             </div>
 
             <div class="w-33">
                 <small>Days Valid</small>
-                <input type="number" class="form-control" name="spa_days_valid_count" min="1" max="365" required/>
+                <input type="number" class="form-control" name="spa_days_valid_count" min="0" max="365" required/>
             </div>
         </div>
     </form>

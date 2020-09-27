@@ -27,9 +27,9 @@ class Package extends FormRequest
             'salon_no_of_visits' => ['required', 'max:4', 'min:1', 'integer'],
             'salon_days_valid_count' => ['required', 'max:365', 'min:1', 'integer'],
             'gym_no_of_visits' => ['required', 'max:4', 'min:0', 'integer'],
-            'gym_days_valid_count' => ['required', 'max:365', 'min:1', 'integer'],
-            'spa_no_of_visits' => ['required', 'max:4', 'min:1', 'integer'],
-            'spa_days_valid_count' => ['required', 'max:365', 'min:1', 'integer'],
+            'gym_days_valid_count' => ['required', 'max:365', 'min:0', 'integer'],
+            'spa_no_of_visits' => ['required', 'max:4', 'min:0', 'integer'],
+            'spa_days_valid_count' => ['required', 'max:365', 'min:0', 'integer'],
         ];
     }
 
