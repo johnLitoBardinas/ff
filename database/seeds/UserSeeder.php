@@ -22,6 +22,10 @@ class UserSeeder extends Seeder
         $superAdminBranchId = Branch::where('branch_type', BranchType::SUPER_ADMIN)->first()->branch_id;
         $superAdminRoleId = Role::where('name', UserType::SUPER_ADMIN)->first()->role_id;
 
+        $salonBranchId = Branch::where('branch_type', BranchType::SALON)->first()->branch_id;
+        $managerRoleId = Role::where('name', UserType::MANAGER)->first()->role_id;
+
+
        User::create([
             'email' => 'sadmin@ff.com',
             'password' => Hash::make('password'),
@@ -32,6 +36,19 @@ class UserSeeder extends Seeder
             'branch_id' => $superAdminBranchId,
             'role_id' => $superAdminRoleId,
         ]);
+
+        User::create([
+            'email' => 'salon@ff.com',
+            'password' => Hash::make('password'),
+            'first_name' => 'Salon Manager',
+            'last_name' => 'User',
+            'mobile_number' => '09123456789',
+            'user_status' => UserStatus::ACTIVE,
+            'branch_id' => $salonBranchId,
+            'role_id' => $managerRoleId,
+        ]);
+
+
 
     }
 }

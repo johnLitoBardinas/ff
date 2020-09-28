@@ -27,8 +27,10 @@ export default class SaveNewCustomer {
                 customerPackage['data']['package_type'] = packageType;
 
                 const customerVisitsUrl = `${ApiUrl.customers}/${customerPackage.data['customer_id']}/visits`;
+
                 axios.post(customerVisitsUrl, customerPackage.data)
                 .then((customerVisits) => {
+
                     if (customerVisits.status === 201) {
                         Swal.fire('Customer Successfully Subscribed', '', 'success');
                         this.$frmNewCustomer[0].reset();

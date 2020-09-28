@@ -7,6 +7,7 @@ use App\CustomerPackage;
 use App\CustomerVisits;
 use App\Enums\BranchType;
 use App\Enums\CustomerPackageStatus;
+use App\Enums\PackageType;
 use App\Rules\IsBranchIdExist;
 use Illuminate\Http\Request;
 use App\Rules\IsCustomerHasPackage;
@@ -36,6 +37,8 @@ class CustomerVisitsController extends ApiController
      */
     public function store(Request $request, Customer $customer)
     {
+        // dump($customer);
+        // dd($request->all());
         if( empty( request('customer_package_id') ) ) {
             return $this->errorResponse('Invalid Data', 422);
         }
@@ -62,7 +65,7 @@ class CustomerVisitsController extends ApiController
             'package_type' => [
                 'required',
                 'string',
-                'in:' . implode(',', BranchType::getValues())
+                'in:' . implode(',', PackageType::getValues())
             ]
         ];
 
@@ -78,6 +81,10 @@ class CustomerVisitsController extends ApiController
             $customerVisitsData['date'] = request('date');
         }
 
+        if ($request->has('package_type')) {
+            $customerVisitsData['package_type'] = request('package_type');
+        }
+
         if ($request->has('customer_associate')) {
             $customerVisitsData['customer_associate'] = request('customer_associate');
         }
@@ -88,8 +95,8 @@ class CustomerVisitsController extends ApiController
 
         $customerVisits = CustomerVisits::create($customerVisitsData);
 
-        if ( $this->getTotalCustomerVisits( request('customer_package_id'), $request->package_type ) === (int) $customerPackageLimit ) {
-
+        if ( $this->getTotalCustomerVisits( request('customer_package_id'), $request->package_type ) === (int) $customerPackageLimit )
+        {
             $package_type_field = $request->package_type . '_package_status';
             CustomerPackage::where('customer_package_id', request('customer_package_id'))
             ->update([$package_type_field => CustomerPackageStatus::COMPLETED]);

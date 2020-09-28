@@ -44,6 +44,9 @@ class ChangePasswordForm extends Component
             $user->password = Hash::make($this->password);
             $user->save();
             session()->flash('success', 'Password Changed!!!');
+            $this->oldPassword = '';
+            $this->password = '';
+
         }
 
     }

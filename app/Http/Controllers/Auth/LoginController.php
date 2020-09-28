@@ -57,7 +57,6 @@ class LoginController extends Controller
     {
         $requestAccessPage = request('home_type');
         $authUser = Auth::user();
-
         return login_user_redirection($requestAccessPage, $authUser);
     }
 

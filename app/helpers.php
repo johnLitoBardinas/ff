@@ -46,6 +46,7 @@ if ( ! function_exists( 'generate_session_data' ) ) {
       $sessionData['userAccessType'] = $userAccessType;
     }
 
+    session()->regenerate();
     session($sessionData);
   }
 
@@ -83,6 +84,9 @@ if ( ! function_exists( 'login_user_redirection' ) ) {
    */
   function login_user_redirection(String $requestedHomeType, User $user)
   {
+    // dump($requestedHomeType);
+    // dump($user->branchType());
+    // dd($user);
     $redirectedUrl = route('login');
 
     if ($requestedHomeType === AccessHomeType::FFCO && $user->isAdmin() || $user->isSuperAdmin())  {

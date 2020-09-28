@@ -1,6 +1,7 @@
 <?php
 
-use App\Enums\BranchType;
+use App\Enums\PackageStatus;
+use App\Enums\PackageType;
 use App\Package;
 use Faker\Generator as Faker;
 
@@ -8,8 +9,9 @@ $factory->define(Package::class, function (Faker $faker) {
     return [
         'package_name' => $faker->word,
         'package_price' => $faker->randomNumber(),
+        'package_status' => PackageStatus::ACTIVE,
         // 'package_type' => $faker->randomElement(BranchType::getValues()),
-        'package_type' => BranchType::SALON,
+        'package_type' => PackageType::SALON,
         // 'salon_no_of_visits' => $faker->randomElement([1,2,3,4]),
         'salon_no_of_visits' => 4,
         // 'salon_days_valid_count' => $faker->numberBetween(6,60),

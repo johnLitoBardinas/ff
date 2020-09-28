@@ -21,6 +21,13 @@ class BranchSeeder extends Seeder
             'branch_type' => BranchType::SUPER_ADMIN,
         ]);
 
+        Branch::create([
+            'branch_code' => 'FAF-123456789',
+            'branch_name' => 'Test Salon Branch',
+            'branch_address' => 'Location Address Unique',
+            'branch_type' => BranchType::SALON,
+        ]);
+
     }
 
 }

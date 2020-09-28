@@ -35,9 +35,3 @@ $(document).ready(function() {
     new RenewCustomer();
 
 });
-
-// $(document).on("#btn-save-branch-user", "click", (e) => {
-//     console.log('Event in app.js');
-//     console.log('event', e);
-//     console.log('target', e.currentTarget);
-// });
