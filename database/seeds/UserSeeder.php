@@ -37,18 +37,16 @@ class UserSeeder extends Seeder
             'role_id' => $superAdminRoleId,
         ]);
 
-        User::create([
-            'email' => 'salon@ff.com',
-            'password' => Hash::make('password'),
-            'first_name' => 'Salon Manager',
-            'last_name' => 'User',
-            'mobile_number' => '09123456789',
-            'user_status' => UserStatus::ACTIVE,
-            'branch_id' => $salonBranchId,
-            'role_id' => $managerRoleId,
-        ]);
-
-
+        // User::create([
+        //     'email' => 'salon@ff.com',
+        //     'password' => Hash::make('password'),
+        //     'first_name' => 'Salon Manager',
+        //     'last_name' => 'User',
+        //     'mobile_number' => '09123456789',
+        //     'user_status' => UserStatus::ACTIVE,
+        //     'branch_id' => $salonBranchId,
+        //     'role_id' => $managerRoleId,
+        // ]);
 
     }
 }
