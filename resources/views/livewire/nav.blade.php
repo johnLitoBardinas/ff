@@ -8,7 +8,7 @@
         </div>
         {{-- Header Logo --}}
         <div class="row justify-content-between">
-            <div class="col-md-4">
+            <div class="col-md-4 d-flex">
                 @can('access-admin')
                     <span class="d-flex align-items-baseline">
                         <a href="{{route('packages')}}" title="Click to view all the packages." class="text-dark text-decoration-none">
@@ -16,6 +16,16 @@
                         </a>
                     </span>
                 @endcan
+
+                @can('access-superadmin')
+                    <span>
+                        &nbsp; | &nbsp;
+                        <a href="{{route('settings')}}" title="Super Admin Settings" class="text-dark text-decoration-none">
+                            Super Admin Settings
+                        </a>
+                    </span>
+                @endcan
+
             </div>
             <div class="col-md-4 mb-3">
                 <ul class="list-unstyled d-flex justify-content-md-around p-0 m-0">

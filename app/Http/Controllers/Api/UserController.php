@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 
 class UserController extends ApiController
 {
+
+    protected $superAdminEmail = 'sadmin@ff.com';
     /**
      * Display a listing of the resource.
      */
@@ -94,4 +96,41 @@ class UserController extends ApiController
     {
 
     }
+
+    public function updateEmail(Request $request, User $user) {
+
+        if ($this->getSuperAdmin()->user_id === intval($request->input('user_id'))) {
+            return $this->errorResponse('Invalid Action.', 422);
+        }
+
+        // Check if the super admin is the one trying to update return 422 unprocess entity
+        if (! $this->isSuperAdmin(request('sadmin'))) {
+            return $this->errorResponse('Invalid Action.', 422);
+        }
+
+        $this->validate($request, [
+            'email' => 'required|email|unique:user,email',
+        ]);
+
+        $user->email = request('email');
+
+        if (!$user->isDirty()) {
+            return $this->errorResponse('You need to specify a different value to update', 422);
+        }
+
+        $user->save();
+        return $this->showOne($user);
+    }
+
+    private function isSuperAdmin(String $encryptedEmail)
+    {
+        $decryptedEmail = decrypt($encryptedEmail);
+        return $decryptedEmail === $this->superAdminEmail;
+    }
+
+    private function getSuperAdmin() {
+        $superAdmin = User::whereEmail($this->superAdminEmail)->first();
+        return $superAdmin;
+    }
+
 }

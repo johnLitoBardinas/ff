@@ -9,7 +9,7 @@ use App\Http\Controllers\Auth\LoginController;
 
 Route::get('/test', function ()
 {
-    $result = 'Chasing my Magnum Opus - VERnt';
+    $result = 'Fix and Free Application by: John Lito Bardinas';
     dd($result);
 });
 
@@ -20,6 +20,10 @@ Route::middleware('auth')->group(function () {
     // Admin Side.
     Route::get('/admin', [AdminDashboard::class, 'index'])->name('admin')->middleware('can:access-admin');
 
+    // Super Admin Settings
+    Route::livewire('/supersettings', 'admin.super-admin-settings')->name('settings')->middleware('can:access-superadmin');
+
+    // Packages
     Route::livewire('/packages', 'admin.packages')->name('packages')->middleware('can:access-admin');
     Route::livewire('/addnewpackage/{type}', 'admin.add-new-package')->name('add-package')->middleware('can:access-admin');
 

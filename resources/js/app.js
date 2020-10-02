@@ -5,6 +5,9 @@ import 'alpinejs';
 import AppPlugins from './plugins';
 
 // Modules for the Application
+
+import ChangeUserEmail from './SuperAdmin/ChangeUserEmail';
+
 import SaveBranch from './Admin/SaveBranch';
 import BranchStatus from './Admin/BranchStatus';
 import BranchUsers from './Admin/BranchUsers';
@@ -20,6 +23,9 @@ $(document).ready(function() {
 
     // Plugins
     new AppPlugins();
+
+    // SuperAdmin
+    new ChangeUserEmail();
 
     // Admin Interactions.
     new SaveBranch();
