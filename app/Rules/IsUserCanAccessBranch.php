@@ -40,9 +40,16 @@ class IsUserCanAccessBranch implements Rule
      */
     public function passes($attribute, $value)
     {
+
         $user = AppUser::whereEmail($value)->first();
-        if ( $this->homeType === 'admin' && $user->isAdmin() || $user->isSuperAdmin() ) return true;
-        return AppUser::find($user->user_id)->branch->branch_type === $this->homeType;
+        if ( $this->homeType === 'admin' && ($user->isAdmin() || $user->isSuperAdmin()) ) {
+            return true;
+        } else if ($user->isAdmin() || $user->isSuperAdmin() && $this->homeType !== 'admin') {
+            return false;
+        } else {
+            return AppUser::find($user->user_id)->branch->branch_type === $this->homeType;
+        }
+
     }
 
     /**

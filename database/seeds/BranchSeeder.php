@@ -16,7 +16,7 @@ class BranchSeeder extends Seeder
 
         Branch::create([
             'branch_code' => generate_branch_code(),
-            'branch_name' => 'Admin Branch',
+            'branch_name' => 'Super Admin Branch',
             'branch_address' => 'Location',
             'branch_type' => BranchType::SUPER_ADMIN,
         ]);

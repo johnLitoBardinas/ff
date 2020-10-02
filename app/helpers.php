@@ -1,8 +1,8 @@
 <?php
 
-use App\Enums\AccessHomeType;
-use App\Enums\BranchType;
 use App\User;
+use App\Enums\BranchType;
+use App\Enums\AccessHomeType;
 
 if ( ! function_exists( 'generate_branch_code' ) ) {
 
@@ -46,7 +46,6 @@ if ( ! function_exists( 'generate_session_data' ) ) {
       $sessionData['userAccessType'] = $userAccessType;
     }
 
-    session()->regenerate();
     session($sessionData);
   }
 
@@ -77,6 +76,37 @@ if ( ! function_exists( 'create_access_token' ) ) {
 
 }
 
+if ( ! function_exists( 'get_account_page_logo' ) ) {
+
+  /**
+   * Getting the appropriate logo for the Admin, Manager, Cashier [Salon, Gym, Spa] Logo.
+   */
+  function get_account_page_logo(String $type)
+  {
+    switch ($type) {
+      case BranchType::SUPER_ADMIN:
+        return config('constant.fnf_co_logo');
+        break;
+
+      case BranchType::SALON:
+        return config('constant.fnf_salon_logo');
+        break;
+
+      case BranchType::SALON:
+        return config('constant.fnf_gym_logo');
+        break;
+
+      case BranchType::SALON:
+        return config('constant.fnf_spa_logo');
+        break;
+
+      default:
+        return config('constant.fnf_co_logo');
+        break;
+    }
+  }
+}
+
 if ( ! function_exists( 'login_user_redirection' ) ) {
 
   /**
@@ -84,32 +114,22 @@ if ( ! function_exists( 'login_user_redirection' ) ) {
    */
   function login_user_redirection(String $requestedHomeType, User $user)
   {
-    // dump($requestedHomeType);
-    // dump($user->branchType());
-    // dd($user);
+
+    $logo = get_account_page_logo($user->branchType());
+
     $redirectedUrl = route('login');
 
     if ($requestedHomeType === AccessHomeType::FFCO && $user->isAdmin() || $user->isSuperAdmin())  {
         $redirectedUrl = route('admin');
         $apiToken = create_access_token($user, 'user:admin');
-        generate_session_data($apiToken, config('constant.fnf_co_logo'), route('admin'));
+        generate_session_data($apiToken, $logo, route('admin'));
         return $redirectedUrl;
     }
 
     $redirectedUrl = route('home');
     $apiToken = create_access_token($user, 'user:mgr');
 
-    if ($user->branchType() === BranchType::SALON) {
-      generate_session_data($apiToken, config('constant.fnf_salon_logo'), route('home'), $user->branchType());
-    }
-
-    if ($user->branchType() === BranchType::GYM) {
-      generate_session_data($apiToken, config('constant.fnf_gym_logo'), route('home'), $user->branchType());
-    }
-
-    if ($user->branchType() === BranchType::SPA) {
-      generate_session_data($apiToken, config('constant.fnf_spa_logo'), route('home'), $user->branchType());
-    }
+    generate_session_data($apiToken, $logo, route('home'), $user->branchType());
 
     return $redirectedUrl;
 

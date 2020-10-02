@@ -31,9 +31,6 @@ class LoginController extends Controller
      */
     protected function validateLogin( Request $request )
     {
-
-        $emailValidation =
-
         $request->validate([
             'email' => [
                 'bail',
