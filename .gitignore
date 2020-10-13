@@ -21,3 +21,12 @@ Homestead.yaml
 Homestead.json
 /.vagrant
 .phpunit.result.cache
+
+# Exclude the local LEMP Stack
+.idea/*
+mysql/*
+nginx/*
+
+# Exclude all the docker related file here
+*.yml
+Dockerfile

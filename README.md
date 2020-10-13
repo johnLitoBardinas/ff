@@ -1,7 +1,11 @@
 
-![Markdown Logo](https://fixandfree.herokuapp.com/svg/fandf.co_horizontal.svg)
+![FnF Logo]()
+<div style="text-align:center;">
+<img src="https://fixandfree.herokuapp.com/svg/fandf.co_horizontal.svg"/>
+</div>
 
-#### Automated Salon Subscription Application.
+<br />
+## Personal Care Services - AUTOMATED SUBSCRIPTION APPLICATION
 
 ---
 ## 🛠️ Application Containers
