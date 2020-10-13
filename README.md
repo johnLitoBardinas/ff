@@ -1,8 +1,7 @@
-<div style="text-align:center;">
-<img src="https://fixandfree.herokuapp.com/svg/fandf.co_horizontal.svg"/>
-</div>
+![FnF Logo](https://fixandfree.herokuapp.com/svg/fandf.co_horizontal.svg)
 
-<br />
+&nbsp;
+
 ## Personal Care Services - AUTOMATED SUBSCRIPTION APPLICATION
 
 ---
