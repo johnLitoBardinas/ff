@@ -1,5 +1,3 @@
-
-![FnF Logo]()
 <div style="text-align:center;">
 <img src="https://fixandfree.herokuapp.com/svg/fandf.co_horizontal.svg"/>
 </div>
