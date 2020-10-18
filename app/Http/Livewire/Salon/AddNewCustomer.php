@@ -42,6 +42,4 @@ class AddNewCustomer extends Component
     {
         return view('livewire.salon.add-new-customer');
     }
-
-
 }

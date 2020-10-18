@@ -24,7 +24,7 @@ class CustomerRenew extends Component
     /**
      * Mounting data to the component.
      */
-    public function mount(String $encrypted_customer_id)
+    public function mount(string $encrypted_customer_id)
     {
         $this->currentCustomerPackageType = session('userAccessType');
 
@@ -46,7 +46,7 @@ class CustomerRenew extends Component
     /**
      * Customer Information.
      */
-    private function getCustomerInfo(Int $customerId)
+    private function getCustomerInfo(int $customerId)
     {
         $this->customerInfo = Customer::where('customer_id', $customerId)->firstOrFail();
     }

@@ -39,7 +39,7 @@ class CustomerVisitsController extends ApiController
     {
         // dump($customer);
         // dd($request->all());
-        if( empty( request('customer_package_id') ) ) {
+        if (empty(request('customer_package_id'))) {
             return $this->errorResponse('Invalid Data', 422);
         }
 
@@ -89,28 +89,25 @@ class CustomerVisitsController extends ApiController
             $customerVisitsData['customer_associate'] = request('customer_associate');
         }
 
-        if($request->has('customer_associate_picture')) {
+        if ($request->has('customer_associate_picture')) {
             $customerVisitsData['customer_associate_picture'] = request('customer_associate_picture');
         }
 
         $customerVisits = CustomerVisits::create($customerVisitsData);
 
-        if ( $this->getTotalCustomerVisits( request('customer_package_id'), $request->package_type ) === (int) $customerPackageLimit )
-        {
+        if ($this->getTotalCustomerVisits(request('customer_package_id'), $request->package_type) === (int) $customerPackageLimit) {
             $package_type_field = $request->package_type . '_package_status';
             CustomerPackage::where('customer_package_id', request('customer_package_id'))
             ->update([$package_type_field => CustomerPackageStatus::COMPLETED]);
-
         }
 
         return $this->showOne($customerVisits, 201);
-
     }
 
     /**
      * Checking the customer Visitation.
      */
-    private function getTotalCustomerVisits(Int $customerPackageId, String $packageType)
+    private function getTotalCustomerVisits(int $customerPackageId, string $packageType)
     {
         return CustomerVisits::where('customer_package_id', $customerPackageId)->where('package_type', $packageType)->count();
     }
@@ -118,10 +115,9 @@ class CustomerVisitsController extends ApiController
     /**
      * Get the customer visit limit in a package.
      */
-    private function getCustomerPackageVisitsLimit(Int $customerPackageId, String $packageType)
+    private function getCustomerPackageVisitsLimit(int $customerPackageId, string $packageType)
     {
         $packageTypeNoOfVisits = $packageType . '_no_of_visits';
         return CustomerPackage::where('customer_package_id', $customerPackageId)->with('package')->first()->package->$packageTypeNoOfVisits;
     }
-
 }

@@ -52,5 +52,4 @@ class CustomerPackageController extends ApiController
     {
         dd('Showing a specific Customer with CustomerPackage');
     }
-
 }

@@ -22,9 +22,8 @@ class Customer extends Model
     ];
 
     // One to Many.
-    public function customer_packages()
+    public function customer_packages() //phpcs:ignore
     {
         return $this->hasMany(CustomerPackage::class, 'customer_id');
     }
-
 }

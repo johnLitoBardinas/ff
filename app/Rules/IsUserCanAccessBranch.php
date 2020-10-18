@@ -14,7 +14,7 @@ class IsUserCanAccessBranch implements Rule
     /**
      * Create a new rule instance.
      */
-    public function __construct(String $homeType)
+    public function __construct(string $homeType)
     {
         switch ($homeType) {
             case AccessHomeType::FFCO:
@@ -42,14 +42,13 @@ class IsUserCanAccessBranch implements Rule
     {
 
         $user = AppUser::whereEmail($value)->first();
-        if ( $this->homeType === 'admin' && ($user->isAdmin() || $user->isSuperAdmin()) ) {
+        if ($this->homeType === 'admin' && ($user->isAdmin() || $user->isSuperAdmin())) {
             return true;
         } else if ($user->isAdmin() || $user->isSuperAdmin() && $this->homeType !== 'admin') {
             return false;
         } else {
             return AppUser::find($user->user_id)->branch->branch_type === $this->homeType;
         }
-
     }
 
     /**

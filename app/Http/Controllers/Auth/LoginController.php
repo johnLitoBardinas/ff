@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Auth;
 use App\Rules\IsUserBranchDeactivated;
 use App\Rules\IsUserCanAccessBranch;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+
 class LoginController extends Controller
 {
     use AuthenticatesUsers;
@@ -29,7 +30,7 @@ class LoginController extends Controller
     /**
      * Validate the user login request.
      */
-    protected function validateLogin( Request $request )
+    protected function validateLogin(Request $request)
     {
         $request->validate([
             'email' => [
@@ -56,5 +57,4 @@ class LoginController extends Controller
         $authUser = Auth::user();
         return login_user_redirection($requestAccessPage, $authUser);
     }
-
 }

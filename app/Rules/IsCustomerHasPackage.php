@@ -16,7 +16,7 @@ class IsCustomerHasPackage implements Rule
     /**
      * Create a new rule instance.
      */
-    public function __construct(Int $customerId, String $packageType)
+    public function __construct(int $customerId, string $packageType)
     {
         $this->customerId = $customerId;
         $this->packageStatus = $packageType . '_package_status';

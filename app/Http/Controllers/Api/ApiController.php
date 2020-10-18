@@ -13,5 +13,4 @@ class ApiController extends Controller
     {
         $this->middleware('auth:sanctum');
     }
-
 }

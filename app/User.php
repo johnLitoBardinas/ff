@@ -12,7 +12,8 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable, HasApiTokens;
+    use Notifiable;
+    use HasApiTokens;
 
     // Defining the table name.
     protected $table = 'user';
@@ -51,13 +52,13 @@ class User extends Authenticatable
     }
 
     // One to Many
-    public function customer_packages()
+    public function customer_packages()  //phpcs:ignore
     {
         return $this->hasMany(CustomerPackage::class, 'user_id');
     }
 
     // One to Many
-    public function customer_visits()
+    public function customer_visits()  //phpcs:ignore
     {
         return $this->hasMany(CustomerVisits::class, 'user_id');
     }
@@ -106,5 +107,4 @@ class User extends Authenticatable
     {
         return $this->branch->branch_type;
     }
-
 }

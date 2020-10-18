@@ -12,7 +12,7 @@ class ModalUserForm extends Component
 
     public $branchName;
 
-    public function mount(Array $roles, Int $branchId, String $branchName)
+    public function mount(array $roles, int $branchId, string $branchName)
     {
         $this->roles = $roles;
         $this->branchId = $branchId;

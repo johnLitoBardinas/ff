@@ -10,5 +10,4 @@ final class AccessHomeType extends Enum
     const FFSALON = 'fix-and-free.salon';
     const FFGYM = 'fit-and-free.gym';
     const FFWELLNESS = 'fib-and-free.wellness';
-
 }

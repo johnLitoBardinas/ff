@@ -63,7 +63,6 @@ class BranchAddressUserForm extends Component
         $this->setBranchUsingBranchId();
 
         // dd($this->currentBranch);
-
     }
 
     /**
@@ -77,10 +76,9 @@ class BranchAddressUserForm extends Component
         $this->branchStatus = $this->currentBranch->branch_status ?? '';
         $this->branchAddress = $this->currentBranch->branch_address ?? '';
 
-        if (! empty($this->currentBranch->users) ) {
+        if (! empty($this->currentBranch->users)) {
             $this->branchUsers = $this->currentBranch->users->toJson() ?? json_encode([]);
         }
-
     }
 
     /**
@@ -106,5 +104,4 @@ class BranchAddressUserForm extends Component
     {
         return view('livewire.admin.branch-address-user-form');
     }
-
 }

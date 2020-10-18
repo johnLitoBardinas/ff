@@ -24,7 +24,7 @@ class ChangePasswordForm extends Component
 
     public function updated($field)
     {
-       $this->validateOnly($field, $this->changePasswordValidationRules());
+        $this->validateOnly($field, $this->changePasswordValidationRules());
     }
 
     /**
@@ -38,7 +38,7 @@ class ChangePasswordForm extends Component
 
         $user = User::find($userId);
 
-        if ( Hash::check( $this->password, $user->password ) ) {
+        if (Hash::check($this->password, $user->password)) {
             session()->flash('error', 'New Password cannot be the Old Password!!!');
         } else {
             $user->password = Hash::make($this->password);
@@ -46,9 +46,7 @@ class ChangePasswordForm extends Component
             session()->flash('success', 'Password Changed!!!');
             $this->oldPassword = '';
             $this->password = '';
-
         }
-
     }
 
     /**

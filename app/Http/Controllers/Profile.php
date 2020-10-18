@@ -11,5 +11,4 @@ class Profile extends Controller
     {
         return view('profile');
     }
-
 }

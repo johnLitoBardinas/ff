@@ -12,7 +12,7 @@ class IsCustomerPackageAvailableToVisit implements Rule
     /**
      * Create a new rule instance.
      */
-    public function __construct(Int $packageVisitsLimit)
+    public function __construct(int $packageVisitsLimit)
     {
         $this->packageVisitsLimit = $packageVisitsLimit;
     }

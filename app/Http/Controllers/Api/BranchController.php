@@ -39,7 +39,6 @@ class BranchController extends ApiController
         ]);
 
         return $this->showOne($branch, 201);
-
     }
 
     /**
@@ -69,7 +68,7 @@ class BranchController extends ApiController
             $branch->save();
         }
 
-        if ( ! empty( request('users') ) ) {
+        if (! empty(request('users'))) {
             $users = request('users');
             foreach ($users as $user) {
                 User::updateOrCreate(
@@ -81,18 +80,17 @@ class BranchController extends ApiController
 
         $updatedBranch = Branch::where('branch_id', request('current_branch_id'))->with('users.role')->first();
         return $this->showOne($updatedBranch);
-
     }
 
     /**
      * Update Branch Status.
      */
-    public function updateBranchStatus(Branch $branch, String $status)
+    public function updateBranchStatus(Branch $branch, string $status)
     {
         // Get all the Branch User Id converting to array.
         $branchUsersId = Branch::find($branch->branch_id)->users->pluck('user_id');
 
-        if ( ! empty( $branchUsersId ) ) {
+        if (! empty($branchUsersId)) {
             User::whereIn('user_id', $branchUsersId)->update(['user_status' => $status]);
         }
 
@@ -109,5 +107,4 @@ class BranchController extends ApiController
         $branch->delete();
         return $this->showOne($branch);
     }
-
 }

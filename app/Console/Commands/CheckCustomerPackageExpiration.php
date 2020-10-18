@@ -47,6 +47,5 @@ class CheckCustomerPackageExpiration extends Command
         $this->info('Total Expired Salon Package =>' . $salonPackage);
         $this->info('Total Expired Gym Package =>' . $gymPackage);
         $this->info('Total Expired Spa Package =>' . $spaPackage);
-
     }
 }

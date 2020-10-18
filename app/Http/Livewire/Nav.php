@@ -88,6 +88,4 @@ class Nav extends Component
     {
         return view('livewire.nav');
     }
-
-
 }

@@ -46,14 +46,13 @@ class AddCustomerVisits extends Component
         $this->getTotalPackageVisitation();
 
         $this->getCustomerPackageVisitation();
-
     }
 
         // Current Number of customer visitaion.
-        public function getCustomerPackageVisitation()
-        {
-            $this->customerPackageVisitation = CustomerVisits::where('customer_package_id', $this->customerPackageId)->where('package_type', 'salon')->get()->toArray();
-        }
+    public function getCustomerPackageVisitation()
+    {
+        $this->customerPackageVisitation = CustomerVisits::where('customer_package_id', $this->customerPackageId)->where('package_type', 'salon')->get()->toArray();
+    }
 
     // Get the info for customerPackageVisits
     private function getCustomerPackageVisits()

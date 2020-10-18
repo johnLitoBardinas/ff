@@ -33,7 +33,7 @@ class CustomerVisits extends Model
     }
 
     // ONE to Many (Inverse) Customer Package
-    public function customer_package()
+    public function customer_package() //phpcs:ignore
     {
         return $this->belongsTo(CustomerPackage::class);
     }
@@ -51,9 +51,8 @@ class CustomerVisits extends Model
     }
 
     // One to Many (Inverse)
-    public function customer_visits()
+    public function customer_visits() //phpcs:ignore
     {
         return $this->belongsTo(CustomerPackage::class, 'customer_package_id');
     }
-
 }

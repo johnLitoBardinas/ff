@@ -33,7 +33,7 @@ class AdminBranches extends Component
     public function mount()
     {
         $this->getAllBranches();
-        if ( ! $this->branches->isEmpty() ) {
+        if (! $this->branches->isEmpty()) {
             $this->activeBranchId = $this->branches->first()->branch_id;
         }
     }
@@ -41,7 +41,7 @@ class AdminBranches extends Component
     /**
      * Changing the active branch.
      */
-    public function changeBranch(Int $branchId)
+    public function changeBranch(int $branchId)
     {
         $this->activeBranchId = $branchId;
         $this->emit('onChangeBranch', $this->activeBranchId);
@@ -50,19 +50,18 @@ class AdminBranches extends Component
     /**
      * Updating the current branch card.
      */
-    public function onUpdateBranch(Int $branchId = null)
+    public function onUpdateBranch(int $branchId = null)
     {
-        if ( ! is_null( $branchId )) {
+        if (! is_null($branchId)) {
             $this->activeBranchId = $branchId;
         }
 
-       $this->getAllBranches();
-
+        $this->getAllBranches();
     }
 
     public function updatedCurrentBranchSearch()
     {
-        if ( empty( $this->currentBranchSearch ) ) {
+        if (empty($this->currentBranchSearch)) {
             $this->getAllBranches();
             $this->activeBranchId = $this->branches->first()->branch_id;
         }
@@ -71,20 +70,19 @@ class AdminBranches extends Component
     /**
      * Searchable Branch Name or Branch Address.
      */
-    public function onSearchBranch(String $branch)
+    public function onSearchBranch(string $branch)
     {
         // Create a query for accessing the branch id or the branch name dynamically
         $this->currentBranchSearch = $branch;
 
-        $this->branches = Branch::where('branch_code', 'LIKE', '%'.$branch.'%')
-                            ->orWhere('branch_name', 'LIKE', '%'.$branch.'%')->get();
-
+        $this->branches = Branch::where('branch_code', 'LIKE', '%' . $branch . '%')
+                            ->orWhere('branch_name', 'LIKE', '%' . $branch . '%')->get();
     }
 
     /**
      * Toggling User Status ('Active', 'Inactive').
      */
-    public function toggleUserStatus(Int $userId)
+    public function toggleUserStatus(int $userId)
     {
         $user = User::find($userId);
         $user->user_status = $user->user_status === UserStatus::ACTIVE ? UserStatus::INACTIVE : UserStatus::ACTIVE;
@@ -106,5 +104,4 @@ class AdminBranches extends Component
     {
         return view('livewire.admin.admin-branches');
     }
-
 }

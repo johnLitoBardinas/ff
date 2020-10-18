@@ -32,5 +32,4 @@ class Package extends FormRequest
             'spa_days_valid_count' => ['required', 'max:365', 'min:0', 'integer'],
         ];
     }
-
 }

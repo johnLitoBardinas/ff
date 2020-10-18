@@ -25,7 +25,6 @@ class SuperAdminSettings extends Component
 
     public function emailSave()
     {
-
     }
 
     public function render()

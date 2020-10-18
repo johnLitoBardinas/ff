@@ -30,10 +30,8 @@ class Package extends Model
     ];
 
     // One to Many Relationship.
-    public function customer_packages()
+    public function customer_packages() //phpcs:ignore
     {
         return $this->hasMany(CustomerPackage::class, 'package_id');
     }
-
-
 }

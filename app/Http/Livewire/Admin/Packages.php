@@ -30,7 +30,7 @@ class Packages extends Component
     /**
      * Switching the Tab.
      */
-    public function onClickTab(String $activeTab)
+    public function onClickTab(string $activeTab)
     {
         $this->activeTab = $activeTab;
         $this->getPackageList();
@@ -39,7 +39,7 @@ class Packages extends Component
     /**
      * Toggling Package Status.
      */
-    public function togglePackageStatus(Int $packageId)
+    public function togglePackageStatus(int $packageId)
     {
         $package = Package::find($packageId);
         $package->package_status = $package->package_status === PackageStatus::ACTIVE ? PackageStatus::INACTIVE : PackageStatus::ACTIVE;
@@ -65,7 +65,6 @@ class Packages extends Component
      */
     private function getPackageList()
     {
-       $this->packageList = Package::orderBy('created_at', 'DESC')->where('package_type', $this->activeTab)->get()->toArray();
+        $this->packageList = Package::orderBy('created_at', 'DESC')->where('package_type', $this->activeTab)->get()->toArray();
     }
-
 }

@@ -36,7 +36,7 @@ class CustomerPackage extends Model
     ];
 
     // One CustomerPackage Row can be in Many CustomerVisits.
-    public function customer_visits()
+    public function customer_visits() //phpcs:ignore
     {
         return $this->hasMany(CustomerVisits::class, 'customer_package_id');
     }
@@ -62,7 +62,6 @@ class CustomerPackage extends Model
     // One to Many (Inverse)
     public function package()
     {
-       return $this->belongsTo(Package::class, 'package_id');
+        return $this->belongsTo(Package::class, 'package_id');
     }
-
 }

@@ -15,16 +15,14 @@ class UserRoleRepository
      * @param String $type
      * @return Role[]|Collection|string
      */
-    public static function all(String $type)
+    public static function all(string $type)
     {
         $userRoles = Role::where('name', '!=', UserType::SUPER_ADMIN)->get();
 
-        if ( $type === 'json' ) {
+        if ($type === 'json') {
             return $userRoles->toJson();
         }
 
         return $userRoles;
     }
-
-
 }

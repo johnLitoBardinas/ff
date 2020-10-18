@@ -13,7 +13,7 @@ class SalonTable extends Component
     protected $listeners = [
         'onClickNewOrActiveAccount',
         'onExpiredOrComplementedAccount',
-        'OnNone',
+        'onNone',
         'onSearchSalonTable'
     ];
 
@@ -37,7 +37,7 @@ class SalonTable extends Component
     public function mount()
     {
         $this->packageCustomerFilter = session('userAccessType') . '_package_status';
-        $this->OnNone();
+        $this->onNone();
         $this->getCustomerPackageData();
     }
 
@@ -47,15 +47,15 @@ class SalonTable extends Component
      */
     public function onSearchSalonTable($searchSalonTable = null)
     {
-        if (empty( $searchSalonTable )) {
-            $this->OnNone();
+        if (empty($searchSalonTable)) {
+            $this->onNone();
         }
 
         $this->searchingText = $searchSalonTable;
         $this->customerListId = Customer::where('first_name', 'LIKE', '%' . trim($searchSalonTable) . '%')->orWhere('last_name', 'LIKE', '%' . trim($searchSalonTable) . '%')->pluck('customer_id')->toArray();
 
-        if ( empty($this->customerListId) ) {
-            $this->OnNone();
+        if (empty($this->customerListId)) {
+            $this->onNone();
         }
 
         $this->customerPackageVisitsInfo = CustomerPackage::whereIn('customer_id', $this->customerListId)->with('customer', 'package', 'customer_visits', 'branch', 'user')->get();
@@ -66,8 +66,8 @@ class SalonTable extends Component
      */
     public function onClickNewOrActiveAccount()
     {
-       $this->currentDisplayType = SalonAction::NEW_ACTIVE_ACCOUNT;
-       $this->getCustomerPackageData('active');
+        $this->currentDisplayType = SalonAction::NEW_ACTIVE_ACCOUNT;
+        $this->getCustomerPackageData('active');
     }
 
     /**
@@ -82,7 +82,7 @@ class SalonTable extends Component
     /**
      * On Reset of the Table.
      */
-    public function OnNone()
+    public function onNone()
     {
         $this->currentDisplayType = SalonAction::NONE;
         $this->getCustomerPackageData();
@@ -91,7 +91,7 @@ class SalonTable extends Component
     /**
      * Getting the CostumerPackageData.
      */
-    private function getCustomerPackageData(String $filterType = 'all')
+    private function getCustomerPackageData(string $filterType = 'all')
     {
         $this->customerPackageVisitsInfo = [];
 
@@ -103,7 +103,7 @@ class SalonTable extends Component
         $customerPackage = CustomerPackage::query();
         $customerPackage->orderBy('customer_package_id');
 
-        if($filterType === 'notActive') {
+        if ($filterType === 'notActive') {
             $customerPackage->where($this->packageCustomerFilter, '!=', 'active');
         } else if ($filterType === 'active') {
             $customerPackage->where($this->packageCustomerFilter, 'active');
@@ -123,6 +123,4 @@ class SalonTable extends Component
     {
         return view('livewire.salon.salon-table');
     }
-
-
 }

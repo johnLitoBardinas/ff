@@ -82,5 +82,4 @@ class PackageController extends ApiController
         $package->delete();
         return $this->showOne($package);
     }
-
 }

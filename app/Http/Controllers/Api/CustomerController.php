@@ -30,5 +30,4 @@ class CustomerController extends ApiController
     {
         return $this->showOne($customer);
     }
-
 }

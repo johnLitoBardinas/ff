@@ -61,7 +61,7 @@ class UserController extends ApiController
 
         $this->validate($request, $rules);
 
-        if ($request->has('email') && $user->email != $request->email ) {
+        if ($request->has('email') && $user->email != $request->email) {
             $user->email = request('email');
         }
 
@@ -94,10 +94,10 @@ class UserController extends ApiController
      */
     public function destroy(User $user)
     {
-
     }
 
-    public function updateEmail(Request $request, User $user) {
+    public function updateEmail(Request $request, User $user)
+    {
 
         if ($this->getSuperAdmin()->user_id === intval($request->input('user_id'))) {
             return $this->errorResponse('Invalid Action.', 422);
@@ -122,15 +122,15 @@ class UserController extends ApiController
         return $this->showOne($user);
     }
 
-    private function isSuperAdmin(String $encryptedEmail)
+    private function isSuperAdmin(string $encryptedEmail)
     {
         $decryptedEmail = decrypt($encryptedEmail);
         return $decryptedEmail === $this->superAdminEmail;
     }
 
-    private function getSuperAdmin() {
+    private function getSuperAdmin()
+    {
         $superAdmin = User::whereEmail($this->superAdminEmail)->first();
         return $superAdmin;
     }
-
 }

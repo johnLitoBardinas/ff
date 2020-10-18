@@ -32,15 +32,14 @@ class Branch extends Model
     }
 
     // One to Many Relationship Branch -> Customer Package.
-    public function customer_packages()
+    public function customer_packages() //phpcs:ignore
     {
         return $this->hasMany(CustomerPackage::class, 'branch_id');
     }
 
     // One Branch Model can be related to (n) of CustomerVisits Model.
-    public function customer_visits()
+    public function customer_visits() //phpcs:ignore
     {
         return $this->hasMany(CustomerVisits::class, 'branch_id');
     }
-
 }

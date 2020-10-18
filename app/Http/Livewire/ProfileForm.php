@@ -18,7 +18,7 @@ class ProfileForm extends Component
 
     public function mount()
     {
-        $this->currentUserId =Auth::id();
+        $this->currentUserId = Auth::id();
         $this->firstName = Auth::user()->first_name;
         $this->lastName = Auth::user()->last_name;
         $this->mobileNumber = Auth::user()->mobile_number;
