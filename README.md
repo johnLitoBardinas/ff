@@ -13,6 +13,9 @@
 #### 4. [**NPM**](https://www.npmjs.com/)
 #### 5. [**PHP 7.4**](https://www.php.net/releases/7_4_0.php)
 
+
+
+
 ---
 
 ## 🚀 Local Setup
@@ -24,3 +27,21 @@
 
 ### Bring Down all containers
 > `docker-compose down --rmi=local`
+
+---
+
+## 📝 Local Linting + Testing
+
+### _For Testing 👇_
+* [**PHPUNIT**](https://phpunit.de/)
+* [**PHP Insights**](https://phpinsights.com/)
+
+### Run this to lint your code using the [**PSR 12**](https://www.php-fig.org/psr/psr-12/meta/).
+> `docker-compose run --rm composer lint:psr12`
+
+### Run below command to check your PHP Insights Score
+_NOTE!! **85%** is the acceptable score_ for all **Code**, **Complexity**, **Architecture**, **Style** so make your code pass that threshold.
+
+> using direct bin `./vendor/bin/phpinsights`
+> using php artisan `php artisan phpinsights`
+> using the composer container `docker-compose run --rm composer run test:insights`
