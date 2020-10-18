@@ -32,6 +32,7 @@ jobs:
           node -v
           npm -v
           npm install --prefer-offline --no-audit
+          ls -a
           npm run prod
 
       - name: Bootup services
