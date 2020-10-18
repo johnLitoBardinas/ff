@@ -61,7 +61,7 @@ class UserController extends ApiController
 
         $this->validate($request, $rules);
 
-        if ($request->has('email') && $user->email != $request->email) {
+        if ($request->has('email') && $user->email !== $request->email) {
             $user->email = request('email');
         }
 

@@ -83,6 +83,7 @@ return [
         PropertyTypeHintSniff::class,
         ReturnTypeHintSniff::class,
         UselessFunctionDocCommentSniff::class,
+        ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff::class,
     ],
 
     'config' => [
