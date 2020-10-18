@@ -44,6 +44,8 @@ _NOTE!! **85%** is the acceptable score_ for all **Code**, **Complexity**, **Arc
 
 > using direct bin `./vendor/bin/phpinsights`
 <br/>
+
 > using php artisan `php artisan phpinsights`
 <br/>
+
 > using the composer container `docker-compose run --rm composer run test:insights`
