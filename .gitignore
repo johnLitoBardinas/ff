@@ -30,3 +30,6 @@ nginx/*
 # Exclude all the docker related file here
 docker-compose.prod.yml
 docker-compose.yml
+
+# DS_Store for mac
+.DS_Store
