@@ -2,7 +2,7 @@
 
     <div class="row mt-4 justify-content-center">
 
-        <div class="col-md-6">
+        <div class="col-12 col-md-8">
             <h3 class="text-uppercase text-dark text-center font-weight-light">User Emails</h3>
             <div class="table-responsive">
                 <table class="table table-hover admin-table" style="width:100%;" id="user-email-tables">

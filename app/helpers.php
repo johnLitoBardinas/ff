@@ -81,28 +81,19 @@ if (! function_exists('get_account_page_logo')) {
   /**
    * Getting the appropriate logo for the Admin, Manager, Cashier [Salon, Gym, Spa] Logo.
    */
-    function get_account_page_logo(string $type)
+    function get_account_page_logo(User $user)
     {
-        switch ($type) {
-            case BranchType::SUPER_ADMIN:
-                return config('constant.fnf_co_logo');
-            break;
 
-            case BranchType::SALON:
-                return config('constant.fnf_salon_logo');
-            break;
+        if ($user->isAdmin() || $user->isSuperAdmin()) {
+            return config('constant.fnf_co_logo');
+        }
 
-            case BranchType::SALON:
-                return config('constant.fnf_gym_logo');
-            break;
-
-            case BranchType::SALON:
-                return config('constant.fnf_spa_logo');
-            break;
-
-            default:
-                return config('constant.fnf_co_logo');
-            break;
+        if ($user->branchType() === BranchType::SALON) {
+            return config('constant.fnf_salon_logo');
+        } else if ($user->branchType() === BranchType::GYM) {
+            return config('constant.fnf_gym_logo');
+        } else {
+            return config('constant.fnf_spa_logo');
         }
     }
 }
@@ -114,8 +105,7 @@ if (! function_exists('login_user_redirection')) {
    */
     function login_user_redirection(string $requestedHomeType, User $user)
     {
-
-        $logo = get_account_page_logo($user->branchType());
+        $logo = get_account_page_logo($user);
 
         $redirectedUrl = route('login');
 
