@@ -2,7 +2,9 @@ name: Testing the Application
 
 on:
   push:
-    branches: develop
+    branches:
+      - develop
+      - master
 
 jobs:
   laravel-tests:
