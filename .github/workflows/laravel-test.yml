@@ -1,5 +1,7 @@
+# Name of the workflow
 name: Testing the Application
 
+# Which Event does this workflow will be triggered.
 on:
   push:
     branches:
@@ -8,9 +10,10 @@ on:
 
 jobs:
   laravel-tests:
-
+    # Run on Ubuntu VM
     runs-on: ubuntu-latest
 
+    # Steps for this JOb
     steps:
     - uses: actions/checkout@v2
     - name: Copy .env
