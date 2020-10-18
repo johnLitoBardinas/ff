@@ -29,6 +29,8 @@ jobs:
 
       - name: Build frontend
         run: |
+          node -v
+          npm -v
           npm install --prefer-offline --no-audit
           npm run prod
 
