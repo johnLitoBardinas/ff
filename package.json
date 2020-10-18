@@ -29,5 +29,13 @@
         "parsleyjs": "^2.9.2",
         "pikaday": "^1.8.0",
         "sweetalert2": "^9.17.1"
+    },
+    "standard": {
+        "ignore": [
+          "**/out/",
+          "/lib/select2/",
+          "/lib/ckeditor/",
+          "tmp.js"
+        ]
     }
 }
