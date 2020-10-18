@@ -31,7 +31,7 @@ jobs:
         run: |
           node -v
           npm -v
-          npm install --prefer-offline --no-audit
+          npm install
           ls -a
           npm run prod
 
