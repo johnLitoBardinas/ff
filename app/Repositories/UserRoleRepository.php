@@ -13,7 +13,8 @@ class UserRoleRepository
      * Getting the list of User Role
      *
      * @param String $type
-     * @return Role[]|Collection|string
+     *
+     * @return Array|Collection|string
      */
     public static function all(string $type)
     {

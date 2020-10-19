@@ -2,14 +2,12 @@
 
 use App\User;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\BranchController;
 use App\Http\Controllers\Api\UserController;
 
-Route::get('/', function (Request $request)
-{
+Route::get('/', function (Request $request) {
     dd('Fix&Free API - By: John Lito Bardinas ;)');
 });
 
@@ -17,11 +15,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('login', function (Request $request)
-{
+Route::post('login', function (Request $request) {
     $request->validate([
         'email' => 'required',
-        'password' => 'required'
+        'password' => 'required',
     ]);
 
     $user = User::whereEmail($request->email)->first();
@@ -33,19 +30,18 @@ Route::post('login', function (Request $request)
     }
 
     return $user->createToken('my-token')->plainTextToken;
-
 });
 
 // Branch Resource Endpoint.
-Route::resource('branch', 'Api\BranchController', ['except' => ['create', 'edit'] ] );
+Route::resource('branch', 'Api\BranchController', ['except' => ['create', 'edit'] ]);
 Route::put('branch/status/{branch}/{status}', [BranchController::class, 'updateBranchStatus']);
 
 // User Resource Endpoint
-Route::resource('users', 'Api\UserController', ['except' => ['create', 'edit'] ] );
+Route::resource('users', 'Api\UserController', ['except' => ['create', 'edit', 'destroy'] ]);
 Route::put('users/{user}/changeemail', [UserController::class, 'updateEmail']);
 
 // Customer Resource Endpoint
-Route::resource('customers', 'Api\CustomerController', ['only' => ['store', 'show'] ] );
+Route::resource('customers', 'Api\CustomerController', ['only' => ['store', 'show'] ]);
 
 // Customer Package Endpoint
 Route::resource('customers.packages', 'Api\CustomerPackageController', ['only' => ['index', 'store', 'show']]);
@@ -54,4 +50,4 @@ Route::resource('customers.packages', 'Api\CustomerPackageController', ['only' =
 Route::resource('customers.visits', 'Api\CustomerVisitsController', ['only' => ['index', 'store']]);
 
 // Package Resource Endpoint.
-Route::resource('packages', 'Api\PackageController', ['except' => ['create', 'edit']]);
+Route::resource('packages', 'Api\PackageController', ['except' => ['create', 'edit', 'update']]);

@@ -10,7 +10,9 @@ use Livewire\Component;
 
 class BranchAddressUserForm extends Component
 {
-    protected $listeners = ['onChangeBranch' => 'setBranch'];
+    protected $listeners = [
+        'onChangeBranch' => 'updateCurrentBranch'
+    ];
 
     // Current Branch Id.
     public int $currentBranchId;
@@ -43,32 +45,29 @@ class BranchAddressUserForm extends Component
 
         $this->currentBranchId = Branch::orderBy('branch_id', 'DESC')->where('branch_type', '!=', BranchType::SUPER_ADMIN)->first()->branch_id ?? 0;
 
-        $this->setBranchUsingBranchId();
+        $this->getBranchInfoUsingId();
     }
 
     /**
      * Setting the Branch using a Optional Branch ID
      *
-     * @param null|int $brandId
+     * @param int $brandId
      */
-    public function setBranch($branchId = null)
+    public function updateCurrentBranch(?int $branchId = null)
     {
         $this->action = AdminAction::READ_BRANCH;
 
         if (! is_null($branchId)) {
             $this->currentBranchId = $branchId;
-            // dump($this->currentBranchId);
         }
 
-        $this->setBranchUsingBranchId();
-
-        // dd($this->currentBranch);
+        $this->getBranchInfoUsingId();
     }
 
     /**
      * Setting up the current branch information.
      */
-    private function setBranchUsingBranchId()
+    private function getBranchInfoUsingId()
     {
         $this->currentBranch = Branch::where('branch_id', $this->currentBranchId)->where('branch_type', '!=', BranchType::SUPER_ADMIN)->with('users.role')->get()->first();
 

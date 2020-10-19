@@ -6,7 +6,7 @@ use BenSampo\Enum\Enum;
 
 final class PaymentType extends Enum
 {
-    const GCASH = 'gcash';
-    const PAYMAYA = 'paymaya';
-    const CARD = 'card';
+    public const GCASH = 'gcash';
+    public const PAYMAYA = 'paymaya';
+    public const CARD = 'card';
 }

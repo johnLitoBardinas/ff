@@ -6,9 +6,9 @@ use BenSampo\Enum\Enum;
 
 final class BranchType extends Enum
 {
-    // Used by the super admin.
-    const SUPER_ADMIN = 'super_admin';
-    const SALON = 'salon';
-    const GYM = 'gym';
-    const SPA = 'spa';
+    public const SUPER_ADMIN = 'super_admin';
+    public const ADMIN = 'admin';
+    public const SALON = 'salon';
+    public const GYM = 'gym';
+    public const SPA = 'spa';
 }

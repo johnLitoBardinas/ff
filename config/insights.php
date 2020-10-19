@@ -84,12 +84,19 @@ return [
         ReturnTypeHintSniff::class,
         UselessFunctionDocCommentSniff::class,
         ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff::class,
+        SlevomatCodingStandard\Sniffs\ControlStructures\DisallowEmptySniff::class
     ],
 
     'config' => [
         ForbiddenPrivateMethods::class => [
             'title' => 'The usage of private methods is not idiomatic in Laravel.',
         ],
+        \ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff::class => [
+            'maxCount' => 13,
+        ],
+        \NunoMaduro\PhpInsights\Domain\Insights\CyclomaticComplexityIsHigh::class => [
+            'maxComplexity' => 6,
+        ]
     ],
 
     /*
@@ -104,10 +111,10 @@ return [
     */
 
     'requirements' => [
-       'min-quality' => 85,
-       'min-complexity' => 85,
-       'min-architecture' => 85,
-       'min-style' => 85,
+       'min-quality' => 88,
+       'min-complexity' => 88,
+       'min-architecture' => 88,
+       'min-style' => 80,
        'disable-security-check' => false,
     ],
 

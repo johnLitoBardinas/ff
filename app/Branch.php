@@ -3,6 +3,8 @@
 namespace App;
 
 use App\User;
+use App\CustomerVisits;
+use App\CustomerPackage;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 

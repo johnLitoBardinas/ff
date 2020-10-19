@@ -6,8 +6,8 @@ use BenSampo\Enum\Enum;
 
 final class AccessHomeType extends Enum
 {
-    const FFCO = 'f-and-f.co';
-    const FFSALON = 'fix-and-free.salon';
-    const FFGYM = 'fit-and-free.gym';
-    const FFWELLNESS = 'fib-and-free.wellness';
+    public const FFCO = 'f-and-f.co';
+    public const FFSALON = 'fix-and-free.salon';
+    public const FFGYM = 'fit-and-free.gym';
+    public const FFWELLNESS = 'fib-and-free.wellness';
 }

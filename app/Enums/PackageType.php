@@ -6,7 +6,7 @@ use BenSampo\Enum\Enum;
 
 final class PackageType extends Enum
 {
-    const SALON = 'salon';
-    const GYM = 'gym';
-    const SPA = 'spa';
+    public const SALON = 'salon';
+    public const GYM = 'gym';
+    public const SPA = 'spa';
 }

@@ -50,6 +50,5 @@ class CustomerPackageController extends ApiController
      */
     public function show(CustomerPackage $customerPackage)
     {
-        dd('Showing a specific Customer with CustomerPackage');
     }
 }

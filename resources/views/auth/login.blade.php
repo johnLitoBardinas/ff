@@ -38,7 +38,7 @@
                 </form>
 
                 <div>
-                    © ---test {{ now()->format('Y') }} made with 💜&nbsp; by <a href="https://vernt.dev/" target="_blank" class="text-dark text-decoration-none">JLBardinas</a>
+                    © {{ now()->format('Y') }} made with 💜&nbsp; by <a href="https://vernt.dev/" target="_blank" class="text-dark text-decoration-none">JLBardinas</a>
                 </div>
             </div>
         </div>

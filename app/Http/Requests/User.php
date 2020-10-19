@@ -25,7 +25,7 @@ class User extends FormRequest
             'last_name' => ['required', 'string', 'max:191'],
             'mobile_number' => ['required', 'string', 'max:11'],
             'branch_id' => ['required'],
-            'role_id' => ['required']
+            'role_id' => ['required'],
         ];
     }
 }

@@ -9,30 +9,16 @@ use Illuminate\Contracts\Validation\Rule;
 
 class IsUserCanAccessBranch implements Rule
 {
-    public $homeType;
+    protected $user;
+
+    private $homeType;
 
     /**
-     * Create a new rule instance.
+     * Determine if the current user can access the specified branch.
      */
     public function __construct(string $homeType)
     {
-        switch ($homeType) {
-            case AccessHomeType::FFCO:
-                $this->homeType = 'admin';
-                break;
-
-            case AccessHomeType::FFSALON:
-                $this->homeType = BranchType::SALON;
-                break;
-
-            case AccessHomeType::FFGYM:
-                $this->homeType = BranchType::GYM;
-                break;
-
-            case AccessHomeType::FFWELLNESS:
-                $this->homeType = BranchType::SPA;
-                break;
-        }
+        $this->homeType = $homeType;
     }
 
     /**
@@ -40,15 +26,17 @@ class IsUserCanAccessBranch implements Rule
      */
     public function passes($attribute, $value)
     {
+        $this->user = AppUser::whereEmail($value)->first();
 
-        $user = AppUser::whereEmail($value)->first();
-        if ($this->homeType === 'admin' && ($user->isAdmin() || $user->isSuperAdmin())) {
-            return true;
-        } else if ($user->isAdmin() || $user->isSuperAdmin() && $this->homeType !== 'admin') {
+        if ($this->user->accessHomePage() === BranchType::ADMIN && $this->homeType !== AccessHomeType::FFCO) {
             return false;
-        } else {
-            return AppUser::find($user->user_id)->branch->branch_type === $this->homeType;
         }
+
+        if ($this->user->accessHomePage() === BranchType::ADMIN && $this->homeType === AccessHomeType::FFCO) {
+            return true;
+        }
+
+        return $this->user->branchType() === get_account_home_page($this->homeType);
     }
 
     /**

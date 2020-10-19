@@ -6,6 +6,6 @@ use BenSampo\Enum\Enum;
 
 final class BranchStatus extends Enum
 {
-    const ACTIVE = 'active';
-    const INACTIVE = 'inactive';
+    public const ACTIVE = 'active';
+    public const INACTIVE = 'inactive';
 }

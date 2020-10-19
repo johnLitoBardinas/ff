@@ -11,9 +11,9 @@ use App\User;
 class BranchController extends ApiController
 {
 
-/**
-     * Display a listing of the resource.
-     */
+    /*
+    * Display a listing of the resource.
+    */
     public function index()
     {
         return $this->showAll(Branch::all());

@@ -50,7 +50,7 @@ class AdminBranches extends Component
     /**
      * Updating the current branch card.
      */
-    public function onUpdateBranch(int $branchId = null)
+    public function onUpdateBranch(?int $branchId)
     {
         if (! is_null($branchId)) {
             $this->activeBranchId = $branchId;
@@ -76,7 +76,7 @@ class AdminBranches extends Component
         $this->currentBranchSearch = $branch;
 
         $this->branches = Branch::where('branch_code', 'LIKE', '%' . $branch . '%')
-                            ->orWhere('branch_name', 'LIKE', '%' . $branch . '%')->get();
+        ->orWhere('branch_name', 'LIKE', '%' . $branch . '%')->get();
     }
 
     /**

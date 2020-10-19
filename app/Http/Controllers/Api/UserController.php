@@ -81,7 +81,7 @@ class UserController extends ApiController
             $user->role_id = request('role_id');
         }
 
-        if (!$user->isDirty()) {
+        if (! $user->isDirty()) {
             return $this->errorResponse('You need to specify a different value to update', 422);
         }
 
@@ -90,12 +90,8 @@ class UserController extends ApiController
     }
 
     /**
-     * Remove the specified resource from storage.
+     * Update Non Super Admin email using Super Admin.
      */
-    public function destroy(User $user)
-    {
-    }
-
     public function updateEmail(Request $request, User $user)
     {
 
@@ -114,7 +110,7 @@ class UserController extends ApiController
 
         $user->email = request('email');
 
-        if (!$user->isDirty()) {
+        if (! $user->isDirty()) {
             return $this->errorResponse('You need to specify a different value to update', 422);
         }
 
@@ -130,7 +126,6 @@ class UserController extends ApiController
 
     private function getSuperAdmin()
     {
-        $superAdmin = User::whereEmail($this->superAdminEmail)->first();
-        return $superAdmin;
+        return User::whereEmail($this->superAdminEmail)->first();
     }
 }

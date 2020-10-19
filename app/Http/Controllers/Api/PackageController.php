@@ -48,33 +48,6 @@ class PackageController extends ApiController
     }
 
     /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Package $package)
-    {
-        // Temporary Hidden.
-        // if ($request->has('package_name')) {
-        //     $package->package_name = $request->package_name;
-        // }
-
-        // if ($request->has('package_description')) {
-        //     $package->package_description = $request->package_description;
-        // }
-
-        // if ($request->has('package_price')) {
-        //     $package->package_price = $request->package_price;
-        // }
-
-        // if (!$package->isDirty()) {
-        //     return $this->errorResponse('You need to specify a different value to update', 422);
-        // }
-
-        // $package->save();
-
-        // return $this->showOne($package);
-    }
-
-    /**
      * Remove the specified resource from storage.
      */
     public function destroy(Package $package)

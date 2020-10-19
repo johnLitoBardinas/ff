@@ -57,7 +57,7 @@ class ChangePasswordForm extends Component
         return [
             'oldPassword' => [
                 'required',
-                fn($attribute, $value, $fail) => ! Hash::check($value, $this->currentUserPasswordHashed) ? $fail('Incorrect Old Password') : true
+                fn ($attribute, $value, $fail) => ! Hash::check($value, $this->currentUserPasswordHashed) ? $fail('Incorrect Old Password') : true
             ],
             'password' => 'required|confirmed',
             'password_confirmation' => 'required'

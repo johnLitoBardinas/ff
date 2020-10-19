@@ -6,9 +6,9 @@ use BenSampo\Enum\Enum;
 
 final class SalonAction extends Enum
 {
-    const NONE = 'none';
-    const ALL = 'all';
-    const NEW_ACTIVE_ACCOUNT = 'newOrActiveAccount';
-    const ADD_NEW_CUSTOMER_ACCOUNT = 'addNewCustomerAccount';
-    const EXPIRED_COMPLETED_ACCOUNT = 'expiredOrComplementedAccount';
+    public const NONE = 'none';
+    public const ALL = 'all';
+    public const NEW_ACTIVE_ACCOUNT = 'newOrActiveAccount';
+    public const ADD_NEW_CUSTOMER_ACCOUNT = 'addNewCustomerAccount';
+    public const EXPIRED_COMPLETED_ACCOUNT = 'expiredOrComplementedAccount';
 }

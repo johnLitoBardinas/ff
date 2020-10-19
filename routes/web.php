@@ -4,13 +4,11 @@ use App\Http\Controllers\Profile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminDashboard;
-use App\Http\Controllers\HomeController;
 use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\HomeController;
 
-Route::get('/test', function ()
-{
-    $result = 'Fix and Free Application by: John Lito Bardinas';
-    dd($result);
+Route::get('/test', function () {
+    dd('Fix and Free Application by: John Lito Bardinas');
 });
 
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
@@ -28,9 +26,17 @@ Route::middleware('auth')->group(function () {
     Route::livewire('/addnewpackage/{type}', 'admin.add-new-package')->name('add-package')->middleware('can:access-admin');
 
     // Open new Customer
-    Route::livewire('/newaccount', 'salon.add-new-customer')->name('new-customer')->middleware('can:access-management');
-    Route::livewire('/customervisits/{customer_package_id}/{package_type}', 'salon.add-customer-visits')->name('customer-visits')->middleware('can:access-management');
-    Route::livewire('/customerrenew/{encrypted_customer_id}', 'salon.customer-renew')->name('customer-renew')->middleware('can:access-management');
+    Route::livewire('/newaccount', 'salon.add-new-customer')
+        ->name('new-customer')
+        ->middleware('can:access-management');
+
+    Route::livewire('/customervisits/{customer_package_id}/{package_type}', 'salon.add-customer-visits')
+        ->name('customer-visits')
+        ->middleware('can:access-management');
+
+    Route::livewire('/customerrenew/{encrypted_customer_id}', 'salon.customer-renew')
+        ->name('customer-renew')
+        ->middleware('can:access-management');
 
     // Manager/Cashier Side.
     Route::get('/home', [HomeController::class, 'index'])->name('home')->middleware('can:access-management');
