@@ -96,7 +96,11 @@ return [
         ],
         \NunoMaduro\PhpInsights\Domain\Insights\CyclomaticComplexityIsHigh::class => [
             'maxComplexity' => 6,
-        ]
+        ],
+        \PhpCsFixer\Fixer\Import\OrderedImportsFixer::class => [
+            'imports_order' => ['class', 'const', 'function'],
+            'sort_algorithm' => 'alpha', // possible values ['alpha', 'length', 'none']
+        ],
     ],
 
     /*
