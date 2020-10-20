@@ -4,9 +4,10 @@ namespace App\Http\Livewire\Admin;
 
 use App\User;
 use App\Branch;
-use App\Enums\BranchType;
 use Livewire\Component;
+use App\Enums\BranchType;
 use App\Enums\UserStatus;
+use App\Repositories\BranchRepository;
 
 class AdminBranches extends Component
 {
@@ -32,7 +33,8 @@ class AdminBranches extends Component
      */
     public function mount()
     {
-        $this->getAllBranches();
+        $this->branches = BranchRepository::getAll();
+
         if (! $this->branches->isEmpty()) {
             $this->activeBranchId = $this->branches->first()->branch_id;
         }
@@ -56,13 +58,13 @@ class AdminBranches extends Component
             $this->activeBranchId = $branchId;
         }
 
-        $this->getAllBranches();
+        $this->branches = BranchRepository::getAll();
     }
 
     public function updatedCurrentBranchSearch()
     {
         if (empty($this->currentBranchSearch)) {
-            $this->getAllBranches();
+            $this->branches = BranchRepository::getAll();
             $this->activeBranchId = $this->branches->first()->branch_id;
         }
     }
@@ -72,11 +74,13 @@ class AdminBranches extends Component
      */
     public function onSearchBranch(string $branch)
     {
-        // Create a query for accessing the branch id or the branch name dynamically
         $this->currentBranchSearch = $branch;
 
-        $this->branches = Branch::where('branch_code', 'LIKE', '%' . $branch . '%')
-        ->orWhere('branch_name', 'LIKE', '%' . $branch . '%')->get();
+        if (empty($this->currentBranchSearch)) {
+            $this->branches = BranchRepository::getAll();
+        } else {
+            $this->branches = BranchRepository::searchBranch($branch);
+        }
     }
 
     /**
@@ -87,14 +91,6 @@ class AdminBranches extends Component
         $user = User::find($userId);
         $user->user_status = $user->user_status === UserStatus::ACTIVE ? UserStatus::INACTIVE : UserStatus::ACTIVE;
         $user->save();
-    }
-
-    /**
-     * Getting all Branches.
-     */
-    protected function getAllBranches()
-    {
-        $this->branches = Branch::orderBy('branch_id', 'DESC')->where('branch_type', '!=', BranchType::SUPER_ADMIN)->with('users.role')->get();
     }
 
     /**
