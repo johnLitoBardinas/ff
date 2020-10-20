@@ -16,7 +16,7 @@ class UserRoleRepository
      *
      * @return Array|Collection|string
      */
-    public static function all(string $type)
+    public static function getAll(string $type)
     {
         $userRoles = Role::where('name', '!=', UserType::SUPER_ADMIN)->get();
 

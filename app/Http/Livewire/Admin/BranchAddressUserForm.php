@@ -6,6 +6,7 @@ use App\Repositories\UserRoleRepository;
 use App\Branch;
 use App\Enums\AdminAction;
 use App\Enums\BranchType;
+use App\Repositories\BranchRepository;
 use Livewire\Component;
 
 class BranchAddressUserForm extends Component
@@ -39,11 +40,11 @@ class BranchAddressUserForm extends Component
      */
     public function mount()
     {
-        $this->roles = UserRoleRepository::all('json');
+        $this->roles = UserRoleRepository::getAll('json');
 
         $this->action = AdminAction::READ_BRANCH;
 
-        $this->currentBranchId = Branch::orderBy('branch_id', 'DESC')->where('branch_type', '!=', BranchType::SUPER_ADMIN)->first()->branch_id ?? 0;
+        $this->currentBranchId = BranchRepository::getLastestBranch()->branch_id ?? 0;
 
         $this->getBranchInfoUsingId();
     }
@@ -69,7 +70,7 @@ class BranchAddressUserForm extends Component
      */
     private function getBranchInfoUsingId()
     {
-        $this->currentBranch = Branch::where('branch_id', $this->currentBranchId)->where('branch_type', '!=', BranchType::SUPER_ADMIN)->with('users.role')->get()->first();
+        $this->currentBranch = BranchRepository::getBranchInfoUsingId($this->currentBranchId);
 
         $this->branchName = $this->currentBranch->branch_name ?? '';
         $this->branchStatus = $this->currentBranch->branch_status ?? '';
