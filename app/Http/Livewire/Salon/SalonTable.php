@@ -6,6 +6,7 @@ use App\Customer;
 use Livewire\Component;
 use App\CustomerPackage;
 use App\Enums\SalonAction;
+use App\Repositories\CustomerPackageRepository;
 
 class SalonTable extends Component
 {
@@ -29,14 +30,20 @@ class SalonTable extends Component
     // Current Search String.
     public $searchingText;
 
-    public $packageCustomerFilter;
+    // Package Type Salon, Gym, Spa.
+    public $packageType;
+
+    public $customerPackageStatus;
 
     /**
      * Mounting the Component data.
      */
     public function mount()
     {
-        $this->packageCustomerFilter = session('userAccessType') . '_package_status';
+        $this->packageType = session('userAccessType');
+
+        $this->customerPackageStatus = sprintf('%s_package_status', $this->packageType);
+
         $this->onNone();
         $this->getCustomerPackageData();
     }
@@ -100,18 +107,8 @@ class SalonTable extends Component
             return;
         }
 
-        $customerPackage = CustomerPackage::query();
-        $customerPackage->orderBy('customer_package_id');
+        $this->customerPackageVisitsInfo = CustomerPackageRepository::getAll($filterType, $this->packageType);
 
-        if ($filterType === 'notActive') {
-            $customerPackage->where($this->packageCustomerFilter, '!=', 'active');
-        } elseif ($filterType === 'active') {
-            $customerPackage->where($this->packageCustomerFilter, 'active');
-        }
-
-        $customerPackage->with('customer', 'package', 'customer_visits', 'branch', 'user');
-
-        $this->customerPackageVisitsInfo = $customerPackage->get()->filter(fn ($customerPackage) => $customerPackage->branch->branch_type === session('userAccessType'))->values();
     }
 
     /**

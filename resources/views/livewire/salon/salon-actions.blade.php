@@ -24,7 +24,7 @@
     class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__exit d-none"
     :class="[ action != 'none' ? 'd-inline' : '' ]"
     x-on:click="action = 'none'"
-    wire:click="$emitTo('salon.salon-table', 'OnNone')"
+    wire:click="$emitTo('salon.salon-table', 'onNone')"
     >EXIT</button>
 
 </div>

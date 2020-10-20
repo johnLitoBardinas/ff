@@ -32,12 +32,14 @@ if (! function_exists('generate_session_data')) {
    */
     function generate_session_data(string $apiToken, string $logo, string $homeUrl, $userAccessType = null)
     {
+        // Default session for the user.
         $sessionData = [
             'apiToken' => $apiToken,
             'logo' => $logo,
             'homeUrl' => $homeUrl,
         ];
 
+        // Register a user access type for salon, gym, spa only in Manager/ Cashier Type.
         if (! is_null($userAccessType)) {
             $sessionData['userAccessType'] = $userAccessType;
         }

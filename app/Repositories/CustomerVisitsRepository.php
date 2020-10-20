@@ -7,12 +7,11 @@ use App\CustomerPackage;
 
 /**
  * Main Purpose of this class is to supply all the information related to Customer Visits
- * Act like the middle between Controller and Model.
+ * Act like the middle between Controller|Livewire Controller and Model.
  */
 
 class CustomerVisitsRepository
 {
-
     /**
      * Getting the current count of Customer Visitation for the Package.
      */

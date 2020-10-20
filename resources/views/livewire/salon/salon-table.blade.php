@@ -102,15 +102,15 @@
                                                 </div>
                                             @else
                                                 <div class="w-auto d-flex flex-column">
-                                                    {{-- <a
+                                                    <a
                                                     href="{{ route('customer-visits', [
                                                        'customer_package_id' => encrypt($row->customer_package_id),
                                                        'package_type' => encrypt('gym')
                                                     ])}}"
                                                     class="btn btn-sm btn-default border btn__ff--primary">
                                                     +add
-                                                    </a> --}}
-                                                    <span class="text-line-through">Unavailable</span>
+                                                    </a>
+                                                    {{-- <span class="text-line-through">Unavailable</span> --}}
                                                 </div>
                                             @endif
                                            </div>
@@ -143,15 +143,15 @@
                                                 </div>
                                             @else
                                                 <div class="w-auto d-flex flex-column">
-                                                    {{-- <a
+                                                    <a
                                                     href="{{ route('customer-visits', [
                                                       'customer_package_id' => encrypt($row->customer_package_id),
                                                       'package_type' => encrypt('spa')
                                                       ])}}"
                                                     class="btn btn-sm btn-default border btn__ff--primary">
                                                     +add
-                                                    </a> --}}
-                                                    <span class="text-line-through">Unavailable</span>
+                                                    </a>
+                                                    {{-- <span class="text-line-through">Unavailable</span> --}}
                                                 </div>
                                             @endif
                                            </div>
@@ -171,7 +171,7 @@
                       </div>
                    </td>
                    <td class="d-flex">
-                      @if ($row->$packageCustomerFilter !== 'active')
+                      @if ($row->$customerPackageStatus !== 'active')
                       <a class="btn btn-sm btn-default btn-icon btn-icon__edit-row cursor-pointer" href="{{route('customer-renew', [
                          'encrypted_customer_id' => encrypt($row->customer->customer_id)
                         ])}}" title="Renew the Customer">
