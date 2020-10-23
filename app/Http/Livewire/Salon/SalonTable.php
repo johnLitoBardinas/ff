@@ -108,7 +108,6 @@ class SalonTable extends Component
         }
 
         $this->customerPackageVisitsInfo = CustomerPackageRepository::getAll($filterType, $this->packageType);
-
     }
 
     /**
