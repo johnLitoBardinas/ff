@@ -10,6 +10,14 @@ use Livewire\Component;
 
 class SalonTable extends Component
 {
+    // Listeners.
+    protected $listeners = [
+        'onClickNewOrActiveAccount',
+        'onExpiredOrComplementedAccount',
+        'onNone',
+        'onSearchSalonTable',
+    ];
+
     // Displaying the current Table Data.
     public $currentDisplayType;
 
@@ -25,15 +33,23 @@ class SalonTable extends Component
     // Package Type Salon, Gym, Spa.
     public $packageType;
 
+    // CurrentCustomerPackage Status  ['salon_package_status', 'gym_package_status', 'spa_package_status'].
     public $customerPackageStatus;
 
-    // Listeners.
-    protected $listeners = [
-        'onClickNewOrActiveAccount',
-        'onExpiredOrComplementedAccount',
-        'onNone',
-        'onSearchSalonTable',
-    ];
+    /**
+     * Getting the CostumerPackageData.
+     */
+    private function getCustomerPackageData(string $filterType = 'all')
+    {
+        $this->customerPackageVisitsInfo = [];
+
+        if ($this->currentDisplayType === SalonAction::NONE) {
+            $this->customerPackageVisitsInfo = [];
+            return;
+        }
+
+        $this->customerPackageVisitsInfo = CustomerPackageRepository::getAll($filterType, $this->packageType);
+    }
 
     /**
      * Rendering the component.
@@ -102,20 +118,4 @@ class SalonTable extends Component
         $this->currentDisplayType = SalonAction::NONE;
         $this->getCustomerPackageData();
     }
-
-    /**
-     * Getting the CostumerPackageData.
-     */
-    private function getCustomerPackageData(string $filterType = 'all')
-    {
-        $this->customerPackageVisitsInfo = [];
-
-        if ($this->currentDisplayType === SalonAction::NONE) {
-            $this->customerPackageVisitsInfo = [];
-            return;
-        }
-
-        $this->customerPackageVisitsInfo = CustomerPackageRepository::getAll($filterType, $this->packageType);
-    }
-
 }

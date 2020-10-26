@@ -51,7 +51,7 @@ class Handler extends ExceptionHandler
         }
 
         if ($exception instanceof MethodNotAllowedHttpException) {
-            return $this->errorResponse("Endpoint does not support the action", 404);
+            return $this->errorResponse('Endpoint does not support the action', 404);
         }
 
         if ($exception instanceof TokenMismatchException) {

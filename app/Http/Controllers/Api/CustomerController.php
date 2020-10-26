@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class CustomerController extends ApiController
 {
-
     /**
      * Store new Customer Resource.
      */

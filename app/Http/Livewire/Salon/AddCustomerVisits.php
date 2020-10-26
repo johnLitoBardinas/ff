@@ -8,6 +8,9 @@ use Livewire\Component;
 
 class AddCustomerVisits extends Component
 {
+    protected $listeners = [
+        'onUpdateCustomerVisits' => 'getCustomerPackageVisitation',
+    ];
 
     // Current Customer Package ID.
     public $customerPackageId;
@@ -27,9 +30,18 @@ class AddCustomerVisits extends Component
     // Total Allocated Customer Visitation.
     public $customerPackageTotalVisitationCount = 0;
 
-    protected $listeners = [
-        'onUpdateCustomerVisits' => 'getCustomerPackageVisitation'
-    ];
+    // Get the info for customerPackageVisits
+    private function getCustomerPackageVisits()
+    {
+        $this->customerPackageInfo = CustomerPackage::where('customer_package_id', $this->customerPackageId)->with('customer', 'package', 'customer_visits')->first();
+    }
+
+    // Getting the current Package End Date.
+    private function getCustomerPackageEndDate()
+    {
+        $package_type = $this->customerPackageType . '_package_end';
+        $this->customerPackageEndDate = $this->customerPackageInfo->toArray()[$package_type];
+    }
 
     /**
      * Rendering the component.
@@ -62,18 +74,4 @@ class AddCustomerVisits extends Component
     {
         $this->customerPackageVisitation = CustomerVisits::where('customer_package_id', $this->customerPackageId)->where('package_type', 'salon')->get()->toArray();
     }
-
-    // Get the info for customerPackageVisits
-    private function getCustomerPackageVisits()
-    {
-        $this->customerPackageInfo = CustomerPackage::where('customer_package_id', $this->customerPackageId)->with('customer', 'package', 'customer_visits')->first();
-    }
-
-    // Getting the current Package End Date.
-    private function getCustomerPackageEndDate()
-    {
-        $package_type = $this->customerPackageType . '_package_end';
-        $this->customerPackageEndDate = $this->customerPackageInfo->toArray()[$package_type];
-    }
-
 }

@@ -8,10 +8,10 @@ use App\CustomerVisits;
 use App\Enums\CustomerPackageStatus;
 use App\Enums\PackageType;
 use App\Rules\IsBranchIdExist;
-use Illuminate\Http\Request;
 use App\Rules\IsCustomerHasPackage;
 use App\Rules\IsCustomerPackageAvailableToVisit;
 use App\Rules\IsUserIdExist;
+use Illuminate\Http\Request;
 
 class CustomerVisitsController extends ApiController
 {
@@ -21,8 +21,8 @@ class CustomerVisitsController extends ApiController
     public function index(Customer $customer)
     {
         $customerVisits = Customer::where('customer_id', $customer->customer_id)
-                            ->with('customer_packages.package', 'customer_packages.customer_visits')
-                            ->get();
+            ->with('customer_packages.package', 'customer_packages.customer_visits')
+            ->get();
 
         return $this->showAll($customerVisits);
     }
@@ -33,7 +33,7 @@ class CustomerVisitsController extends ApiController
     public function store(Request $request, Customer $customer)
     {
 
-        if(empty(request('customer_package_id'))) {
+        if (empty(request('customer_package_id'))) {
             return $this->errorResponse('Invalid Data', 422);
         }
 
@@ -44,22 +44,22 @@ class CustomerVisitsController extends ApiController
                 'required',
                 'integer',
                 new IsCustomerHasPackage($customer->customer_id, $request->package_type),
-                new IsCustomerPackageAvailableToVisit($customerPackageLimit)
+                new IsCustomerPackageAvailableToVisit($customerPackageLimit),
             ],
             'branch_id' => [
                 'required',
                 'integer',
-                new IsBranchIdExist()
+                new IsBranchIdExist(),
             ],
             'user_id' => [
                 'required',
                 'integer',
-                new IsUserIdExist()
+                new IsUserIdExist(),
             ],
             'package_type' => [
                 'required',
                 'string',
-                'in:' . implode(',', PackageType::getValues())
+                'in:' . implode(',', PackageType::getValues()),
             ]
         ];
 
@@ -83,21 +83,18 @@ class CustomerVisitsController extends ApiController
             $customerVisitsData['customer_associate'] = request('customer_associate');
         }
 
-        if($request->has('customer_associate_picture')) {
+        if ($request->has('customer_associate_picture')) {
             $customerVisitsData['customer_associate_picture'] = request('customer_associate_picture');
         }
 
         $customerVisits = CustomerVisits::create($customerVisitsData);
 
-        if ($customerVisits->getTotalCustomerVisits($request->package_type) === (int) $customerPackageLimit)
-        {
+        if ($customerVisits->getTotalCustomerVisits($request->package_type) === (int) $customerPackageLimit) {
             $package_type_field = $request->package_type . '_package_status';
             CustomerPackage::where('customer_package_id', request('customer_package_id'))
-            ->update([$package_type_field => CustomerPackageStatus::COMPLETED]);
-
+                ->update([$package_type_field => CustomerPackageStatus::COMPLETED]);
         }
 
         return $this->showOne($customerVisits, 201);
     }
-
 }

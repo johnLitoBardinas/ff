@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\User;
 use App\Enums\UserStatus;
 use App\Repositories\BranchRepository;
+use App\User;
 use Livewire\Component;
 
 class AdminBranches extends Component

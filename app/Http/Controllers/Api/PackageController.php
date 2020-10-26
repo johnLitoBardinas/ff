@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Requests\Package as RequestsPackage;
 use App\Package;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class PackageController extends ApiController
 {
@@ -40,6 +39,7 @@ class PackageController extends ApiController
     /**
      * Display the specified resource.
      * @param Package $package
+     *
      * @return JsonResponse
      */
     public function show(Package $package)

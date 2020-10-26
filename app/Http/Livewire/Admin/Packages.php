@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Admin;
 use App\Enums\BranchType;
 use App\Enums\PackageStatus;
 use App\Package;
+use App\Repositories\PackageRepository;
 use Livewire\Component;
 
 class Packages extends Component
@@ -24,7 +25,7 @@ class Packages extends Component
     public function mount()
     {
         $this->activeTab = BranchType::SALON;
-        $this->getPackageList();
+        $this->packageList = PackageRepository::getAll($this->activeTab)->toArray();
     }
 
     /**
@@ -33,7 +34,7 @@ class Packages extends Component
     public function onClickTab(string $activeTab)
     {
         $this->activeTab = $activeTab;
-        $this->getPackageList();
+        $this->packageList = PackageRepository::getAll($this->activeTab)->toArray();
     }
 
     /**
@@ -42,9 +43,12 @@ class Packages extends Component
     public function togglePackageStatus(int $packageId)
     {
         $package = Package::find($packageId);
+
         $package->package_status = $package->package_status === PackageStatus::ACTIVE ? PackageStatus::INACTIVE : PackageStatus::ACTIVE;
+
         $package->save();
-        $this->getPackageList();
+
+        $this->packageList = PackageRepository::getAll($this->activeTab)->toArray();
     }
 
     /**
@@ -52,19 +56,11 @@ class Packages extends Component
      */
     public function onDeletePackage()
     {
-        $this->getPackageList();
+        $this->packageList = PackageRepository::getAll($this->activeTab)->toArray();
     }
 
     public function render()
     {
         return view('livewire.admin.packages');
-    }
-
-    /**
-     * Getting the Current Package.
-     */
-    private function getPackageList()
-    {
-        $this->packageList = Package::orderBy('created_at', 'DESC')->where('package_type', $this->activeTab)->get()->toArray();
     }
 }

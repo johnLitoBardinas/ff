@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Rules\IsActive;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+use App\Rules\IsActive;
 use App\Rules\IsUserBranchDeactivated;
 use App\Rules\IsUserCanAccessBranch;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -39,11 +39,11 @@ class LoginController extends Controller
                 'string:max:191',
                 new IsActive(),
                 new IsUserBranchDeactivated(),
-                new IsUserCanAccessBranch($request->input('home_type'))
+                new IsUserCanAccessBranch($request->input('home_type')),
             ],
             'password' => [
                 'required',
-                'string'
+                'string',
             ],
         ]);
     }

@@ -4,13 +4,11 @@ namespace App\Http\Controllers\Api;
 
 use App\Branch;
 use App\Enums\BranchType;
-use App\Enums\UserStatus;
-use Illuminate\Http\Request;
 use App\User;
+use Illuminate\Http\Request;
 
 class BranchController extends ApiController
 {
-
     public function index()
     {
         return $this->showAll(Branch::all());

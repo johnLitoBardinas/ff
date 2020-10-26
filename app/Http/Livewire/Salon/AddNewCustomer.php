@@ -2,8 +2,7 @@
 
 namespace App\Http\Livewire\Salon;
 
-use App\Enums\PackageStatus;
-use App\Package;
+use App\Repositories\PackageRepository;
 use Livewire\Component;
 
 class AddNewCustomer extends Component
@@ -18,21 +17,15 @@ class AddNewCustomer extends Component
     public $currentCustomerPackageType;
 
     /**
-     * Mounting data to the component.
+     * Mounting data to the component initial load.
      */
     public function mount()
     {
         $this->currentCustomerPackageType = session('userAccessType');
-        $this->paymentsOptions = config('constant.payment_options');
-        $this->getAllSubscriptionPlans();
-    }
 
-    /**
-     * Getting all Subscription Plans.
-     */
-    private function getAllSubscriptionPlans()
-    {
-        $this->subscriptionPlans = Package::where('package_status', PackageStatus::ACTIVE)->where('package_type', $this->currentCustomerPackageType)->get()->toArray();
+        $this->paymentsOptions = config('constant.payment_options');
+
+        $this->subscriptionPlans = PackageRepository::getAll($this->currentCustomerPackageType)->toArray();
     }
 
     /**

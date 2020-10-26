@@ -10,7 +10,7 @@ use Livewire\Component;
 class BranchAddressUserForm extends Component
 {
     protected $listeners = [
-        'onChangeBranch' => 'updateCurrentBranch'
+        'onChangeBranch' => 'updateCurrentBranch',
     ];
 
     // Current Branch Id.
@@ -34,11 +34,35 @@ class BranchAddressUserForm extends Component
     public string $roles;
 
     /**
+     * Setting up the current branch information.
+     */
+    private function getBranchInfoUsingId()
+    {
+        $this->currentBranch = BranchRepository::getBranchInfoUsingId($this->currentBranchId);
+
+        $this->branchName = $this->currentBranch->branch_name ?? '';
+        $this->branchStatus = $this->currentBranch->branch_status ?? '';
+        $this->branchAddress = $this->currentBranch->branch_address ?? '';
+
+        if (! empty($this->currentBranch->users)) {
+            $this->branchUsers = $this->currentBranch->users->toJson() ?? json_encode([]);
+        }
+    }
+
+    /**
+     * Rendering the component.
+     */
+    public function render()
+    {
+        return view('livewire.admin.branch-address-user-form');
+    }
+
+    /**
      * Initial Mounting of data to the component.
      */
     public function mount()
     {
-        $this->roles = UserRoleRepository::getAll('json');
+        $this->roles = UserRoleRepository::getAll()->toJson();
 
         $this->action = AdminAction::READ_BRANCH;
 
@@ -64,22 +88,6 @@ class BranchAddressUserForm extends Component
     }
 
     /**
-     * Setting up the current branch information.
-     */
-    private function getBranchInfoUsingId()
-    {
-        $this->currentBranch = BranchRepository::getBranchInfoUsingId($this->currentBranchId);
-
-        $this->branchName = $this->currentBranch->branch_name ?? '';
-        $this->branchStatus = $this->currentBranch->branch_status ?? '';
-        $this->branchAddress = $this->currentBranch->branch_address ?? '';
-
-        if (! empty($this->currentBranch->users)) {
-            $this->branchUsers = $this->currentBranch->users->toJson() ?? json_encode([]);
-        }
-    }
-
-    /**
      * Setting the current Admin Action to EditBranch
      */
     public function editBranch()
@@ -93,13 +101,5 @@ class BranchAddressUserForm extends Component
     public function exit()
     {
         $this->action = AdminAction::READ_BRANCH;
-    }
-
-    /**
-     * Rendering the component.
-     */
-    public function render()
-    {
-        return view('livewire.admin.branch-address-user-form');
     }
 }

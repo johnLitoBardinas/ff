@@ -7,13 +7,10 @@ use App\Http\Controllers\Profile;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
-Route::get('/test', function () {
-    dd('Fix and Free Application by: John Lito Bardinas');
-});
-
 Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 
-Route::middleware('auth')->group(function () {
+Route::middleware('auth')->group(function ()
+{
 
     // Admin Side.
     Route::get('/admin', [AdminDashboard::class, 'index'])->name('admin')->middleware('can:access-admin');

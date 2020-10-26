@@ -6,14 +6,13 @@ use App\CustomerPackage;
 
 class CustomerPackageRepository
 {
-
     /**
      * getting all packages via type and package type.
      *
      * @param String $type  (all, active, notActive) default all
      * @param String $packageType (salon,gym,spa)
      *
-     * @return null|Collection
+     * @return Collection|null
      */
     public static function getAll(string $type, string $packageType)
     {

@@ -6,7 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class CustomerPackage extends Model
 {
-
     // Disabling the default created_at, updated_at.
     public $timestamps = false;
 
@@ -77,5 +76,4 @@ class CustomerPackage extends Model
         $packageTypeNoOfVisits = $packageType . '_no_of_visits';
         return $this->with('package')->first()->package->$packageTypeNoOfVisits;
     }
-
 }

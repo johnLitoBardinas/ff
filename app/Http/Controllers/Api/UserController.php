@@ -2,15 +2,26 @@
 
 namespace App\Http\Controllers\Api;
 
+use App\Http\Requests\User as RequestsUser;
 use App\User;
 use Illuminate\Http\Request;
-use App\Http\Requests\User as RequestsUser;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends ApiController
 {
-
     protected $superAdminEmail = 'sadmin@ff.com';
+
+    private function isSuperAdmin(string $encryptedEmail)
+    {
+        $decryptedEmail = decrypt($encryptedEmail);
+        return $decryptedEmail === $this->superAdminEmail;
+    }
+
+    private function getSuperAdmin()
+    {
+        return User::whereEmail($this->superAdminEmail)->first();
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -116,16 +127,5 @@ class UserController extends ApiController
 
         $user->save();
         return $this->showOne($user);
-    }
-
-    private function isSuperAdmin(string $encryptedEmail)
-    {
-        $decryptedEmail = decrypt($encryptedEmail);
-        return $decryptedEmail === $this->superAdminEmail;
-    }
-
-    private function getSuperAdmin()
-    {
-        return User::whereEmail($this->superAdminEmail)->first();
     }
 }

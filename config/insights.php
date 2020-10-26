@@ -86,6 +86,7 @@ return [
         ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff::class,
         SlevomatCodingStandard\Sniffs\ControlStructures\DisallowEmptySniff::class,
         PHP_CodeSniffer\Standards\PSR1\Sniffs\Methods\CamelCapsMethodNameSniff::class,
+        PhpCsFixer\Fixer\Phpdoc\PhpdocIndentFixer::class
     ],
 
     'config' => [
@@ -102,9 +103,37 @@ return [
             'sort_algorithm' => 'alpha', // possible values ['alpha', 'length', 'none']
         ],
         \PHP_CodeSniffer\Standards\Generic\Sniffs\Files\LineLengthSniff::class => [
-            'lineLimit' => 90,
-            'absoluteLineLimit' => 110,
+            'lineLimit' => 110,
+            'absoluteLineLimit' => 120,
             'ignoreComments' => false,
+        ],
+        \PhpCsFixer\Fixer\ClassNotation\OrderedClassElementsFixer::class => [
+            'order' => [ // List of strings defining order of elements.
+                'use_trait',
+                'constant_protected',
+                'constant_private',
+                'constant_public',
+                'property_protected',
+                'property_private',
+                'property_public',
+                'construct',
+                'destruct',
+                'magic',
+                'phpunit',
+                'method_protected',
+                'method_private',
+                'method_public',
+            ],
+            'sortAlgorithm' => 'none' // possible values ['none', 'alpha']
+        ],
+        \PhpCsFixer\Fixer\Basic\BracesFixer::class => [
+            'allow_single_line_closure' => false,
+            'position_after_anonymous_constructs' => 'next', // possible values ['same', 'next']
+            'position_after_control_structures' => 'next', // possible values ['same', 'next']
+            'position_after_functions_and_oop_constructs' => 'next', // possible values ['same', 'next']
+        ],
+        \ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff::class => [
+            'maxLength' => 66,
         ],
     ],
 

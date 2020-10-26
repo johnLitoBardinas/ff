@@ -6,8 +6,8 @@ use App\User;
 
 if (! function_exists('generate_branch_code')) {
     /**
-    * This will generate branch code => branch ID
-    */
+     *  This will generate branch code => branch ID
+     */
     function generate_branch_code()
     {
         return strtolower('FAF-' . strtotime(now()));
@@ -16,10 +16,10 @@ if (! function_exists('generate_branch_code')) {
 
 if (! function_exists('generate_user_token')) {
    /**
-   * Used  for creating the user Token.
-   *
-   * Generating custom 'first_name+last_name'.
-   */
+    *  Used  for creating the user Token.
+    *
+    *  Generating custom 'first_name+last_name'.
+    */
     function generate_user_token(User $user)
     {
         return strtolower($user->first_name . $user->last_name);
@@ -28,8 +28,8 @@ if (! function_exists('generate_user_token')) {
 
 if (! function_exists('generate_session_data')) {
    /**
-   * Generating the user sessions.
-   */
+    *  Generating the user sessions.
+    */
     function generate_session_data(string $apiToken, string $logo, string $homeUrl, $userAccessType = null)
     {
         // Default session for the user.
@@ -49,9 +49,9 @@ if (! function_exists('generate_session_data')) {
 }
 
 if (! function_exists('pikaday_date_format')) {
-  /**
-   * Format the timestamp to a valid Constant Pikaday Format.
-   */
+    /**
+     *  Format the timestamp to a valid Constant Pikaday Format.
+     */
     function pikaday_date_format(string $timestamp)
     {
         return date('Y-m-d', strtotime($timestamp));
@@ -59,9 +59,9 @@ if (! function_exists('pikaday_date_format')) {
 }
 
 if (! function_exists('create_access_token')) {
-  /**
-   * Generating API Token for the Client Application.
-   */
+    /**
+     *  Generating API Token for the Client Application.
+     */
     function create_access_token(User $user, string $ability)
     {
         $userToken = generate_user_token($user);
@@ -71,7 +71,7 @@ if (! function_exists('create_access_token')) {
 
 if (! function_exists('get_account_home_page')) {
     /**
-     * Determing if the Access Page is for Admin, Salon, Gym, Spa.
+     *  Determing if the Access Page is for Admin, Salon, Gym, Spa.
      */
     function get_account_home_page(string $requestedAccessPage)
     {
@@ -96,9 +96,9 @@ if (! function_exists('get_account_home_page')) {
 }
 
 if (! function_exists('get_account_page_logo')) {
-  /**
-   * Getting the appropriate logo for the Admin, Manager, Cashier [Salon, Gym, Spa] Logo.
-   */
+    /**
+     *  Getting the appropriate logo for the Admin, Manager, Cashier [Salon, Gym, Spa] Logo.
+     */
     function get_account_page_logo(User $user)
     {
         if ($user->isAdmin() || $user->isSuperAdmin()) {
@@ -121,9 +121,9 @@ if (! function_exists('get_account_page_logo')) {
 
 if (! function_exists('login_user_redirection')) {
 
-  /**
-   * Determine the proper user session storage and redirections.
-   */
+    /**
+     *  Determine the proper user session storage and redirections.
+     */
     function login_user_redirection(string $requestedHomeType, User $user)
     {
         $logo = get_account_page_logo($user);
