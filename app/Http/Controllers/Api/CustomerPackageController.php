@@ -27,6 +27,8 @@ class CustomerPackageController extends ApiController
         // Get the Package Model here..
         $chosenPackage = Package::findOrFail($request->package_id);
 
+        $dateNow = Carbon::now();
+
         $customerPackage = CustomerPackage::create([
             'branch_id' => $request->branch_id,
             'package_id' => $request->package_id,
@@ -34,12 +36,12 @@ class CustomerPackageController extends ApiController
             'customer_id' => $request->customer_id,
             'reference_no' => $request->reference_no,
             'payment_type' => $request->payment_type,
-            'salon_package_start' => Carbon::now(),
-            'salon_package_end' => Carbon::now()->addDays($chosenPackage->salon_days_valid_count + 1), // + 1 So that the last day will be consumable
-            'gym_package_start' => Carbon::now(),
-            'gym_package_end' => Carbon::now()->addDays($chosenPackage->gym_days_valid_count + 1),
-            'spa_package_start' => Carbon::now(),
-            'spa_package_end' => Carbon::now()->addDays($chosenPackage->spa_days_valid_count + 1),
+            'salon_package_start' => $dateNow,
+            'salon_package_end' => $dateNow->addDays($chosenPackage->salon_days_valid_count + 1), // + 1 So that the last day will be consumable
+            'gym_package_start' => $dateNow,
+            'gym_package_end' => $dateNow->addDays($chosenPackage->gym_days_valid_count + 1),
+            'spa_package_start' => $dateNow,
+            'spa_package_end' => $dateNow->addDays($chosenPackage->spa_days_valid_count + 1),
         ]);
 
         return $this->showOne($customerPackage);

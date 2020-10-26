@@ -3,21 +3,13 @@
 namespace App\Http\Livewire\Salon;
 
 use App\Customer;
-use Livewire\Component;
 use App\CustomerPackage;
 use App\Enums\SalonAction;
 use App\Repositories\CustomerPackageRepository;
+use Livewire\Component;
 
 class SalonTable extends Component
 {
-    // Listeners.
-    protected $listeners = [
-        'onClickNewOrActiveAccount',
-        'onExpiredOrComplementedAccount',
-        'onNone',
-        'onSearchSalonTable'
-    ];
-
     // Displaying the current Table Data.
     public $currentDisplayType;
 
@@ -34,6 +26,22 @@ class SalonTable extends Component
     public $packageType;
 
     public $customerPackageStatus;
+
+    // Listeners.
+    protected $listeners = [
+        'onClickNewOrActiveAccount',
+        'onExpiredOrComplementedAccount',
+        'onNone',
+        'onSearchSalonTable',
+    ];
+
+    /**
+     * Rendering the component.
+     */
+    public function render()
+    {
+        return view('livewire.salon.salon-table');
+    }
 
     /**
      * Mounting the Component data.
@@ -110,11 +118,4 @@ class SalonTable extends Component
         $this->customerPackageVisitsInfo = CustomerPackageRepository::getAll($filterType, $this->packageType);
     }
 
-    /**
-     * Rendering the component.
-     */
-    public function render()
-    {
-        return view('livewire.salon.salon-table');
-    }
 }

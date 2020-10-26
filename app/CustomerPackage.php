@@ -35,6 +35,12 @@ class CustomerPackage extends Model
         'spa_package_end', // Spa End Date
     ];
 
+    // Mutators for reference number converting to uppercase
+    public function setReferenceNoAttribute($value)
+    {
+        $this->attributes['reference_no'] = strtoupper($value);
+    }
+
     // One CustomerPackage Row can be in Many CustomerVisits.
     public function customer_visits() //phpcs:ignore
     {
@@ -64,4 +70,12 @@ class CustomerPackage extends Model
     {
         return $this->belongsTo(Package::class, 'package_id');
     }
+
+    // Get the customer package visitation limit.
+    public function getCustomerPackageVisitationLimit(string $packageType)
+    {
+        $packageTypeNoOfVisits = $packageType . '_no_of_visits';
+        return $this->with('package')->first()->package->$packageTypeNoOfVisits;
+    }
+
 }

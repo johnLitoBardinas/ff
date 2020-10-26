@@ -2,9 +2,9 @@
 
 namespace App\Http\Livewire\Salon;
 
+use App\Enums\PackageStatus;
 use App\Package;
 use Livewire\Component;
-use App\Enums\PackageStatus;
 
 class AddNewCustomer extends Component
 {

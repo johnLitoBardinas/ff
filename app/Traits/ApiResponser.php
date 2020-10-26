@@ -8,13 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 trait ApiResponser
 {
 
-    /**
-    * Success response data format.
-    */
-    private function successResponse($data, $code)
-    {
-        return response()->json($data, $code);
-    }
 
     /**
     * Error response data format.
@@ -49,5 +42,13 @@ trait ApiResponser
     protected function showMessage($message, $code = 200)
     {
         return $this->successResponse(['data' => $message], $code);
+    }
+
+    /**
+    * Success response data format.
+    */
+    private function successResponse($data, $code)
+    {
+        return response()->json($data, $code);
     }
 }

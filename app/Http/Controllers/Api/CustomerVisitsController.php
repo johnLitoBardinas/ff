@@ -5,11 +5,8 @@ namespace App\Http\Controllers\Api;
 use App\Customer;
 use App\CustomerPackage;
 use App\CustomerVisits;
-use App\Enums\BranchType;
 use App\Enums\CustomerPackageStatus;
 use App\Enums\PackageType;
-use App\Http\Requests\CustomerVisits as RequestsCustomerVisits;
-use App\Repositories\CustomerVisitsRepository;
 use App\Rules\IsBranchIdExist;
 use Illuminate\Http\Request;
 use App\Rules\IsCustomerHasPackage;
@@ -18,25 +15,14 @@ use App\Rules\IsUserIdExist;
 
 class CustomerVisitsController extends ApiController
 {
-    protected $customerVisitsRepository;
-
-    public function __construct(CustomerVisitsRepository $customerVisitsRepository)
-    {
-        $this->customerVisitsRepository = $customerVisitsRepository;
-    }
-
     /**
      * Display a listing of the customer visits resource.
      */
     public function index(Customer $customer)
     {
-        /**
-         * Customers + Customer Packages + Package
-         * Customer + Customer Packages + Customer Visits Data.
-         */
         $customerVisits = Customer::where('customer_id', $customer->customer_id)
-        ->with('customer_packages.package', 'customer_packages.customer_visits')
-        ->get();
+                            ->with('customer_packages.package', 'customer_packages.customer_visits')
+                            ->get();
 
         return $this->showAll($customerVisits);
     }
@@ -44,16 +30,40 @@ class CustomerVisitsController extends ApiController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(RequestsCustomerVisits $request, Customer $customer)
+    public function store(Request $request, Customer $customer)
     {
-        if (empty(request('customer_package_id'))) {
+
+        if(empty(request('customer_package_id'))) {
             return $this->errorResponse('Invalid Data', 422);
         }
 
-        $customerPackageId = $request->customer_package_id;
-        $customerPackageType = $request->package_type;
+        $customerPackageLimit = CustomerPackage::find($request->customer_package_id)->getCustomerPackageVisitationLimit($request->package_type);
 
-        $customerPackageLimit = $this->customerVisitsRepository->customerPackageVisitationLimit($customerPackageId, $customerPackageType);
+        $rules = [
+            'customer_package_id' => [
+                'required',
+                'integer',
+                new IsCustomerHasPackage($customer->customer_id, $request->package_type),
+                new IsCustomerPackageAvailableToVisit($customerPackageLimit)
+            ],
+            'branch_id' => [
+                'required',
+                'integer',
+                new IsBranchIdExist()
+            ],
+            'user_id' => [
+                'required',
+                'integer',
+                new IsUserIdExist()
+            ],
+            'package_type' => [
+                'required',
+                'string',
+                'in:' . implode(',', PackageType::getValues())
+            ]
+        ];
+
+        $request->validate($rules);
 
         $customerVisitsData = [];
 
@@ -69,16 +79,25 @@ class CustomerVisitsController extends ApiController
             $customerVisitsData['package_type'] = request('package_type');
         }
 
+        if ($request->has('customer_associate')) {
+            $customerVisitsData['customer_associate'] = request('customer_associate');
+        }
+
+        if($request->has('customer_associate_picture')) {
+            $customerVisitsData['customer_associate_picture'] = request('customer_associate_picture');
+        }
+
         $customerVisits = CustomerVisits::create($customerVisitsData);
 
-        $totalCustomerCurrentPackageVisitationCount = $this->customerVisitsRepository->getCustomerTotalCurrentPackageVisitation($customerPackageId, $customerPackageType);
-
-        if ($totalCustomerCurrentPackageVisitationCount === (int) $customerPackageLimit) {
+        if ($customerVisits->getTotalCustomerVisits($request->package_type) === (int) $customerPackageLimit)
+        {
             $package_type_field = $request->package_type . '_package_status';
             CustomerPackage::where('customer_package_id', request('customer_package_id'))
-                            ->update([$package_type_field => CustomerPackageStatus::COMPLETED]);
+            ->update([$package_type_field => CustomerPackageStatus::COMPLETED]);
+
         }
 
         return $this->showOne($customerVisits, 201);
     }
+
 }

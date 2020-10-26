@@ -1,11 +1,11 @@
 <?php
 
+use App\Http\Controllers\Api\BranchController;
+use App\Http\Controllers\Api\UserController;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\BranchController;
-use App\Http\Controllers\Api\UserController;
 
 Route::get('/', function (Request $request) {
     dd('Fix&Free API - By: John Lito Bardinas ;)');
@@ -15,7 +15,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('login', function (Request $request) {
+Route::post('token', function (Request $request) {
     $request->validate([
         'email' => 'required',
         'password' => 'required',

@@ -3,9 +3,9 @@
 namespace App\Http\Livewire;
 
 use App\User;
-use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Livewire\Component;
 
 class ChangePasswordForm extends Component
 {
@@ -22,6 +22,9 @@ class ChangePasswordForm extends Component
         $this->currentUserPasswordHashed = Auth::user()->password;
     }
 
+    /**
+     * Everytime the component properties change.
+     */
     public function updated($field)
     {
         $this->validateOnly($field, $this->changePasswordValidationRules());
@@ -60,7 +63,7 @@ class ChangePasswordForm extends Component
                 fn ($attribute, $value, $fail) => ! Hash::check($value, $this->currentUserPasswordHashed) ? $fail('Incorrect Old Password') : true
             ],
             'password' => 'required|confirmed',
-            'password_confirmation' => 'required'
+            'password_confirmation' => 'required',
         ];
     }
 

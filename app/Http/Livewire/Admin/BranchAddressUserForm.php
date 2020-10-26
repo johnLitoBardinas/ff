@@ -2,11 +2,9 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Repositories\UserRoleRepository;
-use App\Branch;
 use App\Enums\AdminAction;
-use App\Enums\BranchType;
 use App\Repositories\BranchRepository;
+use App\Repositories\UserRoleRepository;
 use Livewire\Component;
 
 class BranchAddressUserForm extends Component

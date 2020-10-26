@@ -1,11 +1,11 @@
 <?php
 
-use App\Http\Controllers\Profile;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminDashboard;
 use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\Profile;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 Route::get('/test', function () {
     dd('Fix and Free Application by: John Lito Bardinas');

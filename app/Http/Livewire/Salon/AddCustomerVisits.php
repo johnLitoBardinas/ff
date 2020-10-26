@@ -2,15 +2,12 @@
 
 namespace App\Http\Livewire\Salon;
 
-use Livewire\Component;
 use App\CustomerPackage;
 use App\CustomerVisits;
+use Livewire\Component;
 
 class AddCustomerVisits extends Component
 {
-    protected $listeners = [
-        'onUpdateCustomerVisits' => 'getCustomerPackageVisitation'
-    ];
 
     // Current Customer Package ID.
     public $customerPackageId;
@@ -30,6 +27,18 @@ class AddCustomerVisits extends Component
     // Total Allocated Customer Visitation.
     public $customerPackageTotalVisitationCount = 0;
 
+    protected $listeners = [
+        'onUpdateCustomerVisits' => 'getCustomerPackageVisitation'
+    ];
+
+    /**
+     * Rendering the component.
+     */
+    public function render()
+    {
+        return view('livewire.salon.add-customer-visits');
+    }
+
     /**
      * Mounting some default data.
      */
@@ -43,12 +52,12 @@ class AddCustomerVisits extends Component
 
         $this->getCustomerPackageEndDate();
 
-        $this->getTotalPackageVisitation();
+        $this->customerPackageTotalVisitationCount = CustomerPackage::find($this->customerPackageId)->getCustomerPackageVisitationLimit($this->customerPackageType);
 
         $this->getCustomerPackageVisitation();
     }
 
-        // Current Number of customer visitaion.
+    // Current Number of customer visitaion.
     public function getCustomerPackageVisitation()
     {
         $this->customerPackageVisitation = CustomerVisits::where('customer_package_id', $this->customerPackageId)->where('package_type', 'salon')->get()->toArray();
@@ -67,18 +76,4 @@ class AddCustomerVisits extends Component
         $this->customerPackageEndDate = $this->customerPackageInfo->toArray()[$package_type];
     }
 
-    // Total number of Visitation for the Package.
-    private function getTotalPackageVisitation()
-    {
-        $package_type = $this->customerPackageType . '_no_of_visits';
-        $this->customerPackageTotalVisitationCount = $this->customerPackageInfo->toArray()['package'][$package_type];
-    }
-
-    /**
-     * Rendering the component.
-     */
-    public function render()
-    {
-        return view('livewire.salon.add-customer-visits');
-    }
 }

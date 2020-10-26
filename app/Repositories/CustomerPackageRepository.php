@@ -2,13 +2,19 @@
 
 namespace App\Repositories;
 
-use App\Enums\PackageType;
 use App\CustomerPackage;
 
 class CustomerPackageRepository
 {
 
-    // getting all active package or not active package
+    /**
+     * getting all packages via type and package type.
+     *
+     * @param String $type  (all, active, notActive) default all
+     * @param String $packageType (salon,gym,spa)
+     *
+     * @return null|Collection
+     */
     public static function getAll(string $type, string $packageType)
     {
         $accountPackageStatusFilter = sprintf('%s_package_status', $packageType);

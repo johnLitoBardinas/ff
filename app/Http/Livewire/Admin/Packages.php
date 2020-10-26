@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire\Admin;
 
-use App\Package;
-use Livewire\Component;
 use App\Enums\BranchType;
 use App\Enums\PackageStatus;
+use App\Package;
+use Livewire\Component;
 
 class Packages extends Component
 {

@@ -3,11 +3,9 @@
 namespace App\Http\Livewire\Admin;
 
 use App\User;
-use App\Branch;
-use Livewire\Component;
-use App\Enums\BranchType;
 use App\Enums\UserStatus;
 use App\Repositories\BranchRepository;
+use Livewire\Component;
 
 class AdminBranches extends Component
 {

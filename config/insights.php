@@ -84,7 +84,8 @@ return [
         ReturnTypeHintSniff::class,
         UselessFunctionDocCommentSniff::class,
         ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff::class,
-        SlevomatCodingStandard\Sniffs\ControlStructures\DisallowEmptySniff::class
+        SlevomatCodingStandard\Sniffs\ControlStructures\DisallowEmptySniff::class,
+        PHP_CodeSniffer\Standards\PSR1\Sniffs\Methods\CamelCapsMethodNameSniff::class,
     ],
 
     'config' => [
@@ -98,8 +99,12 @@ return [
             'maxComplexity' => 6,
         ],
         \PhpCsFixer\Fixer\Import\OrderedImportsFixer::class => [
-            'imports_order' => ['class', 'const', 'function'],
             'sort_algorithm' => 'alpha', // possible values ['alpha', 'length', 'none']
+        ],
+        \PHP_CodeSniffer\Standards\Generic\Sniffs\Files\LineLengthSniff::class => [
+            'lineLimit' => 90,
+            'absoluteLineLimit' => 110,
+            'ignoreComments' => false,
         ],
     ],
 
@@ -118,7 +123,7 @@ return [
        'min-quality' => 88,
        'min-complexity' => 88,
        'min-architecture' => 88,
-       'min-style' => 80,
+       'min-style' => 88,
        'disable-security-check' => false,
     ],
 

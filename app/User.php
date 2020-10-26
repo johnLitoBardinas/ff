@@ -2,16 +2,16 @@
 
 namespace App;
 
-use App\Role;
 use App\Branch;
-use App\CustomerVisits;
-use App\Enums\UserType;
 use App\CustomerPackage;
+use App\CustomerVisits;
 use App\Enums\BranchType;
 use App\Enums\UserStatus;
-use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Notifications\Notifiable;
+use App\Enums\UserType;
+use App\Role;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {

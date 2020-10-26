@@ -1,8 +1,8 @@
 <?php
 
-use App\User;
 use App\Enums\AccessHomeType;
 use App\Enums\BranchType;
+use App\User;
 
 if (! function_exists('generate_branch_code')) {
     /**

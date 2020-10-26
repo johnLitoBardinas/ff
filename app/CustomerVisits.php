@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CustomerVisits extends Model
 {
+
     // Disabling the default timestamp.
     public $timestamps = false;
 
@@ -54,5 +55,13 @@ class CustomerVisits extends Model
     public function customer_visits() //phpcs:ignore
     {
         return $this->belongsTo(CustomerPackage::class, 'customer_package_id');
+    }
+
+    /**
+     * Checking the total customer visits on a specific package
+     */
+    public function getTotalCustomerVisits(string $packageType)
+    {
+        return $this->where('package_type', $packageType)->count();
     }
 }
