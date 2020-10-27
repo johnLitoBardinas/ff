@@ -1,21 +1,22 @@
 <?php
 
-namespace App\Http\Livewire\Salon;
+namespace App\Http\Livewire\Management;
 
 use App\Customer;
 use App\CustomerPackage;
-use App\Enums\SalonAction;
+use App\Enums\ManagementAction;
 use App\Repositories\CustomerPackageRepository;
+use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
-class SalonTable extends Component
+class ManagementTable extends Component
 {
     // Listeners.
     protected $listeners = [
         'onClickNewOrActiveAccount',
         'onExpiredOrComplementedAccount',
         'onNone',
-        'onSearchSalonTable',
+        'onSearchTable',
     ];
 
     // Displaying the current Table Data.
@@ -43,7 +44,7 @@ class SalonTable extends Component
     {
         $this->customerPackageVisitsInfo = [];
 
-        if ($this->currentDisplayType === SalonAction::NONE) {
+        if ($this->currentDisplayType === ManagementAction::NONE) {
             $this->customerPackageVisitsInfo = [];
             return;
         }
@@ -56,7 +57,7 @@ class SalonTable extends Component
      */
     public function render()
     {
-        return view('livewire.salon.salon-table');
+        return view('livewire.management.management-table');
     }
 
     /**
@@ -69,21 +70,20 @@ class SalonTable extends Component
         $this->customerPackageStatus = sprintf('%s_package_status', $this->packageType);
 
         $this->onNone();
-        $this->getCustomerPackageData();
     }
 
     /**
      * On search Table.
      * Customer Name.
      */
-    public function onSearchSalonTable($searchSalonTable = null)
+    public function onSearchTable($customerName = null)
     {
-        if (empty($searchSalonTable)) {
+        if (empty($customerName)) {
             $this->onNone();
         }
 
-        $this->searchingText = $searchSalonTable;
-        $this->customerListId = Customer::where('first_name', 'LIKE', '%' . trim($searchSalonTable) . '%')->orWhere('last_name', 'LIKE', '%' . trim($searchSalonTable) . '%')->pluck('customer_id')->toArray();
+        $this->searchingText = $customerName;
+        $this->customerListId = Customer::where('first_name', 'LIKE', '%' . trim($customerName) . '%')->orWhere('last_name', 'LIKE', '%' . trim($customerName) . '%')->pluck('customer_id')->toArray();
 
         if (empty($this->customerListId)) {
             $this->onNone();
@@ -97,7 +97,7 @@ class SalonTable extends Component
      */
     public function onClickNewOrActiveAccount()
     {
-        $this->currentDisplayType = SalonAction::NEW_ACTIVE_ACCOUNT;
+        $this->currentDisplayType = ManagementAction::NEW_ACTIVE_ACCOUNT;
         $this->getCustomerPackageData('active');
     }
 
@@ -106,7 +106,7 @@ class SalonTable extends Component
      */
     public function onExpiredOrComplementedAccount()
     {
-        $this->currentDisplayType = SalonAction::EXPIRED_COMPLETED_ACCOUNT;
+        $this->currentDisplayType = ManagementAction::EXPIRED_COMPLETED_ACCOUNT;
         $this->getCustomerPackageData('notActive');
     }
 
@@ -115,7 +115,7 @@ class SalonTable extends Component
      */
     public function onNone()
     {
-        $this->currentDisplayType = SalonAction::NONE;
+        $this->currentDisplayType = ManagementAction::NONE;
         $this->getCustomerPackageData();
     }
 }

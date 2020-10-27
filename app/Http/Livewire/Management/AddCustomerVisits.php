@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Salon;
+namespace App\Http\Livewire\Management;
 
 use App\CustomerPackage;
 use App\CustomerVisits;
@@ -48,7 +48,7 @@ class AddCustomerVisits extends Component
      */
     public function render()
     {
-        return view('livewire.salon.add-customer-visits');
+        return view('livewire.management.add-customer-visits');
     }
 
     /**

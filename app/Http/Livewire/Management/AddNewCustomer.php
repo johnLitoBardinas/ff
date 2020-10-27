@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Salon;
+namespace App\Http\Livewire\Management;
 
 use App\Repositories\PackageRepository;
 use Livewire\Component;
@@ -33,6 +33,6 @@ class AddNewCustomer extends Component
      */
     public function render()
     {
-        return view('livewire.salon.add-new-customer');
+        return view('livewire.management.add-new-customer');
     }
 }

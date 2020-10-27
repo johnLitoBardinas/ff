@@ -5,13 +5,13 @@
 <div class="container mt-4">
     <div class="row justify-content-between align-items-center">
 
-        @livewire('salon.salon-actions')
+        @livewire('management.management-actions')
         {{-- Salon Actions --}}
 
-        @livewire('salon.salon-search-field')
+        @livewire('management.management-search-field')
     </div>
 
-    @livewire('salon.salon-table')
+    @livewire('management.management-table')
     {{-- Salon Table --}}
 </div>
 @endsection

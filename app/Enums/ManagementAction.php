@@ -4,7 +4,7 @@ namespace App\Enums;
 
 use BenSampo\Enum\Enum;
 
-final class SalonAction extends Enum
+final class ManagementAction extends Enum
 {
     public const NONE = 'none';
     public const ALL = 'all';

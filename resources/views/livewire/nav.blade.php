@@ -37,7 +37,7 @@
                     </li>
                     <li>
                         <span>
-                            <img src="{{ asset('svg/icons/fix_free.salon.svg') }}" alt="Total Branch.">
+                            <img src="{{ asset('svg/icons/fix_free.management.svg') }}" alt="Total Branch.">
                             &nbsp; Salon: <b>{{$totalActiveSalonBranchCount}}</b>
                         </span>
                     </li>

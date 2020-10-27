@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Salon;
+namespace App\Http\Livewire\Management;
 
 use App\Customer;
 use App\Repositories\PackageRepository;
@@ -33,7 +33,7 @@ class CustomerRenew extends Component
      */
     public function render()
     {
-        return view('livewire.salon.customer-renew');
+        return view('livewire.management.customer-renew');
     }
 
     /**

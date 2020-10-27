@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Branch;
 use App\Enums\BranchType;
+use App\Http\Requests\Branch as RequestsBranch;
 use App\User;
 use Illuminate\Http\Request;
 
@@ -17,21 +18,12 @@ class BranchController extends ApiController
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(RequestsBranch $request)
     {
-        // Validate the incoming data.
-        $request->validate([
-            'branch_name' => ['required', 'string', 'unique:branch,branch_name', 'max:50'],
-            'branch_address' => ['required', 'string', 'unique:branch,branch_address', 'max:190'],
-            'branch_type' => ['required', 'in:' . implode(',', BranchType::getValues())]
-        ]);
+        $branchData = $request->all();
+        $branchData['branch_code'] = generate_branch_code();
 
-        $branch = Branch::create([
-            'branch_code' => generate_branch_code(),
-            'branch_name' => request('branch_name'),
-            'branch_address' => request('branch_address'),
-            'branch_type' => request('branch_type'),
-        ]);
+        $branch = Branch::create($branchData);
 
         return $this->showOne($branch, 201);
     }

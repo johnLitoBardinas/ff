@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 class Profile extends Controller
 {
     /**
-     * Show Profile Info.
+     * Show Profile Information.
      */
     public function index()
     {
