@@ -6,9 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class CustomerPackage extends Model
 {
-    // Disabling the default created_at, updated_at.
-    public $timestamps = false;
-
     // Model custom table name.
     protected $table = 'customer_package';
 
@@ -33,6 +30,9 @@ class CustomerPackage extends Model
         'spa_package_start', // Spa Start Date
         'spa_package_end', // Spa End Date
     ];
+
+    // Disabling the default created_at, updated_at.
+    public $timestamps = false;
 
     // Mutators for reference number converting to uppercase
     public function setReferenceNoAttribute($value)

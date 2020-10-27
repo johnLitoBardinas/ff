@@ -7,7 +7,6 @@ use App\Package;
 
 class PackageRepository
 {
-
     public static function getAll(string $packageType)
     {
         return Package::where('package_type', $packageType)->get();

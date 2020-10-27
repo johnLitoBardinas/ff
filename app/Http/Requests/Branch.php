@@ -27,7 +27,7 @@ class Branch extends FormRequest
         return [
             'branch_name' => ['required', 'string', 'unique:branch,branch_name', 'max:50'],
             'branch_address' => ['required', 'string', 'unique:branch,branch_address', 'max:190'],
-            'branch_type' => ['required', 'in:' . implode(',', BranchType::getValues())]
+            'branch_type' => ['required', 'in:' . implode(',', BranchType::getValues())],
         ];
     }
 }

@@ -26,7 +26,6 @@ class CustomerVisits extends Model
     // Disabling the default timestamp.
     public $timestamps = false;
 
-
     // Many Row in Customer Visits can be related to ONE Customer.
     public function customer()
     {

@@ -6,7 +6,6 @@ use App\Customer;
 use App\CustomerPackage;
 use App\Enums\ManagementAction;
 use App\Repositories\CustomerPackageRepository;
-use Illuminate\Support\Facades\DB;
 use Livewire\Component;
 
 class ManagementTable extends Component

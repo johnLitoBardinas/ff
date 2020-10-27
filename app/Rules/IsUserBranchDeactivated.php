@@ -22,7 +22,8 @@ class IsUserBranchDeactivated implements Rule
     {
         $userId = User::whereEmail($value)->first()->user_id;
 
-        if (empty($userId)) {
+        if (empty($userId))
+        {
             return false;
         }
 

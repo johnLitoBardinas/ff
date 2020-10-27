@@ -60,7 +60,7 @@ class CustomerVisitsController extends ApiController
                 'required',
                 'string',
                 'in:' . implode(',', PackageType::getValues()),
-            ]
+            ],
         ];
 
         $request->validate($rules);

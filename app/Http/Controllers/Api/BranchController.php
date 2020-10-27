@@ -3,7 +3,6 @@
 namespace App\Http\Controllers\Api;
 
 use App\Branch;
-use App\Enums\BranchType;
 use App\Http\Requests\Branch as RequestsBranch;
 use App\User;
 use Illuminate\Http\Request;

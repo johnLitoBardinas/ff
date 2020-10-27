@@ -28,11 +28,13 @@ class IsUserCanAccessBranch implements Rule
     {
         $this->user = AppUser::whereEmail($value)->first();
 
-        if ($this->user->accessHomePage() === BranchType::ADMIN && $this->homeType !== AccessHomeType::FFCO) {
+        if ($this->user->accessHomePage() === BranchType::ADMIN && $this->homeType !== AccessHomeType::FFCO)
+        {
             return false;
         }
 
-        if ($this->user->accessHomePage() === BranchType::ADMIN && $this->homeType === AccessHomeType::FFCO) {
+        if ($this->user->accessHomePage() === BranchType::ADMIN && $this->homeType === AccessHomeType::FFCO)
+        {
             return true;
         }
 
