@@ -47,6 +47,6 @@ class CustomerRenew extends Component
 
         $this->paymentsOptions = config('constant.payment_options');
 
-        $this->subscriptionPlans = PackageRepository::getAll($this->currentCustomerPackageType)->toArray();
+        $this->subscriptionPlans = PackageRepository::getAllActive($this->currentCustomerPackageType)->toArray();
     }
 }
