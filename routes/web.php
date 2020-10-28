@@ -11,7 +11,6 @@ Route::get('/', [LoginController::class, 'showLoginForm'])->name('login');
 
 Route::middleware('auth')->group(function ()
 {
-
     // Admin Side.
     Route::get('/admin', [AdminDashboard::class, 'index'])->name('admin')->middleware('can:access-admin');
 

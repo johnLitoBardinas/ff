@@ -38,7 +38,7 @@
         <input type="hidden" name="customer_id" value="{{$customerPackageInfo->customer_id}}">
 
         <div class="form-group d-flex customer-visits-tracker">
-            @for ($i = 0; $i < $customerPackageTotalVisitationCount; $i++)
+            @for ($i = 0; $i < $packageTotalCount; $i++)
                 <div class="w-auto mr-1">
                     <label for="exampleInputEmail1" class="form-text font-weight-bold text-dark pb-1 mb-0">&nbsp; {{ strtoupper(sprintf( '%s visit', ($i + 1) ))}}</label>
                     <small><em>(Year-Month-Day)</em></small>
@@ -56,8 +56,8 @@
         <div class="d-flex justify-content-between">
             <a href="{{ route('home') }}" title="Click to Exit." class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__exit d-flex">EXIT</a>
 
-            @if (count($customerPackageVisitation) === $customerPackageTotalVisitationCount)
-            <span class="text-line-through">Completed Package</span>
+            @if (count($customerPackageVisitation) === $packageTotalCount)
+            <span class="text-line-through">Completed Service</span>
             @else
             <button class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__edit d-flex" id="btn-save-customer-visits">UPDATE</button>
             @endif

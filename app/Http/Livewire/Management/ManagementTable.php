@@ -31,7 +31,7 @@ class ManagementTable extends Component
     public $searchingText;
 
     // Package Type Salon, Gym, Spa.
-    public $packageType;
+    public $currentPackageType;
 
     // CurrentCustomerPackage Status  ['salon_package_status', 'gym_package_status', 'spa_package_status'].
     public $customerPackageStatus;
@@ -48,7 +48,7 @@ class ManagementTable extends Component
             return;
         }
 
-        $this->customerPackageVisitsInfo = CustomerPackageRepository::getAll($filterType, $this->packageType);
+        $this->customerPackageVisitsInfo = CustomerPackageRepository::getAll($filterType, $this->currentPackageType);
     }
 
     /**
@@ -64,9 +64,9 @@ class ManagementTable extends Component
      */
     public function mount()
     {
-        $this->packageType = session('userAccessType');
+        $this->currentPackageType = session('userAccessType');
 
-        $this->customerPackageStatus = sprintf('%s_package_status', $this->packageType);
+        $this->customerPackageStatus = sprintf('%s_package_status', $this->currentPackageType);
 
         $this->onNone();
     }

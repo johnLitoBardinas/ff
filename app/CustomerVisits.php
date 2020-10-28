@@ -55,12 +55,4 @@ class CustomerVisits extends Model
     {
         return $this->belongsTo(CustomerPackage::class, 'customer_package_id');
     }
-
-    /**
-     * Checking the total customer visits on a specific package
-     */
-    public function getTotalCustomerVisits(string $packageType)
-    {
-        return $this->where('package_type', $packageType)->count();
-    }
 }

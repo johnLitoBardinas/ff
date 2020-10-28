@@ -6,12 +6,12 @@
     <div class="row justify-content-between align-items-center">
 
         @livewire('management.management-actions')
-        {{-- Salon Actions --}}
+        {{-- Management Actions --}}
 
         @livewire('management.management-search-field')
     </div>
 
     @livewire('management.management-table')
-    {{-- Salon Table --}}
+    {{-- Management Table --}}
 </div>
 @endsection

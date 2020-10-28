@@ -7,6 +7,7 @@ use App\CustomerPackage;
 use App\CustomerVisits;
 use App\Enums\CustomerPackageStatus;
 use App\Enums\PackageType;
+use App\Repositories\CustomerPackageRepository;
 use App\Rules\IsBranchIdExist;
 use App\Rules\IsCustomerHasPackage;
 use App\Rules\IsCustomerPackageAvailableToVisit;
@@ -37,14 +38,12 @@ class CustomerVisitsController extends ApiController
             return $this->errorResponse('Invalid Data', 422);
         }
 
-        $customerPackageLimit = CustomerPackage::find($request->customer_package_id)->getCustomerPackageVisitationLimit($request->package_type);
-
         $rules = [
             'customer_package_id' => [
                 'required',
                 'integer',
                 new IsCustomerHasPackage($customer->customer_id, $request->package_type),
-                new IsCustomerPackageAvailableToVisit($customerPackageLimit),
+                new IsCustomerPackageAvailableToVisit($request->package_type),
             ],
             'branch_id' => [
                 'required',
@@ -79,17 +78,13 @@ class CustomerVisitsController extends ApiController
             $customerVisitsData['package_type'] = request('package_type');
         }
 
-        if ($request->has('customer_associate')) {
-            $customerVisitsData['customer_associate'] = request('customer_associate');
-        }
-
-        if ($request->has('customer_associate_picture')) {
-            $customerVisitsData['customer_associate_picture'] = request('customer_associate_picture');
-        }
-
         $customerVisits = CustomerVisits::create($customerVisitsData);
 
-        if ($customerVisits->getTotalCustomerVisits($request->package_type) === (int) $customerPackageLimit) {
+        $packageLimitVisits = CustomerPackageRepository::totalVisitation($request->customer_package_id, $request->package_type);
+
+        $customerPackageVisits = CustomerPackageRepository::customerTotalVisits($request->customer_package_id, $request->package_type);
+
+        if (count($customerPackageVisits) === (int) $packageLimitVisits) {
             $package_type_field = $request->package_type . '_package_status';
             CustomerPackage::where('customer_package_id', request('customer_package_id'))
                 ->update([$package_type_field => CustomerPackageStatus::COMPLETED]);

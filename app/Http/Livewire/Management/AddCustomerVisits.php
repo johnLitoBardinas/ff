@@ -2,8 +2,7 @@
 
 namespace App\Http\Livewire\Management;
 
-use App\CustomerPackage;
-use App\CustomerVisits;
+use App\Repositories\CustomerPackageRepository;
 use Livewire\Component;
 
 class AddCustomerVisits extends Component
@@ -28,20 +27,7 @@ class AddCustomerVisits extends Component
     public $customerPackageVisitation;
 
     // Total Allocated Customer Visitation.
-    public $customerPackageTotalVisitationCount = 0;
-
-    // Get the info for customerPackageVisits
-    private function getCustomerPackageVisits()
-    {
-        $this->customerPackageInfo = CustomerPackage::where('customer_package_id', $this->customerPackageId)->with('customer', 'package', 'customer_visits')->first();
-    }
-
-    // Getting the current Package End Date.
-    private function getCustomerPackageEndDate()
-    {
-        $package_type = $this->customerPackageType . '_package_end';
-        $this->customerPackageEndDate = $this->customerPackageInfo->toArray()[$package_type];
-    }
+    public $packageTotalCount = 0;
 
     /**
      * Rendering the component.
@@ -59,19 +45,25 @@ class AddCustomerVisits extends Component
         $this->customerPackageId = decrypt(request('customer_package_id'));
         $this->customerPackageType = decrypt(request('package_type'));
 
-        // Get the CustomerPackage, Customer, Package, Visits Info.
-        $this->getCustomerPackageVisits();
-
-        $this->getCustomerPackageEndDate();
-
-        $this->customerPackageTotalVisitationCount = CustomerPackage::find($this->customerPackageId)->getCustomerPackageVisitationLimit($this->customerPackageType);
-
         $this->getCustomerPackageVisitation();
+
+        // Getting the customer package type endDate.
+        $this->customerPackageEndDate = CustomerPackageRepository::packageEndDate($this->customerPackageId, $this->customerPackageType);
+
+        // Available Package Visitation by its type.
+        $this->packageTotalCount = CustomerPackageRepository::totalVisitation($this->customerPackageId, $this->customerPackageType);
+
+        // Customer Current Package Visitation.
+        $this->customerPackageVisitation = CustomerPackageRepository::customerTotalVisits($this->customerPackageId, $this->customerPackageType);
     }
 
-    // Current Number of customer visitaion.
-    public function getCustomerPackageVisitation()
+    public function getCustomerPackageVisitation(int $packageId = 0)
     {
-        $this->customerPackageVisitation = CustomerVisits::where('customer_package_id', $this->customerPackageId)->where('package_type', 'salon')->get()->toArray();
+        if (! empty($packageId)) {
+            $this->customerPackageId = $packageId;
+        }
+
+        $this->customerPackageInfo = CustomerPackageRepository::getOne($this->customerPackageId);
     }
+
 }

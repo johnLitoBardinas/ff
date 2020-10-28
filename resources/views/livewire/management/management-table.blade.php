@@ -35,7 +35,7 @@
                    <td>
                       <div class="table-responsive table-hover cursor-pointer">
                          <table class="table">
-                            <thead style="white-space:nowrap;">
+                           <thead style="white-space:nowrap;">
                                <tr>
                                   <th class="text-primary font-weight-bold">NAME</th>
                                   <th class="text-primary font-weight-bold">TYPE</th>
@@ -44,157 +44,162 @@
                                   <th class="text-primary font-weight-bold">VALID UNTIL</th>
                                   <th class="text-primary font-weight-bold">STATUS</th>
                                </tr>
-                            </thead>
-                               <tbody style="white-space:nowrap;" class="d-none">
-                                  <tr>
-                                     <td>{{strtoupper($row->package->package_name)}}</td>
-                                     <td>SALON</td>
-                                     @if($packageType === 'salon')
-                                       <td>{{number_format($row->package->package_price)}}</td>
-                                     @else
-                                       <td class="text-line-through">Free</td>
-                                     @endif
+                           </thead>
+                           <tbody style="white-space:nowrap;" class="d-none">
 
-                                     <td>
+                              <tr>
+                                 <td>
+                                    @if ($currentPackageType === 'gym') {{ strtoupper($row->package->package_name) ?? '' }} @endif
+                                 </td>
+                                 <td>GYM</td>
+                                 @if($currentPackageType === 'gym')
+                                    <td>{{number_format($row->package->package_price)}}</td>
+                                 @else
+                                    <td class="text-line-through">Free</td>
+                                 @endif
+                                 <td>
 
-                                       @if ($row->package->salon_days_valid_count && $row->package->salon_no_of_visits)
-                                          <?php $currentSalonVisitation = $row->customer_visits->filter(fn($item) => $item->package_type === 'salon')->toArray(); ?>
-                                          <div class="w-100 d-flex justify-content-between">
-                                             @for ($i = 0; $i < $row->package->salon_no_of_visits; $i++)
-                                                <div class="w-auto d-flex flex-column">
-                                                   @if (! empty($currentSalonVisitation[$i]))
+                                    @if (! empty($row->package->gym_days_valid_count) && ! empty($row->package->gym_no_of_visits) )
+                                        <div class="w-100 d-flex justify-content-between">
+                                           @for ($i = 0; $i < $row->package->gym_no_of_visits; $i++)
+                                               <div class="w-auto d-flex flex-column">
+                                                  <div class="w-auto d-flex flex-column">
+
+                                                     @if (! empty($row->customer_visits->groupBy('package_type')->toArray()['gym'][$i]))
                                                       <div class="w-auto d-flex flex-column">
-                                                         <button class="btn btn-sm btn-default border btn__ff--primary active" disabled>
-                                                            {{date('n-j-Y', strtotime($currentSalonVisitation[$i]['date']))}}
-                                                        </button>
+                                                            <button class="btn btn-sm btn-default border btn__ff--primary active" disabled>
+                                                               {{date('n-j-Y', strtotime($row->customer_visits->groupBy('package_type')->toArray()['gym'][$i]['date']))}}
+                                                            </button>
                                                       </div>
-                                                   @else
+                                                     @else
+                                                      <a href="{{ route('customer-visits', [
+                                                         'customer_package_id' => encrypt($row->customer_package_id),
+                                                         'package_type' => encrypt('gym'),
+                                                         ])}}"
+                                                         class="btn btn-sm btn-default border btn__ff--primary">
+                                                         +add
+                                                      </a>
+                                                     @endif
+
+                                                  </div>
+                                               </div>
+                                           @endfor
+                                        </div>
+                                    @endif
+
+                                 </td>
+                                 <td>
+                                    {{date('M. d, Y', strtotime('-1 day', strtotime($row->gym_package_end)))}}
+                                 </td>
+                                 <td>
+                                    <span class="package-status package-status--{{$row->gym_package_status}}">{{ strtoupper($row->gym_package_status) }}</span>
+                                 </td>
+                              </tr>
+                              {{-- GYM --}}
+
+                              <tr>
+                                 <td>
+                                    @if ($currentPackageType === 'salon') {{ strtoupper($row->package->package_name) ?? '' }} @endif
+                                 </td>
+                                 <td>SALON</td>
+                                 @if($currentPackageType === 'salon')
+                                    <td>{{number_format($row->package->package_price)}}</td>
+                                 @else
+                                    <td class="text-line-through">Free</td>
+                                 @endif
+                                 <td>
+
+                                    @if (! empty($row->package->salon_days_valid_count) && ! empty($row->package->salon_no_of_visits) )
+                                        <div class="w-100 d-flex justify-content-between">
+                                           @for ($i = 0; $i < $row->package->salon_no_of_visits; $i++)
+                                               <div class="w-auto d-flex flex-column">
+                                                  <div class="w-auto d-flex flex-column">
+
+                                                     @if (! empty($row->customer_visits->groupBy('package_type')->toArray()['salon'][$i]))
                                                       <div class="w-auto d-flex flex-column">
-                                                         <a
-                                                         href="{{ route('customer-visits', [
+                                                            <button class="btn btn-sm btn-default border btn__ff--primary active" disabled>
+                                                               {{date('n-j-Y', strtotime($row->customer_visits->groupBy('package_type')->toArray()['salon'][$i]['date']))}}
+                                                            </button>
+                                                      </div>
+                                                     @else
+                                                      <a href="{{ route('customer-visits', [
                                                          'customer_package_id' => encrypt($row->customer_package_id),
                                                          'package_type' => encrypt('salon'),
                                                          ])}}"
-                                                         class="btn btn-sm btn-default border btn__ff--primary">+add</a>
-                                                   </div>
-                                                   @endif
-                                                </div>
-                                             @endfor
-                                          </div>
-                                       @endif
+                                                         class="btn btn-sm btn-default border btn__ff--primary">
+                                                         +add
+                                                      </a>
+                                                     @endif
 
-                                     </td>
-                                    <td>
-                                        {{date('M. d, Y', strtotime('-1 day', strtotime($row->salon_package_end)))}}
-                                    </td>
-                                    <td>
-                                        <span class="package-status package-status--{{$row->salon_package_status}}">{{ strtoupper($row->salon_package_status) }}</span>
-                                    </td>
-                                  </tr>
-                                  {{-- ./salon-row --}}
-
-                                  <tr>
-                                     <td></td>
-                                     <td>GYM</td>
-                                     @if($packageType === 'gym')
-                                       <td>{{number_format($row->package->package_price)}}</td>
-                                     @else
-                                       <td class="text-line-through">Free</td>
-                                     @endif
-
-                                     <td>
-                                       @if ($row->package->gym_days_valid_count && $row->package->gym_no_of_visits)
-                                          <?php $currentGymVisitation = $row->customer_visits->filter(fn($item) => $item->package_type === 'gym')->toArray(); ?>
-                                          @for ($i = 0; $i < $row->package->gym_no_of_visits; $i++)
-                                             <div class="w-auto d-flex flex-column">
-                                                @if (! empty($currentGymVisitation))
-                                                   <div class="w-auto d-flex flex-column">
-                                                      <button class="btn btn-sm btn-default border btn__ff--primary active" disabled>
-                                                         {{date('n-j-Y', strtotime($currentGymVisitation[$i]['date']))}}
-                                                      </button>
-                                                   </div>
-                                                @else
-                                                <div class="w-auto d-flex flex-column">
-                                                   <a href="{{ route('customer-visits', [
-                                                      'customer_package_id' => encrypt($row->customer_package_id),
-                                                      'package_type' => encrypt('salon'),
-                                                      ])}}"
-                                                      class="btn btn-sm btn-default border btn__ff--primary">+add
-                                                   </a>
+                                                  </div>
                                                </div>
-                                                @endif
-                                             </div>
-                                          @endfor
-                                       @else
-                                          <span>No Gym</span>
-                                       @endif
-                                     </td>
-
-                                     <td>
-                                       @if (now()->lessThan($row->gym_package_end))
-                                          {{date('M. d, Y', strtotime('-1 day', strtotime($row->gym_package_end)))}}
-                                       @endif
-                                     </td>
-                                     <td>
-                                        @if (! empty($row->package->gym_days_valid_count))
-                                          <span class="package-status package-status--{{$row->gym_package_status}}">{{ strtoupper($row->gym_package_status) }}</span>
-                                        @endif
-                                     </td>
-                                  </tr>
-                                  {{-- ./gym-row --}}
-
-                                  <tr>
-                                    <td></td>
-                                    <td>SPA</td>
-                                    @if($packageType === 'spa')
-                                      <td>{{number_format($row->package->package_price)}}</td>
-                                    @else
-                                      <td class="text-line-through">Free</td>
+                                           @endfor
+                                        </div>
                                     @endif
 
-                                    <td>
-                                      @if ($row->package->spa_days_valid_count && $row->package->spa_no_of_visits)
-                                       <?php $currentSpaVisitation = $row->customer_visits->filter(fn($item) => $item->package_type === 'salon')->toArray(); ?>
-                                       <div class="w-100 d-flex justify-content-between">
-                                          @for ($i = 0; $i < $row->package->salon_no_of_visits; $i++)
-                                             <div class="w-auto d-flex flex-column">
-                                                @if (! empty($currentSpaVisitation[$i]))
-                                                   <div class="w-auto d-flex flex-column">
-                                                      <button class="btn btn-sm btn-default border btn__ff--primary active" disabled>
-                                                         {{date('n-j-Y', strtotime($currentSpaVisitation[$i]['date']))}}
-                                                      </button>
-                                                   </div>
-                                                @else
-                                                <div class="w-auto d-flex flex-column">
-                                                   <a href="{{ route('customer-visits', [
-                                                      'customer_package_id' => encrypt($row->customer_package_id),
-                                                      'package_type' => encrypt('salon'),
-                                                      ])}}"
-                                                   class="btn btn-sm btn-default border btn__ff--primary">+add</a>
-                                                @endif
-                                             </div>
-                                          @endfor
-                                       </div>
-                                      @else
-                                       <span>No Spa</span>
-                                      @endif
-                                    </td>
+                                 </td>
+                                 <td>
+                                    {{date('M. d, Y', strtotime('-1 day', strtotime($row->salon_package_end)))}}
+                                 </td>
+                                 <td>
+                                    <span class="package-status package-status--{{$row->salon_package_status}}">{{ strtoupper($row->salon_package_status) }}</span>
+                                 </td>
+                              </tr>
+                              {{-- SALON --}}
 
-                                    <td>
-                                       @if (now()->lessThan($row->spa_package_end))
-                                          {{date('M. d, Y', strtotime('-1 day', strtotime($row->spa_package_end)))}}
-                                       @endif
-                                    </td>
-                                    <td>
-                                       @if (! empty($row->package->spa_days_valid_count))
-                                          <span class="package-status package-status--{{$row->spa_package_status}}">{{ strtoupper($row->spa_package_status) }}</span>
-                                       @endif
-                                    </td>
 
-                                  </tr>
-                                  {{-- ./spa-row --}}
+                              <tr>
+                                 <td>
+                                    @if ($currentPackageType === 'spa') {{ strtoupper($row->package->package_name) ?? '' }} @endif
+                                 </td>
+                                 <td>SPA</td>
+                                 @if($currentPackageType === 'spa')
+                                    <td>{{number_format($row->package->package_price)}}</td>
+                                 @else
+                                    <td class="text-line-through">Free</td>
+                                 @endif
+                                 <td>
 
-                               </tbody>
+                                    @if (! empty($row->package->spa_days_valid_count) && ! empty($row->package->spa_no_of_visits) )
+                                        <div class="w-100 d-flex justify-content-between">
+                                           @for ($i = 0; $i < $row->package->spa_no_of_visits; $i++)
+                                               <div class="w-auto d-flex flex-column">
+                                                  <div class="w-auto d-flex flex-column">
+
+                                                     @if (! empty($row->customer_visits->groupBy('package_type')->toArray()['spa'][$i]))
+                                                      <div class="w-auto d-flex flex-column">
+                                                            <button class="btn btn-sm btn-default border btn__ff--primary active" disabled>
+                                                               {{date('n-j-Y', strtotime($row->customer_visits->groupBy('package_type')->toArray()['spa'][$i]['date']))}}
+                                                            </button>
+                                                      </div>
+                                                     @else
+                                                      <a href="{{ route('customer-visits', [
+                                                         'customer_package_id' => encrypt($row->customer_package_id),
+                                                         'package_type' => encrypt('spa'),
+                                                         ])}}"
+                                                         class="btn btn-sm btn-default border btn__ff--primary">
+                                                         +add
+                                                      </a>
+                                                     @endif
+
+                                                  </div>
+                                               </div>
+                                           @endfor
+                                        </div>
+                                    @endif
+
+                                 </td>
+                                 <td>
+                                    {{date('M. d, Y', strtotime('-1 day', strtotime($row->spa_package_end)))}}
+                                 </td>
+                                 <td>
+                                    <span class="package-status package-status--{{$row->spa_package_status}}">{{ strtoupper($row->spa_package_status) }}</span>
+                                 </td>
+                              </tr>
+                              {{-- SALON --}}
+
+
+                           </tbody>
                          </table>
                       </div>
                    </td>

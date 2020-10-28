@@ -70,10 +70,4 @@ class CustomerPackage extends Model
         return $this->belongsTo(Package::class, 'package_id');
     }
 
-    // Get the customer package visitation limit.
-    public function getCustomerPackageVisitationLimit(string $packageType)
-    {
-        $packageTypeNoOfVisits = $packageType . '_no_of_visits';
-        return $this->with('package')->first()->package->$packageTypeNoOfVisits;
-    }
 }
