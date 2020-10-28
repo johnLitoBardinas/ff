@@ -1,4 +1,4 @@
-![FnF Logo](https://fixandfree.herokuapp.com/svg/fandf.co_horizontal.svg)
+<p align="center"><a href="https://www.ffcustomerdata.xyz" target="_blank"><img src="https://fixandfree.herokuapp.com/svg/fandf.co_horizontal.svg" width="400"></a></p>
 
 &nbsp;
 
