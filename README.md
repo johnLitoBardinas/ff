@@ -40,6 +40,11 @@
 > `docker-compose run --rm composer lint:psr12`
 
 ### Run below command to check your PHP Insights Score
-## **88%** is the acceptable score_ for all **Code**, **Complexity**, **Architecture**, **Style** so make your code pass that threshold.
+The acceptable code score for
+* **CODE** - **88%**
+* **COMPLEXITY** - **88%**
+* **Architecture** - **88%**
+* **Style** - **88%**
+<br/> so make your code **PASS** that threshold.
 
 > using the composer container `docker-compose run --rm composer run test:insights`

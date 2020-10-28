@@ -45,7 +45,8 @@ class AddCustomerVisits extends Component
         $this->customerPackageId = decrypt(request('customer_package_id'));
         $this->customerPackageType = decrypt(request('package_type'));
 
-        $this->getCustomerPackageVisitation();
+        // Getting the customer Package Info
+        $this->customerPackageInfo = CustomerPackageRepository::getOne($this->customerPackageId);
 
         // Getting the customer package type endDate.
         $this->customerPackageEndDate = CustomerPackageRepository::packageEndDate($this->customerPackageId, $this->customerPackageType);
@@ -62,7 +63,6 @@ class AddCustomerVisits extends Component
         if (! empty($packageId)) {
             $this->customerPackageId = $packageId;
         }
-
-        $this->customerPackageInfo = CustomerPackageRepository::getOne($this->customerPackageId);
+        $this->customerPackageVisitation = CustomerPackageRepository::customerTotalVisits($this->customerPackageId, $this->customerPackageType);
     }
 }
