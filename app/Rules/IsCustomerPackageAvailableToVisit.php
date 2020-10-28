@@ -2,7 +2,6 @@
 
 namespace App\Rules;
 
-use App\CustomerVisits;
 use App\Repositories\CustomerPackageRepository;
 use Illuminate\Contracts\Validation\Rule;
 

@@ -127,9 +127,9 @@ return [
             'sortAlgorithm' => 'none' // possible values ['none', 'alpha']
         ],
         \PhpCsFixer\Fixer\Basic\BracesFixer::class => [
-            'allow_single_line_closure' => false,
-            'position_after_anonymous_constructs' => 'next', // possible values ['same', 'next']
-            'position_after_control_structures' => 'next', // possible values ['same', 'next']
+            'allow_single_line_closure' => true,
+            'position_after_anonymous_constructs' => 'same', // possible values ['same', 'next']
+            'position_after_control_structures' => 'same', // possible values ['same', 'next']
             'position_after_functions_and_oop_constructs' => 'next', // possible values ['same', 'next']
         ],
         \ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff::class => [

@@ -7,13 +7,11 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Route;
 
-Route::middleware('auth:sanctum')->get('/user', function (Request $request)
-{
+Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::post('token', function (Request $request)
-{
+Route::post('token', function (Request $request) {
     $request->validate([
         'email' => 'required',
         'password' => 'required',
@@ -21,8 +19,7 @@ Route::post('token', function (Request $request)
 
     $user = User::whereEmail($request->email)->first();
 
-    if (! $user || ! Hash::check($request->password, $user->password))
-    {
+    if (! $user || ! Hash::check($request->password, $user->password)) {
         return response([
             'email' => ['The provided credentials are incorrect.'],
         ], 422);

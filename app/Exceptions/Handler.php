@@ -40,19 +40,16 @@ class Handler extends ExceptionHandler
      */
     public function render($request, Throwable $exception)
     {
-        if ($exception instanceof NotFoundException)
-        {
+        if ($exception instanceof NotFoundException) {
             return $this->errorResponse('The specified URL cannot be found', 404);
         }
 
-        if ($exception instanceof ModelNotFoundException)
-        {
+        if ($exception instanceof ModelNotFoundException) {
             $modelName = strtolower(class_basename($exception->getModel()));
             return $this->errorResponse("Does not exists any {$modelName} with the specified identificator", 404);
         }
 
-        if ($exception instanceof TokenMismatchException)
-        {
+        if ($exception instanceof TokenMismatchException) {
             return redirect('/login');
         }
 

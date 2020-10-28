@@ -14,7 +14,6 @@ use Illuminate\Support\Facades\Artisan;
 |
 */
 
-Artisan::command('inspire', function ()
-{
+Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->describe('Created by VERnt for the WORLD!!');
