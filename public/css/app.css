@@ -13114,6 +13114,8 @@ This may include the ff:
 .btn.btn-icon__edit:before,
 .btn.btn-icon__adduser:hover:before,
 .btn.btn-icon__adduser:before,
+.btn.btn-icon__renew:hover:before,
+.btn.btn-icon__renew:before,
 .btn.btn-icon__save:hover:before,
 .btn.btn-icon__save:before,
 .btn.btn-icon__deactivate:hover:before,
@@ -13251,6 +13253,20 @@ button:focus {
   width: 15px;
   height: 15px;
   background-image: url(/images/save_icon_white.svg?52eb22a2ba8bc74a00670b5e0e78ae81);
+}
+
+.btn.btn-icon__renew:before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url(/images/replay_icon_violet.svg?e7945661277893b734b62736ecbfe4c6);
+}
+
+.btn.btn-icon__renew:hover:before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url(/images/replay_icon_violet.svg?e7945661277893b734b62736ecbfe4c6);
 }
 
 .btn.btn-icon__adduser:before {

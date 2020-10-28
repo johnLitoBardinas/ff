@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Customer;
 use App\CustomerPackage;
+use App\Enums\PackageType;
 use App\Http\Requests\CustomerPackage as RequestsCustomerPackage;
 use App\Package;
 use Carbon\Carbon;

@@ -7,6 +7,13 @@ use App\Package;
 
 class PackageRepository
 {
+    /**
+     * Getting the packages in GYM, SPA, SALON also ACTIVE and INACTIVE
+     *
+     * @param String $packageType salon, gym, spa.
+     *
+     * @return Array|Collection|null
+     */
     public static function getAll(string $packageType)
     {
         return Package::where('package_type', $packageType)->get();
