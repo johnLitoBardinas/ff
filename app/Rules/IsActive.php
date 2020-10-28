@@ -22,8 +22,7 @@ class IsActive implements Rule
     {
         $user = User::whereEmail($value)->first();
 
-        if (is_null($user))
-        {
+        if (is_null($user)) {
             return false;
         }
 

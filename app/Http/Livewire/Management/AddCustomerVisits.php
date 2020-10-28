@@ -65,5 +65,4 @@ class AddCustomerVisits extends Component
 
         $this->customerPackageInfo = CustomerPackageRepository::getOne($this->customerPackageId);
     }
-
 }

@@ -119,8 +119,7 @@ class User extends Authenticatable
      */
     public function accessHomePage()
     {
-        if ($this->isAdmin() || $this->isSuperAdmin())
-        {
+        if ($this->isAdmin() || $this->isSuperAdmin()) {
             return BranchType::ADMIN;
         }
 

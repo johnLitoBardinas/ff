@@ -53,16 +53,11 @@ class BranchRepository
         $query->where('branch_type', '!=', BranchType::SUPER_ADMIN);
         $query->where('branch_status', BranchStatus::ACTIVE);
 
-        if ($branchType === BranchType::SALON)
-        {
+        if ($branchType === BranchType::SALON) {
             $query->where('branch_type', BranchType::SALON);
-        }
-        elseif ($branchType === BranchType::GYM)
-        {
+        } elseif ($branchType === BranchType::GYM) {
             $query->where('branch_type', BranchType::GYM);
-        }
-        elseif ($branchType === BranchType::SPA)
-        {
+        } elseif ($branchType === BranchType::SPA) {
             $query->where('branch_type', BranchType::SPA);
         }
 

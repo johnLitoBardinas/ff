@@ -69,5 +69,4 @@ class CustomerPackage extends Model
     {
         return $this->belongsTo(Package::class, 'package_id');
     }
-
 }

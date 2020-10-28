@@ -35,19 +35,15 @@ class CustomerPackageRepository
         $customerPackage = CustomerPackage::query();
         $customerPackage->orderBy('customer_package_id');
 
-        if ($type === 'notActive')
-        {
+        if ($type === 'notActive') {
             $customerPackage->where($accountPackageStatusFilter, '!=', 'active');
-        }
-        elseif ($type === 'active')
-        {
+        } elseif ($type === 'active') {
             $customerPackage->where($accountPackageStatusFilter, 'active');
         }
 
         $customerPackage->with('customer', 'package', 'customer_visits', 'branch', 'user');
 
         return $customerPackage->get()->filter(fn ($customerPackage) => $customerPackage->branch->branch_type === $packageType)->values();
-
     }
 
     /**

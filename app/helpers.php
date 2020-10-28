@@ -4,8 +4,7 @@ use App\Enums\AccessHomeType;
 use App\Enums\BranchType;
 use App\User;
 
-if (! function_exists('generate_branch_code'))
-{
+if (! function_exists('generate_branch_code')) {
     /**
      *  This will generate branch code => branch ID
      */
@@ -15,8 +14,7 @@ if (! function_exists('generate_branch_code'))
     }
 }
 
-if (! function_exists('generate_user_token'))
-{
+if (! function_exists('generate_user_token')) {
     /**
      *  Used  for creating the user Token.
      *
@@ -28,8 +26,7 @@ if (! function_exists('generate_user_token'))
     }
 }
 
-if (! function_exists('generate_session_data'))
-{
+if (! function_exists('generate_session_data')) {
     /**
      *  Generating the user sessions.
      */
@@ -43,8 +40,7 @@ if (! function_exists('generate_session_data'))
         ];
 
         // Register a user access type for salon, gym, spa only in Manager/ Cashier Type.
-        if (! is_null($userAccessType))
-        {
+        if (! is_null($userAccessType)) {
             $sessionData['userAccessType'] = $userAccessType;
         }
 
@@ -52,8 +48,7 @@ if (! function_exists('generate_session_data'))
     }
 }
 
-if (! function_exists('pikaday_date_format'))
-{
+if (! function_exists('pikaday_date_format')) {
     /**
      *  Format the timestamp to a valid Constant Pikaday Format.
      */
@@ -63,8 +58,7 @@ if (! function_exists('pikaday_date_format'))
     }
 }
 
-if (! function_exists('create_access_token'))
-{
+if (! function_exists('create_access_token')) {
     /**
      *  Generating API Token for the Client Application.
      */
@@ -75,15 +69,13 @@ if (! function_exists('create_access_token'))
     }
 }
 
-if (! function_exists('get_account_home_page'))
-{
+if (! function_exists('get_account_home_page')) {
     /**
      *  Determing if the Access Page is for Admin, Salon, Gym, Spa.
      */
     function get_account_home_page(string $requestedAccessPage)
     {
-        switch ($requestedAccessPage)
-        {
+        switch ($requestedAccessPage) {
             case AccessHomeType::FFCO:
                 return BranchType::ADMIN;
                 break;
@@ -103,37 +95,31 @@ if (! function_exists('get_account_home_page'))
     }
 }
 
-if (! function_exists('get_account_page_logo'))
-{
+if (! function_exists('get_account_page_logo')) {
     /**
      *  Getting the appropriate logo for the Admin, Manager, Cashier [Salon, Gym, Spa] Logo.
      */
     function get_account_page_logo(User $user)
     {
-        if ($user->isAdmin() || $user->isSuperAdmin())
-        {
+        if ($user->isAdmin() || $user->isSuperAdmin()) {
             return config('constant.fnf_co_logo');
         }
 
-        if ($user->branchType() === BranchType::SALON)
-        {
+        if ($user->branchType() === BranchType::SALON) {
             return config('constant.fnf_salon_logo');
         }
 
-        if ($user->branchType() === BranchType::GYM)
-        {
+        if ($user->branchType() === BranchType::GYM) {
             return config('constant.fnf_gym_logo');
         }
 
-        if ($user->branchType() === BranchType::SPA)
-        {
+        if ($user->branchType() === BranchType::SPA) {
             return config('constant.fnf_spa_logo');
         }
     }
 }
 
-if (! function_exists('login_user_redirection'))
-{
+if (! function_exists('login_user_redirection')) {
 
     /**
      *  Determine the proper user session storage and redirections.
@@ -144,8 +130,7 @@ if (! function_exists('login_user_redirection'))
 
         $redirectedUrl = route('login');
 
-        if ($requestedHomeType === AccessHomeType::FFCO && $user->isAdmin() || $user->isSuperAdmin())
-        {
+        if ($requestedHomeType === AccessHomeType::FFCO && $user->isAdmin() || $user->isSuperAdmin()) {
             $redirectedUrl = route('admin');
             $apiToken = create_access_token($user, 'user:admin');
             generate_session_data($apiToken, $logo, route('admin'));
