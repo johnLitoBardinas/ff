@@ -36,6 +36,9 @@ class ManagementTable extends Component
     // CurrentCustomerPackage Status  ['salon_package_status', 'gym_package_status', 'spa_package_status'].
     public $customerPackageStatus;
 
+    // Current User Info for Gym Visitation Logs
+    public $currentUser;
+
     /**
      * Getting the CostumerPackageData.
      */
@@ -67,6 +70,8 @@ class ManagementTable extends Component
         $this->currentPackageType = session('userAccessType');
 
         $this->customerPackageStatus = sprintf('%s_package_status', $this->currentPackageType);
+
+        $this->currentUser = auth()->user();
 
         $this->onNone();
     }

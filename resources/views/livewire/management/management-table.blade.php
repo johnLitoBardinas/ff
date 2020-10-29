@@ -64,7 +64,6 @@
                                            @for ($i = 0; $i < $row->package->gym_no_of_visits; $i++)
                                                <div class="w-auto d-flex flex-column">
                                                   <div class="w-auto d-flex flex-column">
-
                                                      @if (! empty($row->customer_visits->groupBy('package_type')->toArray()['gym'][$i]))
                                                       <div class="w-auto d-flex flex-column">
                                                             <button class="btn btn-sm btn-default border btn__ff--primary active" disabled>
@@ -86,6 +85,33 @@
                                            @endfor
                                         </div>
                                     @endif
+                                    {{-- Free Gym --}}
+
+                                    @if ($currentPackageType === 'gym')
+                                       <div class="w-100 d-flex justify-content-between">
+                                          <div class="w-100 d-flex flex-column">
+                                             <div class="w-auto d-flex flex-row justify-content-between">
+                                                @if (! empty($row->customer_visits->groupBy('package_type')->toArray()['gym'][0]))
+                                                   <div class="w-auto d-flex flex-column">
+                                                         <button class="btn btn-sm btn-default border btn__ff--primary active" disabled>
+                                                            {{date('n-j-Y', strtotime($row->customer_visits->groupBy('package_type')->toArray()['gym'][0]['date']))}}
+                                                         </button>
+                                                   </div>
+                                                @endif
+
+                                                <div class="w-auto d-flex flex-column">
+                                                <button class="btn btn-sm btn-default border btn__ff--primary" data-action="customerVisitation" data-cpackageid="{{$row->customer_package_id}}" data-branch="{{$currentUser->branch_id}}" data-userid="{{$currentUser->user_id}}" data-visitation="IN">IN</button>
+                                                </div>
+
+                                                <div class="w-auto d-flex flex-column">
+                                                      <button class="btn btn-sm btn-default border btn__ff--primary" data-action="customerVisitation" data-cpackageid="{{$row->customer_package_id}}" data-branch="{{$currentUser->branch_id}}" data-userid="{{$currentUser->user_id}}" data-visitation="OUT">OUT</button>
+                                                </div>
+
+                                             </div>
+                                          </div>
+                                       </div>
+                                    @endif
+                                    {{-- PackageType is Gym --}}
 
                                  </td>
                                  <td>
