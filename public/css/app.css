@@ -13266,7 +13266,7 @@ button:focus {
   content: "";
   width: 15px;
   height: 15px;
-  background-image: url(/images/replay_icon_violet.svg?e7945661277893b734b62736ecbfe4c6);
+  background-image: url(/images/replay_icon_white.svg?0bd3160b7bb3ff4aba1537bb04b3c46f);
 }
 
 .btn.btn-icon__adduser:before {

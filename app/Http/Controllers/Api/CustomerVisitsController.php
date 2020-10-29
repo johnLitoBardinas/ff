@@ -33,7 +33,6 @@ class CustomerVisitsController extends ApiController
      */
     public function store(Request $request, Customer $customer)
     {
-
         if (empty(request('customer_package_id'))) {
             return $this->errorResponse('Invalid Data', 422);
         }
@@ -84,7 +83,7 @@ class CustomerVisitsController extends ApiController
 
         $customerPackageVisits = CustomerPackageRepository::customerTotalVisits($request->customer_package_id, $request->package_type);
 
-        if (count($customerPackageVisits) === (int) $packageLimitVisits) {
+        if (count($customerPackageVisits) === (int) $packageLimitVisits && $request->package_type !== PackageType::GYM) {
             $package_type_field = $request->package_type . '_package_status';
             CustomerPackage::where('customer_package_id', request('customer_package_id'))
                 ->update([$package_type_field => CustomerPackageStatus::COMPLETED]);

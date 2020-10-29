@@ -40,7 +40,6 @@ class BranchController extends ApiController
      */
     public function update(Request $request, Branch $branch)
     {
-
         $request->validate([
             'branch_name' => ['required', 'string', 'max:50'],
             'branch_address' => ['required', 'string', 'max:190'],

@@ -105,7 +105,6 @@ class UserController extends ApiController
      */
     public function updateEmail(Request $request, User $user)
     {
-
         if ($this->getSuperAdmin()->user_id === intval($request->input('user_id'))) {
             return $this->errorResponse('Invalid Action.', 422);
         }

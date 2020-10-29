@@ -69,4 +69,21 @@ class CustomerPackage extends Model
     {
         return $this->belongsTo(Package::class, 'package_id');
     }
+
+    // Check if the Salon Package is Expired
+    public function isSalonServiceExpired()
+    {
+        return now()->greaterThanOrEqualTo($this->salon_package_end);
+    }
+
+    // Check if the Gym Package is Expired
+    public function isGymServiceExpired()
+    {
+        return now()->greaterThanOrEqualTo($this->gym_package_end);
+    }
+
+    public function isSpaServiceExpired()
+    {
+        return now()->greaterThanOrEqualTo($this->spa_package_end);
+    }
 }

@@ -38,6 +38,7 @@ class PackageController extends ApiController
 
     /**
      * Display the specified resource.
+     *
      * @param Package $package
      *
      * @return JsonResponse

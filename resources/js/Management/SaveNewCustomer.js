@@ -48,7 +48,6 @@ export default class SaveNewCustomer {
             const parsleyForm = this.$frmNewCustomer.parsley();
             const data = this.$frmNewCustomer.serializeObject();
 
-
             parsleyForm.validate();
 
             if (parsleyForm.isValid()) {
