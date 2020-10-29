@@ -28,7 +28,7 @@
     }
 }
 
-%salon-table-icons {
+%management-table-icons {
     &:before {
         width: 25px !important;
         height: 25px !important;
@@ -99,17 +99,17 @@
 
         &__open-row {
             @include hover_icon('../../images/svg/view_more.svg', '../../images/svg/view_more.svg');
-            @extend %salon-table-icons;
+            @extend %management-table-icons;
         }
 
         &__close-row {
             @include hover_icon('../../images/svg/view_less.svg', '../../images/svg/view_less.svg');
-            @extend %salon-table-icons;
+            @extend %management-table-icons;
         }
 
         &__edit-row {
             @include hover_icon('../../images/svg/table_edit.svg', '../../images/svg/table_edit.svg');
-            @extend %salon-table-icons;
+            @extend %management-table-icons;
         }
 
     }

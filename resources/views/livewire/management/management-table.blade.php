@@ -1,7 +1,7 @@
 <div class="row mt-4">
     <div class="col-md-12">
        <div class="table-responsive">
-          <table class="table table-hover admin-table" style="width:100%;" id="salon-table">
+          <table class="table table-hover admin-table" style="width:100%;" id="management-table">
              <colgroup>
                 <col span="1" style="width:10%;">
                 <col span="1" style="width:15%;">
@@ -90,7 +90,8 @@
                                     @if ($currentPackageType === 'gym')
                                        <div class="w-100 d-flex justify-content-between">
                                           <div class="w-100 d-flex flex-column">
-                                             <div class="w-auto d-flex flex-row justify-content-between">
+                                             <div class="w-auto d-flex flex-row justify-content-between gym-visitation">
+
                                                 @if (! empty($row->customer_visits->groupBy('package_type')->toArray()['gym'][0]))
                                                    <div class="w-auto d-flex flex-column">
                                                          <button class="btn btn-sm btn-default border btn__ff--primary active" disabled>
@@ -100,11 +101,11 @@
                                                 @endif
 
                                                 <div class="w-auto d-flex flex-column">
-                                                <button class="btn btn-sm btn-default border btn__ff--primary" data-action="customerVisitation" data-cpackageid="{{$row->customer_package_id}}" data-branch="{{$currentUser->branch_id}}" data-userid="{{$currentUser->user_id}}" data-visitation="IN">IN</button>
+                                                   <a href="javascript:void(0);" class="btn btn-sm btn-default border btn__ff--primary" data-action="customerGymVisitation" data-cpackageid="{{$row->customer_package_id}}" data-branch="{{$currentUser->branch_id}}" data-userid="{{$currentUser->user_id}}" data-visitation="IN">IN</a>
                                                 </div>
 
                                                 <div class="w-auto d-flex flex-column">
-                                                      <button class="btn btn-sm btn-default border btn__ff--primary" data-action="customerVisitation" data-cpackageid="{{$row->customer_package_id}}" data-branch="{{$currentUser->branch_id}}" data-userid="{{$currentUser->user_id}}" data-visitation="OUT">OUT</button>
+                                                   <a href="javascript:void(0);" class="btn btn-sm btn-default border btn__ff--primary" data-action="customerGymVisitation" data-cpackageid="{{$row->customer_package_id}}" data-branch="{{$currentUser->branch_id}}" data-userid="{{$currentUser->user_id}}" data-visitation="OUT">OUT</a>
                                                 </div>
 
                                              </div>
