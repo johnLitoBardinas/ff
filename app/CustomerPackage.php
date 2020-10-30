@@ -20,13 +20,13 @@ class CustomerPackage extends Model
         'customer_id',
         'reference_no',
         'payment_type',
-        // 'salon_package_status', // Salon Package Status
+        'salon_package_status', // Salon Package Status
         'salon_package_start', // Salon Start Date
         'salon_package_end', // Salon End Date
-        // 'gym_package_status', // Gym Package Status
+        'gym_package_status', // Gym Package Status
         'gym_package_start', // Gym Package Start Date
         'gym_package_end', // Gym Package End Date
-        // 'spa_package_status', // Spa Package Status
+        'spa_package_status', // Spa Package Status
         'spa_package_start', // Spa Start Date
         'spa_package_end', // Spa End Date
     ];
@@ -70,18 +70,25 @@ class CustomerPackage extends Model
         return $this->belongsTo(Package::class, 'package_id');
     }
 
-    // Check if the Salon Package is Expired
+    // One Customer Package Model can be related to (n) Gym Visitation Model.
+    public function gym_visitation() // phpcs:ignore
+    {
+        return $this->hasMany(GymVisitation::class, 'customer_package_id');
+    }
+
+    // Check if the Salon Package is Expired.
     public function isSalonServiceExpired()
     {
         return now()->greaterThanOrEqualTo($this->salon_package_end);
     }
 
-    // Check if the Gym Package is Expired
+    // Check if the Gym Package is Expired.
     public function isGymServiceExpired()
     {
         return now()->greaterThanOrEqualTo($this->gym_package_end);
     }
 
+    // Check if the Spa Service for the particular Customer Package is now Expired.
     public function isSpaServiceExpired()
     {
         return now()->greaterThanOrEqualTo($this->spa_package_end);

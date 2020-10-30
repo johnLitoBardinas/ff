@@ -6,22 +6,14 @@ use App\Enums\UserStatus;
 use App\User;
 use Illuminate\Contracts\Validation\Rule;
 
-class IsActive implements Rule
+class IsUserActiveByEmail implements Rule
 {
-    /**
-     * Create a new rule instance.
-     */
-    public function __construct()
-    {
-    }
-
     /**
      * Determine if the validation rule passes.
      */
     public function passes($attribute, $value)
     {
         $user = User::whereEmail($value)->first();
-
         if (is_null($user)) {
             return false;
         }
@@ -34,6 +26,6 @@ class IsActive implements Rule
      */
     public function message()
     {
-        return 'Invalid User';
+        return 'Invalid User email';
     }
 }

@@ -66,6 +66,12 @@ class User extends Authenticatable
         return $this->hasMany(CustomerVisits::class, 'user_id');
     }
 
+    // One to Many
+    public function gym_visitation() //phpcs:ignore
+    {
+        return $this->hasMany(GymVisitation::class, 'user_id');
+    }
+
     /**
      * Determine if the user is a Super Admin Type.
      */

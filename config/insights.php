@@ -135,6 +135,10 @@ return [
         \ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff::class => [
             'maxLength' => 66,
         ],
+        \ObjectCalisthenics\Sniffs\NamingConventions\ElementNameMinimalLengthSniff::class => [
+            'minLength' => 3,
+            'allowedShortNames' => ['i', 'id', 'to', 'up', 'IN', 'OUT'],
+        ]
     ],
 
     /*

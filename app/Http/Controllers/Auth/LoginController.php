@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
-use App\Rules\IsActive;
+use App\Rules\IsUserActiveByEmail;
 use App\Rules\IsUserBranchDeactivated;
 use App\Rules\IsUserCanAccessBranch;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
@@ -37,7 +37,7 @@ class LoginController extends Controller
                 'bail',
                 'required',
                 'string:max:191',
-                new IsActive(),
+                new IsUserActiveByEmail(),
                 new IsUserBranchDeactivated(),
                 new IsUserCanAccessBranch($request->input('home_type')),
             ],
