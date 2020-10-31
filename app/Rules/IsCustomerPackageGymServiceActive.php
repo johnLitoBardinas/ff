@@ -3,6 +3,7 @@
 namespace App\Rules;
 
 use App\CustomerPackage;
+use App\Enums\PackageStatus;
 use App\Enums\PackageType;
 use Illuminate\Contracts\Validation\Rule;
 
@@ -21,7 +22,7 @@ class IsCustomerPackageGymServiceActive implements Rule
 
         $packageType = $customerPackage->package->package_type;
 
-        if ($packageType === PackageType::GYM) {
+        if ($packageType === PackageType::GYM && $customerPackage->gym_package_status === PackageStatus::ACTIVE) {
             return true;
         }
 
@@ -33,6 +34,6 @@ class IsCustomerPackageGymServiceActive implements Rule
      */
     public function message()
     {
-        return 'The validation error message.';
+        return 'Invalid Customer Package';
     }
 }

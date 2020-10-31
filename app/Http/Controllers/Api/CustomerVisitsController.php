@@ -12,6 +12,7 @@ use App\Rules\IsBranchIdExist;
 use App\Rules\IsCustomerHasPackage;
 use App\Rules\IsCustomerPackageAvailableToVisit;
 use App\Rules\IsUserIdExist;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class CustomerVisitsController extends ApiController
@@ -70,7 +71,7 @@ class CustomerVisitsController extends ApiController
         $customerVisitsData['user_id'] = request('user_id');
 
         if ($request->has('date')) {
-            $customerVisitsData['date'] = request('date');
+            $customerVisitsData['date'] = Carbon::now();
         }
 
         if ($request->has('package_type')) {
