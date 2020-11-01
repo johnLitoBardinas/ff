@@ -101,11 +101,11 @@
                                                 @endif
 
                                                 <div class="w-auto d-flex flex-column">
-                                                   <a href="javascript:void(0);" class="btn btn-sm btn-default border btn__ff--primary" data-action="customerGymVisitation" data-cpackageid="{{$row->customer_package_id}}" data-branch="{{$currentUser->branch_id}}" data-userid="{{$currentUser->user_id}}" data-visitation="IN">IN</a>
+                                                <a href="javascript:void(0);" class="btn btn-sm btn-default border btn__ff--primary" data-action="customerGymVisitation" data-customer="{{$row->customer->customer_id}}" data-cpackageid="{{$row->customer_package_id}}" data-branch="{{$currentUser->branch_id}}" data-userid="{{$currentUser->user_id}}" data-visitation="IN">IN</a>
                                                 </div>
 
                                                 <div class="w-auto d-flex flex-column">
-                                                   <a href="javascript:void(0);" class="btn btn-sm btn-default border btn__ff--primary" data-action="customerGymVisitation" data-cpackageid="{{$row->customer_package_id}}" data-branch="{{$currentUser->branch_id}}" data-userid="{{$currentUser->user_id}}" data-visitation="OUT">OUT</a>
+                                                   <a href="javascript:void(0);" class="btn btn-sm btn-default border btn__ff--primary" data-action="customerGymVisitation" data-customer="{{$row->customer->customer_id}}" data-cpackageid="{{$row->customer_package_id}}" data-branch="{{$currentUser->branch_id}}" data-userid="{{$currentUser->user_id}}" data-visitation="OUT">OUT</a>
                                                 </div>
 
                                              </div>

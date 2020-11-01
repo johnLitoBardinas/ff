@@ -48,6 +48,6 @@ class Branch extends Model
     // One Branch Model can be related to (n) of GymVisitation Model.
     public function gym_visitation() //phpcs:ignore
     {
-        return $this->hasMany(GymVisitation::class, 'branch_id', 'current_branch');
+        return $this->hasMany(GymVisitation::class, 'branch_id');
     }
 }

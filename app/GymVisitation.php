@@ -11,7 +11,7 @@ class GymVisitation extends Model
     // Fillable Properties.
     protected $fillable = [
         'customer_package_id',
-        'current_branch',
+        'branch_id',
         'user_id',
         'visitation_type',
         'date',
@@ -23,7 +23,7 @@ class GymVisitation extends Model
     // One to Many (Inverse)
     public function branch()
     {
-        return $this->belongsTo(Branch::class, 'branch_id', 'current_branch');
+        return $this->belongsTo(Branch::class, 'branch_id');
     }
 
     // One to Many (Inverse)

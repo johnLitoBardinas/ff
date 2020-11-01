@@ -1,3 +1,6 @@
+import Swal from 'sweetalert2';
+import utils from '../utils';
+
 export default class ManagementTable {
 
     constructor() {
@@ -15,13 +18,24 @@ export default class ManagementTable {
 
     onToggleGymVisitation() {
         this.$managementTable.on('click', '[data-action="customerGymVisitation"]', (e) => {
-           const { cpackageid, branch, userid, visitation } = e.currentTarget.dataset;
+           const { customer, cpackageid, branch, userid, visitation } = e.currentTarget.dataset;
            $(e.currentTarget).closest('.gym-visitation').find('a.active').removeClass('active');
            $(e.currentTarget).addClass('active');
-           console.log('customer_package_id', cpackageid);
-           console.log('branch_id', branch);
-           console.log('user_id', userid);
-           console.log('visitation_status', visitation);
+
+           const data = {
+            'customer_package_id': cpackageid,
+            'branch_id': branch,
+            'user_id': userid,
+            'visitation_type': visitation
+           };
+
+           axios.post(`${ApiUrl.customers}/${customer}/gymvisitation`, data)
+           .then((response) => {
+               if (response.status === 201) {
+                   Swal.fire(utils.swal2Option('success', 'Customer Gym Package Updated',`Customer now ${visitation}.`));
+               }
+           })
+           .catch((errors) => Swal.fire(utils.swal2Option('error', 'Error Gym Package', errors.response.data.error)));
         });
     }
 

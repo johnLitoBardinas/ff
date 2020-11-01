@@ -32,7 +32,7 @@ class GymVisitation extends FormRequest
                 'required',
                 new IsCustomerPackageGymServiceActive(),
             ],
-            'current_branch' => [
+            'branch_id' => [
                 'required',
                 new IsBranchIdExist(),
                 new IsBranchActive(),
