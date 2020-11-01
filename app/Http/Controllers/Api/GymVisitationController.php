@@ -31,13 +31,17 @@ class GymVisitationController extends ApiController
         if ($visitationType === GymVisitationType::IN && is_null($todayCustomerPackageGymVisitation)) {
             $gymVisitation = AppGymVisitation::create($request->all());
             return $this->showOne($gymVisitation, 201);
-        } elseif( $visitationType === GymVisitationType::OUT && is_null($todayCustomerPackageGymVisitation)){
+        }
+
+        if ($visitationType === GymVisitationType::OUT && is_null($todayCustomerPackageGymVisitation)) {
             return $this->errorResponse('Unable to Out the customer package', 422);
-        } elseif ($visitationType !== $todayCustomerPackageGymVisitation->visitation_type) {
+        }
+
+        if ($visitationType !== $todayCustomerPackageGymVisitation->visitation_type) {
             $gymVisitation = AppGymVisitation::create($request->all());
             return $this->showOne($gymVisitation, 201);
-        } else {
-            return $this->errorResponse("The customer package currently: ({$visitationType}) branch: ({$todayCustomerPackageGymVisitation->branch->branch_name}) log by user: ({$todayCustomerPackageGymVisitation->user->first_name}, {$todayCustomerPackageGymVisitation->user->last_name})", 422);
         }
+
+        return $this->errorResponse("The customer package currently: ({$visitationType}) branch: ({$todayCustomerPackageGymVisitation->branch->branch_name}) log by user: ({$todayCustomerPackageGymVisitation->user->first_name}, {$todayCustomerPackageGymVisitation->user->last_name})", 422);
     }
 }

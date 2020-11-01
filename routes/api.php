@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Api\BranchController;
-use App\Http\Controllers\Api\UserController;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
@@ -34,7 +33,7 @@ Route::put('branch/status/{branch}/{status}', [BranchController::class, 'updateB
 
 // User Resource Endpoint
 Route::resource('users', 'Api\UserController', ['except' => ['create', 'edit', 'destroy'] ]);
-Route::put('users/{user}/changeemail', [UserController::class, 'updateEmail']);
+Route::put('users/{user}/changeemail', ['Api\SuperAdminController', 'updateEmail']);
 
 // Customer Resource Endpoint
 Route::resource('customers', 'Api\CustomerController', ['only' => ['store', 'show'] ]);
