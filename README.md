@@ -41,10 +41,10 @@
 
 ### Run below command to check your PHP Insights Score
 The acceptable code score for
-* **CODE** - **88%**
-* **COMPLEXITY** - **88%**
-* **Architecture** - **88%**
-* **Style** - **88%**
+* **CODE** - **85%**
+* **COMPLEXITY** - **85%**
+* **Architecture** - **85%**
+* **Style** - **85%**
 <br/> so make your code **PASS** that threshold.
 
 > using the composer container `docker-compose run --rm composer run test:insights`

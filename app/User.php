@@ -120,6 +120,11 @@ class User extends Authenticatable
         return $this->branch->branch_type;
     }
 
+    public function branchName()
+    {
+        return $this->branch->branch_name;
+    }
+
     /**
      * Get the allowed User Access Page. see AccessHomeType Enum.
      */

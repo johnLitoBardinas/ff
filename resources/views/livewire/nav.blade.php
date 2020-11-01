@@ -26,6 +26,10 @@
                     </span>
                 @endcan
 
+                @can('access-management')
+                    <h6>{{$currentUserBranch}} (<strong>{{session('userAccessType')}}</strong>)</h6>
+                @endcan
+
             </div>
             <div class="col-md-4 mb-3">
                 <ul class="list-unstyled d-flex justify-content-md-around p-0 m-0">

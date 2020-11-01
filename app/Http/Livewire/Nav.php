@@ -26,6 +26,9 @@ class Nav extends Component
     // Total Spa Branch Counter.
     public $totalActiveSpaBranchCount;
 
+    // Current Management Branch.
+    public $currentUserBranch;
+
     /**
      * Supplying branch information.
      */
@@ -44,6 +47,10 @@ class Nav extends Component
     {
         $this->logo = session('logo');
         $this->homeUrl = session('homeUrl');
+
+        if (! empty(session('userAccessType'))) {
+            $this->currentUserBranch = auth()->user()->branchName();
+        }
 
         $this->updateBranchInfo();
     }

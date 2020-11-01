@@ -97,7 +97,7 @@ return [
             'maxCount' => 13,
         ],
         \NunoMaduro\PhpInsights\Domain\Insights\CyclomaticComplexityIsHigh::class => [
-            'maxComplexity' => 6,
+            'maxComplexity' => 8,
         ],
         \PhpCsFixer\Fixer\Import\OrderedImportsFixer::class => [
             'sort_algorithm' => 'alpha', // possible values ['alpha', 'length', 'none']
@@ -153,10 +153,10 @@ return [
     */
 
     'requirements' => [
-       'min-quality' => 88,
-       'min-complexity' => 88,
-       'min-architecture' => 88,
-       'min-style' => 88,
+       'min-quality' => 85,
+       'min-complexity' => 85,
+       'min-architecture' => 85,
+       'min-style' => 85,
        'disable-security-check' => false,
     ],
 
