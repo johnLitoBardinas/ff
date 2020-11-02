@@ -52,6 +52,7 @@ class BranchRepository
         $query = Branch::query();
         $query->where('branch_type', '!=', BranchType::SUPER_ADMIN);
         $query->where('branch_status', BranchStatus::ACTIVE);
+        $query->where('branch_name', '!=', config('constant.main_branch'));
 
         if ($branchType === BranchType::SALON) {
             $query->where('branch_type', BranchType::SALON);
