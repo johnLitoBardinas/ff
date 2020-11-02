@@ -40,6 +40,7 @@
 > `docker-compose run --rm composer lint:psr12`
 
 ### Run below command to check your PHP Insights Score
+> `docker-compose run --rm artisan insights`
 The acceptable code score for
 * **CODE** - **85%**
 * **COMPLEXITY** - **85%**
