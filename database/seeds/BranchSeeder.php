@@ -21,12 +21,12 @@ class BranchSeeder extends Seeder
             'branch_type' => BranchType::SUPER_ADMIN,
         ]);
 
-        // Branch::create([
-        //     'branch_code' => 'FAF-123456789',
-        //     'branch_name' => 'Test Salon Branch',
-        //     'branch_address' => 'Location Address Unique',
-        //     'branch_type' => BranchType::SALON,
-        // ]);
+        Branch::create([
+            'branch_code' => sprintf('%s1', generate_branch_code()),
+            'branch_name' => 'Main Branch',
+            'branch_address' => 'NCR, Philippines',
+            'branch_type' => BranchType::SALON,
+        ]);
 
     }
 
