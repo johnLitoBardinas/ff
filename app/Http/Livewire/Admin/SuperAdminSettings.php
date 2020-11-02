@@ -17,7 +17,7 @@ class SuperAdminSettings extends Component
     public function mount()
     {
         // Users excluding superadmin
-        $this->users = User::where('email', '!=', 'sadmin@ff.com')->get();
+        $this->users = User::where('email', '!=', config('constant.super_admin_email'))->get();
 
         $this->superAdmin = Auth::user()->email;
     }

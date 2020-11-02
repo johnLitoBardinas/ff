@@ -7,17 +7,15 @@ use Illuminate\Http\Request;
 
 class SuperAdminController extends ApiController
 {
-    protected $superAdminEmail = 'sadmin@ff.com';
-
     private function isSuperAdmin(string $encryptedEmail)
     {
         $decryptedEmail = decrypt($encryptedEmail);
-        return $decryptedEmail === $this->superAdminEmail;
+        return $decryptedEmail === config('constant.super_admin_email');
     }
 
     private function getSuperAdmin()
     {
-        return User::whereEmail($this->superAdminEmail)->first();
+        return User::whereEmail(config('constant.super_admin_email'))->first();
     }
 
     /**
