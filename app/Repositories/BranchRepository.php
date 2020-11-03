@@ -5,6 +5,7 @@ namespace App\Repositories;
 use App\Branch;
 use App\Enums\BranchStatus;
 use App\Enums\BranchType;
+use Illuminate\Support\Facades\DB;
 
 class BranchRepository
 {
@@ -13,7 +14,9 @@ class BranchRepository
      */
     public static function getAll()
     {
-        return Branch::orderBy('branch_id', 'DESC')->where('branch_type', '!=', BranchType::SUPER_ADMIN)->with('users.role')->get();
+        return Branch::orderBy('branch_id', 'DESC')
+            ->where('branch_type', '!=', BranchType::SUPER_ADMIN)
+            ->with('users.role')->get();
     }
 
     /**
@@ -21,7 +24,9 @@ class BranchRepository
      */
     public static function getLastestBranch()
     {
-        return Branch::orderBy('branch_id', 'DESC')->where('branch_type', '!=', BranchType::SUPER_ADMIN)->first();
+        return Branch::orderBy('branch_id', 'DESC')
+            ->where('branch_type', '!=', BranchType::SUPER_ADMIN)
+            ->first();
     }
 
     /**
@@ -29,7 +34,9 @@ class BranchRepository
      */
     public static function searchBranch(string $search)
     {
-        return Branch::where('branch_code', 'LIKE', '%' . $search . '%')->orWhere('branch_name', 'LIKE', '%' . $search . '%')->get();
+        return Branch::where('branch_type', '!=', BranchType::SUPER_ADMIN)
+            ->where(fn ($query) => $query->where('branch_code', 'LIKE', '%' . $search . '%')->orWhere('branch_name', 'LIKE', '%' . $search . '%'))
+            ->get();
     }
 
     /**
@@ -37,7 +44,10 @@ class BranchRepository
      */
     public static function getBranchInfoUsingId(int $branchId)
     {
-        return Branch::where('branch_id', $branchId)->where('branch_type', '!=', BranchType::SUPER_ADMIN)->with('users.role')->first();
+        return Branch::where('branch_id', $branchId)
+            ->where('branch_type', '!=', BranchType::SUPER_ADMIN)
+            ->with('users.role')
+            ->first();
     }
 
     /**
