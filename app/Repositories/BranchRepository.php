@@ -5,7 +5,6 @@ namespace App\Repositories;
 use App\Branch;
 use App\Enums\BranchStatus;
 use App\Enums\BranchType;
-use Illuminate\Support\Facades\DB;
 
 class BranchRepository
 {
