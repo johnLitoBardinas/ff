@@ -88,7 +88,9 @@
                                     {{-- Free Gym --}}
 
                                     @if ($currentPackageType === 'gym')
-                                       <div class="w-100 d-flex justify-content-between">
+                                       <div class="w-100 d-flex justify-content-between" x-data="{
+                                          'currentGymVisitation': '{{$row->gym_visitation->last()->visitation_type}}'
+                                       }">
                                           <div class="w-100 d-flex flex-column">
                                              <div class="w-auto d-flex flex-row justify-content-between gym-visitation">
 
@@ -101,11 +103,11 @@
                                                 @endif
 
                                                 <div class="w-auto d-flex flex-column">
-                                                <a href="javascript:void(0);" class="btn btn-sm btn-default border btn__ff--primary" data-action="customerGymVisitation" data-customer="{{$row->customer->customer_id}}" data-cpackageid="{{$row->customer_package_id}}" data-branch="{{$currentUser->branch_id}}" data-userid="{{$currentUser->user_id}}" data-visitation="IN">IN</a>
+                                                <a href="javascript:void(0);" class="btn btn-sm btn-default border btn__ff--primary" :class="{ 'active': currentGymVisitation === 'IN' }" data-action="customerGymVisitation" data-customer="{{$row->customer->customer_id}}" data-cpackageid="{{$row->customer_package_id}}" data-branch="{{$currentUser->branch_id}}" data-userid="{{$currentUser->user_id}}" data-visitation="IN">IN</a>
                                                 </div>
 
                                                 <div class="w-auto d-flex flex-column">
-                                                   <a href="javascript:void(0);" class="btn btn-sm btn-default border btn__ff--primary" data-action="customerGymVisitation" data-customer="{{$row->customer->customer_id}}" data-cpackageid="{{$row->customer_package_id}}" data-branch="{{$currentUser->branch_id}}" data-userid="{{$currentUser->user_id}}" data-visitation="OUT">OUT</a>
+                                                   <a href="javascript:void(0);" class="btn btn-sm btn-default border btn__ff--primary" :class="{ 'active': currentGymVisitation === 'OUT' }"  data-action="customerGymVisitation" data-customer="{{$row->customer->customer_id}}" data-cpackageid="{{$row->customer_package_id}}" data-branch="{{$currentUser->branch_id}}" data-userid="{{$currentUser->user_id}}" data-visitation="OUT">OUT</a>
                                                 </div>
 
                                              </div>

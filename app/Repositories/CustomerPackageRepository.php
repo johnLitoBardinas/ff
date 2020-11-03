@@ -41,7 +41,7 @@ class CustomerPackageRepository
             $customerPackage->where($accountPackageStatusFilter, 'active');
         }
 
-        $customerPackage->with('customer', 'package', 'customer_visits', 'branch', 'user');
+        $customerPackage->with('customer', 'package', 'customer_visits', 'gym_visitation', 'branch', 'user');
 
         return $customerPackage->get()->filter(fn ($customerPackage) => $customerPackage->branch->branch_type === $packageType)->values();
     }
