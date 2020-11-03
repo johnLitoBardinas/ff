@@ -52,16 +52,15 @@
                 </div>
             @endfor
         </div>
-
-        <div class="d-flex justify-content-between">
-            <a href="{{ route('home') }}" title="Click to Exit." class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__exit d-flex">EXIT</a>
-
-            @if (count($customerPackageVisitation) === $packageTotalCount)
-            <span class="text-line-through">Completed Service</span>
-            @else
-            <button class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__edit d-flex" id="btn-save-customer-visits">UPDATE</button>
-            @endif
-
-        </div>
     </form>
+    <div class="d-flex justify-content-between">
+        <a href="{{ route('home') }}" title="Click to Exit." class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__exit d-flex">EXIT</a>
+
+        @if (count($customerPackageVisitation) === $packageTotalCount)
+            <span class="text-line-through">Completed Service</span>
+        @else
+            <button class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__edit d-flex" id="btn-save-customer-visits">UPDATE</button>
+        @endif
+
+    </div>
 </div>

@@ -71,7 +71,7 @@ class CustomerVisitsController extends ApiController
         $customerVisitsData['user_id'] = request('user_id');
 
         if ($request->has('date')) {
-            $customerVisitsData['date'] = Carbon::now();
+            $customerVisitsData['date'] = Carbon::parse(request('date'))->format('Y-m-d H:i:s');
         }
 
         if ($request->has('package_type')) {
@@ -84,7 +84,9 @@ class CustomerVisitsController extends ApiController
 
         $customerPackageVisits = CustomerPackageRepository::customerTotalVisits($request->customer_package_id, $request->package_type);
 
-        if (count($customerPackageVisits) === (int) $packageLimitVisits && $request->package_type !== PackageType::GYM) {
+        $customerPackageType = CustomerPackage::find(request('customer_package_id'))->packageType();
+
+        if (count($customerPackageVisits) === (int) $packageLimitVisits && $customerPackageType !== PackageType::GYM) {
             $package_type_field = $request->package_type . '_package_status';
             CustomerPackage::where('customer_package_id', request('customer_package_id'))
                 ->update([$package_type_field => CustomerPackageStatus::COMPLETED]);

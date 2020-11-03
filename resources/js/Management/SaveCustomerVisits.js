@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2';
 
-const utils = require('../utils');
+import utils from '../utils';
 
 export default class SaveCustomerVisits {
 
@@ -13,14 +13,10 @@ export default class SaveCustomerVisits {
 
     onCustomerVisitsUpdate() {
         this.$btnSaveCustomerVisits.on('click', (e) => {
+
             $(e.currentTarget).attr('disabled', true);
             const data = this.$frmCustomerVisits.serializeObject();
             const dates = utils.removeEmptyValueFromIterable(data['date']);
-
-            if (! dates.length) {
-                Swal.fire(utils.swal2Option('error', 'Error!', 'Fill out the Visitation Date.'));
-                return;
-            }
 
             delete data['date'];
 

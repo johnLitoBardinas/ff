@@ -93,4 +93,10 @@ class CustomerPackage extends Model
     {
         return now()->greaterThanOrEqualTo($this->spa_package_end);
     }
+
+    // Determining the main package type of a customer package
+    public function packageType()
+    {
+        return $this->package->package_type;
+    }
 }
