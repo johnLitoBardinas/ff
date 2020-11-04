@@ -4,6 +4,7 @@ namespace App\Repositories;
 
 use App\CustomerPackage;
 use App\CustomerVisits;
+use Carbon\Carbon;
 
 class CustomerPackageRepository
 {
@@ -41,7 +42,8 @@ class CustomerPackageRepository
             $customerPackage->where($accountPackageStatusFilter, 'active');
         }
 
-        $customerPackage->with('customer', 'package', 'customer_visits', 'gym_visitation', 'branch', 'user');
+        $customerPackage->with('customer', 'package', 'customer_visits', 'branch', 'user');
+        $customerPackage->with(['gym_visitation' => fn ($query) => $query->whereDate('date', Carbon::today())]);
 
         return $customerPackage->get()->filter(fn ($customerPackage) => $customerPackage->branch->branch_type === $packageType)->values();
     }

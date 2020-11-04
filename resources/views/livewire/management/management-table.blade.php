@@ -89,7 +89,7 @@
 
                                     @if ($currentPackageType === 'gym')
                                        <div class="w-100 d-flex justify-content-between" x-data="{
-                                          'currentGymVisitation': '{{$row->gym_visitation->last()->visitation_type}}'
+                                          'currentGymVisitation': '{{$row->gym_visitation->last()->visitation_type ?? 'none'}}'
                                        }">
                                           <div class="w-100 d-flex flex-column">
                                              <div class="w-auto d-flex flex-row justify-content-between gym-visitation">
