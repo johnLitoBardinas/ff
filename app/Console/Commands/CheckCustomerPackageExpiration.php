@@ -43,9 +43,6 @@ class CheckCustomerPackageExpiration extends Command
 
         $spaPackage = CustomerPackage::where('spa_package_end', '<', Carbon::now())->where('spa_package_status', CustomerPackageStatus::ACTIVE)->update(['spa_package_status' => CustomerPackageStatus::EXPIRED]);
 
-        Log::notice('Finished Checked on Customer Expired Package');
-        $this->info('Total Expired Salon Package =>' . $salonPackage);
-        $this->info('Total Expired Gym Package =>' . $gymPackage);
-        $this->info('Total Expired Spa Package =>' . $spaPackage);
+        Log::notice("Finished Checked on Customer Expired Package salon - {$salonPackage}, gym - {$gymPackage}, spa - {$spaPackage}");
     }
 }
