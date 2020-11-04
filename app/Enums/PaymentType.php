@@ -9,4 +9,5 @@ final class PaymentType extends Enum
     public const GCASH = 'gcash';
     public const PAYMAYA = 'paymaya';
     public const CARD = 'card';
+    public const CASH = 'cash';
 }

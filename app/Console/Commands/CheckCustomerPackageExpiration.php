@@ -43,6 +43,6 @@ class CheckCustomerPackageExpiration extends Command
 
         $spaPackage = CustomerPackage::where('spa_package_end', '<', Carbon::now())->where('spa_package_status', CustomerPackageStatus::ACTIVE)->update(['spa_package_status' => CustomerPackageStatus::EXPIRED]);
 
-        Log::notice("Finished Checked on Customer Expired Package salon - {$salonPackage}, gym - {$gymPackage}, spa - {$spaPackage}");
+        Log::notice("Today expired services are salon - {$salonPackage}, gym - {$gymPackage}, spa - {$spaPackage}");
     }
 }

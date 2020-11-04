@@ -23,7 +23,7 @@ class BranchSeeder extends Seeder
 
         Branch::create([
             'branch_code' => sprintf('%s1', generate_branch_code()),
-            'branch_name' => 'Main Branch',
+            'branch_name' => 'F&F.Co Main Office',
             'branch_address' => 'NCR, Philippines',
             'branch_type' => BranchType::SALON,
         ]);
