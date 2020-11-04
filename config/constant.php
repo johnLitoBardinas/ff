@@ -18,5 +18,5 @@ return [
     'fnf_gym_logo' => 'svg/fitandfree.gym_logo_horizontal.svg', // logo for the gym account type
     'fnf_spa_logo' => 'svg/fabandfree.wellness_logo_horizontal.svg', // logo for the spa account type
 
-    'payment_options' => [ 'gcash', 'paymaya', 'card', 'cash'],
+    'payment_options' => ['gcash', 'paymaya', 'card', 'cash'],
 ];
