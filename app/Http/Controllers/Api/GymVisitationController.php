@@ -49,6 +49,6 @@ class GymVisitationController extends ApiController
             return $this->showOne($gymVisitation, 201);
         }
 
-        return $this->errorResponse("The customer package currently: ({$todayCustomerPackageGymVisitation->visitation_type}) branch: ({$todayCustomerPackageGymVisitation->branch->branch_name}) log by user: ({$todayCustomerPackageGymVisitation->user->first_name}, {$todayCustomerPackageGymVisitation->user->last_name})", 401);
+        return $this->errorResponse("The customer package currently: ({$todayCustomerPackageGymVisitation->visitation_type}) branch: ({$todayCustomerPackageGymVisitation->branch->branch_name}) logs by user: ({$todayCustomerPackageGymVisitation->user->first_name}, {$todayCustomerPackageGymVisitation->user->last_name})", 401);
     }
 }
