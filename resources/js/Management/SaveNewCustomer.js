@@ -1,6 +1,6 @@
 import Swal from 'sweetalert2';
 
-const utils = require('../utils');
+import utils from '../utils';
 
 export default class SaveNewCustomer {
 
@@ -76,7 +76,10 @@ export default class SaveNewCustomer {
                         }
                     });
                 })
-                .catch((error) => utils.axiosErrorCallback(error));
+                .catch((error) => {
+                    utils.axiosErrorCallback(error);
+                    $(event.currentTarget).attr('disabled', false);
+                });
 
             } else {
                 $(event.currentTarget).attr('disabled', false);

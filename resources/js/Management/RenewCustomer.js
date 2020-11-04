@@ -1,6 +1,6 @@
-const utils = require('../utils');
-
 import Swal from 'sweetalert2';
+
+import utils from '../utils';
 
 export default class RenewCustomer {
 
@@ -40,7 +40,10 @@ export default class RenewCustomer {
                         $(e.currentTarget).attr('disabled', false);
                     }).catch((error) => utils.axiosErrorCallback(error));
                 })
-                .catch((error) => utils.axiosErrorCallback(error))
+                .catch((error) => {
+                    utils.axiosErrorCallback(error);
+                    $(e.currentTarget).attr('disabled', false);
+                })
             } else {
                 $(e.currentTarget).attr('disabled', false);
             }
