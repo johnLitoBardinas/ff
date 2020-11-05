@@ -10,12 +10,13 @@
                 <form class="w-100 my-4" method="POST" action="{{ route('login') }}">
                     @csrf
                     <div class="form-group">
-                        <select class="form-control w-400px vh-50px" id="login__type" name="home_type">
+                        {{-- Use the input old value on error to fill out the select account --}}
+                    <select class="form-control w-400px vh-50px" id="login__type" name="home_type">
                             <option disabled readonly>Select Account</option>
-                            <option value="f-and-f.co">f&f.co</option>
-                            <option value="fix-and-free.salon">fix&free.salon</option>
-                            <option value="fit-and-free.gym">fit&free.gym</option>
-                            <option value="fib-and-free.wellness">fab&free.wellness</option>
+                            <option value="f-and-f.co" @if (old('home_type') === 'f-and-f.co') selected @endif>f&f.co</option>
+                            <option value="fix-and-free.salon" @if (old('home_type') === 'fix-and-free.salon') selected @endif>fix&free.salon</option>
+                            <option value="fit-and-free.gym" @if (old('home_type') === 'fit-and-free.gym') selected @endif>fit&free.gym</option>
+                            <option value="fib-and-free.wellness" @if (old('home_type') === 'fib-and-free.wellness') selected @endif>fab&free.wellness</option>
                         </select>
                     </div>
                     <div class="form-group">

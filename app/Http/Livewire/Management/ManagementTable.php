@@ -93,7 +93,7 @@ class ManagementTable extends Component
             $this->onNone();
         }
 
-        $this->customerPackageVisitsInfo = CustomerPackage::whereIn('customer_id', $this->customerListId)->with('customer', 'package', 'customer_visits', 'branch', 'user')->get();
+        $this->customerPackageVisitsInfo = CustomerPackage::whereIn('customer_id', $this->customerListId)->with('customer', 'package', 'customer_visits', 'branch', 'user')->get()->filter(fn ($customerPackage) => $customerPackage->package->package_type === $this->currentPackageType)->values();
     }
 
     /**
