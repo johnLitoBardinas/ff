@@ -37,8 +37,7 @@ class MidnightAutoLogout extends Command
         $currentInCustomers = GymVisitation::whereDate('date', Carbon::today())->where('visitation_type', GymVisitationType::IN)->get()->pluck('id');
         $customerOutGym = DB::table('gym_visitation')->whereIn('id', $currentInCustomers)->update(['visitation_type' => GymVisitationType::OUT]);
         if (! empty($customerOutGym)) {
-            Log::notice("Auto logout gym services the following" . implode(' ', $currentInCustomers->toArray()));
+            Log::notice('Auto logout gym services the following' . implode(' ', $currentInCustomers->toArray()));
         }
-
     }
 }
