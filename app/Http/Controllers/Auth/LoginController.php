@@ -32,6 +32,8 @@ class LoginController extends Controller
      */
     protected function validateLogin(Request $request)
     {
+        setcookie('old_hometype', request('home_type'), time() + 3600);
+
         $request->validate([
             'email' => [
                 'bail',

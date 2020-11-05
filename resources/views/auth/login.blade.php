@@ -11,12 +11,23 @@
                     @csrf
                     <div class="form-group">
                         {{-- Use the input old value on error to fill out the select account --}}
-                    <select class="form-control w-400px vh-50px" id="login__type" name="home_type">
+                        <select class="form-control w-400px vh-50px" id="login__type" name="home_type">
                             <option disabled readonly>Select Account</option>
-                            <option value="f-and-f.co" @if (old('home_type') === 'f-and-f.co') selected @endif>f&f.co</option>
-                            <option value="fix-and-free.salon" @if (old('home_type') === 'fix-and-free.salon') selected @endif>fix&free.salon</option>
-                            <option value="fit-and-free.gym" @if (old('home_type') === 'fit-and-free.gym') selected @endif>fit&free.gym</option>
-                            <option value="fib-and-free.wellness" @if (old('home_type') === 'fib-and-free.wellness') selected @endif>fab&free.wellness</option>
+                            <option
+                                value="f-and-f.co"
+                                @if (old('home_type') === 'f-and-f.co' || @$_COOKIE['old_hometype'] === 'f-and-f.co') selected @endif
+                            >f&f.co</option>
+                            <option
+                                value="fix-and-free.salon"
+                                @if (old('home_type') === 'fix-and-free.salon' || @$_COOKIE['old_hometype'] === 'fix-and-free.salon') selected @endif
+                            >fix&free.salon</option>
+                            <option
+                                value="fit-and-free.gym"
+                                @if (old('home_type') === 'fit-and-free.gym' || @$_COOKIE['old_hometype'] === 'fit-and-free.gym') selected @endif
+                            >fit&free.gym</option>
+                            <option
+                                value="fib-and-free.wellness" @if (old('home_type') === 'fib-and-free.wellness' || @$_COOKIE['old_hometype'] === 'fib-and-free.wellness') selected @endif
+                            >fab&free.wellness</option>
                         </select>
                     </div>
                     <div class="form-group">

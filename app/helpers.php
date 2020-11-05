@@ -120,7 +120,6 @@ if (! function_exists('get_account_page_logo')) {
 }
 
 if (! function_exists('login_user_redirection')) {
-
     /**
      *  Determine the proper user session storage and redirections.
      */
