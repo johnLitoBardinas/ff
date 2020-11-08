@@ -2,10 +2,10 @@
 
 namespace App\Http\Livewire\Management;
 
-use App\Customer;
 use App\CustomerPackage;
 use App\Enums\ManagementAction;
 use App\Repositories\CustomerPackageRepository;
+use App\Repositories\CustomerRepository;
 use Livewire\Component;
 
 class ManagementTable extends Component
@@ -26,9 +26,6 @@ class ManagementTable extends Component
 
     // List of customer filters.
     public $customerListId;
-
-    // Current Search String.
-    public $searchingText;
 
     // Package Type Salon, Gym, Spa.
     public $currentPackageType;
@@ -84,16 +81,18 @@ class ManagementTable extends Component
     {
         if (empty($customerName)) {
             $this->onNone();
+            return;
         }
 
-        $this->searchingText = $customerName;
-        $this->customerListId = Customer::where('first_name', 'LIKE', '%' . trim($customerName) . '%')->orWhere('last_name', 'LIKE', '%' . trim($customerName) . '%')->pluck('customer_id')->toArray();
+        $possibleCustomersId = CustomerRepository::searchCustomerId($customerName);
 
-        if (empty($this->customerListId)) {
+        if (empty($possibleCustomersId)) {
             $this->onNone();
+            return;
         }
 
-        $this->customerPackageVisitsInfo = CustomerPackage::whereIn('customer_id', $this->customerListId)->with('customer', 'package', 'customer_visits', 'branch', 'user')->get()->filter(fn ($customerPackage) => $customerPackage->package->package_type === $this->currentPackageType)->values();
+        $this->customerPackageVisitsInfo = CustomerPackage::whereIn('customer_id', $possibleCustomersId)->where('')->with('customer', 'package', 'customer_visits', 'branch', 'user')->get();
+
     }
 
     /**
