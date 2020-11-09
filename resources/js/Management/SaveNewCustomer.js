@@ -26,6 +26,7 @@ export default class SaveNewCustomer {
             'branch_id': data['branch_id'],
             'customer_id': data['customer_id'],
             'reference_no': data['reference_no'],
+            'package_type': data['package_type'],
             'package_id': data['package_id'],
             'payment_type': data['payment_type'],
         };
@@ -52,6 +53,7 @@ export default class SaveNewCustomer {
 
             if (parsleyForm.isValid()) {
 
+                // Register the customer.
                 axios.post(ApiUrl.customers, this.formatCustomerData(data))
                 .then((response) => {
                     return {
@@ -59,13 +61,14 @@ export default class SaveNewCustomer {
                         ...data
                     };
                 })
-                .then((customerWithPackageInfo) =>axios.post(`${ApiUrl.customers}/${customerWithPackageInfo['customer_id']}/packages`, this.formatCustomerPackageData(customerWithPackageInfo)))
+                // Register the created customer to the subscribe package.
+                .then((customerWithPackageInfo) => axios.post(`${ApiUrl.customers}/${customerWithPackageInfo['customer_id']}/packages`, this.formatCustomerPackageData(customerWithPackageInfo)))
                 .then((response) => {
                     const customerVisitsInfo = {
                         ...response.data,
                         ...data
                     };
-
+                    // Register the first customer visitation.
                     axios.post(`${ApiUrl.customers}/${response.data['customer_id']}/visits`, this.formatCustomerPackageVisitation(customerVisitsInfo))
                     .then((response) => {
                         if (response.status === 201) {

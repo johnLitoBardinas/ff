@@ -24,7 +24,7 @@ class CustomerPackage extends FormRequest
             'user_id' => ['required', 'integer'],
             'branch_id' => ['required', 'integer'],
             'reference_no' => ['required', 'max:30', 'unique:customer_package,reference_no'],
-            'package_type' => ['required', 'in:' . implode(PackageType::getValues())],
+            'package_type' => ['required', 'in:' . implode(',', PackageType::getValues())],
             'payment_type' => ['required', 'in:' . implode(',', config('constant.payment_options'))],
             'package_id' => ['required', 'integer'],
         ];
