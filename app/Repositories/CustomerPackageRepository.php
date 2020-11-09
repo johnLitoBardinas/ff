@@ -34,7 +34,8 @@ class CustomerPackageRepository
         $accountPackageStatusFilter = sprintf('%s_package_status', $packageType);
 
         $customerPackage = CustomerPackage::query();
-        $customerPackage->orderBy('customer_package_id');
+        $customerPackage->orderBy('customer_package_id', 'desc');
+        $customerPackage->where('package_type', $packageType);
 
         if ($type === 'notActive') {
             $customerPackage->where($accountPackageStatusFilter, '!=', 'active');
@@ -45,7 +46,7 @@ class CustomerPackageRepository
         $customerPackage->with('customer', 'package', 'customer_visits', 'branch', 'user');
         $customerPackage->with(['gym_visitation' => fn ($query) => $query->whereDate('date', Carbon::today())]);
 
-        return $customerPackage->get()->filter(fn ($customerPackage) => $customerPackage->branch->branch_type === $packageType)->values();
+        return $customerPackage->take(50)->get();
     }
 
     /**
