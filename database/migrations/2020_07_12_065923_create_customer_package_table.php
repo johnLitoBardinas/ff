@@ -2,7 +2,6 @@
 
 use App\Enums\CustomerPackageStatus;
 use App\Enums\PackageType;
-use Carbon\Carbon;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -50,7 +49,6 @@ class CreateCustomerPackageTable extends Migration
         });
 
         Schema::dropIfExists('customer_package');
-
     }
 
 }
