@@ -92,7 +92,6 @@ class ManagementTable extends Component
         }
 
         $this->customerPackageVisitsInfo = CustomerPackage::whereIn('customer_id', $possibleCustomersId)->where('')->with('customer', 'package', 'customer_visits', 'branch', 'user')->get();
-
     }
 
     /**
