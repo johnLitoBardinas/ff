@@ -33,6 +33,7 @@ class CustomerPackageController extends ApiController
             'user_id' => $request->user_id,
             'customer_id' => $request->customer_id,
             'reference_no' => $request->reference_no,
+            'package_type' => $request->package_type,
             'payment_type' => $request->payment_type,
             'salon_package_start' => Carbon::now(),
             'salon_package_end' => Carbon::now()->addDays($chosenPackage->salon_days_valid_count + 1), // + 1 So that the last day will be consumable

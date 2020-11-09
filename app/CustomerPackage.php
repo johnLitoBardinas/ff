@@ -19,6 +19,7 @@ class CustomerPackage extends Model
         'user_id',
         'customer_id',
         'reference_no',
+        'package_type',
         'payment_type',
         'salon_package_status', // Salon Package Status
         'salon_package_start', // Salon Start Date
