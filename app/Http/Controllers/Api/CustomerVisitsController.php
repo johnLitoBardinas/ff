@@ -86,7 +86,7 @@ class CustomerVisitsController extends ApiController
 
         $customerPackageType = CustomerPackage::find(request('customer_package_id'))->packageType();
 
-        if (count($customerPackageVisits) === (int) $packageLimitVisits && $customerPackageType !== PackageType::GYM) {
+        if (count($customerPackageVisits) === (int) $packageLimitVisits) {
             $package_type_field = $request->package_type . '_package_status';
             CustomerPackage::where('customer_package_id', request('customer_package_id'))
                 ->update([$package_type_field => CustomerPackageStatus::COMPLETED]);

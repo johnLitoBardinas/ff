@@ -34,20 +34,20 @@
                     @endphp
                     <tr>
                         <td>
-                            @if ($userBranchType === $type) {{ strtoupper($row->package->package_name) ?? '' }} @endif
+                            @if ($row->package_type === $type) {{ strtoupper($row->package->package_name) ?? '' }} @endif
                         </td>
                         <td>{{strtoupper($type)}}</td>
-                        @if($userBranchType === $type)
+                        @if($row->package_type === $type)
                             <td>{{number_format($row->package->package_price)}}</td>
                         @else
-                        <td class="text-line-through">Free</td>
+                            <td>Free</td>
                         @endif
                         <td>
                             @if ($userBranchType === 'gym' && $row->package_type === 'gym' && $type === 'gym')
 
                                 <div class="w-100 d-flex justify-content-between" x-data="{
                                     'currentGymVisitation': '{{$row->gym_visitation->last()->visitation_type ?? 'none'}}'
-                                }">
+                                    }">
                                     <div class="w-100 d-flex flex-column">
                                         <div class="w-auto d-flex flex-row justify-content-between gym-visitation">
 
