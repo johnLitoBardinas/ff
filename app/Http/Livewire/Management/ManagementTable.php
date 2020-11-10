@@ -2,7 +2,9 @@
 
 namespace App\Http\Livewire\Management;
 
+use App\CustomerPackage;
 use App\Repositories\CustomerPackageRepository;
+use App\Repositories\CustomerRepository;
 use Livewire\Component;
 
 class ManagementTable extends Component
@@ -21,6 +23,11 @@ class ManagementTable extends Component
 
     // Current User Info for Gym Visitation Logs
     public $currentUser;
+
+    private function getManagementTableData()
+    {
+        $this->customerPackageVisitsInfo = CustomerPackageRepository::getAll();
+    }
 
     /**
      * Rendering the component.
@@ -41,28 +48,24 @@ class ManagementTable extends Component
 
         $this->currentUser = auth()->user();
 
-        $this->customerPackageVisitsInfo = CustomerPackageRepository::getAll();
+        $this->getManagementTableData();
     }
 
     /**
      * On search Table.
-     * Customer Name.
+     * Reference No or Customer Name (Last Name/ First Name)
      */
-    public function onSearchTable($customerName = null)
+    public function onSearchTable($search = '')
     {
-        // if (empty($customerName)) {
-        //     $this->onNone();
-        //     return;
-        // }
+        if (empty($search)) {
+            $this->getManagementTableData();
+            return;
+        }
 
-        // $possibleCustomersId = CustomerRepository::searchCustomerId($customerName);
+        $possibleCustomersId = CustomerRepository::searchCustomerId($search);
 
-        // if (empty($possibleCustomersId)) {
-        //     $this->onNone();
-        //     return;
-        // }
-
-        // $this->customerPackageVisitsInfo = CustomerPackage::whereIn('customer_id', $possibleCustomersId)->where('')->with('customer', 'package', 'customer_visits', 'branch', 'user')->get();
-        // dd('All customer like the first name and lastname must be search using this functionality');
+        $this->customerPackageVisitsInfo = CustomerPackage::where('reference_no', 'LIKE', '%' . trim($search) . '%')->orWhere(function ($query) use ($possibleCustomersId) {
+            return $query->whereIn('customer_id', $possibleCustomersId);
+        })->with('customer', 'package', 'customer_visits', 'branch', 'user')->get();
     }
 }

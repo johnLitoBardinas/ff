@@ -27,6 +27,11 @@
                 </tr>
              </thead>
              <tbody>
+               <tr>
+                  <td colspan="5">
+                     <h4 wire:loading>Loading data ...</h4>
+                  </td>
+               </tr>
                 @forelse ($customerPackageVisitsInfo as $row)
                   <x-management-table-row :row="$row" :currentUser="$currentUser" :userBranchType="$userBranchType" :customerPackageStatus="$customerPackageStatus" />
                 @empty

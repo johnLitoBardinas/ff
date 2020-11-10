@@ -6,7 +6,7 @@
     'servicesType' => ['gym', 'salon', 'spa']
 ])
 
-<tr>
+<tr wire:loading.remove>
     <td>{{strtoupper($row->reference_no)}}</td>
     <td>{{sprintf('%s, %s', ucfirst($row->customer->last_name), ucfirst($row->customer->first_name))}}</td>
     <td>{{strtoupper($row->payment_type)}}</td>
