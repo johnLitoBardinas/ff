@@ -32,7 +32,7 @@ class GymVisitationController extends ApiController
                 return $this->showOne($gymVisitation, 201);
             }
 
-            return $this->errorResponse('Today customer package is not yet visited.', 422);
+            return $this->errorResponse('Customer not yet visited as of Today.', 422);
         }
 
         if ($todayCustomerPackageGymVisitation->branch_id === (int) request('branch_id')) {

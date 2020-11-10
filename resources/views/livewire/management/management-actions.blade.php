@@ -1,30 +1,14 @@
 <div class="col-md-6 flex" x-data="{ action: '{{$action}}' }">
-    <button
-    class="btn btn-sm btn-default border btn__ff--primary"
-    :class="[ action === 'newOrActiveAccount' ? 'active' : ( action === 'expiredOrComplementedAccount' ? 'd-none' : '') ]"
-    x-on:click="action = 'newOrActiveAccount'"
-    wire:click="$emitTo('management.management-table', 'onClickNewOrActiveAccount')"
-    title="Click to view all NEW and ACTIVE Accounts.">NEW & ACTIVE ACCNT</button>
+    <div class="d-inline-block">
+        <a href="{{ route('new-customer') }}"
+        class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__adduser"
+        title="Click to ADD New Customer Account."
+        > &nbsp;ADD NEW CUSTOMER</a>
+    </div>
 
-    <a href="{{ route('new-customer') }}"
-    class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__adduser d-none"
-    :class="[ action === 'newOrActiveAccount' ? 'd-inline' : ( action === 'expiredOrComplementedAccount' ? 'd-none' : '') ]"
-    title="Click to ADD New Customer Account."
-    >ADD NEW CUSTOMER</a>
-
-    <button
-    class="btn btn-sm btn-default border btn__ff--primary"
-    :class="[ action === 'expiredOrComplementedAccount' ? 'active' : ( action === 'newOrActiveAccount' ? 'd-none' : '' )]"
-    x-on:click="action = 'expiredOrComplementedAccount'"
-    wire:click="$emitTo('management.management-table', 'onExpiredOrComplementedAccount')"
-    title="Click to view ALl Expired & Completed Accounts."
-    >EXPIRED & COMPLETED ACCNT</button>
-
-    <button
-    class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__exit d-none"
-    :class="[ action != 'none' ? 'd-inline' : '' ]"
-    x-on:click="action = 'none'"
-    wire:click="$emitTo('management.management-table', 'onNone')"
-    >EXIT</button>
-
+    <div class="d-inline-block">
+        <a href="javascript:void(0);" class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__renew"
+        title="Click to ADD New Customer Account."
+        > &nbsp;RENEW CUSTOMER</a>
+    </div>
 </div>

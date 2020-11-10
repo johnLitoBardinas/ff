@@ -29,19 +29,10 @@ class CustomerPackageRepository
      *
      * @return Collection|null
      */
-    public static function getAll(string $type, string $packageType)
+    public static function getAll()
     {
-        $accountPackageStatusFilter = sprintf('%s_package_status', $packageType);
-
         $customerPackage = CustomerPackage::query();
         $customerPackage->orderBy('customer_package_id', 'desc');
-        $customerPackage->where('package_type', $packageType);
-
-        if ($type === 'notActive') {
-            $customerPackage->where($accountPackageStatusFilter, '!=', 'active');
-        } elseif ($type === 'active') {
-            $customerPackage->where($accountPackageStatusFilter, 'active');
-        }
 
         $customerPackage->with('customer', 'package', 'customer_visits', 'branch', 'user');
         $customerPackage->with(['gym_visitation' => fn ($query) => $query->whereDate('date', Carbon::today())]);
