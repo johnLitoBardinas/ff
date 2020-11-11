@@ -1,6 +1,6 @@
 <div class="container mt-5 container--new-package">
     <h3 class="text-uppercase text-white bg-primary text-center font-weight-light">ADD PACKAGE</h3>
-    {{-- {{$type}} --}}
+
     <form method="POST" id="frm-new-package" novaliate>
         @csrf
         <input type="hidden" name="package_type" value="{{$type}}">
@@ -15,52 +15,32 @@
         </div>
 
         <div class="form-group d-flex mb-3">
-            <div class="w-33 mr-2">
-                <div class="border text-center bg-primary text-white py-1 px-3 mb-2">
-                    @if( $type === 'salon') PAID SALON @else FREE SALON @endif
-                </div>
-                <small>No. of Visits</small>
-                <input type="number" class="form-control" name="salon_no_of_visits" min="1" max="4" required />
-            </div>
-
-            <div class="w-33 mr-2">
-                <div class="border text-center bg-primary text-white py-1 px-3 mb-2">
-                    @if( $type === 'gym') PAID GYM @else FREE GYM @endif
-                </div>
-                @if($type !== 'gym')
+            @forelse ($defaultPackageType as $service)
+                <div class="w-33 mr-2">
+                    <div class="border text-center bg-primary text-white py-1 px-3 mb-2">
+                        @if( $type === $service) {{ sprintf('PAID %s', strtoupper($service)) }} @else {{ sprintf('FREE %s', strtoupper($service)) }} @endif
+                    </div>
                     <small>No. of Visits</small>
-                    <input type="number" class="form-control" name="gym_no_of_visits" min="0" max="4" required />
-                @else
-                    {{-- empty the total no of gym visitation --}}
-                    <input type="hidden" class="form-control" name="gym_no_of_visits" min="0" max="4" value="0" />
-                @endif
-            </div>
-
-            <div class="w-33">
-                <div class="border text-center bg-primary text-white py-1 px-3 mb-2">
-                    @if( $type === 'spa') PAID SPA @else FREE SPA @endif
+                    <input type="number" class="form-control" name="{{ sprintf('%s_no_of_visits', $service)}}" @if ($type === $service) min="1" max="4" @else min="0" max="4" @endif required />
                 </div>
-                <small>No. of Visits</small>
-                <input type="number" class="form-control" name="spa_no_of_visits" min="0" max="4" required/>
-            </div>
+            @empty
+                <h3>No Available Services</h3>
+            @endforelse
         </div>
+        {{-- Number of Visits. --}}
 
         <div class="form-group d-flex">
-            <div class="w-33 mr-2">
-                <small>Days Valid</small>
-                <input type="number" class="form-control" name="salon_days_valid_count" min="1" max="365" required/>
-            </div>
-
-            <div class="w-33 mr-2">
-                <small>Days Valid</small>
-                <input type="number" class="form-control" name="gym_days_valid_count" min="0" max="365" required/>
-            </div>
-
-            <div class="w-33">
-                <small>Days Valid</small>
-                <input type="number" class="form-control" name="spa_days_valid_count" min="0" max="365" required/>
-            </div>
+            @forelse ($defaultPackageType as $service)
+                <div class="w-33 mr-2">
+                    <small>Days Valid</small>
+                <input type="number" class="form-control" name="{{ sprintf('%s_days_valid_count' ,$service) }}" @if ($type === $service) min="1" max="365" @else min="0" max="365" @endif required/>
+                </div>
+            @empty
+                <h3>No Available Services</h3>
+            @endforelse
         </div>
+        {{-- Service No. of Days Service Valid --}}
+
     </form>
     <div class="d-flex justify-content-between">
         <a href="{{ route('packages') }}" title="Click to Exit." class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__exit d-flex">EXIT</a>

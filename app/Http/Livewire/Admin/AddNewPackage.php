@@ -9,6 +9,8 @@ class AddNewPackage extends Component
 {
     public $type;
 
+    public $defaultPackageType;
+
     public function mount(string $type)
     {
         if (! in_array($type, BranchType::getValues())) {
@@ -16,6 +18,8 @@ class AddNewPackage extends Component
         }
 
         $this->type = $type;
+
+        $this->defaultPackageType = config('constant.default_package_type');
     }
 
     public function render()

@@ -3,7 +3,7 @@
     'currentUser' => [],
     'userBranchType' => '',
     'customerPackageStatus' => '',
-    'servicesType' => ['gym', 'salon', 'spa']
+    'servicesType' => config('constant.default_package_type')
 ])
 
 <tr wire:loading.remove>
