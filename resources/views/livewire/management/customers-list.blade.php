@@ -55,7 +55,7 @@
                             <td class="align-middle">{{$row->reference_no}}</td>
                             <td class="align-middle">{{$row->package->package_name}}</td>
                             <td class="align-middle">
-                                <a class="btn btn-sm btn-default cursor-pointer d-inline-block border border-dark" href="{{route('customer-renew', [
+                                <a class="btn btn-sm btn-default cursor-pointer d-inline-block border border-primary text-primary" href="{{route('customer-renew', [
                                     'encrypted_customer_id' => encrypt($row->customer_id)
                                     ])}}" title="Renew the Customer">
                                     Renew
