@@ -46,6 +46,7 @@ background: $primary-color;
     // 119px Down
     @include breakpoint-down-width(1199px) {
         max-width: calc(100% - 25px);
+        padding: 0px;
     }
 
     &--new-customer,

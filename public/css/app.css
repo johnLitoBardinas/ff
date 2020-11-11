@@ -13163,6 +13163,7 @@ hr {
 @media screen and (max-width: 1199px) {
   .container {
     max-width: calc(100% - 25px);
+    padding: 0px;
   }
 }
 
@@ -13476,6 +13477,12 @@ button:focus {
 
 .admin-searchbar input.search__input {
   border-color: #463291 !important;
+}
+
+@media (max-width: 359px) {
+  .admin-searchbar input.search__input {
+    font-size: 0.8rem;
+  }
 }
 
 .admin-searchbar button {

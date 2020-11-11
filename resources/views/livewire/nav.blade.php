@@ -3,7 +3,7 @@
     <div class="container ">
         <div class="d-flex align-items-center justify-content-center py-5 admin-header__logo cursor-pointer">
             <a href="{{ $homeUrl }}" title="Click to return home.">
-                <img src="{{ asset( $logo ) }}" alt="Fix and Free Salon" />
+                <img src="{{ asset( $logo ) }}" alt="FNF Account Type Logo" style="max-width:100%;"/>
             </a>
         </div>
         {{-- Header Logo --}}
