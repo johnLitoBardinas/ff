@@ -1,4 +1,4 @@
-<div class="col-md-6 admin-branches" x-data="adminBranches">
+<div class="col-lg-6 admin-branches" x-data="adminBranches">
     @forelse($branches as $branch)
         <div class="card mb-3 branch">
             <div class="card-header d-flex justify-content-between align-items-center cursor-pointer"

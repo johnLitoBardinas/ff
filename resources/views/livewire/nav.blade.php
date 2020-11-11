@@ -31,7 +31,7 @@
                 @endcan
 
             </div>
-            <div class="col-md-4 mb-3">
+            <div class="col-md-5 mb-3">
                 <ul class="list-unstyled d-flex justify-content-md-around p-0 m-0">
                     <li>
                        <span>
@@ -59,7 +59,7 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-md-4 justify-content-end">
+            <div class="col-md-3 justify-content-end">
                 <ul class="list-unstyled d-flex justify-content-end p-0 m-0">
                     <li>
                         <a href="{{ route( 'profile' ) }}" class="text-dark text-decoration-none">

@@ -1,4 +1,4 @@
-<div class="col-md-5 offset-md-1 vh-59 overflow-y-scroll chrome-hide-scroll admin-branches-form" id="admin-branches-form">
+<div class="mt-3 mt-lg-0 col-lg-5 offset-lg-1 vh-59 overflow-y-scroll chrome-hide-scroll admin-branches-form" id="admin-branches-form">
 
     <div x-data="{
         branchName: '{{$branchName}}',

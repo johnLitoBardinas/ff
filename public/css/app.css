@@ -12767,6 +12767,11 @@ All Custom SASS Mixins here.
 **/
 
 /**
+ * This method create a screen max width for the properties.
+ * You may add blocks inside the media query.
+ */
+
+/**
 Handles the general breakpoints for the application.
 ==================================================================
 
@@ -13152,6 +13157,12 @@ hr {
 @media (min-width: 1366px) {
   .container {
     max-width: calc(100vw - 150px);
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .container {
+    max-width: calc(100% - 25px);
   }
 }
 

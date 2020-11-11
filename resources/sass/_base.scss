@@ -43,6 +43,11 @@ background: $primary-color;
         max-width: $Desktop-max-width;
     }
 
+    // 119px Down
+    @include breakpoint-down-width(1199px) {
+        max-width: calc(100% - 25px);
+    }
+
     &--new-customer,
     &--customer-visits,
     &--new-package {
