@@ -7,7 +7,7 @@
     </div>
 
     <div class="d-inline-block">
-        <a href="javascript:void(0);" class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__renew"
+        <a href="{{ route('customer-list') }}" class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__renew"
         title="Click to ADD New Customer Account."
         > &nbsp;RENEW CUSTOMER</a>
     </div>

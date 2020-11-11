@@ -25,10 +25,15 @@ Route::middleware('auth')->group(function () {
         ->name('new-customer')
         ->middleware('can:access-management');
 
+    // Tagging Customer Visitation
     Route::livewire('/customervisits/{customer_package_id}/{package_type}', 'management.add-customer-visits')
         ->name('customer-visits')
         ->middleware('can:access-management');
 
+    // View for searching new customer
+    Route::livewire('/customers', 'management.customers-list')->name('customer-list')->middleware('can:access-management');
+
+    // Renewal of Customer using his/her ID
     Route::livewire('/customerrenew/{encrypted_customer_id}', 'management.customer-renew')
         ->name('customer-renew')
         ->middleware('can:access-management');

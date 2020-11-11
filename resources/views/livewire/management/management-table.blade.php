@@ -27,9 +27,9 @@
                 </tr>
              </thead>
              <tbody>
-               <tr>
+               <tr wire:loading>
                   <td colspan="5">
-                     <h4 wire:loading>Loading data ...</h4>
+                     <h4>Loading records ...</h4>
                   </td>
                </tr>
                 @forelse ($customerPackageVisitsInfo as $row)
