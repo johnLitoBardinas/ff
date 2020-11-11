@@ -101,6 +101,8 @@
                                                         class="btn btn-sm btn-default border btn__ff--primary">
                                                         +add
                                                         </a>
+                                                    @elseif($row->$serviceStatus === 'expired')
+                                                        <span class="btn btn-sm btn-default border border-danger disabled" disabled title="Service expired">expired</span>
                                                     @else
                                                         <span class="btn btn-sm btn-default border border-success disabled" disabled title="Visit the nearest {{ucfirst($type)}} to consume.">consumable</span>
                                                     @endif
