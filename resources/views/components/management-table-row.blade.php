@@ -93,7 +93,7 @@
                                                     </div>
                                                 @else
 
-                                                    @if ($userBranchType === $type)
+                                                    @if ($userBranchType === $type && $row->$serviceStatus === 'active')
                                                         <a href="{{ route('customer-visits', [
                                                         'customer_package_id' => encrypt($row->customer_package_id),
                                                         'package_type' => encrypt($type),
