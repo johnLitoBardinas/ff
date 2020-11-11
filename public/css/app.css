@@ -13479,12 +13479,6 @@ button:focus {
   border-color: #463291 !important;
 }
 
-@media (max-width: 359px) {
-  .admin-searchbar input.search__input {
-    font-size: 0.8rem;
-  }
-}
-
 .admin-searchbar button {
   position: absolute;
   right: 0;

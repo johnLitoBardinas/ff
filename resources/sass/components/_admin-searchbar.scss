@@ -2,10 +2,6 @@
 
     input.search__input {
         border-color: $primary-color !important;
-
-        @include media('phone') {
-            font-size: .8rem;
-        }
     }
 
     button {
