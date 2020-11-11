@@ -80,4 +80,20 @@ class CustomerPackageRepository
     {
         return CustomerVisits::where('customer_package_id', $customerPackageId)->where('package_type', $packageType)->get()->toArray();
     }
+
+    /**
+     * Getting the current count from the customer package according to their type.
+     *
+     * @param string $search Reference No or Customer (Last Name, First Name)
+     *
+     * @return Array|null
+     */
+    public static function searchCustomerPackage(string $search)
+    {
+        $possibleCustomersId = CustomerRepository::searchCustomerId($search);
+
+        return CustomerPackage::where('reference_no', 'LIKE', '%' . trim($search) . '%')->orWhere(function ($query) use ($possibleCustomersId) {
+            return $query->whereIn('customer_id', $possibleCustomersId);
+        })->with('customer', 'package', 'customer_visits', 'branch', 'user')->get();
+    }
 }

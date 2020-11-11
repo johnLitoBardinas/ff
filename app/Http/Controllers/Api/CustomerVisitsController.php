@@ -84,8 +84,6 @@ class CustomerVisitsController extends ApiController
 
         $customerPackageVisits = CustomerPackageRepository::customerTotalVisits($request->customer_package_id, $request->package_type);
 
-        $customerPackageType = CustomerPackage::find(request('customer_package_id'))->packageType();
-
         if (count($customerPackageVisits) === (int) $packageLimitVisits) {
             $package_type_field = $request->package_type . '_package_status';
             CustomerPackage::where('customer_package_id', request('customer_package_id'))

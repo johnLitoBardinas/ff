@@ -29,13 +29,13 @@
              <tbody>
                <tr wire:loading>
                   <td colspan="5">
-                     <h4>Loading records ...</h4>
+                     <h6>Loading records ...</h6>
                   </td>
                </tr>
                 @forelse ($customerPackageVisitsInfo as $row)
                   <x-management-table-row :row="$row" :currentUser="$currentUser" :userBranchType="$userBranchType" :customerPackageStatus="$customerPackageStatus" />
                 @empty
-                <tr>
+                <tr wire:loading.remove>
                    <td colspan="5">
                       <h6>No Records Found!!</h6>
                    </td>

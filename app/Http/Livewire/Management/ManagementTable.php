@@ -2,9 +2,7 @@
 
 namespace App\Http\Livewire\Management;
 
-use App\CustomerPackage;
 use App\Repositories\CustomerPackageRepository;
-use App\Repositories\CustomerRepository;
 use Livewire\Component;
 
 class ManagementTable extends Component
@@ -62,10 +60,6 @@ class ManagementTable extends Component
             return;
         }
 
-        $possibleCustomersId = CustomerRepository::searchCustomerId($search);
-
-        $this->customerPackageVisitsInfo = CustomerPackage::where('reference_no', 'LIKE', '%' . trim($search) . '%')->orWhere(function ($query) use ($possibleCustomersId) {
-            return $query->whereIn('customer_id', $possibleCustomersId);
-        })->with('customer', 'package', 'customer_visits', 'branch', 'user')->get();
+        $this->customerPackageVisitsInfo = CustomerPackageRepository::searchCustomerPackage($search);
     }
 }
