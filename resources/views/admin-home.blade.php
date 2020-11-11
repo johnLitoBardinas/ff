@@ -9,7 +9,7 @@
             @livewire('admin.button-add-branch')
         </div>
 
-        <div class="col-md-5">
+        <div class="mt-4 mt-md-0 col-md-5">
             @livewire('admin.search-branch')
         </div>
     </div>
