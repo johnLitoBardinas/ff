@@ -4,7 +4,7 @@
 
 <div class="container">
     <div class="row justify-content-center login">
-        <div class="col-md-4 col-lg-3 h-100 d-flex justify-content-center align-items-center">
+        <div class="col-md-4 h-100 d-flex justify-content-center align-items-center">
             <div class="d-flex flex-column justify-content-center align-items-center w-100 login__form">
                 <img src="{{ asset('png/f_and_f.co_login.png') }}" alt="Fix and Free Co Login">
                 <form class="w-100 my-4" method="POST" action="{{ route('login') }}">

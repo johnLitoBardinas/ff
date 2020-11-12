@@ -13471,6 +13471,10 @@ button:focus {
   height: 100vh;
 }
 
+.login__form {
+  max-width: 450px;
+}
+
 .admin-header {
   background-color: #F3F3F3;
 }
