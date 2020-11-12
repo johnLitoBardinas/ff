@@ -13488,6 +13488,17 @@ button:focus {
   background-color: #F3F3F3;
 }
 
+@media screen and (max-width: 1024px) {
+  .admin-header .icons__counts {
+    padding: 0;
+    margin-bottom: 0 !important;
+  }
+
+  .admin-header .icons__counts img {
+    display: none;
+  }
+}
+
 .admin-searchbar input.search__input {
   border-color: #463291 !important;
 }
@@ -13536,6 +13547,14 @@ button:focus {
 
 .admin-branches .branch__info img {
   width: 40px;
+}
+
+@media screen and (max-width: 1024px) {
+  .admin-branches,
+  .admin-branches-form {
+    height: auto;
+    overflow-y: none;
+  }
 }
 
 .package-status {

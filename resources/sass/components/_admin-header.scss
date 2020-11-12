@@ -1,3 +1,18 @@
 .admin-header {
     background-color: $gray;
+
+    @include breakpoint-down-width(1024px) {
+        .icons__counts {
+            padding: 0;
+            margin-bottom: 0 !important;
+
+            img {
+                display: none;
+            }
+
+        }
+    }
+
+
+
 }

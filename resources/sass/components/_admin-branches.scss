@@ -15,3 +15,12 @@
 
     }
 }
+
+
+@include breakpoint-down-width(1024px) {
+   .admin-branches,
+   .admin-branches-form {
+    height: auto;
+    overflow-y: none;
+   }
+}
