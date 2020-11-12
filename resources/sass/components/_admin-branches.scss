@@ -17,7 +17,7 @@
 }
 
 
-@include breakpoint-down-width(1024px) {
+@include breakpoint-down-width($lg-BreakPoint) {
    .admin-branches,
    .admin-branches-form {
     height: auto;

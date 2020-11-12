@@ -8,6 +8,12 @@ Holds all the constant value for the application design.
 ==================================================================
 **/
 
+// Best Approach is to use min-width then scaled up.
+$sm-BreakPoint: 640px;
+$md-BreakPoint: 768px;
+$lg-BreakPoint: 1024px;
+$xl-BreakPoint: 1280px;
+
 // Theme COlors
 $primary-color: #463291;
 

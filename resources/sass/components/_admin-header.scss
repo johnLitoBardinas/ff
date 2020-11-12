@@ -1,7 +1,7 @@
 .admin-header {
     background-color: $gray;
 
-    @include breakpoint-down-width(1024px) {
+    @include breakpoint-down-width($lg-BreakPoint) {
         .icons__counts {
             padding: 0;
             margin-bottom: 0 !important;
