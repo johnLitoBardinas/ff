@@ -6,11 +6,19 @@ All Custom SASS Mixins here.
 **/
 
 /**
- * This method create a screen max width for the properties.
- * You may add blocks inside the media query.
+ * Max Width rules.
  */
  @mixin breakpoint-down-width($max-width: 1024px) {
 	@media screen and (max-width: $max-width) {
+		@content;
+	}
+}
+
+/**
+ * Min Width applied rules.
+*/
+@mixin breakpoint-up-width($min-width: 1024px) {
+	@media screen and (min-width: $min-width) {
 		@content;
 	}
 }

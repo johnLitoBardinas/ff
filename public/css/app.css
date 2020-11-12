@@ -12767,9 +12767,12 @@ All Custom SASS Mixins here.
 **/
 
 /**
- * This method create a screen max width for the properties.
- * You may add blocks inside the media query.
+ * Max Width rules.
  */
+
+/**
+ * Min Width applied rules.
+*/
 
 /**
 Handles the general breakpoints for the application.
@@ -13472,7 +13475,13 @@ button:focus {
 }
 
 .login__form {
-  max-width: 400px;
+  width: calc(100% - 20px);
+}
+
+@media screen and (min-width: 640px) {
+  .login__form {
+    max-width: 400px;
+  }
 }
 
 .admin-header {
