@@ -64,7 +64,7 @@
                     <li>
                         <a href="{{ route( 'profile' ) }}" class="text-dark text-decoration-none">
                             {{ Auth::user()->first_name .' '.Auth::user()->last_name }}
-                            <img src="{{ asset( 'svg/icons/profile.svg' ) }}" alt="Icon Profile" class="ml-2">
+                            <img src="{{ asset( 'svg/icons/profile.svg' ) }}" alt="Icon Profile" class="ml-2 user-profile">
                         </a>
                     </li>
                     <li class="ml-5 cursor-pointer" title="CLick to logout.">

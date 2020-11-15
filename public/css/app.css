@@ -13507,6 +13507,10 @@ button:focus {
   .admin-header .icons__counts img {
     display: none;
   }
+
+  .admin-header .user-profile {
+    display: none;
+  }
 }
 
 .admin-searchbar input.search__input {
