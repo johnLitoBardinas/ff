@@ -1,7 +1,7 @@
 import 'parsleyjs';
 import Swal from 'sweetalert2';
 
-const utils = require('../utils');
+import utils from '../utils';
 
 export default class BranchUsers {
 

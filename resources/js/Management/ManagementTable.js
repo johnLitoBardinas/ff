@@ -1,4 +1,5 @@
 import Swal from 'sweetalert2';
+
 import utils from '../utils';
 
 export default class ManagementTable {
