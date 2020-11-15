@@ -20,7 +20,7 @@
                         @if( $type === $service) {{ sprintf('PAID %s', strtoupper($service)) }} @else {{ sprintf('FREE %s', strtoupper($service)) }} @endif
                     </div>
                     @if ($service === 'gym' && $type === 'gym')
-
+                        <input type="hidden" class="form-control" name="{{ sprintf('%s_no_of_visits', $service)}}" value="0" />
                     @else
                         <small>No. of Visits</small>
                         <input type="number" class="form-control" name="{{ sprintf('%s_no_of_visits', $service)}}" @if ($type === $service) min="1" max="4" @else min="0" max="4" @endif required />
