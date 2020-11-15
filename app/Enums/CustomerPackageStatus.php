@@ -6,7 +6,7 @@ use BenSampo\Enum\Enum;
 
 final class CustomerPackageStatus extends Enum
 {
-    const ACTIVE = 'active';
-    const EXPIRED = 'expired';
-    const COMPLETED = 'completed';
+    public const ACTIVE = 'active';
+    public const EXPIRED = 'expired';
+    public const COMPLETED = 'completed';
 }

@@ -13,11 +13,11 @@ import BranchStatus from './Admin/BranchStatus';
 import BranchUsers from './Admin/BranchUsers';
 import Package from './Admin/Package';
 
-import SalonTable from './Salon/SalonTable';
-import SaveNewCustomer from './Salon/SaveNewCustomer';
-import SaveCustomerVisits from './Salon/SaveCustomerVisits';
+import ManagementTable from './Management/ManagementTable';
+import SaveNewCustomer from './Management/SaveNewCustomer';
+import SaveCustomerVisits from './Management/SaveCustomerVisits';
 
-import RenewCustomer from './Salon/RenewCustomer';
+import RenewCustomer from './Management/RenewCustomer';
 
 $(document).ready(function() {
 
@@ -34,8 +34,8 @@ $(document).ready(function() {
 
     new Package();
 
-    // Salon Interaction
-    new SalonTable();
+    // Management Interaction (Cashier + Manager)
+    new ManagementTable();
     new SaveNewCustomer();
     new SaveCustomerVisits();
     new RenewCustomer();

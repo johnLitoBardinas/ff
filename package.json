@@ -16,7 +16,6 @@
         "cross-env": "^7.0",
         "jquery": "^3.2",
         "laravel-mix": "^5.0.1",
-        "lodash": "^4.17.13",
         "popper.js": "^1.12",
         "resolve-url-loader": "^3.1.0",
         "sass": "^1.15.2",
@@ -29,5 +28,13 @@
         "parsleyjs": "^2.9.2",
         "pikaday": "^1.8.0",
         "sweetalert2": "^9.17.1"
+    },
+    "standard": {
+        "ignore": [
+            "**/out/",
+            "/lib/select2/",
+            "/lib/ckeditor/",
+            "tmp.js"
+        ]
     }
 }

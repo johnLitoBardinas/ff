@@ -6,10 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class CustomerPackage extends Model
 {
-
-    // Disabling the default created_at, updated_at.
-    public $timestamps = false;
-
     // Model custom table name.
     protected $table = 'customer_package';
 
@@ -23,17 +19,27 @@ class CustomerPackage extends Model
         'user_id',
         'customer_id',
         'reference_no',
+        'package_type',
         'payment_type',
-        // 'salon_package_status', // Salon Package Status
+        'salon_package_status', // Salon Package Status
         'salon_package_start', // Salon Start Date
         'salon_package_end', // Salon End Date
-        // 'gym_package_status', // Gym Package Status
+        'gym_package_status', // Gym Package Status
         'gym_package_start', // Gym Package Start Date
         'gym_package_end', // Gym Package End Date
-        // 'spa_package_status', // Spa Package Status
+        'spa_package_status', // Spa Package Status
         'spa_package_start', // Spa Start Date
         'spa_package_end', // Spa End Date
     ];
+
+    // Disabling the default created_at, updated_at.
+    public $timestamps = false;
+
+    // Mutators for reference number converting to uppercase
+    public function setReferenceNoAttribute($value)
+    {
+        $this->attributes['reference_no'] = strtoupper($value);
+    }
 
     // One CustomerPackage Row can be in Many CustomerVisits.
     public function customer_visits() //phpcs:ignore
@@ -63,5 +69,35 @@ class CustomerPackage extends Model
     public function package()
     {
         return $this->belongsTo(Package::class, 'package_id');
+    }
+
+    // One Customer Package Model can be related to (n) Gym Visitation Model.
+    public function gym_visitation() // phpcs:ignore
+    {
+        return $this->hasMany(GymVisitation::class, 'customer_package_id');
+    }
+
+    // Check if the Salon Package is Expired.
+    public function isSalonServiceExpired()
+    {
+        return now()->greaterThanOrEqualTo($this->salon_package_end);
+    }
+
+    // Check if the Gym Package is Expired.
+    public function isGymServiceExpired()
+    {
+        return now()->greaterThanOrEqualTo($this->gym_package_end);
+    }
+
+    // Check if the Spa Service for the particular Customer Package is now Expired.
+    public function isSpaServiceExpired()
+    {
+        return now()->greaterThanOrEqualTo($this->spa_package_end);
+    }
+
+    // Determining the main package type of a customer package
+    public function packageType()
+    {
+        return $this->package->package_type;
     }
 }

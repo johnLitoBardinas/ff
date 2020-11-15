@@ -6,9 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class CustomerVisits extends Model
 {
-    // Disabling the default timestamp.
-    public $timestamps = false;
-
     // override table name.
     protected $table = 'customer_visits';
 
@@ -25,6 +22,9 @@ class CustomerVisits extends Model
         'customer_associate',
         'customer_associate_picture',
     ];
+
+    // Disabling the default timestamp.
+    public $timestamps = false;
 
     // Many Row in Customer Visits can be related to ONE Customer.
     public function customer()

@@ -8,7 +8,6 @@ use Livewire\Component;
 
 class SuperAdminSettings extends Component
 {
-
     protected $listeners = [ 'onUpdateUserEmail' => '$refresh' ];
 
     public $users;
@@ -18,13 +17,9 @@ class SuperAdminSettings extends Component
     public function mount()
     {
         // Users excluding superadmin
-        $this->users = User::where('email', '!=', 'sadmin@ff.com')->get();
+        $this->users = User::where('email', '!=', config('constant.super_admin_email'))->get();
 
         $this->superAdmin = Auth::user()->email;
-    }
-
-    public function emailSave()
-    {
     }
 
     public function render()

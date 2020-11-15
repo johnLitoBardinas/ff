@@ -12,7 +12,6 @@ class IsUserIdExist implements Rule
      */
     public function __construct()
     {
-        //
     }
 
     /**

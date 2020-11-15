@@ -1,6 +1,6 @@
-const utils = require('../utils');
-
 import Swal from 'sweetalert2';
+
+import utils from '../utils';
 
 export default class SaveBranch {
 

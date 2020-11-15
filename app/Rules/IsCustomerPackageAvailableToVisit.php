@@ -2,19 +2,21 @@
 
 namespace App\Rules;
 
-use App\CustomerVisits;
+use App\CustomerPackage;
+use App\Enums\PackageType;
+use App\Repositories\CustomerPackageRepository;
 use Illuminate\Contracts\Validation\Rule;
 
 class IsCustomerPackageAvailableToVisit implements Rule
 {
-    private $packageVisitsLimit;
+    private $packageType;
 
     /**
      * Create a new rule instance.
      */
-    public function __construct(int $packageVisitsLimit)
+    public function __construct(string $packageType)
     {
-        $this->packageVisitsLimit = $packageVisitsLimit;
+        $this->packageType = $packageType;
     }
 
     /**
@@ -22,7 +24,14 @@ class IsCustomerPackageAvailableToVisit implements Rule
      */
     public function passes($attribute, $value)
     {
-        return CustomerVisits::where('customer_package_id', $value)->count() < $this->packageVisitsLimit;
+        $customerPackage = CustomerPackage::find($value);
+
+        // Package Type is Gym make sure the service is not expired
+        if ($this->packageType === PackageType::GYM && ! $customerPackage->isGymServiceExpired()) {
+            return true;
+        }
+
+        return CustomerPackageRepository::totalVisitation($value, $this->packageType) > count(CustomerPackageRepository::customerTotalVisits($value, $this->packageType));
     }
 
     /**

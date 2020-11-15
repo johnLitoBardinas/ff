@@ -2,13 +2,13 @@
 
 namespace App\Http\Controllers\Auth;
 
-use App\Rules\IsActive;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
+use App\Rules\IsUserActiveByEmail;
 use App\Rules\IsUserBranchDeactivated;
 use App\Rules\IsUserCanAccessBranch;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -32,18 +32,20 @@ class LoginController extends Controller
      */
     protected function validateLogin(Request $request)
     {
+        setcookie('old_hometype', request('home_type'), time() + 3600);
+
         $request->validate([
             'email' => [
                 'bail',
                 'required',
                 'string:max:191',
-                new IsActive(),
+                new IsUserActiveByEmail(),
                 new IsUserBranchDeactivated(),
-                new IsUserCanAccessBranch($request->input('home_type'))
+                new IsUserCanAccessBranch($request->input('home_type')),
             ],
             'password' => [
                 'required',
-                'string'
+                'string',
             ],
         ]);
     }

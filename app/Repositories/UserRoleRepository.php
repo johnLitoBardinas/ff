@@ -8,21 +8,13 @@ use Illuminate\Database\Eloquent\Collection;
 
 class UserRoleRepository
 {
-
     /**
      * Getting the list of User Role
      *
-     * @param String $type
-     * @return Role[]|Collection|string
+     * @return Collection|null
      */
-    public static function all(string $type)
+    public static function getAll()
     {
-        $userRoles = Role::where('name', '!=', UserType::SUPER_ADMIN)->get();
-
-        if ($type === 'json') {
-            return $userRoles->toJson();
-        }
-
-        return $userRoles;
+        return Role::where('name', '!=', UserType::SUPER_ADMIN)->get();
     }
 }

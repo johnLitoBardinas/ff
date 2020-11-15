@@ -12,7 +12,7 @@
     @livewireStyles
 </head>
 <body>
-    <div id="app">
+    <div id="app" class="app">
         @auth
             @livewire('nav')
         @endauth

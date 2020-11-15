@@ -1,7 +1,7 @@
 <?php
 
 use App\Enums\CustomerPackageStatus;
-use Carbon\Carbon;
+use App\Enums\PackageType;
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
@@ -19,6 +19,7 @@ class CreateCustomerPackageTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('customer_id');
             $table->string('reference_no');
+            $table->enum('package_type', PackageType::getValues());
             $table->enum('payment_type', Config::get('constant.payment_options'));
             $table->enum('salon_package_status', CustomerPackageStatus::getValues())->default(CustomerPackageStatus::ACTIVE);
             $table->date('salon_package_start');
@@ -48,7 +49,6 @@ class CreateCustomerPackageTable extends Migration
         });
 
         Schema::dropIfExists('customer_package');
-
     }
 
 }

@@ -7,13 +7,13 @@ use Illuminate\Database\Eloquent\Model;
 
 class Role extends Model
 {
-    public $timestamps = false;
-
     protected $table = 'role';
 
     protected $primaryKey = 'role_id';
 
     protected $fillable = [ 'name' ];
+
+    public $timestamps = false;
 
     // One to Many (1{Role} : n{User})
     public function users()

@@ -70,5 +70,10 @@
 
     }
 
+    @include breakpoint-down-width($lg-BreakPoint) {
+        .switch {
+            position: relative;
+        }
+    }
 
 }

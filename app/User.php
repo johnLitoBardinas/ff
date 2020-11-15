@@ -2,13 +2,16 @@
 
 namespace App;
 
-use App\Role;
 use App\Branch;
+use App\CustomerPackage;
+use App\CustomerVisits;
+use App\Enums\BranchType;
 use App\Enums\UserStatus;
 use App\Enums\UserType;
-use Laravel\Sanctum\HasApiTokens;
-use Illuminate\Notifications\Notifiable;
+use App\Role;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -30,7 +33,7 @@ class User extends Authenticatable
         'mobile_number',
         'branch_id',
         'role_id',
-        'api_token'
+        'api_token',
     ];
 
     // Guarded properties.
@@ -61,6 +64,12 @@ class User extends Authenticatable
     public function customer_visits()  //phpcs:ignore
     {
         return $this->hasMany(CustomerVisits::class, 'user_id');
+    }
+
+    // One to Many
+    public function gym_visitation() //phpcs:ignore
+    {
+        return $this->hasMany(GymVisitation::class, 'user_id');
     }
 
     /**
@@ -103,8 +112,28 @@ class User extends Authenticatable
         return $this->user_status === UserStatus::ACTIVE;
     }
 
+    /**
+     * Get the user branch type refer to BranchType Enum.
+     */
     public function branchType()
     {
         return $this->branch->branch_type;
+    }
+
+    public function branchName()
+    {
+        return $this->branch->branch_name;
+    }
+
+    /**
+     * Get the allowed User Access Page. see AccessHomeType Enum.
+     */
+    public function accessHomePage()
+    {
+        if ($this->isAdmin() || $this->isSuperAdmin()) {
+            return BranchType::ADMIN;
+        }
+
+        return $this->branchType();
     }
 }

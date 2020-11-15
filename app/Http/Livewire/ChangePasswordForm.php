@@ -3,16 +3,46 @@
 namespace App\Http\Livewire;
 
 use App\User;
-use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Livewire\Component;
 
 class ChangePasswordForm extends Component
 {
+    // Hold the current password hashed format.
     public $currentUserPasswordHashed;
+
+    // Verification for the old password.
     public $oldPassword;
+
+    // New Desired Password.
     public $password;
+
+    // Confirmation Password.
     public $password_confirmation;
+
+    /**
+     * Return the array of rules for change password validation.
+     */
+    private function changePasswordValidationRules()
+    {
+        return [
+            'oldPassword' => [
+                'required',
+                fn ($attribute, $value, $fail) => ! Hash::check($value, $this->currentUserPasswordHashed) ? $fail('Incorrect Old Password') : true,
+            ],
+            'password' => 'required|confirmed',
+            'password_confirmation' => 'required',
+        ];
+    }
+
+    /**
+     * Rendering the component to the view.
+     */
+    public function render()
+    {
+        return view('livewire.change-password-form');
+    }
 
     /**
      * Mounting the component and initializing properties.
@@ -22,6 +52,9 @@ class ChangePasswordForm extends Component
         $this->currentUserPasswordHashed = Auth::user()->password;
     }
 
+    /**
+     * Everytime the component properties change.
+     */
     public function updated($field)
     {
         $this->validateOnly($field, $this->changePasswordValidationRules());
@@ -47,28 +80,5 @@ class ChangePasswordForm extends Component
             $this->oldPassword = '';
             $this->password = '';
         }
-    }
-
-    /**
-     * Return the array of rules for change password validation.
-     */
-    private function changePasswordValidationRules()
-    {
-        return [
-            'oldPassword' => [
-                'required',
-                fn($attribute, $value, $fail) => ! Hash::check($value, $this->currentUserPasswordHashed) ? $fail('Incorrect Old Password') : true
-            ],
-            'password' => 'required|confirmed',
-            'password_confirmation' => 'required'
-        ];
-    }
-
-    /**
-     * Rendering the component to the view.
-     */
-    public function render()
-    {
-        return view('livewire.change-password-form');
     }
 }

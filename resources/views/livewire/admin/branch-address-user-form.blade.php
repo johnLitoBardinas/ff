@@ -1,4 +1,4 @@
-<div class="col-md-5 offset-md-1 vh-59 overflow-y-scroll chrome-hide-scroll admin-branches-form" id="admin-branches-form">
+<div class="mt-3 mt-lg-0 col-lg-5 offset-lg-1 vh-59 overflow-y-scroll chrome-hide-scroll admin-branches-form" id="admin-branches-form">
 
     <div x-data="{
         branchName: '{{$branchName}}',
@@ -19,7 +19,6 @@
                 <a href="javascript:void(0);"
                 class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__delete position-absolute l-0 d-none"
                 data-branchid="{{$currentBranchId}}"
-                {{-- :class="{ 'd-flex' : action === 'editBranch' }" --}}
                 title="Click Here to Remove the Branch."
                 id="btn-destroy-branch"
                 >DELETE</a>

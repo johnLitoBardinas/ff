@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\CustomerPackage;
+use App\CustomerVisits;
 use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -41,5 +43,11 @@ class Branch extends Model
     public function customer_visits() //phpcs:ignore
     {
         return $this->hasMany(CustomerVisits::class, 'branch_id');
+    }
+
+    // One Branch Model can be related to (n) of GymVisitation Model.
+    public function gym_visitation() //phpcs:ignore
+    {
+        return $this->hasMany(GymVisitation::class, 'branch_id');
     }
 }

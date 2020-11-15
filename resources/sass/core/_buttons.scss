@@ -1,4 +1,4 @@
-@mixin include_hover_icon($before, $after) {
+@mixin hover_icon($before, $after) {
     &:before {
         content: '';
         @extend %icon-style;
@@ -28,7 +28,7 @@
     }
 }
 
-%salon-table-icons {
+%management-table-icons {
     &:before {
         width: 25px !important;
         height: 25px !important;
@@ -70,42 +70,46 @@
         line-height: normal;
 
         &__delete {
-            @include include_hover_icon('../../images/svg/delete_icon_violet.svg', '../../images/svg/delete_icon_white.svg');
+            @include hover_icon('../../images/svg/delete_icon_violet.svg', '../../images/svg/delete_icon_white.svg');
         }
 
         &__deactivate {
-            @include include_hover_icon('../../images/svg/deactivate_icon_violet.svg', '../../images/svg/deactivate_icon_black.svg');
+            @include hover_icon('../../images/svg/deactivate_icon_violet.svg', '../../images/svg/deactivate_icon_black.svg');
         }
 
         &__save {
-            @include include_hover_icon('../../images/svg/save_icon_violet.svg', '../../images/svg/save_icon_white.svg');
+            @include hover_icon('../../images/svg/save_icon_violet.svg', '../../images/svg/save_icon_white.svg');
+        }
+
+        &__renew {
+            @include hover_icon('../../images/svg/replay_icon_violet.svg', '../../images/svg/replay_icon_white.svg');
         }
 
         &__adduser {
-            @include include_hover_icon('../../images/svg/add_icon_violet.svg', '../../images/svg/add_icon_white.svg');
+            @include hover_icon('../../images/svg/add_icon_violet.svg', '../../images/svg/add_icon_white.svg');
         }
 
         &__edit {
-            @include include_hover_icon('../../images/svg/edit_icon_violet.svg', '../../images/svg/edit_icon_white.svg');
+            @include hover_icon('../../images/svg/edit_icon_violet.svg', '../../images/svg/edit_icon_white.svg');
         }
 
         &__exit {
-            @include include_hover_icon('../../images/svg/exit_icon_violet.svg', '../../images/svg/exit_icon_white.svg');
+            @include hover_icon('../../images/svg/exit_icon_violet.svg', '../../images/svg/exit_icon_white.svg');
         }
 
         &__open-row {
-            @include include_hover_icon('../../images/svg/view_more.svg', '../../images/svg/view_more.svg');
-            @extend %salon-table-icons;
+            @include hover_icon('../../images/svg/view_more.svg', '../../images/svg/view_more.svg');
+            @extend %management-table-icons;
         }
 
         &__close-row {
-            @include include_hover_icon('../../images/svg/view_less.svg', '../../images/svg/view_less.svg');
-            @extend %salon-table-icons;
+            @include hover_icon('../../images/svg/view_less.svg', '../../images/svg/view_less.svg');
+            @extend %management-table-icons;
         }
 
         &__edit-row {
-            @include include_hover_icon('../../images/svg/table_edit.svg', '../../images/svg/table_edit.svg');
-            @extend %salon-table-icons;
+            @include hover_icon('../../images/svg/table_edit.svg', '../../images/svg/table_edit.svg');
+            @extend %management-table-icons;
         }
 
     }

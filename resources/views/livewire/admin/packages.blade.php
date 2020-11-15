@@ -103,10 +103,10 @@
 
                                  <strong class="text-primary uc-first" x-text="packageStatus"></strong>
 
-                                 <a href="javascript:void(0);"
+                                 {{-- <a href="javascript:void(0);"
                                  title="Delete Package."
-                                class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__delete" data-action="delete" data-packageid="{{$package['package_id']}}">
-                                 DELETE</a>
+                                class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__delete d-none" data-action="delete" data-packageid="{{$package['package_id']}}">
+                                 DELETE</a> --}}
 
                                </div>
 

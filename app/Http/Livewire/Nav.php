@@ -2,9 +2,8 @@
 
 namespace App\Http\Livewire;
 
-use App\Branch;
-use App\Enums\BranchStatus;
 use App\Enums\BranchType;
+use App\Repositories\BranchRepository;
 use Livewire\Component;
 
 class Nav extends Component
@@ -12,29 +11,48 @@ class Nav extends Component
     // Store the Current Logo.
     public $logo;
 
-    // Store the CUrrent Home Url
+    // Store the CUrrent Home Url.
     public $homeUrl;
 
+    // Total Active branch counter.
     public $totalActiveBranchCount;
 
+    // Total Salon Branch Counter.
     public $totalActiveSalonBranchCount;
 
+    // Total Gym Branch Counter.
     public $totalActiveGymBranchCount;
 
+    // Total Spa Branch Counter.
     public $totalActiveSpaBranchCount;
+
+    // Current Management Branch.
+    public $currentUserBranch;
+
+    /**
+     * Supplying branch information.
+     */
+    private function updateBranchInfo()
+    {
+        $this->totalActiveBranchCount = BranchRepository::getBranchCount();
+        $this->totalActiveSalonBranchCount = BranchRepository::getBranchCount(BranchType::SALON);
+        $this->totalActiveGymBranchCount = BranchRepository::getBranchCount(BranchType::GYM);
+        $this->totalActiveSpaBranchCount = BranchRepository::getBranchCount(BranchType::SPA);
+    }
 
     /**
      * Mounting component properties data.
      */
     public function mount()
     {
-        $this->getTotalActiveBranchCount();
-        $this->getTotalSalonBranchCount();
-        $this->getTotalGymBranchCount();
-        $this->getTotalSpaBranchCount();
-
         $this->logo = session('logo');
         $this->homeUrl = session('homeUrl');
+
+        if (! empty(session('userAccessType'))) {
+            $this->currentUserBranch = auth()->user()->branchName();
+        }
+
+        $this->updateBranchInfo();
     }
 
     /**
@@ -42,43 +60,7 @@ class Nav extends Component
      */
     public function hydrate()
     {
-        $this->getTotalActiveBranchCount();
-        $this->getTotalSalonBranchCount();
-        $this->getTotalGymBranchCount();
-        $this->getTotalSpaBranchCount();
-    }
-
-
-    /**
-     * Returning the current active totalBranch.
-     */
-    private function getTotalActiveBranchCount()
-    {
-        $this->totalActiveBranchCount = Branch::where('branch_status', BranchStatus::ACTIVE)->where('branch_type', '!=', BranchType::SUPER_ADMIN)->count();
-    }
-
-    /**
-     * Get the total (n) count of active Salon Branch.
-     */
-    private function getTotalSalonBranchCount()
-    {
-        $this->totalActiveSalonBranchCount = Branch::where('branch_type', BranchType::SALON)->where('branch_status', BranchStatus::ACTIVE)->count();
-    }
-
-    /**
-     * Get the total (n) count of active Gym Branch.
-     */
-    private function getTotalGymBranchCount()
-    {
-        $this->totalActiveGymBranchCount = Branch::where('branch_type', BranchType::GYM)->where('branch_status', BranchStatus::ACTIVE)->count();
-    }
-
-    /**
-     * Get the total (n) count of active Spa Branch.
-     */
-    private function getTotalSpaBranchCount()
-    {
-        $this->totalActiveSpaBranchCount = Branch::where('branch_type', BranchType::SPA)->where('branch_status', BranchStatus::ACTIVE)->count();
+        $this->updateBranchInfo();
     }
 
     /**

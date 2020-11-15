@@ -2,9 +2,7 @@
 
 namespace App;
 
-use App\CustomerVisits;
 use App\CustomerPackage;
-use App\Http\Controllers\Api\CustomerPackageController;
 use Illuminate\Database\Eloquent\Model;
 
 class Customer extends Model

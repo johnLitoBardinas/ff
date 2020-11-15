@@ -1,5 +1,6 @@
-const utils = require('../utils');
 import Swal from 'sweetalert2';
+
+import utils from '../utils';
 
 export default class ChangeUserEmail {
 
@@ -30,7 +31,7 @@ export default class ChangeUserEmail {
                 'email': newEmail
             })
             .then((response) => {
-                Swal.fire(utils.swal2Option('success', 'Success!!', `User email: ${useroldemail} is now update to ${newEmail}`));
+                Swal.fire(utils.swal2Option('success', 'Success!!', `User email: ${useroldemail} is now updated to ${newEmail}`));
                 window.livewire.emit('onUpdateUserEmail');
             })
             .catch((error) => {
@@ -38,8 +39,7 @@ export default class ChangeUserEmail {
             })
             .finally((params) => {
                 $(e.currentTarget).attr('disabled', false);
-            })
-            // console.log('dataset', e.currentTarget.dataset);
+            });
         });
     }
 

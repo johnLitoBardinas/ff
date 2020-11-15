@@ -83,12 +83,62 @@ return [
         PropertyTypeHintSniff::class,
         ReturnTypeHintSniff::class,
         UselessFunctionDocCommentSniff::class,
+        ObjectCalisthenics\Sniffs\Classes\ForbiddenPublicPropertySniff::class,
+        SlevomatCodingStandard\Sniffs\ControlStructures\DisallowEmptySniff::class,
+        PHP_CodeSniffer\Standards\PSR1\Sniffs\Methods\CamelCapsMethodNameSniff::class,
+        PhpCsFixer\Fixer\Phpdoc\PhpdocIndentFixer::class
     ],
 
     'config' => [
         ForbiddenPrivateMethods::class => [
             'title' => 'The usage of private methods is not idiomatic in Laravel.',
         ],
+        \ObjectCalisthenics\Sniffs\Metrics\MethodPerClassLimitSniff::class => [
+            'maxCount' => 13,
+        ],
+        \NunoMaduro\PhpInsights\Domain\Insights\CyclomaticComplexityIsHigh::class => [
+            'maxComplexity' => 8,
+        ],
+        \PhpCsFixer\Fixer\Import\OrderedImportsFixer::class => [
+            'sort_algorithm' => 'alpha', // possible values ['alpha', 'length', 'none']
+        ],
+        \PHP_CodeSniffer\Standards\Generic\Sniffs\Files\LineLengthSniff::class => [
+            'lineLimit' => 110,
+            'absoluteLineLimit' => 120,
+            'ignoreComments' => false,
+        ],
+        \PhpCsFixer\Fixer\ClassNotation\OrderedClassElementsFixer::class => [
+            'order' => [ // List of strings defining order of elements.
+                'use_trait',
+                'constant_protected',
+                'constant_private',
+                'constant_public',
+                'property_protected',
+                'property_private',
+                'property_public',
+                'construct',
+                'destruct',
+                'magic',
+                'phpunit',
+                'method_protected',
+                'method_private',
+                'method_public',
+            ],
+            'sortAlgorithm' => 'none' // possible values ['none', 'alpha']
+        ],
+        \PhpCsFixer\Fixer\Basic\BracesFixer::class => [
+            'allow_single_line_closure' => true,
+            'position_after_anonymous_constructs' => 'same', // possible values ['same', 'next']
+            'position_after_control_structures' => 'same', // possible values ['same', 'next']
+            'position_after_functions_and_oop_constructs' => 'next', // possible values ['same', 'next']
+        ],
+        \ObjectCalisthenics\Sniffs\Files\FunctionLengthSniff::class => [
+            'maxLength' => 66,
+        ],
+        \ObjectCalisthenics\Sniffs\NamingConventions\ElementNameMinimalLengthSniff::class => [
+            'minLength' => 3,
+            'allowedShortNames' => ['i', 'id', 'to', 'up', 'IN', 'OUT'],
+        ]
     ],
 
     /*

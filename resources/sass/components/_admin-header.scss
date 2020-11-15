@@ -1,3 +1,20 @@
 .admin-header {
     background-color: $gray;
+
+    @include breakpoint-down-width($lg-BreakPoint) {
+        .icons__counts {
+            padding: 0;
+            margin-bottom: 0 !important;
+
+            img {
+                display: none;
+            }
+
+        }
+
+        .user-profile {
+            display: none;
+        }
+    }
+
 }

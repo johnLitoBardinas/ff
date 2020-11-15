@@ -3,11 +3,11 @@
     <div class="container ">
         <div class="d-flex align-items-center justify-content-center py-5 admin-header__logo cursor-pointer">
             <a href="{{ $homeUrl }}" title="Click to return home.">
-                <img src="{{ asset( $logo ) }}" alt="Fix and Free Salon" />
+                <img src="{{ asset( $logo ) }}" alt="FNF Account Type Logo" style="max-width:100%;"/>
             </a>
         </div>
         {{-- Header Logo --}}
-        <div class="row justify-content-between">
+        <div class="row justify-content-between ">
             <div class="col-md-4 d-flex">
                 @can('access-admin')
                     <span class="d-flex align-items-baseline">
@@ -26,8 +26,12 @@
                     </span>
                 @endcan
 
+                @can('access-management')
+                    <h6>{{$currentUserBranch}} (<strong>{{session('userAccessType')}}</strong>)</h6>
+                @endcan
+
             </div>
-            <div class="col-md-4 mb-3">
+            <div class="col-md-5 mb-3 icons__counts">
                 <ul class="list-unstyled d-flex justify-content-md-around p-0 m-0">
                     <li>
                        <span>
@@ -55,12 +59,12 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-md-4 justify-content-end">
-                <ul class="list-unstyled d-flex justify-content-end p-0 m-0">
+            <div class="col-md-3 justify-content-between justify-content-md-end">
+                <ul class="list-unstyled d-flex justify-content-between justify-content-md-end p-0 m-0">
                     <li>
                         <a href="{{ route( 'profile' ) }}" class="text-dark text-decoration-none">
                             {{ Auth::user()->first_name .' '.Auth::user()->last_name }}
-                            <img src="{{ asset( 'svg/icons/profile.svg' ) }}" alt="Icon Profile" class="ml-2">
+                            <img src="{{ asset( 'svg/icons/profile.svg' ) }}" alt="Icon Profile" class="ml-2 user-profile">
                         </a>
                     </li>
                     <li class="ml-5 cursor-pointer" title="CLick to logout.">

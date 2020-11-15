@@ -22,7 +22,7 @@ This may include the ff:
 }
 
 hr {
-background: $primary-color;
+    background: $primary-color;
 }
 
 /**
@@ -30,6 +30,13 @@ background: $primary-color;
 */
 .is-invalid {
     border: thin solid #dc3545 !important;
+}
+
+// app main container
+.app {
+    @include breakpoint-down-height(850px) {
+        padding-bottom: 5rem;
+    }
 }
 
 // Override the default media query bootstrap.
@@ -41,6 +48,12 @@ background: $primary-color;
 
     @include media('>=desktop') {
         max-width: $Desktop-max-width;
+    }
+
+    // 1119px Down
+    @include breakpoint-down-width(1199px) {
+        max-width: calc(100% - 25px);
+        padding: 0px;
     }
 
     &--new-customer,

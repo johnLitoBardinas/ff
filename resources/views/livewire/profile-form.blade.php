@@ -1,7 +1,5 @@
 <div>
     <form method="POST" wire:submit.prevent="profileSubmit">
-
-        {{-- Alert Component Success/ Error --}}
         @include('alert-message')
 
         @csrf

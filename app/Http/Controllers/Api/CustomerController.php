@@ -7,7 +7,6 @@ use Illuminate\Http\Request;
 
 class CustomerController extends ApiController
 {
-
     /**
      * Store new Customer Resource.
      */
@@ -15,7 +14,7 @@ class CustomerController extends ApiController
     {
         $customerData = $request->validate([
             'first_name' => ['required', 'string', 'max:191'],
-            'last_name' => ['required', 'string', 'max:191']
+            'last_name' => ['required', 'string', 'max:191'],
         ]);
 
         $customer = Customer::create($customerData);

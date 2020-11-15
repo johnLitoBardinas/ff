@@ -12682,6 +12682,10 @@ WIDTH
   width: 90%;
 }
 
+.w-70 {
+  width: 70%;
+}
+
 .w-80 {
   width: 80%;
 }
@@ -12765,6 +12769,22 @@ All Custom SASS Mixins here.
 
 ==================================================================
 **/
+
+/**
+ * Max Width rules.
+ */
+
+/**
+ * Min Width applied rules.
+*/
+
+/**
+ * Set a maxHeight media query.
+ */
+
+/**
+ * Apply declartion minHeight media query.
+ */
 
 /**
 Handles the general breakpoints for the application.
@@ -13114,6 +13134,8 @@ This may include the ff:
 .btn.btn-icon__edit:before,
 .btn.btn-icon__adduser:hover:before,
 .btn.btn-icon__adduser:before,
+.btn.btn-icon__renew:hover:before,
+.btn.btn-icon__renew:before,
 .btn.btn-icon__save:hover:before,
 .btn.btn-icon__save:before,
 .btn.btn-icon__deactivate:hover:before,
@@ -13141,6 +13163,12 @@ hr {
   border: thin solid #dc3545 !important;
 }
 
+@media screen and (max-height: 850px) {
+  .app {
+    padding-bottom: 5rem;
+  }
+}
+
 @media (min-width: 1920px) {
   .container {
     max-width: calc(100% - 150px);
@@ -13150,6 +13178,13 @@ hr {
 @media (min-width: 1366px) {
   .container {
     max-width: calc(100vw - 150px);
+  }
+}
+
+@media screen and (max-width: 1199px) {
+  .container {
+    max-width: calc(100% - 25px);
+    padding: 0px;
   }
 }
 
@@ -13251,6 +13286,20 @@ button:focus {
   width: 15px;
   height: 15px;
   background-image: url(/images/save_icon_white.svg?52eb22a2ba8bc74a00670b5e0e78ae81);
+}
+
+.btn.btn-icon__renew:before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url(/images/replay_icon_violet.svg?e7945661277893b734b62736ecbfe4c6);
+}
+
+.btn.btn-icon__renew:hover:before {
+  content: "";
+  width: 15px;
+  height: 15px;
+  background-image: url(/images/replay_icon_white.svg?0bd3160b7bb3ff4aba1537bb04b3c46f);
 }
 
 .btn.btn-icon__adduser:before {
@@ -13403,6 +13452,12 @@ button:focus {
   border-radius: 50%;
 }
 
+@media screen and (max-width: 1024px) {
+  .switcher .switch {
+    position: relative;
+  }
+}
+
 /**
     All ICons will reside here  apart from the ff:
 
@@ -13443,8 +13498,33 @@ button:focus {
   height: 100vh;
 }
 
+.login__form {
+  width: calc(100% - 20px);
+}
+
+@media screen and (min-width: 640px) {
+  .login__form {
+    max-width: 400px;
+  }
+}
+
 .admin-header {
   background-color: #F3F3F3;
+}
+
+@media screen and (max-width: 1024px) {
+  .admin-header .icons__counts {
+    padding: 0;
+    margin-bottom: 0 !important;
+  }
+
+  .admin-header .icons__counts img {
+    display: none;
+  }
+
+  .admin-header .user-profile {
+    display: none;
+  }
 }
 
 .admin-searchbar input.search__input {
@@ -13495,6 +13575,14 @@ button:focus {
 
 .admin-branches .branch__info img {
   width: 40px;
+}
+
+@media screen and (max-width: 1024px) {
+  .admin-branches,
+  .admin-branches-form {
+    height: auto;
+    overflow-y: none;
+  }
 }
 
 .package-status {

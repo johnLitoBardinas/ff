@@ -3,8 +3,8 @@
 namespace App\Http\Livewire;
 
 use App\User;
-use Livewire\Component;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
 
 class ProfileForm extends Component
 {

@@ -28,9 +28,9 @@ class IsCustomerHasPackage implements Rule
     public function passes($attribute, $value)
     {
         return CustomerPackage::where('customer_id', $this->customerId)
-                                ->where($this->packageStatus, 'active')
-                                ->pluck('customer_package_id')
-                                ->contains($value);
+            ->where($this->packageStatus, 'active')
+            ->pluck('customer_package_id')
+            ->contains($value);
     }
 
     /**

@@ -5,7 +5,6 @@ namespace App\Http\Controllers\Api;
 use App\Http\Requests\Package as RequestsPackage;
 use App\Package;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
 
 class PackageController extends ApiController
 {
@@ -39,39 +38,14 @@ class PackageController extends ApiController
 
     /**
      * Display the specified resource.
+     *
      * @param Package $package
+     *
      * @return JsonResponse
      */
     public function show(Package $package)
     {
         return $this->showOne($package);
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, Package $package)
-    {
-        // Temporary Hidden.
-        // if ($request->has('package_name')) {
-        //     $package->package_name = $request->package_name;
-        // }
-
-        // if ($request->has('package_description')) {
-        //     $package->package_description = $request->package_description;
-        // }
-
-        // if ($request->has('package_price')) {
-        //     $package->package_price = $request->package_price;
-        // }
-
-        // if (!$package->isDirty()) {
-        //     return $this->errorResponse('You need to specify a different value to update', 422);
-        // }
-
-        // $package->save();
-
-        // return $this->showOne($package);
     }
 
     /**

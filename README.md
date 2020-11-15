@@ -1,4 +1,4 @@
-![FnF Logo](https://fixandfree.herokuapp.com/svg/fandf.co_horizontal.svg)
+<p align="center"><a href="https://www.ffcustomerdata.xyz" target="_blank"><img src="https://fixandfree.herokuapp.com/svg/fandf.co_horizontal.svg" width="400"></a></p>
 
 &nbsp;
 
@@ -40,12 +40,12 @@
 > `docker-compose run --rm composer lint:psr12`
 
 ### Run below command to check your PHP Insights Score
-_NOTE!! **85%** is the acceptable score_ for all **Code**, **Complexity**, **Architecture**, **Style** so make your code pass that threshold.
-
-> using direct bin `./vendor/bin/phpinsights`
-<br/>
-
-> using php artisan `php artisan phpinsights`
-<br/>
+> `docker-compose run --rm artisan insights`
+The acceptable code score for
+* **CODE** - **85%**
+* **COMPLEXITY** - **85%**
+* **Architecture** - **85%**
+* **Style** - **85%**
+<br/> so make your code **PASS** that threshold.
 
 > using the composer container `docker-compose run --rm composer run test:insights`
