@@ -22,3 +22,21 @@ All Custom SASS Mixins here.
 		@content;
 	}
 }
+
+/**
+ * Set a maxHeight media query.
+ */
+ @mixin breakpoint-down-height($max-height: 1024px) {
+	@media screen and (max-height: $max-height) {
+		@content;
+	}
+}
+
+/**
+ * Apply declartion minHeight media query.
+ */
+ @mixin breakpoint-up-height($min-height: 1024px) {
+	@media screen and (min-height: $min-height) {
+		@content;
+	}
+}

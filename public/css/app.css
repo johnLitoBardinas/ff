@@ -12779,6 +12779,14 @@ All Custom SASS Mixins here.
 */
 
 /**
+ * Set a maxHeight media query.
+ */
+
+/**
+ * Apply declartion minHeight media query.
+ */
+
+/**
 Handles the general breakpoints for the application.
 ==================================================================
 
@@ -13153,6 +13161,12 @@ hr {
 
 .is-invalid {
   border: thin solid #dc3545 !important;
+}
+
+@media screen and (max-height: 850px) {
+  .app {
+    padding-bottom: 5rem;
+  }
 }
 
 @media (min-width: 1920px) {
