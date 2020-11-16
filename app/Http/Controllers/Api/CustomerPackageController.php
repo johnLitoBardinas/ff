@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Api;
 
 use App\Customer;
 use App\CustomerPackage;
+use App\Enums\CustomerPackageStatus;
 use App\Http\Requests\CustomerPackage as RequestsCustomerPackage;
 use App\Package;
 use Carbon\Carbon;
@@ -27,7 +28,7 @@ class CustomerPackageController extends ApiController
         // Get the Package Model here..
         $chosenPackage = Package::findOrFail($request->package_id);
 
-        $customerPackage = CustomerPackage::create([
+        $data = [
             'branch_id' => $request->branch_id,
             'package_id' => $request->package_id,
             'user_id' => $request->user_id,
@@ -41,7 +42,21 @@ class CustomerPackageController extends ApiController
             'gym_package_end' => Carbon::now()->addDays($chosenPackage->gym_days_valid_count + 1),
             'spa_package_start' => Carbon::now(),
             'spa_package_end' => Carbon::now()->addDays($chosenPackage->spa_days_valid_count + 1),
-        ]);
+        ];
+
+        if (empty($chosenPackage->salon_no_of_visits)) {
+            $data['salon_package_status'] = CustomerPackageStatus::EXPIRED;
+        }
+
+        if (empty($chosenPackage->gym_no_of_visits)) {
+            $data['gym_package_status'] = CustomerPackageStatus::EXPIRED;
+        }
+
+        if (empty($chosenPackage->spa_no_of_visits)) {
+            $data['spa_package_status'] = CustomerPackageStatus::EXPIRED;
+        }
+
+        $customerPackage = CustomerPackage::create($data);
 
         return $this->showOne($customerPackage);
     }
