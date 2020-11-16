@@ -24,7 +24,7 @@
                   <th class="text-primary font-weight-bold">STATUS</th>
                </tr>
            </thead>
-           <tbody style="white-space:nowrap;" class="{{$row->reference_no === $defaultRefNo ? 'd-block' : 'd-none'}}">
+           <tbody style="white-space:nowrap;" class="{{$row->reference_no === $defaultRefNo ? 'd-block' : ''}}">
 
                 @foreach ($servicesType as $type)
                     @php

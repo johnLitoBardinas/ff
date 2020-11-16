@@ -14,7 +14,7 @@
                     aria-label="Enter Reference No or Customer Name"
                     wire:model.lazy="refNoOrCustomerName"
                     />
-                    <button type="submit" title="Click to Search Customer Name." class="cursor-pointer"><img src="{{ asset( 'svg/icons/search.svg' ) }}" alt="Search Icon"></button>
+                    <button type="submit" title="Click to search" class="cursor-pointer"><img src="{{ asset( 'svg/icons/search.svg' ) }}" alt="Search Icon"></button>
                 </form>
             </div>
         </div>
