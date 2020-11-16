@@ -1,6 +1,9 @@
 <div class="container mt-4">
+    <div class="row mt-4 justify-content-between">
+        <div class="mb-3 mb-md-0 col-md-2 d-flex">
+            <a href="{{ route('home') }}" title="Click to Exit." class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__exit d-inline-block h-auto align-self-center"> EXIT</a>
+        </div>
 
-    <div class="row mt-4 justify-content-center">
         <div class="col-md-6">
             <div class="input-group md-form form-sm form-1 pl-0 admin-searchbar">
                 <form method="POST" class="d-flex w-100 position-relative" wire:submit.prevent="searchCustomer">
@@ -11,7 +14,7 @@
                     aria-label="Enter Reference No or Customer Name"
                     wire:model.lazy="refNoOrCustomerName"
                     />
-                    <button type="submit" title="Click to Search Customer Name." class="cursor-pointer"><img src="{{ asset( 'svg/icons/search.svg' ) }}" alt="Search Icon"></button>
+                    <button type="submit" title="Click to search" class="cursor-pointer"><img src="{{ asset( 'svg/icons/search.svg' ) }}" alt="Search Icon"></button>
                 </form>
             </div>
         </div>

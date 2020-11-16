@@ -59,7 +59,7 @@
         @if (count($customerPackageVisitation) === $packageTotalCount)
             <span class="text-line-through">Completed Service</span>
         @else
-            <button class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__edit d-flex" id="btn-save-customer-visits">UPDATE</button>
+            <button class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__edit d-flex" id="btn-save-customer-visits">ADD VISITS</button>
         @endif
 
     </div>

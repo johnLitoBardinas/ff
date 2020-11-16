@@ -43,6 +43,6 @@
     </form>
     <div class="d-flex justify-content-between">
         <a href="{{ route('home') }}" title="Click to Exit." class="btn btn-sm btn-default border btn__ff--primary btn-icon btn-icon__exit d-flex">EXIT</a>
-        <button class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__save d-flex" id="btn-save-new-customer">SAVE</button>
+        <button class="btn btn-sm btn-default border mr-2 btn__ff--primary btn-icon btn-icon__save d-flex" id="btn-save-new-customer">ADD CUSTOMER</button>
     </div>
 </div>

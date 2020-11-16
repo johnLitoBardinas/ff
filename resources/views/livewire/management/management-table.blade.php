@@ -33,7 +33,7 @@
                   </td>
                </tr>
                 @forelse ($customerPackageVisitsInfo as $row)
-                  <x-management-table-row :row="$row" :currentUser="$currentUser" :userBranchType="$userBranchType" :customerPackageStatus="$customerPackageStatus" />
+                  <x-management-table-row :row="$row" :currentUser="$currentUser" :userBranchType="$userBranchType" :customerPackageStatus="$customerPackageStatus" :defaultRefNo="$refno" />
                 @empty
                 <tr wire:loading.remove>
                    <td colspan="5">

@@ -21,6 +21,10 @@ class PackageController extends ApiController
      */
     public function store(RequestsPackage $request)
     {
+        if (empty($request->package_type)) {
+            return $this->errorResponse('Invalid package type', 402);
+        }
+
         $package = Package::create([
             'package_name' => $request->input('package_name'),
             'package_price' => $request->input('package_price'),

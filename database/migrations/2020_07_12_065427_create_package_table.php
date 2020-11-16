@@ -19,11 +19,11 @@ class CreatePackageTable extends Migration
             $table->enum('package_status', PackageStatus::getValues())->default(PackageStatus::INACTIVE);
             $table->enum('package_type', PackageType::getValues());
             $table->tinyInteger('salon_no_of_visits')->unsigned(); // visitation (number) for management.
-            $table->tinyInteger('salon_days_valid_count')->unsigned(); // number of days that the valid will be valid
+            $table->mediumInteger('salon_days_valid_count')->unsigned(); // number of days that the valid will be valid
             $table->tinyInteger('gym_no_of_visits')->unsigned()->default(0); // if 0 then it is only days
-            $table->tinyInteger('gym_days_valid_count')->unsigned();
+            $table->mediumInteger('gym_days_valid_count')->unsigned();
             $table->tinyInteger('spa_no_of_visits')->unsigned();
-            $table->tinyInteger('spa_days_valid_count');
+            $table->mediumInteger('spa_days_valid_count');
             $table->timestamps();
         });
 

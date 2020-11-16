@@ -1,6 +1,5 @@
 <div class="container mt-5 container--new-package">
-    <h3 class="text-uppercase text-white bg-primary text-center font-weight-light">ADD PACKAGE</h3>
-
+<h3 class="text-uppercase text-white bg-primary text-center font-weight-light">ADD {{$type}} PACKAGE </h3>
     <form method="POST" id="frm-new-package" novaliate>
         @csrf
         <input type="hidden" name="package_type" value="{{$type}}">
@@ -20,8 +19,12 @@
                     <div class="border text-center bg-primary text-white py-1 px-3 mb-2">
                         @if( $type === $service) {{ sprintf('PAID %s', strtoupper($service)) }} @else {{ sprintf('FREE %s', strtoupper($service)) }} @endif
                     </div>
-                    <small>No. of Visits</small>
-                    <input type="number" class="form-control" name="{{ sprintf('%s_no_of_visits', $service)}}" @if ($type === $service) min="1" max="4" @else min="0" max="4" @endif required />
+                    @if ($service === 'gym' && $type === 'gym')
+                        <input type="hidden" class="form-control" name="{{ sprintf('%s_no_of_visits', $service)}}" value="0" />
+                    @else
+                        <small>No. of Visits</small>
+                        <input type="number" class="form-control" name="{{ sprintf('%s_no_of_visits', $service)}}" @if ($type === $service) min="1" max="4" @else min="0" max="4" @endif required />
+                    @endif
                 </div>
             @empty
                 <h3>No Available Services</h3>

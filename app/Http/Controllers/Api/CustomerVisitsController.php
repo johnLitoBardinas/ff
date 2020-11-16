@@ -42,7 +42,7 @@ class CustomerVisitsController extends ApiController
             'customer_package_id' => [
                 'required',
                 'integer',
-                new IsCustomerHasPackage($customer->customer_id, $request->package_type),
+                new IsCustomerHasPackage($customer->customer_id),
                 new IsCustomerPackageAvailableToVisit($request->package_type),
             ],
             'branch_id' => [
