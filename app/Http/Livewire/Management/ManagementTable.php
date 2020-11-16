@@ -3,12 +3,16 @@
 namespace App\Http\Livewire\Management;
 
 use App\Repositories\CustomerPackageRepository;
+use Illuminate\Http\Request;
 use Livewire\Component;
 
 class ManagementTable extends Component
 {
     // Listeners.
     protected $listeners = [ 'onSearchTable' ];
+
+    // Current
+    public $refno;
 
     // Store the Customer Package VIsits Table.
     public $customerPackageVisitsInfo;
@@ -38,8 +42,10 @@ class ManagementTable extends Component
     /**
      * Mounting the Component data.
      */
-    public function mount()
+    public function mount(Request $request)
     {
+        $this->refno = $request->refno ?? 'none';
+
         $this->userBranchType = session('userAccessType');
 
         $this->customerPackageStatus = sprintf('%s_package_status', $this->userBranchType);

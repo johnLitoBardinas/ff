@@ -3,11 +3,12 @@
     'currentUser' => [],
     'userBranchType' => '',
     'customerPackageStatus' => '',
-    'servicesType' => config('constant.default_package_type')
+    'servicesType' => config('constant.default_package_type'),
+    'defaultRefNo' => '',
 ])
 
 <tr wire:loading.remove>
-    <td>{{strtoupper($row->reference_no)}}</td>
+    <td>{{$row->reference_no}}</td>
     <td>{{sprintf('%s, %s', ucfirst($row->customer->last_name), ucfirst($row->customer->first_name))}}</td>
     <td>{{strtoupper($row->payment_type)}}</td>
    <td>
@@ -23,7 +24,7 @@
                   <th class="text-primary font-weight-bold">STATUS</th>
                </tr>
            </thead>
-           <tbody style="white-space:nowrap;" class="d-none">
+           <tbody style="white-space:nowrap;" class="{{$row->reference_no === $defaultRefNo ? 'd-block' : 'd-none'}}">
 
                 @foreach ($servicesType as $type)
                     @php
@@ -132,12 +133,8 @@
    <td class="d-flex">
       <a
          href="javascript:void(0);"
-         class="btn btn-sm btn-default btn-icon btn-icon__open-row cursor-pointer"
+         class="btn btn-sm btn-default btn-icon btn-icon__open-row cursor-pointer {{$row->reference_no === $defaultRefNo ? 'btn-icon__close-row' : ''}}"
          data-action="togglePackageInfo"
          title="View More Details"></a>
-      <a
-         href="javascript:void(0);"
-         class="btn btn-sm btn-default btn-icon btn-icon__close-row  cursor-pointer d-none"
-         title="View Less Details"></a>
    </td>
 </tr>

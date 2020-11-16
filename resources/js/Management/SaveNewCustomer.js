@@ -68,6 +68,9 @@ export default class SaveNewCustomer {
                         ...response.data,
                         ...data
                     };
+
+                    const refNo = response.data.reference_no;
+
                     // Register the first customer visitation.
                     axios.post(`${ApiUrl.customers}/${response.data['customer_id']}/visits`, this.formatCustomerPackageVisitation(customerVisitsInfo))
                     .then((response) => {
@@ -76,6 +79,8 @@ export default class SaveNewCustomer {
                             this.$frmNewCustomer[0].reset();
                             parsleyForm.reset();
                             $(event.currentTarget).attr('disabled', false);
+
+                            window.location.href = `/home/?refno=${refNo}`;
                         }
                     });
                 })
