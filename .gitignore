@@ -33,3 +33,6 @@ docker-compose.yml
 
 # DS_Store for mac
 .DS_Store
+
+public/js/app.js
+public/mix-manifest.json
