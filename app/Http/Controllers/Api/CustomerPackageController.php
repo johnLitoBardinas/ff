@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Api;
 use App\Customer;
 use App\CustomerPackage;
 use App\Enums\CustomerPackageStatus;
+use App\Enums\PackageType;
 use App\Http\Requests\CustomerPackage as RequestsCustomerPackage;
 use App\Package;
 use Carbon\Carbon;
@@ -48,7 +49,7 @@ class CustomerPackageController extends ApiController
             $data['salon_package_status'] = CustomerPackageStatus::EXPIRED;
         }
 
-        if (empty($chosenPackage->gym_no_of_visits)) {
+        if (empty($chosenPackage->gym_no_of_visits) && $request->package_type !== PackageType::GYM) {
             $data['gym_package_status'] = CustomerPackageStatus::EXPIRED;
         }
 
