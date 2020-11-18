@@ -64,25 +64,17 @@ export default class SaveNewCustomer {
                 // Register the created customer to the subscribe package.
                 .then((customerWithPackageInfo) => axios.post(`${ApiUrl.customers}/${customerWithPackageInfo['customer_id']}/packages`, this.formatCustomerPackageData(customerWithPackageInfo)))
                 .then((response) => {
-                    const customerVisitsInfo = {
-                        ...response.data,
-                        ...data
-                    };
 
                     const refNo = response.data.reference_no;
 
-                    // Register the first customer visitation.
-                    axios.post(`${ApiUrl.customers}/${response.data['customer_id']}/visits`, this.formatCustomerPackageVisitation(customerVisitsInfo))
-                    .then((response) => {
-                        if (response.status === 201) {
-                            Swal.fire('Customer Successfully Subscribed', '', 'success');
-                            this.$frmNewCustomer[0].reset();
-                            parsleyForm.reset();
-                            $(event.currentTarget).attr('disabled', false);
+                    if (response.status === 200) {
+                        Swal.fire('Customer Successfully Subscribed', '', 'success');
+                        this.$frmNewCustomer[0].reset();
+                        parsleyForm.reset();
+                        $(event.currentTarget).attr('disabled', false);
 
-                            window.location.href = `/home/?refno=${refNo}`;
-                        }
-                    });
+                        window.location.href = `/home/?refno=${refNo}`;
+                    }
                 })
                 .catch((error) => {
                     utils.axiosErrorCallback(error);
