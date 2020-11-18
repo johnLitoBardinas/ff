@@ -22,7 +22,7 @@ class Package extends FormRequest
     {
         return [
             'package_name' => ['required', 'unique:package,package_name', 'string'],
-            'package_price' => ['required', 'string', 'min:1', 'max:9'],
+            'package_price' => ['required', 'integer', 'min:0', 'max:1000000'],
             'package_type' => ['required', 'in:' . implode(',', BranchType::getValues())],
             'salon_no_of_visits' => ['required', 'max:4', 'min:0', 'integer'],
             'salon_days_valid_count' => ['required', 'max:365', 'min:0', 'integer'],
