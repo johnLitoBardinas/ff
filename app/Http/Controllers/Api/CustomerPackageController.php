@@ -68,4 +68,18 @@ class CustomerPackageController extends ApiController
     public function show(CustomerPackage $customerPackage)
     {
     }
+
+    /**
+     * Mobile App Ednpoint to get the customer data according to refNo.
+     */
+    public function showUsingRefNo(string $refno)
+    {
+        $data = CustomerPackage::where('reference_no', $refno)->with('customer', 'package', 'customer_visits', 'gym_visitation', 'user')->first();
+
+        if (is_null($data)) {
+            return $this->errorResponse('Invalid Reference No', 404);
+        }
+
+        return $this->showOne($data);
+    }
 }

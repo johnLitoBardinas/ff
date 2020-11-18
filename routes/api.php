@@ -41,6 +41,7 @@ Route::resource('customers', 'Api\CustomerController', ['only' => ['store', 'sho
 
 // Customer Package Endpoint
 Route::resource('customers.packages', 'Api\CustomerPackageController', ['only' => ['index', 'store', 'show']]);
+Route::get('refno/{refno}/packages', 'Api\CustomerPackageController@showUsingRefNo');
 
 // Customer Visits Endpoint.
 Route::resource('customers.visits', 'Api\CustomerVisitsController', ['only' => ['index', 'store']]);
