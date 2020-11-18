@@ -10,7 +10,7 @@
 
         <div class="form-group">
             <small for="package_price" class="form-text text-muted">Price</small>
-            <input type="number" class="form-control border-primary" aria-describedby="packagePrice" placeholder="Amount" name="package_price" min="1500" required/>
+            <input type="number" class="form-control border-primary" aria-describedby="packagePrice" placeholder="Amount" name="package_price" min="0" required/>
         </div>
 
         <div class="form-group d-flex mb-3">
