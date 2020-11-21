@@ -26,8 +26,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        $schedule->command('check:customerpackageexpiration')->daily();
-        $schedule->command('auto:midnightautologoutservice')->daily();
+        $schedule->command('check:customerpackageexpiration')->cron('0 12 * * *');
+        $schedule->command('auto:midnightautologoutservice')->daily('0 12 * * *');
     }
 
     /**
