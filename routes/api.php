@@ -41,7 +41,6 @@ Route::resource('customers', 'Api\CustomerController', ['only' => ['store', 'sho
 
 // Customer Package Endpoint
 Route::resource('customers.packages', 'Api\CustomerPackageController', ['only' => ['index', 'store', 'show']]);
-Route::get('refno/{refno}/packages', 'Api\CustomerPackageController@showUsingRefNo');
 
 // Customer Visits Endpoint.
 Route::resource('customers.visits', 'Api\CustomerVisitsController', ['only' => ['index', 'store']]);
@@ -49,3 +48,6 @@ Route::resource('customers.gymvisitation', 'Api\GymVisitationController', ['only
 
 // Package Resource Endpoint.
 Route::resource('packages', 'Api\PackageController', ['except' => ['create', 'edit', 'update']]);
+
+// Mobile App APi querying reference no details.
+Route::get('refno/{refno}/packages', 'Api\CustomerReference@index');
