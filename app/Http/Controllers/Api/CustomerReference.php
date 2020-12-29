@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\CustomerPackage;
+use App\CustomerVisits;
 
 class CustomerReference extends ApiController
 {
@@ -25,6 +26,10 @@ class CustomerReference extends ApiController
             return $this->errorResponse('Invalid Reference No', 404);
         }
 
-        return $this->showOne($data);
+        // query the customer visits
+        $customerVisits = CustomerVisits::where('customer_package_id', $data->customer_package_id)->get()->groupBy('package_type');
+        $fdata = collect($data)->put('customer_visits', $customerVisits);
+
+        return $fdata;
     }
 }
