@@ -23,7 +23,7 @@
                         <input type="hidden" class="form-control" name="{{ sprintf('%s_no_of_visits', $service)}}" value="0" />
                     @else
                         <small>No. of Visits</small>
-                        <input type="number" class="form-control" name="{{ sprintf('%s_no_of_visits', $service)}}" @if ($type === $service) min="1" max="4" @else min="0" max="4" @endif required />
+                        <input type="number" class="form-control" name="{{ sprintf('%s_no_of_visits', $service)}}" @if ($type === $service) min="1" max="20" @else min="0" max="20" @endif required />
                     @endif
                 </div>
             @empty
