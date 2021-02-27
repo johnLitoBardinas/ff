@@ -71,7 +71,7 @@
         </table>
        </div>
        <div class="modal-footer">
-         <span>TOTAL: <b class=".total-visits"></b></span>
+         <span>TOTAL: <b class="total-visits"></b></span>
          <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
        </div>
      </div>
