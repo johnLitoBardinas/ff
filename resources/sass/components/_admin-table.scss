@@ -20,5 +20,17 @@
             font-weight: normal;
         }
     }
+}
+
+// Management Service Modal
+.mgmt-service-modal {
+
+    .frm-add-visit {
+        display: none;
+    }
+
+    // button[data-action="addVisitBack"] {
+    //     display: none;
+    // }
 
 }

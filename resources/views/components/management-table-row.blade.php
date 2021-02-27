@@ -7,6 +7,9 @@
     'defaultRefNo' => '',
 ])
 
+{{-- {{ dump( $row ) }} --}}
+{{-- {{ dd( $row->customer_visits->groupBy('package_type')->toArray() ) }} --}}
+
 <tr wire:loading.remove>
     <td>{{$row->reference_no}}</td>
     <td>{{sprintf('%s, %s', ucfirst($row->customer->last_name), ucfirst($row->customer->first_name))}}</td>
@@ -73,49 +76,27 @@
                                 </div>
 
                             @else
+                                {{--
+                                    2. Include in the data attribute the visitation for the particular service (Salon, Gym, Spa)
+                                    3. Attach a event listener for the fucking button to popup a modal
+                                    4. Try the simple modal implementation first
 
-                                @if (! empty($row->package->$serviceDaysValid) && ! empty($row->package->$serviceNoOfVisits) )
-                                    <div class="w-100 d-flex justify-content-between">
-                                    @for ($i = 0; $i < $row->package->$serviceNoOfVisits; $i++)
-                                        <div class="w-auto d-flex flex-column">
-                                            <div class="w-auto d-flex flex-column">
+                                    get the list of customer visit for the particular service
 
-                                                @if (! empty($row->customer_visits->groupBy('package_type')->toArray()[$type][$i]))
-                                                    <div class="w-auto d-flex flex-column">
-
-                                                        @if ($userBranchType === $type)
-                                                            <button class="btn btn-sm btn-default border btn__ff--primary active" disabled>
-                                                            {{date('n-j-Y', strtotime($row->customer_visits->groupBy('package_type')->toArray()[$type][$i]['date']))}}
-                                                            </button>
-                                                        @else
-                                                            <span class="btn btn-sm btn-default border border-danger disabled text-line-through" disabled title="Service already cosumed on {{date('n-j-Y', strtotime($row->customer_visits->groupBy('package_type')->toArray()[$type][$i]['date']))}}">consumed</span>
-                                                        @endif
-
-                                                    </div>
-                                                @else
-
-                                                    @if ($userBranchType === $type && $row->$serviceStatus === 'active')
-                                                        <a href="{{ route('customer-visits', [
-                                                        'customer_package_id' => encrypt($row->customer_package_id),
-                                                        'package_type' => encrypt($type),
-                                                        ])}}"
-                                                        class="btn btn-sm btn-default border btn__ff--primary">
-                                                        +add
-                                                        </a>
-                                                    @elseif($row->$serviceStatus === 'expired')
-                                                        <span class="btn btn-sm btn-default border border-danger disabled" disabled title="Service expired">expired</span>
-                                                    @else
-                                                        <span class="btn btn-sm btn-default border border-success disabled" disabled title="Visit the nearest {{ucfirst($type)}} to consume.">consumable</span>
-                                                    @endif
-
-                                                @endif
-
-                                            </div>
-                                        </div>
-                                    @endfor
-                                    </div>
-                                @endif
-
+                                --}}
+                                <div class="d-flex justify-content">
+                                    @php
+                                        $visitsLogs = $row->customer_visits->groupBy('package_type')->toArray()[$type] ?? [];
+                                    @endphp
+                                    <button
+                                        class="btn btn-sm btn-primary text-white"
+                                        data-action="serviceModalStatus"
+                                        data-service-type="{{$type}}"
+                                        data-service-visits="{{$row->package->$serviceNoOfVisits}}"
+                                        data-service-status="{{$row->$serviceStatus}}"
+                                        data-service-currentvisits="{{json_encode($visitsLogs)}}"
+                                    >Visitation</button>
+                                </div>
                             @endif
                         </td>
                         <td>

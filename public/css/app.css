@@ -13299,7 +13299,7 @@ button:focus {
   content: "";
   width: 15px;
   height: 15px;
-  background-image: url(/images/replay_icon_white.svg?0bd3160b7bb3ff4aba1537bb04b3c46f);
+  background-image: url(/images/replay_icon_white.svg?ae14bac9b8f58ea6fa14a59ffca5c8d7);
 }
 
 .btn.btn-icon__adduser:before {
@@ -13558,6 +13558,10 @@ button:focus {
 .admin-table tbody td {
   font-size: 15px;
   font-weight: normal;
+}
+
+.mgmt-service-modal .frm-add-visit {
+  display: none;
 }
 
 .admin-branches {

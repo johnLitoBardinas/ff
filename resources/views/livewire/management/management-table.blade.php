@@ -46,3 +46,34 @@
        </div>
     </div>
  </div>
+
+<!-- Management Modal -->
+<div class="modal fade mgmt-service-modal" id="mgmt-service-modal" tabindex="-1" role="dialog" aria-labelledby="Managment Service Modal" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+     <div class="modal-content">
+       <div class="modal-header">
+         <h5 class="modal-title mgmt-service-modal-title"></h5>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+           <span aria-hidden="true">&times;</span>
+         </button>
+       </div>
+       <div class="modal-body">
+        <table class="table table-bordered">
+           <thead>
+              <tr>
+                 <th>Date of Visits</th>
+                 <th>Status</th>
+              </tr>
+           </thead>
+           <tbody class="mgmt-service-modal__tbody">
+              {{-- dynamic content --}}
+           </tbody>
+        </table>
+       </div>
+       <div class="modal-footer">
+         <span>TOTAL: <b class=".total-visits"></b></span>
+         <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+       </div>
+     </div>
+   </div>
+ </div>
