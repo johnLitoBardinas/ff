@@ -38,7 +38,7 @@ export default class Package {
                     utils.axiosErrorCallback(error)
                     $(e.currentTarget).attr('disabled', false);
                 })
-                .finally(() => console.log('finally'));
+                .finally(() => console.log('saved package'));
 
             } else {
                 $(e.currentTarget).attr('disabled', false);

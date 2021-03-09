@@ -24,11 +24,11 @@ class Package extends FormRequest
             'package_name' => ['required', 'unique:package,package_name', 'string'],
             'package_price' => ['required', 'integer', 'min:0', 'max:1000000'],
             'package_type' => ['required', 'in:' . implode(',', BranchType::getValues())],
-            'salon_no_of_visits' => ['required', 'max:4', 'min:0', 'integer'],
+            'salon_no_of_visits' => ['required', 'max:20', 'min:0', 'integer'],
             'salon_days_valid_count' => ['required', 'max:365', 'min:0', 'integer'],
-            'gym_no_of_visits' => ['required', 'max:4', 'min:0', 'integer'],
+            'gym_no_of_visits' => ['required', 'max:20', 'min:0', 'integer'],
             'gym_days_valid_count' => ['required', 'max:365', 'min:0', 'integer'],
-            'spa_no_of_visits' => ['required', 'max:4', 'min:0', 'integer'],
+            'spa_no_of_visits' => ['required', 'max:20', 'min:0', 'integer'],
             'spa_days_valid_count' => ['required', 'max:365', 'min:0', 'integer'],
         ];
     }
