@@ -1,5 +1,7 @@
 import Swal from 'sweetalert2';
 
+import moment from 'moment';
+
 import utils from '../utils';
 
 export default class ManagementTable {
@@ -44,27 +46,69 @@ export default class ManagementTable {
     }
 
     onClickPackageInformationVisits() {
-        // console.log('managementModal', this.$managementModal );
-        this.$managementTable.on('click', '[data-action="serviceModalStatus"]', (e) => {
-            let { serviceType, serviceStatus, serviceVisits, serviceCurrentvisits } = e.currentTarget.dataset;
-            console.log({serviceType, serviceStatus, serviceVisits, serviceCurrentvisits });
-            this.$managementModal.find('.mgmt-service-modal-title').text(`${serviceType.toUpperCase()} - Visitation Status`);
+
+        const computeRow = (userCurrentBranch, serviceType, totalVisits, status, currentVisits) => {
 
             let rows = '';
-            if (serviceVisits > 0) {
-                for (let i = 0; i < serviceVisits; i++) {
-                    rows += `<tr><td>col 1</td><td>col 2</td></tr>`
+
+            if(status === 'active') {
+
+                if (userCurrentBranch === status) {
+                    // show the add visit status
+                    for (let i = 1; i < (totalVisits + 1); i++) {
+                        rows += `
+                            <tr>
+                                <td>No Visit</td>
+                                <td class="mgmt-modal-visitation">
+                                    <button class="btn btn-sm btn-primary" data-action="addVisit">ADD VISIT</button>
+                                    <form class="form-inline frm-add-visit">
+                                        <input type="date" class="form-control" /> &nbsp; <button type="submit" class="btn btn-sm btn-primary" data-action="saveVisit">SAVE</button> &nbsp;
+                                        <a href="javascript:void(0);" class="btn btn-sm btn-danger" data-action="addVisitBack">BACK</a>
+                                    </form>
+                                </td>
+                            </tr>
+                        `;
+                    }
+
+                    console.log('userBranch === status');
+                } else {
+                    for (let i = 1; i < (totalVisits + 1); i++) {
+                        rows += `
+                            <tr>
+                                <td>Consumable</td>
+                                <td>Visit ${serviceType.toUpperCase()}</td>
+                            </tr>
+                        `;
+                    }
+                    console.log('userbranch !== status');
                 }
-                this.$managementModal.find('.mgmt-service-modal__tbody').append(rows);
-            } else {
-                this.$managementModal.find('.mgmt-service-modal__tbody').empty();
+
             }
 
-            console.log('totalServiceVisits', serviceVisits.toString());
-            this.$managementModal.find('.total-visits').text(serviceVisits.toString());
+            return rows;
+        };
 
+        this.$managementTable.on('click', '[data-action="serviceModalStatus"]', (e) => {
+
+            let { currentUserBranchtype, serviceType, serviceStatus, serviceVisits, serviceCurrentvisits } = e.currentTarget.dataset;
+
+            this.$managementModal.find('.mgmt-service-modal-title').text(`${serviceType.toUpperCase()} - Visitation Status`);
+
+            this.$managementModal.find(".mgmt-service-modal__tbody").empty().append(`${computeRow(currentUserBranchtype, serviceType, serviceStatus, serviceVisits, JSON.parse(serviceCurrentvisits))}`);
+
+            this.$managementModal.find('.total-visits').text(serviceVisits.toString());
             this.$managementModal.modal('show');
+
+            console.log({
+                currentUserBranchtype,
+                serviceType,
+                serviceStatus,
+                totalVisits: serviceVisits,
+                serviceCurrentvisits
+            });
+
         });
+
     }
 
     onClickMgmtModalAddVisit() {
@@ -86,9 +130,9 @@ export default class ManagementTable {
 
 }
 /**
-<tr>
+        <tr>
             <td>Feb. 27, 2021</td>
-            <td>Visited</td>
+            <td>Consumed</td>
         </tr>
         <tr>
             <td>Consumable</td>
@@ -101,14 +145,8 @@ export default class ManagementTable {
             </td>
         </tr>
         <tr>
+            <td class="text-center">-</td>
             <td>Consumable</td>
-            <td class="mgmt-modal-visitation">
-                <button class="btn btn-sm btn-primary" data-action="addVisit">ADD VISIT</button>
-                <form class="form-inline frm-add-visit">
-                    <input type="date" class="form-control" /> &nbsp; <button type="submit" class="btn btn-sm btn-primary" data-action="saveVisit">SAVE</button> &nbsp;
-                    <a href="javascript:void(0);" class="btn btn-sm btn-danger" data-action="addVisitBack">BACK</a>
-                </form>
-            </td>
         </tr>
         <tr>
             <td class="text-center">-</td>

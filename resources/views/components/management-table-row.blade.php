@@ -76,27 +76,22 @@
                                 </div>
 
                             @else
-                                {{--
-                                    2. Include in the data attribute the visitation for the particular service (Salon, Gym, Spa)
-                                    3. Attach a event listener for the fucking button to popup a modal
-                                    4. Try the simple modal implementation first
 
-                                    get the list of customer visit for the particular service
-
-                                --}}
-                                <div class="d-flex justify-content">
+                                <div class="d-flex justify-content-center">
                                     @php
                                         $visitsLogs = $row->customer_visits->groupBy('package_type')->toArray()[$type] ?? [];
                                     @endphp
                                     <button
                                         class="btn btn-sm btn-primary text-white"
                                         data-action="serviceModalStatus"
-                                        data-service-type="{{$type}}"
-                                        data-service-visits="{{$row->package->$serviceNoOfVisits}}"
-                                        data-service-status="{{$row->$serviceStatus}}"
-                                        data-service-currentvisits="{{json_encode($visitsLogs)}}"
+                                        data-current-user-branchtype="{{$userBranchType}}" {{-- hold current use branch type--}}
+                                        data-service-type="{{$type}}" {{-- service current type --}}
+                                        data-service-visits="{{$row->package->$serviceNoOfVisits}}" {{-- total service available visits --}}
+                                        data-service-status="{{$row->$serviceStatus}}" {{-- current service status--}}
+                                        data-service-currentvisits="{{json_encode($visitsLogs)}}" {{-- current visitation logs --}}
                                     >Visitation</button>
                                 </div>
+
                             @endif
                         </td>
                         <td>
