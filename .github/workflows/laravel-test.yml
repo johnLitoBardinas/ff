@@ -5,8 +5,7 @@ name: Testing the Application
 on:
   push:
     branches:
-      - develop
-      - master
+      - '*'
 
 jobs:
   laravel-tests:
@@ -16,6 +15,9 @@ jobs:
     # Steps for this JOb
     steps:
     - uses: actions/checkout@v2
+    - uses: nanasess/setup-php@master
+      with:
+        php-version: '7.4'
     - name: Copy .env
       run: php -r "file_exists('.env') || copy('.env.example', '.env');"
     - name: Install Dependencies
