@@ -52,37 +52,34 @@ export default class ManagementTable {
             let rows = '';
 
             if(status === 'active') {
-
-                if (userCurrentBranch === status) {
-                    // show the add visit status
-                    for (let i = 1; i < (totalVisits + 1); i++) {
+                // salon === salon
+                if (userCurrentBranch === serviceType) {
+                    for (let index = 1; index < (totalVisits + 1); index++) {
                         rows += `
-                            <tr>
-                                <td>No Visit</td>
-                                <td class="mgmt-modal-visitation">
-                                    <button class="btn btn-sm btn-primary" data-action="addVisit">ADD VISIT</button>
-                                    <form class="form-inline frm-add-visit">
-                                        <input type="date" class="form-control" /> &nbsp; <button type="submit" class="btn btn-sm btn-primary" data-action="saveVisit">SAVE</button> &nbsp;
-                                        <a href="javascript:void(0);" class="btn btn-sm btn-danger" data-action="addVisitBack">BACK</a>
-                                    </form>
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>Available to Visit</td>
+                            <td class="text-center mgmt-modal-visitation">
+                                <button class="btn btn-sm btn-primary" data-action="addVisit">ADD VISIT</button>
+                                <form class="form-inline frm-add-visit">
+                                    <input type="date" class="form-control" /> &nbsp; <button type="submit" class="btn btn-sm btn-primary" data-action="saveVisit">SAVE</button> &nbsp;
+                                    <a href="javascript:void(0);" class="btn btn-sm btn-danger" data-action="addVisitBack">BACK</a>
+                                </form>
+                            </td>
+                        </tr>
                         `;
                     }
-
-                    console.log('userBranch === status');
                 } else {
-                    for (let i = 1; i < (totalVisits + 1); i++) {
+
+                    // Hoisted Variable error.
+                    for (let index = 1; index < (totalVisits + 1); index++) {
                         rows += `
-                            <tr>
-                                <td>Consumable</td>
-                                <td>Visit ${serviceType.toUpperCase()}</td>
-                            </tr>
+                        <tr>
+                            <td class="text-center">-</td>
+                            <td>Consumable</td>
+                        </tr>
                         `;
                     }
-                    console.log('userbranch !== status');
                 }
-
             }
 
             return rows;
@@ -90,22 +87,26 @@ export default class ManagementTable {
 
         this.$managementTable.on('click', '[data-action="serviceModalStatus"]', (e) => {
 
+            //  console.log('service Dataset', e.currentTarget.dataset);
             let { currentUserBranchtype, serviceType, serviceStatus, serviceVisits, serviceCurrentvisits } = e.currentTarget.dataset;
+
+            console.log({ currentUserBranchtype, serviceType, serviceStatus, serviceVisits, serviceCurrentvisits });
 
             this.$managementModal.find('.mgmt-service-modal-title').text(`${serviceType.toUpperCase()} - Visitation Status`);
 
-            this.$managementModal.find(".mgmt-service-modal__tbody").empty().append(`${computeRow(currentUserBranchtype, serviceType, serviceStatus, serviceVisits, JSON.parse(serviceCurrentvisits))}`);
+            this.$managementModal.find(".mgmt-service-modal__tbody").empty().append(`${computeRow(currentUserBranchtype, serviceType, serviceVisits, serviceStatus, JSON.parse(serviceCurrentvisits))}`);
 
             this.$managementModal.find('.total-visits').text(serviceVisits.toString());
             this.$managementModal.modal('show');
 
-            console.log({
-                currentUserBranchtype,
-                serviceType,
-                serviceStatus,
-                totalVisits: serviceVisits,
-                serviceCurrentvisits
-            });
+            // console.log({
+            //     userCurrentBranch,
+            //     serviceType,
+            //     status,
+            //     totalVisits,
+            //     currentVisits
+            // });
+            // console.log('onClick data-action="ServiceModal"');
 
         });
 

@@ -2200,11 +2200,6 @@ pre code {
   opacity: 1;
 }
 
-.form-control::-ms-input-placeholder {
-  color: #6c757d;
-  opacity: 1;
-}
-
 .form-control::placeholder {
   color: #6c757d;
   opacity: 1;
@@ -8273,7 +8268,6 @@ button.bg-dark:focus {
 }
 
 .position-sticky {
-  position: -webkit-sticky !important;
   position: sticky !important;
 }
 
@@ -8293,9 +8287,8 @@ button.bg-dark:focus {
   z-index: 1030;
 }
 
-@supports ((position: -webkit-sticky) or (position: sticky)) {
+@supports (position: sticky) {
   .sticky-top {
-    position: -webkit-sticky;
     position: sticky;
     top: 0;
     z-index: 1020;
@@ -11510,10 +11503,6 @@ a.text-dark:focus {
   color: #cccccc;
 }
 
-.swal2-input::-ms-input-placeholder, .swal2-file::-ms-input-placeholder, .swal2-textarea::-ms-input-placeholder {
-  color: #cccccc;
-}
-
 .swal2-input::placeholder,
 .swal2-file::placeholder,
 .swal2-textarea::placeholder {
@@ -13225,6 +13214,12 @@ button:focus {
   margin: auto;
 }
 
+.btn-primary:hover {
+  font-weight: bold;
+  color: white !important;
+  background-color: #0069d9;
+}
+
 .btn--active {
   font-weight: bold;
   color: #463291;
@@ -13558,6 +13553,12 @@ button:focus {
 .admin-table tbody td {
   font-size: 15px;
   font-weight: normal;
+}
+
+.mgmt-service-modal .modal-body {
+  max-height: 80vh;
+  border: thin solid green;
+  overflow-y: auto;
 }
 
 .mgmt-service-modal .frm-add-visit {

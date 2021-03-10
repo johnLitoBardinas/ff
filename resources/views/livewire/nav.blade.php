@@ -27,7 +27,7 @@
                 @endcan
 
                 @can('access-management')
-                    <h6>{{$currentUserBranch}} (<strong>{{session('userAccessType')}}</strong>)</h6>
+                    <h6 style="text-transform: uppercase;"><strong>{{session('userAccessType')}}</strong></h6>
                 @endcan
 
             </div>

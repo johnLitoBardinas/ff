@@ -38,6 +38,12 @@
 
 .btn {
 
+    &-primary:hover {
+        font-weight: bold;
+        color: white !important;
+        background-color: #0069d9;
+    }
+
     &--active {
         font-weight: bold;
         color: $primary-color;
