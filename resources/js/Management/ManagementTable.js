@@ -69,16 +69,7 @@ export default class ManagementTable {
                         `;
                     }
                 } else {
-
-                    // Hoisted Variable error.
-                    for (let index = 1; index < (totalVisits + 1); index++) {
-                        rows += `
-                        <tr>
-                            <td class="text-center">-</td>
-                            <td>Consumable</td>
-                        </tr>
-                        `;
-                    }
+                    // Error in Variable Hoisting
                 }
             }
 
