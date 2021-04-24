@@ -52,24 +52,44 @@ export default class ManagementTable {
             let rows = '';
 
             if(status === 'active') {
-                // salon === salon
-                if (userCurrentBranch === serviceType) {
-                    for (let index = 1; index < (totalVisits + 1); index++) {
+
+                if( userCurrentBranch === serviceType ) {
+                    // available to visit
+                    for (let i = 0; i < totalVisits; i++) {
                         rows += `
-                        <tr>
-                            <td>Available to Visit</td>
-                            <td class="text-center mgmt-modal-visitation">
-                                <button class="btn btn-sm btn-primary" data-action="addVisit">ADD VISIT</button>
-                                <form class="form-inline frm-add-visit">
-                                    <input type="date" class="form-control" /> &nbsp; <button type="submit" class="btn btn-sm btn-primary" data-action="saveVisit">SAVE</button> &nbsp;
-                                    <a href="javascript:void(0);" class="btn btn-sm btn-danger" data-action="addVisitBack">BACK</a>
-                                </form>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td>Available to Visit</td>
+                                <td class="text-center mgmt-modal-visitation">
+                                    <button class="btn btn-sm btn-primary" data-action="addVisit">ADD VISIT</button>
+                                    <form class="form-inline frm-add-visit">
+                                        <input type="date" class="form-control" /> &nbsp; <button type="submit" class="btn btn-sm btn-primary" data-action="saveVisit">SAVE</button> &nbsp;
+                                        <a href="javascript:void(0);" class="btn btn-sm btn-danger" data-action="addVisitBack">BACK</a>
+                                    </form>
+                                </td>
+                            </tr>
                         `;
                     }
                 } else {
-                    // Error in Variable Hoisting
+                    // consumable
+                    for (let index = 0; index < totalVisits; index++) {
+                        rows += `
+                         <tr>
+                             <td class="text-center"> - </td>
+                             <td>Consumable</td>
+                         </tr>
+                        `;
+                    }
+                }
+
+            } else {
+                let label = status === 'expired' ? 'expired' : 'completed';
+                for (let index = 0; index < totalVisits; index++) {
+                   rows += `
+                    <tr>
+                        <td class="text-center"> - </td>
+                        <td>${label.toUpperCase()}</td>
+                    </tr>
+                   `;
                 }
             }
 
@@ -78,42 +98,32 @@ export default class ManagementTable {
 
         this.$managementTable.on('click', '[data-action="serviceModalStatus"]', (e) => {
 
-            //  console.log('service Dataset', e.currentTarget.dataset);
             let { currentUserBranchtype, serviceType, serviceStatus, serviceVisits, serviceCurrentvisits } = e.currentTarget.dataset;
 
-            console.log({ currentUserBranchtype, serviceType, serviceStatus, serviceVisits, serviceCurrentvisits });
-
             this.$managementModal.find('.mgmt-service-modal-title').text(`${serviceType.toUpperCase()} - Visitation Status`);
-
-            this.$managementModal.find(".mgmt-service-modal__tbody").empty().append(`${computeRow(currentUserBranchtype, serviceType, serviceVisits, serviceStatus, JSON.parse(serviceCurrentvisits))}`);
+            this.$managementModal.find('.mgmt-service-modal__tbody').empty().append(computeRow(currentUserBranchtype, serviceType, serviceVisits, serviceStatus));
 
             this.$managementModal.find('.total-visits').text(serviceVisits.toString());
             this.$managementModal.modal('show');
-
-            // console.log({
-            //     userCurrentBranch,
-            //     serviceType,
-            //     status,
-            //     totalVisits,
-            //     currentVisits
-            // });
-            // console.log('onClick data-action="ServiceModal"');
 
         });
 
     }
 
     onClickMgmtModalAddVisit() {
+
+        console.log('this will listen to ManagementModal Add Visit');
         this.$managementModal.find('.mgmt-modal-visitation').on('click', 'button[data-action="addVisit"]', function (e) {
-            $(e.currentTarget).fadeOut(0, function () {
-                $(e.currentTarget).siblings('form.frm-add-visit').css({'display':'flex', 'align-items':'baseline' });
-            });
+            // $(e.currentTarget).fadeOut(0, function () {
+            //     $(e.currentTarget).siblings('form.frm-add-visit').css({'display':'flex', 'align-items':'baseline' });
+            // });
+            console.log('event', e);
         });
 
-        this.$managementModal.find('.mgmt-modal-visitation').on('click', 'a[data-action="addVisitBack"]', function (e) {
-            $(e.currentTarget).closest('.frm-add-visit').css('display', 'none');
-            $(e.currentTarget).closest('td').find('button[data-action="addVisit"]').show();
-        });
+        // this.$managementModal.find('.mgmt-modal-visitation').on('click', 'a[data-action="addVisitBack"]', function (e) {
+        //     $(e.currentTarget).closest('.frm-add-visit').css('display', 'none');
+        //     $(e.currentTarget).closest('td').find('button[data-action="addVisit"]').show();
+        // });
     }
 
     onSaveMgmtModalVisit() {

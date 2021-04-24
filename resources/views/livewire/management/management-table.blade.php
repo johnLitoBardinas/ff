@@ -66,28 +66,7 @@
               </tr>
            </thead>
            <tbody class="mgmt-service-modal__tbody">
-               <tr>
-                  <td>Feb. 27, 2021</td>
-                  <td>Consumed</td>
-               </tr>
-               <tr>
-                  <td>Consumable</td>
-                  <td class="mgmt-modal-visitation">
-                     <button class="btn btn-sm btn-primary" data-action="addVisit">ADD VISIT</button>
-                     <form class="form-inline frm-add-visit">
-                        <input type="date" class="form-control" /> &nbsp; <button type="submit" class="btn btn-sm btn-primary" data-action="saveVisit">SAVE</button> &nbsp;
-                        <a href="javascript:void(0);" class="btn btn-sm btn-danger" data-action="addVisitBack">BACK</a>
-                     </form>
-                  </td>
-               </tr>
-               <tr>
-                  <td class="text-center">-</td>
-                  <td>Consumable</td>
-               </tr>
-               <tr>
-                  <td class="text-center">-</td>
-                  <td>Expired</td>
-               </tr>
+              {{-- Dynamic Content --}}
            </tbody>
         </table>
        </div>

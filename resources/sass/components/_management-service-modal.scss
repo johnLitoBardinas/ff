@@ -3,16 +3,11 @@
 
     .modal-body {
         max-height: 80vh;
-        border: thin solid green;
         overflow-y: auto;
     }
 
     .frm-add-visit {
         display: none;
     }
-
-    // button[data-action="addVisitBack"] {
-    //     display: none;
-    // }
 
 }

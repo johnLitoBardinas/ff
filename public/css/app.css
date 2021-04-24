@@ -13557,7 +13557,6 @@ button:focus {
 
 .mgmt-service-modal .modal-body {
   max-height: 80vh;
-  border: thin solid green;
   overflow-y: auto;
 }
 
