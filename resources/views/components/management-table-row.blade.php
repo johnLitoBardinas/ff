@@ -84,7 +84,7 @@
                                     <button
                                         class="btn btn-sm btn-primary text-white"
                                         data-action="serviceModalStatus"
-                                        data-current-user-branchtype="{{$userBranchType}}" {{-- hold current use branch type--}}
+                                        data-current-user-branchtype="{{$userBranchType}}" {{-- hold current user branch type--}}
                                         data-service-type="{{$type}}" {{-- service current type --}}
                                         data-service-visits="{{$row->package->$serviceNoOfVisits}}" {{-- total service available visits --}}
                                         data-service-status="{{$row->$serviceStatus}}" {{-- current service status--}}
