@@ -12,7 +12,7 @@ export default class ManagementTable {
         this.onTogglePackageInfo();
         this.onToggleGymVisitation();
         this.onClickPackageInformationVisits();
-        this.onClickMgmtModalAddVisit();
+        this.onToggleVisitForm();
     }
 
     onTogglePackageInfo() {
@@ -45,21 +45,55 @@ export default class ManagementTable {
         });
     }
 
+    // Viewing Package service information
     onClickPackageInformationVisits() {
+        console.log('watcher now attached');
 
-        const computeRow = (userCurrentBranch, serviceType, totalVisits, status, currentVisits) => {
+        this.$managementTable.on('click', '[data-action="serviceModalStatus"]', (e) => {
+            e.preventDefault();
+            console.log('e', e.currentTarget.dataset);
+            let { currentUserBranchtype, serviceType, serviceStatus, serviceExpirationDate, serviceTotalVisits, serviceCurrentVisitsLogs, serviceCurrentVisitcount } = e.currentTarget.dataset;
 
             let rows = '';
 
-            if(status === 'active') {
+            let visitLogs = JSON.parse(serviceCurrentVisitsLogs);
 
-                if( userCurrentBranch === serviceType ) {
-                    // available to visit
-                    for (let i = 0; i < totalVisits; i++) {
-                        rows += `
+            // completed package service
+            if (serviceTotalVisits === serviceCurrentVisitcount && serviceStatus !== 'expired') {
+
+                for (let i = 0; i < serviceCurrentVisitcount; i++) {
+                    rows += `
+                        <tr>
+                            <td class="text-center">${moment(visitLogs[i].date).format('ll')}</td>
+                            <td>Consumed</td>
+                        </tr>
+                    `;
+                }
+
+            } else {
+
+                // expired package service
+                if (serviceStatus === 'expired') {
+
+                    rows += `
+                        <tr>
+                            <td class="text-center">${moment(serviceExpirationDate).format('ll')}</td>
+                            <td>Expired</td>
+                        </tr>
+                    `;
+
+                } else {
+
+                    // active || active + comsumed package service
+                    for (let index = 0; index < serviceTotalVisits; index++) {
+
+                        if (index < serviceCurrentVisitcount) {
+                            console.log(`${index} i => `, moment(visitLogs[index].date).format('ll'));
+                        } else {
+                            rows += `
                             <tr>
-                                <td>Available to Visit</td>
-                                <td class="text-center mgmt-modal-visitation">
+                                <td>Consumable</td>
+                                <td class="mgmt-modal-visitation">
                                     <button class="btn btn-sm btn-primary" data-action="addVisit">ADD VISIT</button>
                                     <form class="form-inline frm-add-visit">
                                         <input type="date" class="form-control" /> &nbsp; <button type="submit" class="btn btn-sm btn-primary" data-action="saveVisit">SAVE</button> &nbsp;
@@ -67,95 +101,42 @@ export default class ManagementTable {
                                     </form>
                                 </td>
                             </tr>
-                        `;
+                            `;
+                        }
+
                     }
-                } else {
-                    // consumable
-                    for (let index = 0; index < totalVisits; index++) {
-                        rows += `
-                         <tr>
-                             <td class="text-center"> - </td>
-                             <td>Consumable</td>
-                         </tr>
-                        `;
-                    }
+
                 }
 
-            } else {
-                let label = status === 'expired' ? 'expired' : 'completed';
-                for (let index = 0; index < totalVisits; index++) {
-                   rows += `
-                    <tr>
-                        <td class="text-center"> - </td>
-                        <td>${label.toUpperCase()}</td>
-                    </tr>
-                   `;
-                }
             }
 
-            return rows;
-        };
 
-        this.$managementTable.on('click', '[data-action="serviceModalStatus"]', (e) => {
 
-            let { currentUserBranchtype, serviceType, serviceStatus, serviceVisits, serviceCurrentvisits } = e.currentTarget.dataset;
 
             this.$managementModal.find('.mgmt-service-modal-title').text(`${serviceType.toUpperCase()} - Visitation Status`);
-            this.$managementModal.find('.mgmt-service-modal__tbody').empty().append(computeRow(currentUserBranchtype, serviceType, serviceVisits, serviceStatus));
 
-            this.$managementModal.find('.total-visits').text(serviceVisits.toString());
+            this.$managementModal.find('.mgmt-service-modal__tbody').empty().append(rows);
+
+            this.$managementModal.find('.total-visits').text(serviceTotalVisits.toString());
             this.$managementModal.modal('show');
 
         });
-
     }
 
-    onClickMgmtModalAddVisit() {
-
-        console.log('this will listen to ManagementModal Add Visit');
-        this.$managementModal.find('.mgmt-modal-visitation').on('click', 'button[data-action="addVisit"]', function (e) {
-            // $(e.currentTarget).fadeOut(0, function () {
-            //     $(e.currentTarget).siblings('form.frm-add-visit').css({'display':'flex', 'align-items':'baseline' });
-            // });
-            console.log('event', e);
+    // Toggling the visitation form.
+    onToggleVisitForm() {
+        this.$managementModal.find('.mgmt-service-modal__tbody').on('click', '[data-action="addVisit"]', function (e) {
+            e.preventDefault();
+            $(e.currentTarget).hide();
+            $(e.currentTarget).siblings('form').css('display', 'block');
         });
 
-        // this.$managementModal.find('.mgmt-modal-visitation').on('click', 'a[data-action="addVisitBack"]', function (e) {
-        //     $(e.currentTarget).closest('.frm-add-visit').css('display', 'none');
-        //     $(e.currentTarget).closest('td').find('button[data-action="addVisit"]').show();
-        // });
+        this.$managementModal.find('.mgmt-service-modal__tbody').on('click', '[data-action="addVisitBack"]', function (e) {
+            e.preventDefault();
+            $(e.currentTarget).closest('.mgmt-modal-visitation').find('[data-action="addVisit"]').show();
+            $(e.currentTarget).closest('form').css('display', 'none');
+        });
     }
 
-    onSaveMgmtModalVisit() {
-    //    this.$managementModal.find()
-    }
 
 }
-/**
-        <tr>
-            <td>Feb. 27, 2021</td>
-            <td>Consumed</td>
-        </tr>
-        <tr>
-            <td>Consumable</td>
-            <td class="mgmt-modal-visitation">
-                <button class="btn btn-sm btn-primary" data-action="addVisit">ADD VISIT</button>
-                <form class="form-inline frm-add-visit">
-                    <input type="date" class="form-control" /> &nbsp; <button type="submit" class="btn btn-sm btn-primary" data-action="saveVisit">SAVE</button> &nbsp;
-                    <a href="javascript:void(0);" class="btn btn-sm btn-danger" data-action="addVisitBack">BACK</a>
-                </form>
-            </td>
-        </tr>
-        <tr>
-            <td class="text-center">-</td>
-            <td>Consumable</td>
-        </tr>
-        <tr>
-            <td class="text-center">-</td>
-            <td>Expired</td>
-        </tr>
-
-
-
-
- */

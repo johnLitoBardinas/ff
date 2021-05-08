@@ -85,10 +85,12 @@
                                         class="btn btn-sm btn-primary text-white"
                                         data-action="serviceModalStatus"
                                         data-current-user-branchtype="{{$userBranchType}}" {{-- hold current user branch type--}}
+                                        data-service-expiration-date="{{$row->$serviceEndDate}}"
                                         data-service-type="{{$type}}" {{-- service current type --}}
-                                        data-service-visits="{{$row->package->$serviceNoOfVisits}}" {{-- total service available visits --}}
+                                        data-service-total-visits="{{$row->package->$serviceNoOfVisits}}" {{-- total service available visits --}}
                                         data-service-status="{{$row->$serviceStatus}}" {{-- current service status--}}
-                                        data-service-currentvisits="{{json_encode($visitsLogs)}}" {{-- current visitation logs --}}
+                                        data-service-current-visits-logs="{{json_encode($visitsLogs)}}" {{-- current visitation logs --}}
+                                        data-service-current-visitcount="{{count($visitsLogs)}}"
                                     >Visitation</button>
                                 </div>
 

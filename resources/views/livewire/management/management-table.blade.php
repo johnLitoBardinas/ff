@@ -66,7 +66,7 @@
               </tr>
            </thead>
            <tbody class="mgmt-service-modal__tbody">
-              {{-- Dynamic Content --}}
+               {{-- Append the row --}}
            </tbody>
         </table>
        </div>
