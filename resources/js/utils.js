@@ -170,6 +170,17 @@ const util = {
             icon:'error',
             html: errorHtml
         });
+    },
+
+    getDateWithFormat(format) {
+        const today = new Date();
+        let month   = today.getMonth();
+        let date    = today.getDate();
+        let year    = today.getFullYear();
+
+        if (format === 'YYYY-MM-DD') {
+            return `${year}-${month < 10 ? '0' + month : month}-${date < 10 ? '0' + date : date}`;
+        }
     }
 };
 

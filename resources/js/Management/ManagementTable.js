@@ -14,6 +14,8 @@ export default class ManagementTable {
         this.onClickPackageInformationVisits();
         this.onToggleVisitForm();
         this.onSubmitVisitForm();
+        // console.log('date format', );
+
     }
 
     onTogglePackageInfo() {
@@ -101,13 +103,16 @@ export default class ManagementTable {
                             </tr>
                             `;
                         } else {
+
+                            let currentDate = utils.getDateWithFormat('YYYY-MM-DD');
                             rows += `
                             <tr>
                                 <td>Consumable</td>
                                 <td class="mgmt-modal-visitation">
                                     <button class="btn btn-sm btn-primary" data-action="addVisit">ADD VISIT</button>
                                     <form class="form-inline frm-add-visit" method="POST">
-                                        <input type="date" class="form-control" required /> &nbsp; <button type="submit" class="btn btn-sm btn-primary" data-action="submitVisit" data-customer-package-id="${customerPackageId}" data-user-branch-id="${userBranchId}" data-user-id="${userId}" data-service-type="${serviceType}" data-customer-id="${customerUserId}">SAVE</button> &nbsp;
+                                        <input type="date" class="form-control" required min="${currentDate}" value="${currentDate}"/> &nbsp;
+                                        <button type="submit" class="btn btn-sm btn-primary" data-action="submitVisit" data-customer-package-id="${customerPackageId}" data-user-branch-id="${userBranchId}" data-user-id="${userId}" data-service-type="${serviceType}" data-customer-id="${customerUserId}">SAVE</button> &nbsp;
                                         <a href="javascript:void(0);" class="btn btn-sm btn-danger" data-action="addVisitBack">BACK</a>
                                     </form>
                                 </td>
