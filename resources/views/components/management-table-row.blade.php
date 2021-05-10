@@ -8,6 +8,7 @@
 ])
 
 {{-- {{ dump( $row ) }} --}}
+{{-- {{ dd('Iam god') }} --}}
 {{-- {{ dd( $row->customer_visits->groupBy('package_type')->toArray() ) }} --}}
 
 <tr wire:loading.remove>
@@ -91,6 +92,10 @@
                                         data-service-status="{{$row->$serviceStatus}}" {{-- current service status--}}
                                         data-service-current-visits-logs="{{json_encode($visitsLogs)}}" {{-- current visitation logs --}}
                                         data-service-current-visitcount="{{count($visitsLogs)}}"
+                                        data-customer-package-id="{{$row->customer_package_id}}"
+                                        data-customer-user-id="{{$row->customer->customer_id}}"
+                                        data-user-branch-id="{{$currentUser->branch_id}}"
+                                        data-user-id="{{$currentUser->user_id}}"
                                     >Visitation</button>
                                 </div>
 

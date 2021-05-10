@@ -13,6 +13,7 @@ export default class ManagementTable {
         this.onToggleGymVisitation();
         this.onClickPackageInformationVisits();
         this.onToggleVisitForm();
+        this.onSubmitVisitForm();
     }
 
     onTogglePackageInfo() {
@@ -51,8 +52,12 @@ export default class ManagementTable {
 
         this.$managementTable.on('click', '[data-action="serviceModalStatus"]', (e) => {
             e.preventDefault();
-            console.log('e', e.currentTarget.dataset);
-            let { currentUserBranchtype, serviceType, serviceStatus, serviceExpirationDate, serviceTotalVisits, serviceCurrentVisitsLogs, serviceCurrentVisitcount } = e.currentTarget.dataset;
+
+            console.log('serviceModalStatus', e.currentTarget.dataset);
+            let { customerPackageId, userBranchId, userId, serviceType, customerUserId, currentUserBranchtype, serviceStatus, serviceExpirationDate, serviceTotalVisits, serviceCurrentVisitsLogs, serviceCurrentVisitcount } = e.currentTarget.dataset;
+
+
+
 
             let rows = '';
 
@@ -88,15 +93,21 @@ export default class ManagementTable {
                     for (let index = 0; index < serviceTotalVisits; index++) {
 
                         if (index < serviceCurrentVisitcount) {
-                            console.log(`${index} i => `, moment(visitLogs[index].date).format('ll'));
+                            // console.log(`${index} i => `, );
+                            rows += `
+                            <tr>
+                                <td>${moment(visitLogs[index].date).format('ll')}</td>
+                                <td>Consumed</td>
+                            </tr>
+                            `;
                         } else {
                             rows += `
                             <tr>
                                 <td>Consumable</td>
                                 <td class="mgmt-modal-visitation">
                                     <button class="btn btn-sm btn-primary" data-action="addVisit">ADD VISIT</button>
-                                    <form class="form-inline frm-add-visit">
-                                        <input type="date" class="form-control" /> &nbsp; <button type="submit" class="btn btn-sm btn-primary" data-action="saveVisit">SAVE</button> &nbsp;
+                                    <form class="form-inline frm-add-visit" method="POST">
+                                        <input type="date" class="form-control" required /> &nbsp; <button type="submit" class="btn btn-sm btn-primary" data-action="submitVisit" data-customer-package-id="${customerPackageId}" data-user-branch-id="${userBranchId}" data-user-id="${userId}" data-service-type="${serviceType}" data-customer-id="${customerUserId}">SAVE</button> &nbsp;
                                         <a href="javascript:void(0);" class="btn btn-sm btn-danger" data-action="addVisitBack">BACK</a>
                                     </form>
                                 </td>
@@ -110,13 +121,8 @@ export default class ManagementTable {
 
             }
 
-
-
-
             this.$managementModal.find('.mgmt-service-modal-title').text(`${serviceType.toUpperCase()} - Visitation Status`);
-
             this.$managementModal.find('.mgmt-service-modal__tbody').empty().append(rows);
-
             this.$managementModal.find('.total-visits').text(serviceTotalVisits.toString());
             this.$managementModal.modal('show');
 
@@ -138,5 +144,46 @@ export default class ManagementTable {
         });
     }
 
+    onSubmitVisitForm() {
+        console.log('attached on submit visit form');
+        this.$managementModal.find('.mgmt-service-modal__tbody').on('click', '[data-action="submitVisit"]', function name(e) {
+            e.preventDefault();
+
+            let self = $(e.currentTarget);
+            self.attr('disabled', true);
+
+            let selectedDate = $(e.currentTarget).siblings('input[type="date"]').val();
+            let { customerId, customerPackageId, serviceType, userBranchId, userId } = e.currentTarget.dataset;
+            axios.post(`${ApiUrl.customers}/${customerId}/visits`, {
+                'customer_package_id': customerPackageId,
+                'branch_id': userBranchId,
+                'user_id': userId,
+                'date': selectedDate,
+                'package_type': serviceType
+            }).then((response) => {
+
+                let refNo = response.data.data.refno;
+
+                if (refNo) {
+                    if (response.status === 201) {
+                        Swal.fire('Saved Customer Visits', '', 'success');
+                        setTimeout(function() {
+                            window.location.href = `/home/?refno=${refNo}`;
+                        }, 1000)
+                    }
+                } else {
+                    console.log('no ref no');
+                }
+
+
+            })
+            .catch(error => {
+                self.attr('disabled', false);
+                console.log(error)
+            });
+
+        });
+
+    }
 
 }

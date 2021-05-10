@@ -90,6 +90,17 @@ class CustomerVisitsController extends ApiController
                 ->update([$package_type_field => CustomerPackageStatus::COMPLETED]);
         }
 
-        return $this->showOne($customerVisits, 201);
+        $refNo = CustomerPackage::where('customer_package_id', request('customer_package_id'))->first()->reference_no ?? 0;
+        // return $this->showOne($customerVisits, 201);
+
+        return $this->showMessage(
+            array_merge(
+                $customerVisits->toArray(),
+                [
+                    'refno' => $refNo
+                ]
+            ),
+            201
+        );
     }
 }

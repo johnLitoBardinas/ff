@@ -13560,6 +13560,10 @@ button:focus {
   overflow-y: auto;
 }
 
+.mgmt-service-modal .modal-body .mgmt-modal-visitation {
+  padding: 10px 0px;
+}
+
 .mgmt-service-modal .frm-add-visit {
   display: none;
 }

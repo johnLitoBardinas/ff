@@ -4,6 +4,11 @@
     .modal-body {
         max-height: 80vh;
         overflow-y: auto;
+
+
+        .mgmt-modal-visitation {
+            padding: 10px 0px;
+        }
     }
 
     .frm-add-visit {
