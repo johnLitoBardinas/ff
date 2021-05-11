@@ -56,7 +56,25 @@ export default class ManagementTable {
             e.preventDefault();
 
             console.log('serviceModalStatus', e.currentTarget.dataset);
-            let { customerPackageId, userBranchId, userId, serviceType, customerUserId, currentUserBranchtype, serviceStatus, serviceExpirationDate, serviceTotalVisits, serviceCurrentVisitsLogs, serviceCurrentVisitcount } = e.currentTarget.dataset;
+
+            let currentDate = utils.getDateWithFormat("YYYY-MM-DD");
+            let {
+                customerPackageId,
+                userBranchId,
+                userId,
+                serviceType,
+                customerUserId,
+                currentUserBranchtype,
+                serviceStatus,
+                serviceExpirationDate,
+                serviceTotalVisits,
+                serviceCurrentVisitsLogs,
+                serviceCurrentVisitcount
+            } = e.currentTarget.dataset;
+
+            console.log('serviceTotalVisits', serviceTotalVisits);
+            console.log('serviceCurrentVisitcount', serviceCurrentVisitcount);
+
 
             let rows = '';
 
@@ -65,6 +83,7 @@ export default class ManagementTable {
             // completed package service
             if (serviceTotalVisits === serviceCurrentVisitcount && serviceStatus !== 'expired') {
 
+                console.log('completed');
                 for (let i = 0; i < serviceCurrentVisitcount; i++) {
                     rows += `
                         <tr>
@@ -79,6 +98,8 @@ export default class ManagementTable {
                 // expired package service
                 if (serviceStatus === 'expired') {
 
+                    console.log('expired');
+
                     rows += `
                         <tr>
                             <td class="text-center">${moment(serviceExpirationDate).format('ll')}</td>
@@ -88,36 +109,38 @@ export default class ManagementTable {
 
                 } else {
 
-                    // active || active + comsumed package service
+
+
                     for (let index = 0; index < serviceTotalVisits; index++) {
 
                         if (index < serviceCurrentVisitcount) {
-                            // console.log(`${index} i => `, );
                             rows += `
                             <tr>
-                                <td>${moment(visitLogs[index].date).format('ll')}</td>
+                                <td>${moment(visitLogs[index].date).format("ll")}</td>
                                 <td>Consumed</td>
                             </tr>
                             `;
                         }
+
                     }
 
-                    if (serviceCurrentVisitcount < serviceTotalVisits) {
-                        let currentDate = utils.getDateWithFormat('YYYY-MM-DD');
+                    // Add additional form if currenVisitation != to total Visitation
+                    if (serviceCurrentVisitcount !== serviceTotalVisits) {
                         rows += `
-                                <tr>
-                                    <td>Consumable</td>
-                                    <td class="mgmt-modal-visitation">
-                                        <button class="btn btn-sm btn-primary" data-action="addVisit">ADD VISIT</button>
-                                        <form class="form-inline frm-add-visit" method="POST">
-                                            <input type="date" class="form-control" required min="${currentDate}" value="${currentDate}"/> &nbsp;
-                                            <button type="submit" class="btn btn-sm btn-primary" data-action="submitVisit" data-customer-package-id="${customerPackageId}" data-user-branch-id="${userBranchId}" data-user-id="${userId}" data-service-type="${serviceType}" data-customer-id="${customerUserId}">SAVE</button> &nbsp;
-                                            <a href="javascript:void(0);" class="btn btn-sm btn-danger" data-action="addVisitBack">BACK</a>
-                                        </form>
-                                    </td>
-                                </tr>
-                                `;
+                            <tr>
+                                <td>Consumable</td>
+                                <td class="mgmt-modal-visitation">
+                                    <button class="btn btn-sm btn-primary" data-action="addVisit">ADD VISIT</button>
+                                    <form class="form-inline frm-add-visit" method="POST">
+                                        <input type="date" class="form-control" required min="${currentDate}" value="${currentDate}"/> &nbsp;
+                                        <button type="submit" class="btn btn-sm btn-primary" data-action="submitVisit" data-customer-package-id="${customerPackageId}" data-user-branch-id="${userBranchId}" data-user-id="${userId}" data-service-type="${serviceType}" data-customer-id="${customerUserId}">SAVE</button> &nbsp;
+                                        <a href="javascript:void(0);" class="btn btn-sm btn-danger" data-action="addVisitBack">BACK</a>
+                                    </form>
+                                </td>
+                            </tr>
+                        `;
                     }
+
 
 
                 }
