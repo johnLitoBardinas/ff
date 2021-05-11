@@ -58,9 +58,6 @@ export default class ManagementTable {
             console.log('serviceModalStatus', e.currentTarget.dataset);
             let { customerPackageId, userBranchId, userId, serviceType, customerUserId, currentUserBranchtype, serviceStatus, serviceExpirationDate, serviceTotalVisits, serviceCurrentVisitsLogs, serviceCurrentVisitcount } = e.currentTarget.dataset;
 
-
-
-
             let rows = '';
 
             let visitLogs = JSON.parse(serviceCurrentVisitsLogs);
