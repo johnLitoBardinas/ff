@@ -102,25 +102,26 @@ export default class ManagementTable {
                                 <td>Consumed</td>
                             </tr>
                             `;
-                        } else {
-
-                            let currentDate = utils.getDateWithFormat('YYYY-MM-DD');
-                            rows += `
-                            <tr>
-                                <td>Consumable</td>
-                                <td class="mgmt-modal-visitation">
-                                    <button class="btn btn-sm btn-primary" data-action="addVisit">ADD VISIT</button>
-                                    <form class="form-inline frm-add-visit" method="POST">
-                                        <input type="date" class="form-control" required min="${currentDate}" value="${currentDate}"/> &nbsp;
-                                        <button type="submit" class="btn btn-sm btn-primary" data-action="submitVisit" data-customer-package-id="${customerPackageId}" data-user-branch-id="${userBranchId}" data-user-id="${userId}" data-service-type="${serviceType}" data-customer-id="${customerUserId}">SAVE</button> &nbsp;
-                                        <a href="javascript:void(0);" class="btn btn-sm btn-danger" data-action="addVisitBack">BACK</a>
-                                    </form>
-                                </td>
-                            </tr>
-                            `;
                         }
-
                     }
+
+                    if (serviceCurrentVisitcount < serviceTotalVisits) {
+                        let currentDate = utils.getDateWithFormat('YYYY-MM-DD');
+                        rows += `
+                                <tr>
+                                    <td>Consumable</td>
+                                    <td class="mgmt-modal-visitation">
+                                        <button class="btn btn-sm btn-primary" data-action="addVisit">ADD VISIT</button>
+                                        <form class="form-inline frm-add-visit" method="POST">
+                                            <input type="date" class="form-control" required min="${currentDate}" value="${currentDate}"/> &nbsp;
+                                            <button type="submit" class="btn btn-sm btn-primary" data-action="submitVisit" data-customer-package-id="${customerPackageId}" data-user-branch-id="${userBranchId}" data-user-id="${userId}" data-service-type="${serviceType}" data-customer-id="${customerUserId}">SAVE</button> &nbsp;
+                                            <a href="javascript:void(0);" class="btn btn-sm btn-danger" data-action="addVisitBack">BACK</a>
+                                        </form>
+                                    </td>
+                                </tr>
+                                `;
+                    }
+
 
                 }
 
@@ -128,6 +129,7 @@ export default class ManagementTable {
 
             this.$managementModal.find('.mgmt-service-modal-title').text(`${serviceType.toUpperCase()} - Visitation Status`);
             this.$managementModal.find('.mgmt-service-modal__tbody').empty().append(rows);
+            this.$managementModal.find('.consumed-visits').text(serviceCurrentVisitcount.toString());
             this.$managementModal.find('.total-visits').text(serviceTotalVisits.toString());
             this.$managementModal.modal('show');
 
@@ -149,6 +151,7 @@ export default class ManagementTable {
         });
     }
 
+    // oSubmit of visitation
     onSubmitVisitForm() {
         console.log('attached on submit visit form');
         this.$managementModal.find('.mgmt-service-modal__tbody').on('click', '[data-action="submitVisit"]', function name(e) {

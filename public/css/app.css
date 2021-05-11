@@ -13568,6 +13568,10 @@ button:focus {
   display: none;
 }
 
+.mgmt-service-modal .modal-footer {
+  justify-content: space-between;
+}
+
 .admin-branches {
   height: 60vh;
   overflow-y: scroll;
