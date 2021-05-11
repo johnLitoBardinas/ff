@@ -14,8 +14,6 @@ export default class ManagementTable {
         this.onClickPackageInformationVisits();
         this.onToggleVisitForm();
         this.onSubmitVisitForm();
-        // console.log('date format', );
-
     }
 
     onTogglePackageInfo() {
@@ -50,14 +48,12 @@ export default class ManagementTable {
 
     // Viewing Package service information
     onClickPackageInformationVisits() {
-        console.log('watcher now attached');
 
         this.$managementTable.on('click', '[data-action="serviceModalStatus"]', (e) => {
             e.preventDefault();
 
-            console.log('serviceModalStatus', e.currentTarget.dataset);
-
             let currentDate = utils.getDateWithFormat("YYYY-MM-DD");
+
             let {
                 customerPackageId,
                 userBranchId,
@@ -72,10 +68,6 @@ export default class ManagementTable {
                 serviceCurrentVisitcount
             } = e.currentTarget.dataset;
 
-            console.log('serviceTotalVisits', serviceTotalVisits);
-            console.log('serviceCurrentVisitcount', serviceCurrentVisitcount);
-
-
             let rows = '';
 
             let visitLogs = JSON.parse(serviceCurrentVisitsLogs);
@@ -83,7 +75,6 @@ export default class ManagementTable {
             // completed package service
             if (serviceTotalVisits === serviceCurrentVisitcount && serviceStatus !== 'expired') {
 
-                console.log('completed');
                 for (let i = 0; i < serviceCurrentVisitcount; i++) {
                     rows += `
                         <tr>
@@ -97,8 +88,6 @@ export default class ManagementTable {
 
                 // expired package service
                 if (serviceStatus === 'expired') {
-
-                    console.log('expired');
 
                     rows += `
                         <tr>
@@ -173,7 +162,7 @@ export default class ManagementTable {
 
     // oSubmit of visitation
     onSubmitVisitForm() {
-        console.log('attached on submit visit form');
+
         this.$managementModal.find('.mgmt-service-modal__tbody').on('click', '[data-action="submitVisit"]', function name(e) {
             e.preventDefault();
 

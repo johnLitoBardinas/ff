@@ -174,7 +174,8 @@ const util = {
 
     getDateWithFormat(format) {
         const today = new Date();
-        let month   = today.getMonth();
+
+        let month   = today.getMonth() + 1;
         let date    = today.getDate();
         let year    = today.getFullYear();
 
